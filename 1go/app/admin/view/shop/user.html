@@ -1,0 +1,251 @@
+{extend name="base/base" /}
+{block name="content"}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            菜单
+            <small>
+                <i class="icon-double-angle-right"></i>
+                用户信息
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form" id="form_content">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 状态 </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="status_copy" disabled>
+                            <option value="1" {if condition="!empty($info['status']) AND $info['status'] eq '1'"}selected="selected"{/if} >正常</option>
+                            <option value="-2" {if condition="!empty($info['status']) AND $info['status'] eq '-2'"}selected="selected"{/if} >禁用</option>
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">禁用的用户无法登陆</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">a
+                    <label class="col-sm-3 control-label no-padding-right"> 用户类型 </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="type_copy" disabled>
+                            <option value="1" {if condition="!empty($info['type']) AND $info['type'] eq '1'"}selected="selected"{/if} >普通用户</option>
+                            <option value="-1" {if condition="!empty($info['type']) AND $info['type'] eq '-1'"}selected="selected"{/if} >系统用户</option>
+                            <option value="2" {if condition="!empty($info['type']) AND $info['type'] eq '2'"}selected="selected"{/if} >商家用户</option>
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">用户类型</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 用户名 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="username" value="{$info.username|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">用户名</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 手机号 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="phone" value="{$info.phone|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">手机号</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 昵称 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="nick_name" value="{$info.nick_name|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">昵称</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 来源 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="origin" value="{$info.origin|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">来源</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 头像 </label>
+                    <div class="col-sm-6">
+                        <input type="hidden" name="user_pic" value="{$info.user_pic|default=''}" class="pic_id"/>
+
+                        <img alt="150x150" src="{$info.user_face|default=''}" style="width: 150px;height: 150px;" class="pic_img">
+
+                    </div>
+
+
+
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 年龄 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="age" value="{$info.age|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">年龄</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 性别 </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="sex">
+
+                            <option value="man" {if condition="!empty($info['sex']) AND $info['sex'] eq 'man'"}selected="selected"{/if} >男</option>
+                            <option value="woman" {if condition="!empty($info['sex']) AND $info['sex'] eq 'woman'"}selected="selected"{/if} >女</option>
+                            <option value="" {if condition="empty($info['sex'])"}selected="selected"{/if} >请选择</option>
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">性别</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 余额 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="money_copy" value="{$info.money|default=''}" disabled/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">余额</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 积分 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="score_copy" value="{$info.score|default=''}" disabled/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">积分</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> email </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="email" value="{$info.email|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">email</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 真实姓名 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="real_name" value="{$info.real_name|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">真实姓名</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> qq </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="qq" value="{$info.qq|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">qq</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> IP归属地 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="ip_area" value="{$info.ip_area|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">IP归属地</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 注册ip </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="reg_ip" value="{$info.reg_ip|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">注册ip</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 邮编 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="zip_code" value="{$info.zip_code|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">邮编</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <!--操作按钮-->
+                <div class="clearfix form-actions">
+
+                </div>
+            </form>
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+<input type="hidden" id="submit_url" value="{:U('update')}">
+<input type="hidden" id="root_url" value="{:U('info')}">
+<input type="hidden" id="upload_url" value='{:U("core/api/up_img")}'/>
+{/block}
+{block name="js"}
+
+
+<script>
+
+
+</script>
+{/block}

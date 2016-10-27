@@ -1,0 +1,47 @@
+{extend name="base/base"/}
+{block name="title"}TA的夺宝记录{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user">
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ta/_nav_view" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content">
+
+                        <div class="m-user-duobao">
+                            {include file="ta/_base_info" /}
+                            <div class="m-user-comm-wraper">
+                                <div module="user/duobao/DuobaoOther" class="m-user-comm-cont m-user-duobaoOther" id="pro-view-8" module-id="module-7" module-launched="true">
+                                    <div class="m-user-comm-title">
+                                        <div class="m-user-comm-navLandscape">
+                                            <span class="title">夺宝记录</span>
+                                            <a class="i-item i-item-active" pro="dNav" data-name="join" href="javascript:;">参与成功</a>
+                                        </div>
+                                    </div>
+                                    <div id="ajax_container">
+                                        <div class="listCont" data-name="multi" ajax_table="ajax_table" auto_load="auto_load" data-url="{:U('ta/history_list')}" data-container="ajax_container" data-param='{"page":1,"uid":{$user_info.id}}'>
+                                            <div pro="userCommLoading" class="w-loading"><b class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="see_luck_num" value="{:U('goods/see_luck_num')}"><!--获取用户购买幸运数字-->
+{/block}
+{block name="user_js"}
+{js href="__static__/js/ucenter/ajax_table.js" /}
+{js href="__static__/js/ucenter/view_num.js" /}
+{/block}

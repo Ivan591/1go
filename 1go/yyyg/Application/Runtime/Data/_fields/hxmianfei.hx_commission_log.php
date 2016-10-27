@@ -1,0 +1,1 @@
+a:9:{i:0;s:2:"id";i:1;s:11:"create_time";i:2;s:5:"money";i:3;s:3:"uid";i:4;s:3:"pid";i:5;s:3:"tid";i:6;s:6:"number";s:3:"_pk";s:2:"id";s:5:"_type";a:7:{s:2:"id";s:7:"int(11)";s:11:"create_time";s:16:"int(10) unsigned";s:5:"money";s:21:"double(10,2) unsigned";s:3:"uid";s:7:"int(11)";s:3:"pid";s:7:"int(11)";s:3:"tid";s:7:"int(11)";s:6:"number";s:16:"int(11) unsigned";}}

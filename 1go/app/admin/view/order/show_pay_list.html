@@ -1,0 +1,92 @@
+
+<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+        <th class="center">
+            <label>
+                <input type="checkbox" class="ace"/>
+                <span class="lbl"></span>
+            </label>
+        </th>
+        <th>id</th>
+        <th>用户id</th>
+        <th>充值订单ID</th>
+        <th>充值订单名称</th>
+        <th>子订单列表</th>
+        <th>子订单数量</th>
+        <th>订单总金额</th>
+        <th>订单状态</th>
+        <th>业务类型</th>
+        <th>支付状态</th>
+        <th>支付交易号</th>
+        <th>支付平台</th>
+        <th>支付时间</th>
+        <th>订单未付款关闭时间</th>
+        <th>来源</th>
+        <th>创建时间</th>
+        <th>用户名</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name='pay_list' id='vo'}
+    {if condition='!empty($vo["id"])'}
+    <tr>
+        <td class="center">
+
+            <label>
+                <input type="checkbox" class="ace"/>
+                <span class="lbl"></span>
+            </label>
+        </td>
+
+        <td>{$vo.id|default=''}</td>
+        <td>{$vo.uid|default='--'}</td>
+        <td>{$vo.order_id|default='--'}</td>
+        <td>{$vo.name|default='--'}</td>
+        <td>{$vo.order_list|default='--'}</td>
+        <td>{$vo.num|default='--'}</td>
+        <td>{$vo.price|default='--'}</td>
+        <td>{$vo.status|default='--'}</td>
+        <td>
+            {notempty name='vo.bus_type'}
+            {switch name='vo.bus_type'}
+            {case value='recharge'}充值{/case}
+            {case value='buy'}购买商品{/case}
+            {default/}
+            --
+            {/switch}
+            {/notempty}
+        </td>
+        <td>
+            {notempty name='vo.pay_status'}
+            {switch name='vo.pay_status'}
+            {case value='1'}未付款{/case}
+            {case value='2'}已付款{/case}
+            {case value='3'}已开通{/case}
+            {default/}
+            --
+            {/switch}
+            {/notempty}
+        </td>
+        <td>{$vo.pay_sn|default='--'}</td>
+        <td>{$vo.plat_form|default='--'}</td>
+
+        <td>{$vo.pay_time|microtime_format='3','Y-m-d H:i:s'}</td>
+        <td>{$vo.close_time|date="Y-m-d H:i:s",###}</td>
+        <td>{$vo.origin|default='--'}</td>
+        <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+        <td>{$vo.username|default='--'}</td>
+
+
+    </tr>
+    {/if}
+    {/volist}
+    </tbody>
+</table>
+<input type="hidden" id="submit" value="{:U('Order/update_order_status')}"/>
+<div class="page">
+    {$pages|default=''}
+</div>
+
+{js href='__common__/admin/js/order/show_list.js' /}
+

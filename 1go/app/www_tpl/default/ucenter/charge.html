@@ -1,0 +1,74 @@
+{extend name="base/base"/}
+{block name="title"}我的充值记录{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user">
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content">
+
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+
+                            <li class="w-crumbs-item w-crumbs-active">充值记录</li>
+
+                        </ul>
+                        <div class="charge-record-wrapper">
+
+                            <div class="charge-des-text" id="charge-des-text">
+                                <strong>当前账户余额&nbsp;:&nbsp;</strong>
+                                <span>{$info.money|default=0}根香肠</span>
+                                <a href="{:dwz_filter('pay/recharge')}" class="w-button" target="_blank">立即充值</a>
+
+                                <div pro="time-selector" tag="time" id="time" class="time">
+
+                                    <div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-7">
+                                        <span class="now_sel_month"  >3个月内</span>
+                                        <i class="w-select-arr">▼</i>
+                                    </div>
+                                    <ul class="charge_sel">
+                                        <li data-val="1">1个月内</li>
+                                        <li data-val="3">3个月内</li>
+                                        <li data-val="6">6个月内</li>
+                                        <li data-val="12">12个月内</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <div class="user-chargerec-wrap charge_list">
+                                <!--列表ajax-->
+                                <div class="m-user-address-list addr_list">
+                                    <div pro="userCommLoading" class="w-loading"><b
+                                            class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="charge-des-text2" id="charge-des-text2">
+                                <a href="javascript:" target="_blank" id="chargeDes-text2-a"></a></div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="charge_list" value="{:U('ucenter/charge_list')}">
+<input type="hidden" name="month_fitter" value="3">
+{/block}
+{block name="user_js"}
+{js href="__yyg__/js/ucenter/charge.js" /}
+{/block}

@@ -1,0 +1,6 @@
+<!--全局url-->
+<input type="hidden" id="user_quit" value="{:U('Account/quit')}">
+<input type="hidden" id="login_url" value="{:U('Account/index')}">
+<input type="hidden" id="change_pass_url" value="{:U('User/change_pass_do')}">
+<input type="hidden" id="upload_img_url_system" value='{:U("core/api/up_img")}'/><!--上传图片调用-->
+<input type="hidden" id="pre_page_url" name="{if(!empty($_SERVER['HTTP_REFERER']))}{:$_SERVER['HTTP_REFERER']}{/if}">

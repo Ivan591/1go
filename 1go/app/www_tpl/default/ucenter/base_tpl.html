@@ -1,0 +1,79 @@
+{extend name="base/base"/}
+{block name="title"}{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/nav" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" >
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+
+                            <li class="w-crumbs-item w-crumbs-active">个人资料</li>
+
+                        </ul>
+                        <div class="m-user-profile">
+                            <div class="m-user-comm-wraper">
+                                <table style="width:100%">
+                                    <tbody><tr>
+                                        <th>头像</th>
+                                        <td>
+                                            <a pro="UC_avatarEdit" class="w-user-avatarEdit w-user-avatarEdit-160" href="javascript:void(0);">
+                                                <img pro="avatar" width="160" height="160"  src="../../img/user/2.jpeg">
+                                                <span class="w-user-avatarEdit-tips">点击更换头像</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr pro="nicknameWp">
+                                        <th>昵称</th>
+                                        <td>
+                                            <div pro="nameShow">
+                                                <span class="contTxt" pro="nickname">lp387839***@xiangchang.com</span>
+                                                <a pro="UC_nicknameEdit" href="javascript:void(0)" class="linkEdit"><b class="ico ico-edit"></b>修改</a>
+                                            </div>
+                                            <div class="nameEdit" pro="nameEdit" style="display:none"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <td>
+                                            76344798
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>登录帐号</th>
+                                        <td>
+                                            <span pro="username">lp387839178@xiangchang.com</span>
+                                        </td>
+                                    </tr>
+                                    <tr pro="mobileWp" class="iMobileWp">
+                                        <th>手机号</th>
+                                        <td>
+                                            <div pro="mobileShow">
+                                                <span class="contTxt" pro="mobile" style="display:none"></span>
+                                                <a pro="UC_mobileEdit" href="javascript:void(0)" class="linkEdit"><b class="ico ico-edit"></b>填写手机号，不错过揭晓通知哦</a>
+                                            </div>
+                                            <div pro="mobileEdit" style="display:none;"></div>
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

@@ -1,0 +1,270 @@
+{extend name="base/base" /}
+{block name="css"}
+{css href="__common__/admin/css/goods/form.css" /}
+{css href="__plugin__/umeditor/themes/default/css/umeditor.min.css"/}
+{/block}
+{block name="content"}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            商品管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                {notempty name='type'}
+                {switch name='type'}
+                {case value='add'}添加{/case}
+                {case value='edit'}编辑{/case}
+                {default /}查看
+                {/switch}
+                {/notempty}
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form" id="form_content">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 状态 </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="status">
+                            <option value="1" {if condition="!empty($info['status']) AND $info['status'] eq '1'"}selected="selected"{/if} >正常</option>
+                            <option value="2" {if condition="!empty($info['status']) AND $info['status'] eq '-2'"}selected="selected"{/if} >下架</option>
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">商品下架后将立即不可用当前商品的所有期数,请慎重操作</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入商品显示的主标题" class="col-xs-10 col-sm-5" name="name" value="{$info.name|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">商品显示的主标题</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品副标题</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入商品副标题" class="col-xs-10 col-sm-5" name="sub_title" value="{$info.sub_title|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">商品显示的副标题</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">请选择平台  </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" id="sel_plat" >
+                            {volist name='category_list' id='vo'}
+                            <option value="{$vo.id|default=''}">{$vo.name|default=''}</option>
+                            {/volist}
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">请选择平台</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品分类</label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="category">
+                            <option value="">请选择</option>
+
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">请选择商品的分类</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">夺宝类型  </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="deposer_type" >
+                            {volist name='deposer_list' id='vo'}
+                            <option value="{$vo.id|default=''}" {if condition="!empty($info['deposer_type']) AND $info['deposer_type'] eq $vo['id']"}selected="selected"{/if}>{$vo.name|default=''}</option>
+                            {/volist}
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">请选择夺宝类型</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品价格</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入商品的金额" class="col-xs-10 col-sm-5" name="price" value="{$info.price|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">请填写商品的总价</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品提示(可选)</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="提示商品的信息" class="col-xs-10 col-sm-5" name="remarks" value="{$info.remarks|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">提示商品的信息</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">初始化购买倍数</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入用户打开页面时初始化显示的购买数" class="col-xs-10 col-sm-5" name="init_times" value="{$info.init_times|default='1'}" />
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">用户设定夺宝类型的倍数,如十元夺宝的1倍就是初始化购买数量为10</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-3 control-label no-padding-right">每次最少购买份数</label>-->
+                    <!--<div class="col-sm-6">-->
+                        <!--<input type="text" placeholder="请输入用户每次增加或减少的次数" class="col-xs-10 col-sm-5" name="min_times" value="{$info.min_times|default='1'}"/>-->
+                        <!--<span class="help-inline col-xs-12 col-sm-7">-->
+						    <!--<span class="middle">用户单次增加或减少的最小倍数</span>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="space-4"></div>-->
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">请选择商品图片</label>
+                    <div class="col-sm-6">
+                        <div class="col-xs-10 col-sm-5 img_thumb">
+                            <input type="button" class="btn btn-success btn-sm upload_img" value="请选择图片(支持:jpg,png,gif,bmp)">
+                            <!--商品图片缩略图-->
+                        </div>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">默认第一张为主图</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <!--图片展示-->
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label class="col-sm-4 control-label no-padding-right"></label>
+                        <div class="col-xs-10 col-sm-5 img_thumb">
+                            <ul class="img_list">
+                                <!--图片列表-->
+                                {notempty name="img_list"}
+                                {volist name="img_list" id='vo'}
+                                    <li data-id="{$vo.id|default=''}">
+                                        <div class="img_exec_box">
+                                            <span class="set_img_main">主图</span>
+                                            <span class="del_img">删除</span>
+                                        </div>
+                                        <img src="{$vo.img_path|default='__common__/img/empty_img.jpg'}" data-id="{$vo.id|default=''}" alt="">
+                                        <span class="success"></span>
+                                    </li>
+                                {/volist}
+                                {else /}
+                                {/notempty}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">请填写商品的详情</label>
+                    <div class="col-sm-9">
+                        <div class="col-xs-10 col-sm-7">
+                            <!-- 加载编辑器的容器 -->
+                            <script id="detail" name="detail" type="text/plain">{$info.detail|default=''}</script>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <!--操作按钮-->
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        {notempty name='type'}
+                        {switch name='type'}
+                        {case value='add'}
+                        <button class="btn btn-info submit_btn" type="button">
+                            <i class="icon-ok bigger-110"></i>
+                            提交表单
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn" type="reset">
+                            <i class="icon-undo bigger-110"></i>
+                            重置
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-default close_page" type="button">
+                            <i class="fa fa-times bigger-110"></i>
+                            关闭页面
+                        </button>
+                        {/case}
+                        {case value='edit'}
+                        <button class="btn btn-info submit_btn" type="button">
+                            <i class="icon-ok bigger-110"></i>
+                            保存内容
+                        </button>
+                        <button class="btn btn-default close_page" type="button">
+                            <i class="fa fa-times bigger-110"></i>
+                            关闭页面
+                        </button>
+                        {/case}
+                        {default /}
+                        {/switch}
+                        {/notempty}
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="{$info.id|default=''}">
+                <input type="hidden" name="pic_list" value="{$info.pic_list|default=''}"><!--图片列表-->
+                <input type="hidden" name="index_img" value="{$info.index_img|default=''}"><!--首图展示-->
+            </form>
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+
+<input type="hidden" id="submit_url" value="{:U('update')}">
+<input type="hidden" id="root_url" value="{:U('index')}">
+<input type="hidden" id="sel_plat_url" value="{:U('sel_plat')}">
+<input type="hidden" id="type" value="{$type|default='add'}">
+<input type="hidden" id="category" value="{$info.category|default=''}">
+<input type="hidden" id="mid" value="{$info.mid|default=''}">
+{/block}
+{block name="js"}
+{js href='__common__/admin/js/goods/form.js' /}
+{js href='__plugin__/umeditor/umeditor.config.js' /}
+{js href='__plugin__/umeditor/umeditor.min.js' /}
+{js href='__plugin__/umeditor/lang/zh-cn/zh-cn.js' /}
+
+
+
+
+{/block}

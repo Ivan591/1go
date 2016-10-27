@@ -1,0 +1,17 @@
+
+                <div class="m-user-frame-colNav">
+
+                    <h3><a href="{:dwz_filter('ta/index',['uid'=>$user_info['id']])}">Ta的夺宝</a></h3>
+                    <hr>
+                    <ul pro="userFrameNav">
+                        <li class="{$Think.ACTION_NAME == 'history'?'active':''}">
+                            <a href="{:dwz_filter('ta/history',['uid'=>$user_info['id']])}" pro="userDuobao">夺宝记录 <strong pro="userDuobao_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li class="{$Think.ACTION_NAME == 'luck'?'active':''}">
+                            <a href="{:dwz_filter('ta/luck',['uid'=>$user_info['id']])}" pro="userWin">幸运记录 <strong pro="userWin_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li class="{$Think.ACTION_NAME == 'share'?'active':''}">
+                            <a href="{:dwz_filter('ta/share',['uid'=>$user_info['id']])}" pro="userShare">Ta的晒单 <strong pro="userShare_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                    </ul>
+                </div>

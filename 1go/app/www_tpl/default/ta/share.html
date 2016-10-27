@@ -1,0 +1,89 @@
+{extend name="base/base"/}
+{block name="title"}TA的晒单{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ta/_nav_view" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" >
+
+                        <div class="m-user-duobao">
+                            {include file="ta/_base_info" /}
+                            <div class="m-user-share-panel">
+                                <div pro="module-holder" style="display: none;">
+                                    <div pro="userCommLoading" class="w-loading">
+                                        <b class="w-loading-ico"></b>
+                                        <span class="w-loading-txt">正在努力加载……</span>
+                                    </div>
+                                </div>
+                                <div class="m-user-share-blank" style="display:none;">
+                                    Ta 还没有晒单记录~
+                                </div>
+                                <div class="m-user-share-totalRecords" style="display: block;">
+                                    <span style="font-weight:bold;font-size:18px;margin-right:20px;">晒单</span>共有
+                                    <span class="m-user-share-totalCnt">{$show_count}</span>条晒单~
+                                </div>
+                                <div class="m-user-share-list" style="display: block;">
+                                    <div id="ShareList">
+                                        <div class="m-shareList" id="pro-view-12">
+                                            {volist name="show_list" id="each_show"}
+                                            <div class="group" >
+                                                <div class="item" >
+                                                    <div class="pic">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="middle" align="center">
+                                                                    <a href="#" target="_blank" title="{$each_show.title|htmlspecialchars}">
+                                                                        <img src="../../img/share/2.jpeg" alt="{$each_show.title|htmlspecialchars}" width="270" /></a></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="name">
+                                                        <a href="#">{$each_show.goods_name}</a>
+                                                    </div>
+                                                    <div class="code">
+                                                        幸运号码：
+                                                        <strong class="txt-impt">{$each_show.luck_num|num_base_mask}</strong>
+                                                    </div>
+                                                    <div class="post">
+                                                        <div class="title">
+                                                            <a href="{$each_show.nper_id}" target="_blank"><strong>{$each_show.title}</strong></a>
+                                                        </div>
+                                                        <div class="time">
+                                                            {$each_show.create_time|date='Y-m-d H:i:s',###}
+                                                        </div>
+                                                        <div class="abbr">
+                                                            <p>{$each_show.content}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/volist}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="BottomBlank" style="display:none;text-align:center;">
+                                    已经到达列表底部～
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

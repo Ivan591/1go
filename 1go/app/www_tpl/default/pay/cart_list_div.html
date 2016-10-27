@@ -1,0 +1,28 @@
+<div style="max-height:400px;overflow-y: auto;background-color:#fff;">
+    {empty name='list'}
+    <div class="w-miniCart-loading">
+        <span class="w-loading-txt">您的购物车没有任何东西哟~</span>
+    </div>
+    {else/}
+    <ul pro="list" class="w-miniCart-list">
+        {foreach name='list' item='vo' key='k'}
+        <li class="w-miniCart-item" id="pro-view-27">
+            <div class="w-miniCart-item-pic">
+                <img src="__upload__{notempty name='vo.i_img_path'}{$vo.i_img_path}{else/}__yyg__/images/empty_img.jpg{/notempty}" alt="{$vo.g_name|default='暂无商品标题'}" width="74px" height="74px"/>
+            </div>
+            <div class="w-miniCart-item-text">
+                <p><strong>{$vo.g_name|default='暂无商品标题'}</strong></p>
+                <p><em>{notempty name='vo.unit_price'}{php}echo (int)$vo['unit_price'].'根香肠';{/php}{else/}--{/notempty}&times; {$vo.num|default='--'}次参与( 期数:{$vo.nper_id|num_base_mask|default='--'})</em><a data-nper="{$vo.nper_id}" class="w-miniCart-item-del del_cart_btn" href="javascript:void(0);" pro="del">删除</a></p>
+            </div>
+        </li>
+        {/foreach}
+    </ul>
+</div>
+<div pro="footer" class="w-miniCart-layer-footer" id="pro-view-29">
+    <p><strong>共有<b pro="count">{$count|default='0'}</b>件商品，金额总计：<em><span pro="amount">{$sum_money|default='0'}</span>根香肠</em></strong></p>
+    <p>
+        <a href="javascript:" id="go_to_cart_list" class="w-button w-button-main">查看清单并结算</a>
+    </p>
+    {/empty}
+
+</div>

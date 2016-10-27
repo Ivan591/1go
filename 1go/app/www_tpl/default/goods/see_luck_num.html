@@ -1,0 +1,32 @@
+<style>
+    .single{
+        margin-left: 14px;
+        font-size: 15px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #999;
+        font-weight: bold;
+    }
+    .luck_num{
+        font-weight:bold;
+        color:#fff;
+        background: #f36;
+    }
+</style>
+<div style="width:485px;height: 295px;overflow-y:auto ">
+    <p class="title" style="font-weight: bold;font-size:20px;padding-left: 15px;">Ta本期总共参与了 <span style="color:#f36">{$num}</span> 人次</p>
+    <br>
+    <div style="font-size: 14px;">
+        <div>{php}$i=0;{/php}
+            {foreach name='list' item='vo' key='k'}
+            {php}$i++;{/php}
+            <span class="single {if condition='$vo eq $luck_num'} luck_num{/if}">
+                {$vo+__BASE0__}
+            </span>
+            {if condition='(($i) % 5) eq 0'}
+        </div>
+        <div>
+            {/if}
+            {/foreach}
+        </div>
+    </div>
+</div>

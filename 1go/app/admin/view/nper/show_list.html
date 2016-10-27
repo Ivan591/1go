@@ -1,0 +1,95 @@
+
+
+
+
+<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+        <th class="center">
+            <label>
+                <input type="checkbox" class="ace" />
+                <span class="lbl"></span>
+            </label>
+        </th>
+        <th>期号</th>
+        <th>商品名称</th>
+        <th>状态</th>
+        <th>夺宝类型</th>
+        <th>所需购买次数</th>
+        <th>参与人数</th>
+        <th>幸运数字</th>
+        <th>幸运用户</th>
+        <th>幸运订单号</th>
+        <th>开奖时间</th>
+        <th>触发开奖</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name='nper_list' id='vo'}
+    {if condition='!empty($vo["id"])'}
+    <tr>
+        <td class="center">
+
+            <label>
+                <input type="checkbox" class="ace"/>
+                <span class="lbl"></span>
+            </label>
+        </td>
+
+        <td>{$vo.id|default=''}</td>
+        <td>{$vo.goods_name|default='--'}</td>
+        <td>
+            {notempty name='vo.status'}
+            {switch name='vo.status'}
+            {case value='1'}未开奖{/case}
+            {case value='2'}开奖中{/case}
+            {case value='3'}已开奖{/case}
+            {default/}
+            --
+            {/switch}
+            {/notempty}
+        </td>
+
+        <td>{$vo.deposer_name|default='--'}</td>
+        <td>{$vo.sum_times|default='--'}</td>
+
+        <td>{$vo.participant_num|default='支付宝'}</td>
+        <td>{$vo.luck_num|default='--'}</td>
+        <td>{$vo.luck_user|default='--'}</td>
+        <td>{$vo.luck_order_id|default='--'}</td>
+        <td>{$vo.open_time|default='--'}</td>
+
+
+        <td>
+            {eq name="vo['trigger']" value="true"}
+                <button type="button" class="btn btn-primary trigger" data-url="{:U('core/gdfc/open_by_nper',array('nper_id'=>$vo['id']))}" >手动触发</button>
+            {else/}
+                --
+            {/eq}
+
+        </td>
+        <td>
+            <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                <a href="javascript:" data-id="{$vo.id|default=''}" class="btn btn-xs btn-danger del_btn" title="删除">
+                    <i class="icon-trash bigger-120"></i>
+                </a>
+
+            </div>
+        </td>
+
+
+
+    </tr>
+    {/if}
+    {/volist}
+    </tbody>
+</table>
+<input type="hidden" id="submit" value="{:U('Order/update_order_status')}"/>
+<input type="hidden" id="trigger_url" value="{:U('core/gdfc/open_by_nper')}"/>
+<div class="page">
+    {$pages|default=''}
+</div>
+
+{js href='__common__/admin/js/nper/show_list.js' /}
+

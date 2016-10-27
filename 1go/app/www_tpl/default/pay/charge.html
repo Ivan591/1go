@@ -1,0 +1,146 @@
+{extend name="base/base"/}
+{block name="title"}付款{/block}
+{block name="user_css"}
+{css href="__static__/css/payment.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-cashier m-cashier-usePayments">
+        {if condition='$info["status"] eq "1" AND $info["pay_status"] eq "1"'}
+        <div class="m-header">
+            <div class="g-wrap f-clear">
+                <div class="m-header-logo">
+                    <h1><a class="m-header-logo-link" href="#">香肠一元购</a></h1>
+                    <div class="m-header-slogan">
+                        <a id="whatIsThis" href="javascript:void(0)" title="什么是香肠一元购？" style="display:none">
+                            <img src="__static__/img/logo_banner_beta.gif"></a>
+                    </div>
+                </div>
+                <div class="m-header-steps">
+                    <div class="w-step-duobao w-step-duobao-2"></div>
+                </div>
+            </div>
+        </div>
+        <!--订单成功-->
+        <div class="g-wrap">
+            <div class="m-cashier-info">
+                <div class="header" id="idOrderHeader">
+                    <h2 class="title"><b class="ico ico-suc-m"></b> 订单提交成功，只差最后一步支付就可以啦！</h2>
+                    <p class="desc">请您在提交订单后
+                        <span id="count_down" data-sec="{$sec|default='0'}">
+                        <!--<span class="day">&#45;&#45;</span>小时-->
+                        <b style="color: #f36;" class="hour">--</b>时
+                        <b style="color: #f36;" class="min">--</b>分
+                        <b style="color: #f36;" class="sec">--</b>秒
+                        </span>
+                        完成支付，否则订单会自动取消！</p>
+                </div>
+                <div class="detail">
+                    订单号：{$info.order_id|default='--'}<br>
+                </div>
+            </div>
+        </div>
+        <div class="g-wrap">
+            <div class="m-cashier-amount">
+                <div class="header">
+                    <div class="amount">应付金额：<span class="txtMoney">￥{$info.price|number_format="2"}</span></div>
+                    <div class="useCoin">
+                        <label class="w-checkbox w-checkbox-disabled" disabled="disabled">
+                            {if condition='(int)$user_money gt 0'}
+                            <input type="checkbox" id="balance_flag"  checked="checked">
+                            <span>使用账户余额支付（账户余额：{$user_money|round="0"}根香肠）</span>
+                            {/if}
+                            <input type="hidden" id="user_money" value="￥{$user_money|number_format='2'}">
+                            <input type="hidden" id="price" value="￥{$info.price|number_format='2'}">
+                            <input type="hidden" id="still_money" value="￥{$still_money|number_format='2'}">
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="content">
+
+                    <div class="stillPay">
+                        <div class="payMoney">
+                            <span>还需支付：</span>
+                            <em class="txtMoney" id="id_still_pay">--</em>
+                        </div>
+                        <div class="payment">
+                            <span class="title">支付方式：</span>
+                            <!--<div>-->
+                                <!--此处有二维码-->
+                            <!--</div>-->
+                            <div>
+                                <div class="w-pay-selector" id="pro-view-13">
+
+                                    <!--<div class="w-pay-type pay_btn">-->
+                                        <!--<img src="__static__/img/SMWX.png" alt="微信扫码" data-type="wechat">-->
+                                    <!--</div>-->
+                                    <div class="w-pay-type  w-pay-selected pay_btn" data-url="{$alipay_url}">
+                                        <img src="__static__/img/0023.png" alt="支付宝" data-type="alipay">
+                                    </div>
+
+                                    <!--<div class="w-pay-type" ><img src="__static__/img/9999.v2.png" alt="香肠支付"></div>-->
+                                    <!--<div class="w-pay-type w-pay-type-multi" >信用卡</div>-->
+                                    <!--<div class="w-pay-type w-pay-type-multi" >储蓄卡</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-clear"></div>
+                    <form id="submit_form" action="{:U('pay/notify/order_flow')}" method="post" target="_blank" autocomplete="off">
+                        <input type="hidden" name="order_id" value="{$info.order_id}">
+                        <input type="hidden" name="timestamp" value="{$timestamp}">
+                        <input type="hidden" name="pay_type" value="alipay">
+                        <input type="hidden" name="sign" value="{$sign}">
+                        <input type="hidden" name="balance_flag" >
+                        <div class="opt">
+                            <button class="w-button w-button-main w-button-xl pay_right_now" type="submit">
+                                <span>立即支付</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {else}
+        <!--订单失效-->
+        <div class="g-wrap" >
+            <div class="m-cashier-info">
+                <div class="header">
+                    <h2 class="title"><b class="ico ico-err-m"></b> 订单已失效！</h2>
+                </div>
+            </div>
+        </div>
+        {/if}
+
+
+
+        <!--微信支付-->
+        <div class="g-wrap" style="display:none;">
+            <div class="m-weixin-header">
+                <p><strong>请您及时付款，以便订单尽快处理！订单号：24473852</strong></p>
+                <p>请您在提交订单后1小时内支付，否则订单会自动取消。</p>
+            </div>
+
+            <div class="m-weixin-main">
+                <h1 class="m-weixin-title">微信支付</h1>
+                <p class="m-weixin-money">扫一扫付款<br><strong>￥1</strong>
+                </p>
+                <p>
+                    <img id="code" width="260" height="260" class="m-weixin-code" src="__static__/img/qr.png" alt="二维码">
+                    <img class="m-weixin-demo" src="__static__/img/weixin_0.png" alt="扫一扫">
+                    <img src="__static__/img/weixin_1.png" alt="请使用微信扫描二维码以完成支付">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="pay_info_url" value="{:U('Pay/info')}"><!--确认商品信息-->
+<input type="hidden" id="check_pay_status" value="{:U('Pay/check_pay_status')}"><!--检测付款状态-->
+{/block}
+{block name="user_js"}
+{if condition='$info["status"] eq "1" AND $info["pay_status"] eq "1"'}
+{js href="__yyg__/js/pay/charge.js" /}
+{/if}
+{/block}

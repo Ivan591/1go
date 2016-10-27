@@ -1,0 +1,97 @@
+{extend name="base/base"/}
+{block name="user_css"}
+{css href="__static__/css/index.css" /}
+{css href="__static__/css/goods_list.css" /}
+{/block}
+{block name='title'}最新揭晓{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-results" >
+        <div class="g-wrap f-clear">
+            <div class="g-main m-results-revealList">
+                <div class="m-results-mod-hd">
+                    <h3>最近三天揭晓的所有商品</h3>
+                </div>
+                <div class="m-results-mod-bd" >
+
+                    <ul class="w-revealList f-clear">
+                        <!--循环-->
+
+                    </ul>
+                    <div class="w-loading"  style="display: none;">
+                        <b class="w-loading-ico"></b>
+                        <span class="w-loading-txt">正在努力加载……</span>
+                    </div>
+                </div>
+                <div class="m-results-revealList-end" style="display:none" pro="endTip">
+                    <p style="padding:20px 0;text-align:center;">以上是最近三天揭晓的全部商品~</p>
+                </div>
+            </div>
+            <div class="g-side">
+                <div class="m-results-leastRemain">
+                    <div class="m-results-leastRemain-title">
+                        <h4>最快揭晓</h4>
+                    </div>
+                    <div class="m-results-leastRemain-title-ft"></div>
+                    <div class="m-results-leastRemain-main">
+                        <ul class="w-remainList">
+                            <!--循环-->
+                            {volist name="remain_goods" id="each_goods"}
+                            <li class="w-remainList-item" data-nper="{$each_goods['id']}" data-last="{$each_goods['remain']}" data-unit="{$each_goods['unit_price']}" data-min="{$each_goods['min_times']}">
+                                <div class="w-goods w-goods-ing">
+                                    <div class="w-goods-pic">
+                                        <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}" title="{$each_goods.name|htmlspecialchars}" target="_blank">
+                                            <img width="200" height="200" alt="{$each_goods.name|htmlspecialchars}" src="__image_path__{$each_goods.img_path}"  class="">
+                                        </a>
+                                    </div>
+                                    <p class="w-goods-title f-txtabb"><a title="{$each_goods.name|htmlspecialchars}" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}" target="_blank">{$each_goods.name|htmlspecialchars}</a></p>
+                                    <p class="w-goods-price">总需：{$each_goods.sum_times} 人次</p>
+                                    <div class="w-progressBar" title="{$each_goods.percent}">
+                                        <p class="w-progressBar-wrap">
+                                            <span class="w-progressBar-bar" style="width:{$each_goods.percent|default='0'}%;"></span>
+                                        </p>
+                                        <ul class="w-progressBar-txt f-clear">
+                                            <li class="w-progressBar-txt-l"><p><b>{$each_goods.participant_num}</b></p><p>已参与人次</p></li>
+                                            <li class="w-progressBar-txt-r"><p><b>{$each_goods.remain}</b></p><p>剩余人次</p></li>
+                                        </ul>
+                                    </div>
+                                    <p class="w-goods-progressHint">
+                                        <b class="txt-blue">{$each_goods.participant_num}</b>人次已参与，赶快去参加吧！剩余<b class="txt-red">{$each_goods.remain}</b>人次
+                                    </p>
+                                    <div class="w-goods-opr">
+                                        <a class="w-button w-button-main w-button-l w-goods-buyRemain" href="javascript:;" style="width:70px;">我来包尾</a>
+                                    </div>
+                                </div>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/template" id="error_tpl">
+    <div class="w-record">
+        <p class="w-countdown-title"><i class="ico ico-countdown ico-countdown-gray"></i>服务器开小差了，请刷新查看最新结果；</p>
+    </div>
+</script>
+<script type="text/template" id="opening_tpl">
+    <div class="w-record">
+        <p class="w-countdown-title"><i class="ico ico-countdown ico-countdown-gray"></i>服务器正在开奖中...；</p>
+    </div>
+</script>
+<input type="hidden" id="pull_results" value="{:U('lists/pull_results')}"/>
+<input type="hidden" id="user_page" value="#"/>
+<input type="hidden" id="goods_link" value="{:dwz_filter('goods/jump_to_goods_buying')}" />
+<input type="hidden" id="refresh_results" value="{:U('lists/refresh_results')}" /><!--刷新开奖结果-->
+<input type="hidden" id="add_to_cart_url" value="{:U('Pay/add_to_cart')}"><!--添加到购物车-->
+<!--<input type="hidden" id="nper_open_api" value="{$nper_open_api|default=''}" />-->
+<input type="hidden" id="nper_open_api" value="{:U('core/gdfc/open_by_nper')}" /><!--触发开奖-->
+{/block}
+
+{block name="user_js"}
+{js href='__static__/js/count_down.js' /}
+{js href='__yyg__/js/index/new_list.js' /}
+{js href="__yyg__/js/lists/lists.js" /}
+{/block}

@@ -1,0 +1,79 @@
+{empty name='history_list'}
+<div class="empty">
+    <p class="status-empty">
+        <i class="littleU littleU-cry">
+        </i>
+        暂时还没有历史记录
+    </p>
+</div>
+{else /}
+<ul class="m-detail-tabHistory-list f-clear">
+    {volist name='history_list' id='vo'}
+    {$vo|var_dump}
+    {switch name="vo.status"}
+    {case value="1"}即将开奖...{/case}
+    {case value="2"}
+    <li class="m-detail-tabHistory-item m-detail-tabHistory-countdown">
+        <div class="m-detail-tabHistory-period">
+            期号 {$vo.nper_id|num_base_mask}
+        </div>
+        <div class="m-detail-tabHistory-info">
+            <div class="w-countdown">
+    <span class="w-countdown-title">
+    揭晓倒计时
+    </span>
+    <span class="w-countdown-nums">
+    <b>0 </b><b>1</b>:<b>4</b><b>2</b>:<b>1</b><b>0</b>
+    </span>
+            </div>
+        </div>
+        <div class="m-detail-tabHistory-result">
+        </div>
+        <div class="m-detail-tabHistory-operation">
+            <a href="{:dwz_filter('goods/detail',['id'=>$vo['goods_id'].'-'.$vo['goos_id']])}">
+                查看详情
+            </a>
+        </div>
+    </li>
+    {/case}
+    {case value="3"}
+    <li id="pro-view-0" class="m-detail-tabHistory-item m-detail-tabHistory-published">
+        <div class="m-detail-tabHistory-period">期号 {$vo.nper_id|num_base_mask}</div>
+        <div class="m-detail-tabHistory-info"><img onerror="this.src='http://mimg.127.net/p/one/web/lib/img/avatar/90.jpeg';this.onerror=null;" src="__image_path__{$vo.goods_image}">
+            <div class="m-detail-tabHistory-info-txt"><span>恭喜 <a href="/user/index.do?cid=59562250" title="{vo.luck_user|htmlspecialchars}" target="_blank"><span class="m-detail-tabHistory-info-nickname">{vo.luck_user|htmlspecialchars}</span></a>（<span class="m-detail-tabHistory-info-address"
+                                                                                                                                                                                                            title=""></span>）获得了本期商品</span> <span>用户ID：{vo.luck_uid}（ID为用户唯一不变标识）</span>
+                <span>本期参与：<strong>{$luck_buy_num}人次</strong></span></div>
+        </div>
+        <div class="m-detail-tabHistory-result"><span>幸运号码：<strong>{$vo.luck_num|num_base_mask}</strong></span> <span>揭晓时间：{$vo.open_time|microtime_format=1,'Y-m-d H:i:s'}</span> <span>夺宝时间：{$vo.luck_time|microtime_format=3,'Y-m-d H:i:s'}</span></div>
+        <div class="m-detail-tabHistory-operation"><a href="{:dwz_filter('goods/detail',['id'=>$vo['goods_id'].'-'.$vo['goos_id']])}" target="_blank">查看详情</a></div>
+    </li>
+    {/case}
+    {/switch}
+    {/volist}
+</ul>
+<div class="xc_pages" data-flag="history">
+    {gt name="page_current" value="1"}
+    <a data-page="1" data-url="{:U('Goods/get_history_list_p')}"><span>上一页</span></a>
+    {else}
+    <p><span>上一页</span></p>
+    {/gt}
+    {for start="1" end="$page_count+1" name="page"}
+        {php}
+        if($page<=3 | $page>=$page_count-2 | ($page<=$page_current+3 && $page>=$page_current-3)){
+        {/php}
+    <a data-page="{$page}" data-url="{:U('Goods/get_history_list_p')}" title="第{$page}页" class="page_btn {$page_current==$page?'cur':''}">1</a>
+		{php}
+        }else if($page==4 || $page==$page_current+4){
+        {/php}
+        <a href="javascript:;" class="w-button w-button-aside">...</a>
+        {php}
+        }
+        {/php}
+    {/for}
+    {lt name="page_current" value="$page_count"}
+    <a data-page="{$page_current+1}" data-url="{:U('Goods/get_history_list_p')}"><span>下一页</span></a>
+    {else/}
+    <p><span>下一页</span></p>
+    {/lt}
+</div>
+{/else}

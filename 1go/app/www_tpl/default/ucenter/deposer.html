@@ -1,0 +1,71 @@
+{extend name="base/base"/}
+{block name="title"}我的夺宝记录{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user">
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+
+                            <li class="w-crumbs-item w-crumbs-active">夺宝记录</li>
+
+                        </ul>
+
+
+                        <div class="m-user-duobao">
+                            <div class="m-user-comm-wraper">
+                                <div class="m-user-comm-cont m-user-duobaoMine">
+                                    <div class="m-user-comm-title">
+
+                                        <div class="m-user-comm-navLandscape" data-url="{:U('ucenter/deposer_list')}">
+                                            <a class="i-item " data-name="all"  href="javascript:void(0)"  data-url="{:U('ucenter/deposer_list')}" data-container="ajax_container" data-param='{"action":"all"}' ajax_table="ajax_table">参与成功 <span></span></a>
+                                            <span class="i-sptln">|</span>
+                                            <!--<a class="i-item" data-name="multi" data-url="{:U('ucenter/deposer_multi')}" href="javascript:void(0)">多期参与 <span class="txt-impt">0</span></a>-->
+                                            <!--<span class="i-sptln">|</span>-->
+                                            <a class="i-item" data-name="willReveal" href="javascript:void(0)" data-url="{:U('ucenter/deposer_list')}" data-container="ajax_container" data-param='{"action":"willReveal"}' ajax_table="ajax_table">即将揭晓 <span class="txt-impt">0</span></a>
+                                            <span class="i-sptln">|</span>
+                                            <a class="i-item" data-name="periodIng" href="javascript:void(0)" data-url="{:U('ucenter/deposer_list')}" data-container="ajax_container" data-param='{"action":"periodIng"}' ajax_table="ajax_table">正在进行 <span class="txt-impt">0</span></a>
+                                            <span class="i-sptln">|</span>
+                                            <a class="i-item" data-name="periodRevealed" href="javascript:void(0)" data-url="{:U('ucenter/deposer_list')}" data-container="ajax_container" data-param='{"action":"periodRevealed"}' ajax_table="ajax_table">已揭晓 <span class="txt-impt">0</span></a>
+                                        </div>
+
+                                        <!--<div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-8"><span>最近3个月</span><i class="w-select-arr">▼</i></div>-->
+                                        <!--<div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-9" style="display: none;"><span>1年内</span><i class="w-select-arr">▼</i></div>-->
+                                        <!--<div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-10" style="display: none;"><span>最近3个月</span><i class="w-select-arr">▼</i></div>-->
+                                        <!--<div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-11" style="display: none;"><span>最近3个月</span><i class="w-select-arr">▼</i></div>-->
+                                        <!--<div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-12" style="display: none;"><span>最近3个月</span><i class="w-select-arr">▼</i></div>-->
+
+                                    </div>
+                                    <div pro="container" id="ajax_container">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="m-user-frame-clear"></div>
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="see_luck_num" value="{:U('goods/see_luck_num')}"><!--获取用户购买幸运数字-->
+{/block}
+{block name="user_js"}
+{js href="__static__/js/ucenter/deposer.js" /}
+{js href="__static__/js/ucenter/view_num.js" /}
+{/block}

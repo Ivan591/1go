@@ -1,0 +1,39 @@
+.m-header{height: 95px;}
+.register{width:100%;background: #fff;display: block;margin:auto;}
+.reg-main{width:640px;margin:auto;position: relative;border-top:1px solid transparent;}
+.reg-main>.step{width:100%;height:50px;margin:30px 0 40px 0;}
+.step>li{width:170px;height: 50px;line-height: 50px;box-sizing:border-box;margin-right:40px;float: left;padding-left:30px;
+    position: relative;background: #c8c8c8;color:#474747;font-size:18px;font-style: oblique; border-radius: 5px;}
+.step>li.active{background: #ff4953;color:#fff;}
+.step>li.active>span{border-left:12px solid #ff4953;}
+.step>li>i{width:40px;line-height:50px;font-size:30px; position:absolute;left:2px;font-style: oblique !important;display: block; }
+.step>li>span{width:0;height: 0;border-top:4px solid transparent; border-bottom:4px solid transparent;border-left:12px solid #c8c8c8;
+    display: block;position: absolute;top:21px;right:-12px;}
+.reg_form{width:100%;}
+.reg_form>.reg_input{width:100%;height:48px;line-height: 48px;font-size:16px;color:#333;margin-bottom:20px;}
+.reg_input:after{display: block;visibility: hidden;content:'.';height:0;clear:both;position: relative;}
+.reg_input>label{width:150px;text-align: right;box-sizing: border-box;padding-right:15px;font-size: 18px;
+        font-weight:bold;float:left;}
+.inputgroup{width:300px;position: relative;float:left;height: 48px;}
+.inputgroup>input{width: 100%;height:48px;box-sizing: border-box;border:1px solid #d2d2d2;padding-left:10px;outline: none;}
+.ensure{padding-left:150px;font-size:16px;color:#444;letter-spacing: 1px;}
+.ensure>input{margin-right:5px;position: relative;top:1px; left:2px;}
+.reg_btn{width:300px;margin:30px 0 30px 150px;line-height: 42px;height: 42px;background: #ff4953;color:#fff;
+    font-size:20px;text-align: center;border:none;cursor: pointer;font-family: SimHei; letter-spacing: 1px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;}
+.reg_btn.disable,.reg_btn.disable:hover,.reg_btn.disable:active{background: #ededed;color:#999;}
+.reg_btn:hover{background: #ff4953;color:#fff;}
+.reg_btn:active{background: #ee174e;color:#fff;}
+.vacode{position: absolute;padding:0 5px;line-height: 32px;border:1px solid #ff4953; color:#ff4953;top:7px; right:7px;
+    cursor: pointer;border-radius: 5px;text-decoration: none;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;}
+.vacode:hover{color:#ee174e;border-color:#ee174e;text-decoration: none;}
+.vacode.disable,.vacode.disable:hover{color:#fff;background: #d2d2d2;border-color:#d2d2d2;}

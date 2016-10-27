@@ -1,0 +1,64 @@
+{empty name='list'}
+<div class="empty">
+    <p class="status-empty">
+        <i class="littleU littleU-cry">
+        </i>
+        暂时还没有夺宝记录
+    </p>
+</div>
+{else /}
+<div class="m-detail-recordList-start">
+    <i class="ico ico-clock">
+    </i>
+</div>
+<div id="pro-view-13">
+    <!--<div class="m-detail-recordList-timeSeperate">-->
+        <!--2016-03-23-->
+        <!--<i class="ico ico-recordDot ico-recordDot-solid">-->
+        <!--</i>-->
+    <!--</div>-->
+
+    <ul class="m-detail-recordList" >
+        <!--循环-->
+        {volist name="list" id="vo"}
+        <li class="f-clear">
+              <span class="time">
+                {$vo.pay_time|microtime_format=3,'H:i:s'}
+              </span>
+            <i class="ico ico-recordDot ico-recordDot-hollow">
+            </i>
+            <div class="m-detail-recordList-userInfo">
+                <div class="inner">
+                    <p>
+                                                <span class="avatar">
+                                                  <img width="20" height="20"
+                                                       src="__image_path__{$vo.img_path|default='__yyg__/images/empty_img.jpg'}">
+                                                </span>
+                        <a href="{:dwz_filter('ta/index',['uid'=>$vo['uid']])}" target="_blank"
+                           title="{$vo.uname}(ID:{$vo.uid})">
+                            {$vo.uname}
+                        </a>
+                        ( {$vo.ip_area} IP：{$vo.reg_ip}) 参与了
+                        <b class="times txt-red">
+                            {$vo.num}人次
+                        </b>
+                        <a style="display:none" class="w-button w-button-simple btn-checkCodes" data-uid="{$vo.uid}" href="javascript:;">
+                            所有夺宝号码
+                            <i class="ico ico-arrow-gray ico-arrow-gray-down">
+                            </i>
+                        </a>
+                    </p>
+                    <a style="display:none" class="btn-close" href="javascript:void(0)">
+                        x
+                    </a>
+                    <!--<p style="display: block;" class="codes"><b>10000019</b></p>-->
+                </div>
+            </div>
+        </li>
+        {/volist}
+    </ul>
+</div>
+<div class="xc_pages" data-flag="deposer">
+    {$pages}
+</div>
+{/empty}

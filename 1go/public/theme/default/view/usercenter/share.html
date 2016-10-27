@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="__TEXT[DESCRIPT]">
+    <meta name="keywords" content="__TEXT[KEYWORDS]">
+    <title>新增晒单- 用户中心</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="../../css/uc_share.css">
+    <script type="text/javascript" charset="utf-8"  src="../../js/jquery.min.js"></script>
+</head>
+<body>
+<div class="g-header" >
+    <div class="m-toolbar" >
+        <div class="g-wrap f-clear">
+            <div class="m-toolbar-l">
+                <span class="m-toolbar-welcome">欢迎来到香肠一元购！</span>
+
+            </div>
+            <ul class="m-toolbar-r">
+                <li class="m-toolbar-login">
+                    <div id="pro-view-6"><a class="m-toolbar-login-btn" href="javascript:void(0)">请登录</a>
+                        <a href="#" target="_blank">免费注册</a></div></li>
+                <li class="m-toolbar-myDuobao">
+                    <a class="m-toolbar-myDuobao-btn" href="#">我的夺宝
+                        <i class="ico ico-arrow-gray-s ico-arrow-gray-s-down"></i></a>
+                    <ul class="m-toolbar-myDuobao-menu">
+                        <li><a href="#">夺宝记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-win"><a href="#">幸运记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-mall"><a href="#">购买记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-gems"><a href="#">我的宝石</a></li>
+                        <li><a href="#">账户充值</a></li>
+                    </ul>
+                </li>
+                <li class="m-toolbar-myBonus"><a href="#">我的红包</a><var>|</var></li>
+                <li><a href="{$site_config.website_sina_weibo}" target="_blank">
+                    <img width="16" height="13" style="float:left;margin:8px 3px 0 0;" src="../../img/icon_weibo_s.png">官方微博</a>
+                    <var>|</var>
+                </li>
+                <li><a href="#">官方交流群</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-header">
+        <div class="g-wrap f-clear">
+            <div class="m-header-logo">
+                <h1><a class="m-header-logo-link" href="#">香肠一元购</a></h1>
+                <div class="m-header-slogan">
+                    <a class="m-header-slogan-link" href="" target="_blank">
+                        <img src="../../img/logo_banner_v3.png"></a>
+                </div>
+            </div>
+
+            <div class="w-miniCart"  id="pro-view-14" >
+                <a class="w-miniCart-btn" href="javascript:void(0);" data-pro="btn"><i class="ico ico-miniCart"></i>清 单
+                    <b class="w-miniCart-count" id="pro-view-15"><i class="ico ico-arrow-white-solid ico-arrow-white-solid-l"></i>0</b></a>
+            </div>
+
+            <div class="w-search"  id="pro-view-2" >
+                <div  id="searchForm" class="w-search-form f-clear">
+                    <div class="w-input" id="pro-view-3"><input class="w-input-input" type="text" placeholder="请输入要搜索的商品"></div>
+                    <a class="w-search-btn" href="javascript:void(0)"><i class="ico ico-search"></i></a>
+                </div>
+                <div class="w-search-recKeyWrap">
+                    <a class="w-search-recKey" href="javascript:void(0);">苹果</a>
+                    <a class="w-search-recKey" href="javascript:void(0);">手机</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-nav"  id="pro-view-1" >
+        <div class="g-wrap f-clear">
+            <div class="m-catlog m-catlog-normal">
+                <div class="m-catlog-hd" style="padding-left:30px;cursor:pointer">
+                    <h2>商品分类<i class="ico ico-arrow ico-arrow-white ico-arrow-white-down"></i></h2>
+                </div>
+                <div class="m-catlog-wrap">
+                    <div class="m-catlog-bd">
+                        <ul class="m-catlog-list">
+                            <li><a href="#">全部商品</a></li>
+                            <li><a href="#">手机平板</a></li>
+                            <li><a href="#">电脑办公</a></li>
+                            <li><a href="#">数码影音</a></li>
+                            <li><a href="#">女性时尚</a></li>
+                            <li><a href="#">美食天地</a></li>
+                            <li><a href="#">潮流新品</a></li>
+                            <li><a href="#">香肠周边</a></li>
+                            <li><a href="#">其他商品</a></li>
+                        </ul>
+                    </div>
+                    <div class="m-catlog-ft"></div>
+                </div>
+            </div>
+            <div class="m-menu" >
+                <ul class="m-menu-list">
+                    <li class="m-menu-list-item selected" data-name="index">
+
+                        <a class="m-menu-list-item-link" href="#">首页</a>
+
+                    </li>
+                    <li class="m-menu-list-item" data-name="ten">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="#">十元专区</a>
+
+                    </li>
+                    <li class="m-menu-list-item" data-name="results">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="#">最新揭晓</a>
+
+                    </li>
+                    <li class="m-menu-list-item" data-name="share">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="#">晒单分享</a>
+
+                    </li>
+                    <li class="m-menu-list-item dropdown" data-name="find">
+                        <var>|</var>
+                        <a class="m-menu-dropdown" href="javascript:void(0);">发现<i class="ico ico-arrow ico-arrow-gray-s ico-arrow-gray-s-down"></i></a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                <div class="m-user-frame-colNav">
+
+                    <h3><a href="#">我的夺宝</a></h3>
+                    <hr>
+                    <ul pro="userFrameNav">
+                        <li><a href="#" style="color:#db3652;font-weight:bold">夺宝记录 <strong pro="userDuobao_num" data-pos="userNav" class="txt-impt"></strong></a> </li>
+                        <li><a href="#" >幸运记录 <strong pro="userWin_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li><hr></li>
+                        <li>
+                            <a href="#" pro="userMall">购买记录 <strong pro="userMall_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <hr>
+                        </li>
+                        <li>
+                            <a href="#" pro="userBonus">我的红包 <strong pro="userBonus_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <a href="#" pro="userGems">我的宝石 <strong pro="userGems_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <a href="#" pro="userWish">我的心愿单 <strong pro="userWish_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <a href="#" pro="userShare">我的晒单 <strong pro="userShare_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <hr>
+                        </li>
+                        <li>
+                            <a href="#" pro="userProfile">个人资料 <strong pro="userProfile_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <a href="#" pro="userSettings">基本设置 <strong pro="userSettings_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <a href="#" pro="userAddress">收货地址 <strong pro="userAddress_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li>
+                            <a href="#" pro="userChargeRecord">充值记录 <strong pro="userChargeRecord_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+
+                            <li class="w-crumbs-item">
+                                <a href="#">我的晒单</a>
+                                <span class="w-crumbs-split">&gt;</span>
+                            </li>
+                            <li class="w-crumbs-item w-crumbs-active">新增晒单</li>
+
+                        </ul>
+                        <div  >
+                            <div class="m-user-share-banner">
+                                <img src="../../img/banner.jpg" alt="">
+                            </div>
+                            <div class="m-user-shareAdd-panel" id="wrapper">
+                                <!--分享指引-->
+                                <div class="m-user-shareAdd-toknow" style="display: none">
+                                    <div class="pic">
+                                        <img src="../../img/shareToKnow.jpg" alt="">
+                                    </div>
+                                    <div class="cont">
+                                        <p class="dearUser">亲爱的用户：</p>
+                                        <p>恭喜您在香肠一元购中获得幸运号码！</p>
+                                        <p>现在，我们邀请您进行晒单！您可以将获得的商品拍照，并附上文字放到网上。</p>
+                                        <p>您的晒单，可以和网友们分享您的喜悦，帮助大家更充分的了解香肠一元购平台的乐趣，而且，晒单成功，您会获得直减红包奖励，最高价值10夺宝币！</p>
+                                        <p class="attention">晒单的时候，我们提醒您注意以下几点：</p>
+                                        <p class="item"><span class="num">1</span> 详细的内容，是晒单的精华，因此，建议您的晒单不少于30字，并且配上3张以上不同的照片（跪求高清无码）；</p>
+                                        <p class="item"><span class="num">2</span> 真实，是晒单的灵魂，因此，您可以将快递单号也晒上来哦~</p>
+                                        <p class="item"><span class="num">3</span> 一般大家都喜欢沾仙气，因此，您能够出镜和商品合个影儿什么的，给大家一起膜拜就再好不过了！</p>
+                                        <p class="item"><span class="num">4</span> 晒单的质量越高越好玩，红包的价值就越高哦！</p>
+                                        <p class="item"><span class="num">5</span> 如果同一类商品多次获得，请勿简单的复制粘贴之前的晒单内容。</p>
+                                        <div class="toknow">
+                                            <button class="w-button w-button-main" ><span>我知道了，开始晒单</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--分享编辑-->
+                                <div class="m-user-shareAdd-form" style="display: none;">
+                                    <div class="title">
+                                        编辑晒单内容<span>赢取红包，最高价值10夺宝币<i></i></span>
+                                    </div>
+                                    <div class="cont">
+                                        <div class="share-title">
+                                            <lable>晒单主题 : </lable>
+                                            <div class="share-input">
+                                                <div pro="titleInput"><div class="w-input" id="pro-view-8">
+                                                    <input class="w-input-input" pro="input" type="text"></div></div>
+                                                <span class="share-placeholder title-placeholder" pro="writeTitle">不少于6个字</span>
+                                            </div>
+                                            <div class="titleTips"></div>
+                                        </div>
+                                        <div class="share-cont">
+                                            <lable>幸运感言 : </lable>
+                                            <div class="share-input">
+                                                <div pro="contentInput" style="line-height: 0;">
+                                                    <div class="w-input w-input-textarea" id="pro-view-9">
+                                                        <textarea class="w-input-input" pro="input"></textarea>
+                                                    </div>
+                                                </div>
+                                                <span class="share-placeholder cont-placeholder" pro="writeCont">为了更好地和网友分享您的喜悦，文字内容<span style="font-weight:bold;">不少于30字。审核通过会获得直减红包奖励，最高价值10夺宝币！</span></span>
+                                                <div class="contTips"></div>
+                                            </div>
+                                        </div>
+                                        <div class="share-images">
+                                            <lable>上传图片 : </lable>
+                                            <div class="toUpload">
+                                                <button class="w-button w-button-simple">选择照片</button>
+                                                <div class="flash" id="flashWrapper">
+                                                    <!--上传插件-->
+                                                    <embed id="sharePicFlash" src="http://mimg.127.net/p/yy/lib/swf/PhotoUploader.swf" flashvars="apiMulti=1&amp;apiDiff=200&amp;apiListener=window.picUploadListen" quality="high" wmode="transparent" allowscriptaccess="always" width="100%" height="100%" type="application/x-shockwave-flash"></div>
+                                            </div>
+                                            <span class="uploadTips">上传的照片，必须是真实的商品照片哦，单张照片大小请勿超过5M (暂不支持火狐浏览器)</span>
+                                            <div class="imgList" id="imgList">
+                                            </div>
+                                        </div>
+                                        <div class="share-buttons">
+                                            <div class="toPublish">
+                                                <button class="w-button w-button-main" pro="toSubmit"><span>发布晒单</span></button>
+                                            </div>
+                                            <div class="toPreview">
+                                                <a href="javascript:void(0);" pro="toPreview">预览</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--预览分享-->
+                                <div class="m-user-shareAdd-preview" style="">
+                                    <div class="title">
+                                        晒单内容预览
+                                    </div>
+                                    <div class="cont">
+                                        <div class="preview-title">感谢香肠一元购平台</div>
+                                        <div class="preview-cont">
+                                            <i class="ico ico-quote ico-quote-former"></i>
+                                            <i class="ico ico-quote ico-quote-after"></i>
+                                            <div class="preview-text">刚到手就已被分发干净</div>
+                                        </div>
+                                        <div class="preview-images"><div class="item">
+                                            <table><tbody><tr><td valign="middle" align="center">
+                                            <img src="../../img/share/1.jpg"></td></tr>
+                                            </tbody></table></div><div class="item">
+                                            <table><tbody><tr><td valign="middle" align="center">
+                                                <img src="../../img/share/3.png"></td></tr>
+                                            </tbody></table></div></div>
+                                    </div>
+                                    <div class="preview-buttons">
+                                        <div class="toPublish">
+                                            <button class="w-button w-button-main" pro="toSubmit_Preview"><span>发布晒单</span></button>
+                                        </div>
+                                        <div class="toPreview">
+                                            <a href="javascript:void(0);" pro="toRechange">返回修改</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 模板部分-->
+                            <!--loading-->
+                            <script type="text/template" id="waitingTmpl">
+                                <div class="item" data-uploadId="{{id}}">
+                                    <table>
+                                        <tr>
+                                            <td valign="middle" align="center">
+                                                等待上传…
+                                                <br/>
+                                                <img class="loading" src="http://mimg.127.net/xm/all/point_club/admin/img/loading.gif">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <a href="javascript:void(0);" data-func="cancleWait" data-cancleWait="{{id}}" class="close" title="取消上传"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                                </div>
+                            </script>
+                            <!--uploading-->
+                            <script type="text/template" id="uploadingTmpl">
+                                <table>
+                                    <tr>
+                                        <td valign="middle" align="center">
+                                            上传中…
+                                            <div class="progress">
+                                                <div class="inner" style="width:0%;"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <a href="javascript:void(0);" data-func="cancleUploading" data-cancleUploading="{{id}}" class="close" title="取消上传"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                            </script>
+                            <!--upload-->
+                            <script type="text/template" id="uploadedTmpl">
+                                <table>
+                                    <tr>
+                                        <td valign="middle" align="center">
+                                            <img src="{{url}}">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <a href="javascript:void(0);" data-func="delPic" data-delPic="{{prev}}" pro="delImg" class="close" title="删除图片"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                                <span class="mask"></span>
+                            </script>
+                            <!--预览-->
+                            <script type="text/template" id="previewTmpl">
+                                <div class="hd">
+                                    <h1 class="title">{{title}}</h1>
+                                </div>
+                                <div class="cont">
+                                    <i class="ico ico-quote ico-quote-former"></i>
+                                    <i class="ico ico-quote ico-quote-after"></i>
+                                    <div class="text">{{&content}}</div>
+                                </div>
+                                <div class="imgList">
+                                    {{#images}}<div class="item"><table><tbody><tr><td valign="middle" align="center">
+                                    <img src="{{.}}s.jpg">
+                                </td></tr></tbody></table></div>{{/images}}
+                                </div>
+                            </script>
+                            <!--上传报错-->
+                            <script type="text/template" id="uploadErrTmpl">
+                                <table>
+                                    <tr>
+                                        <td valign="middle" class="txt-impt" align="center" style="line-height:20px;">
+                                            <p>传输错误</p>
+                                            <p>请删除重新上传</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <a href="javascript:void(0);" data-func="delErr" data-delErr="{{id}}" class="close" title="删除图片"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                                <span class="mask"></span>
+                            </script>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="g-footer">
+    <div class="m-instruction">
+        <div class="g-wrap f-clear">
+            <div class="g-main">
+                <ul class="m-instruction-list">
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-1"></i>新手指南</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">了解1元夺宝平台</a></li>
+                            <li><a href="#" target="_blank">服务协议</a></li>
+                            <li><a href="#" target="_blank">常见问题</a></li>
+                            <li><a href="#" target="_blank">投诉建议</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-2"></i>夺宝保障</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">公平保障</a></li>
+                            <li><a href="#" target="_blank">公正保障</a></li>
+                            <li><a href="#" target="_blank">公开保障</a></li>
+                            <li><a href="#" target="_blank">安全支付</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-3"></i>商品配送</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">商品配送</a></li>
+                            <li><a href="#" target="_blank">配送费用</a></li>
+                            <li><a href=#" target="_blank">商品验货与签收</a></li>
+                            <li><a href="#" target="_blank">长时间未收到商品</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-5"></i>友情链接</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">香肠严选</a></li>
+                            <li><a href="#" target="_blank">企业邮箱</a></li>
+                            <li><a href="#" target="_blank">考拉海购</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="g-side">
+                <div class="g-side-l">
+                    <ul class="m-instruction-state f-clear">
+                        <li><i class="ico ico-state-l ico-state-l-1"></i>100%公平公正公开</li>
+                        <li><i class="ico ico-state-l ico-state-l-2"></i>100%正品保证</li>
+                        <li><i class="ico ico-state-l ico-state-l-3"></i>100%权益保障</li>
+                    </ul>
+                </div>
+                <div class="g-side-r">
+                    <div class="m-instruction-yxCode">
+                        <a href="#" target="_blank"><img width="100%" src="../../img/qrcode_app.png"></a>
+                        <p style="line-height:12px;">下载客户端</p>
+                    </div>
+                    <div class="m-instruction-service">
+                        <p>周一至周五：9:00-18:00</p>
+                        <p>意见反馈请 <a href="#" target="_blank">点击这里</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- 201603161456 --><div class="m-copyright">
+    <div class="g-wrap">
+        <div class="m-copyright-logo">
+            <a href="#" target="_blank"><img width="130" src="../../img/netease_logo-m.gif"></a>
+            <a href="#" target="_blank"><img width="117" src="../../img/yy_logo.gif"></a>
+        </div>
+        <div class="m-copyright-txt">
+            <p>杭州妙得科技有限公司版权所有 © 1997-2016 ICP证浙B2-20160106</p>
+            <p><a href="#" target="_blank">关于香肠</a>
+                <a href="#" target="_blank">关于香肠免费邮</a>
+                <a href="#" target="_blank">邮箱官方博客</a>
+                <a href="#" target="_blank">客户服务</a>
+                <a href="#" target="_blank">隐私政策</a></p>
+        </div>
+    </div>
+</div>
+</div>
+
+
+</body></html>

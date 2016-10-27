@@ -1,0 +1,111 @@
+{extend name="base/base" /}
+{block name="css"}
+{css href="__common__/admin/css/goods/form.css" /}
+{css href="__plugin__/umeditor/themes/default/css/umeditor.min.css"/}
+{/block}
+{block name="content"}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            晒单
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form" id="form_content">
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">标题</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入晒单标题" class="col-xs-10 col-sm-5" name="title" value=""/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">晒单标题</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">请选择晒单图片</label>
+                    <div class="col-sm-6">
+                        <div class="col-xs-10 col-sm-5 img_thumb">
+                            <input type="button" class="btn btn-success btn-sm upload_img" value="请选择图片(支持:jpg,png,gif,bmp)">
+                            <!--商品图片缩略图-->
+                        </div>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">晒单图片</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <!--图片展示-->
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label class="col-sm-4 control-label no-padding-right"></label>
+                        <div class="col-xs-10 col-sm-5 img_thumb">
+                            <ul class="img_list">
+                                <!--图片列表-->
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">请填写晒单内容</label>
+                    <div class="col-sm-9">
+                        <div class="col-xs-10 col-sm-7">
+                            <!-- 加载编辑器的容器 -->
+                            <textarea class="col-xs-10 col-sm-5" name="content" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <!--操作按钮-->
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+
+                        <button class="btn btn-info submit_btn" type="button">
+                            <i class="icon-ok bigger-110"></i>
+                            提交晒单
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn" type="reset">
+                            <i class="icon-undo bigger-110"></i>
+                            重置
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-default close_page" type="button">
+                            <i class="fa fa-times bigger-110"></i>
+                            关闭页面
+                        </button>
+                    </div>
+                </div>
+                <input type="hidden" name="wid" value="{$wid}">
+                <input type="hidden" name="pic_list" value=""><!--图片列表-->
+            </form>
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+
+<input type="hidden" id="submit_url" value="{:U('show_order_update')}">
+<input type="hidden" id="root_url" value="{:U('/admin/win/index')}">
+{/block}
+{block name="js"}
+{js href='__common__/admin/js/win/show_order.js' /}
+{js href='__plugin__/umeditor/umeditor.config.js' /}
+{js href='__plugin__/umeditor/umeditor.min.js' /}
+{js href='__plugin__/umeditor/lang/zh-cn/zh-cn.js' /}
+
+
+
+
+{/block}

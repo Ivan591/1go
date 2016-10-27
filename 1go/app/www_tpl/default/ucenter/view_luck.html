@@ -1,0 +1,104 @@
+{extend name="base/base"/}
+{block name="title"}{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav_view" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+
+
+                        <div class="m-user-comm-infoBox f-clear" module="user/common/infoBox/InfoBox" id="pro-view-4" module-id="module-4" module-launched="true">
+                            <img class="m-user-comm-infoBox-face"  src="../../img/user/1.jpeg" width="160" height="160">
+                            <div class="m-user-comm-infoBox-cont">
+                                <ul>
+                                    <li class="item nickname">
+                                        <span class="txt">李自成</span>
+                                    </li>
+                                    <li class="item"><span class="txt">ID：<strong>797095</strong></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div module="user/win/Win" class="m-win m-win-user" module-id="module-3" module-launched="true">
+                            <div class="m-user-comm-wraper" id="pro-view-12">
+                                <div class="m-user-comm-title m-user-comm-titleHasBdr">
+                                    <h2 class="title">幸运记录<span class="desc txt-gray">共有 <strong pro="total">10</strong> 条幸运记录~</span></h2>
+                                </div>
+                                <!--循环-->
+                                <div class="w-goods" >
+                                    <div class="w-goods-pic">
+                                        <a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">
+                                            <img src="../../img/goods/b2.png" alt="【预售】苹果 Apple iPhone SE 64GB 颜色随机" /></a>
+                                    </div>
+                                    <div class="w-goods-content">
+                                        <p class="w-goods-title"><a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">【预售】苹果 Apple iPhone SE 64GB 颜色随机</a></p>
+                                        <p class="w-goods-price">期号：303248278</p>
+                                        <p class="w-goods-price">总需：4688人次</p>
+                                        <p class="w-goods-info">幸运号码：<strong class="txt-impt">10002680</strong></p>
+                                        <p class="w-goods-info">总共参与：<strong class="txt-dark">6</strong>人次</p>
+                                        <p class="w-goods-info">揭晓时间：2016-03-24 23:39:00.000</p>
+                                    </div>
+                                </div>
+                                <div class="w-goods" >
+                                    <div class="w-goods-pic">
+                                        <a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">
+                                            <img src="../../img/goods/b2.png" alt="【预售】苹果 Apple iPhone SE 64GB 颜色随机" /></a>
+                                    </div>
+                                    <div class="w-goods-content">
+                                        <p class="w-goods-title"><a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">【预售】苹果 Apple iPhone SE 64GB 颜色随机</a></p>
+                                        <p class="w-goods-price">期号：303248278</p>
+                                        <p class="w-goods-price">总需：4688人次</p>
+                                        <p class="w-goods-info">幸运号码：<strong class="txt-impt">10002680</strong></p>
+                                        <p class="w-goods-info">总共参与：<strong class="txt-dark">6</strong>人次</p>
+                                        <p class="w-goods-info">揭晓时间：2016-03-24 23:39:00.000</p>
+                                    </div>
+                                </div>
+                                <div class="w-goods" >
+                                    <div class="w-goods-pic">
+                                        <a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">
+                                            <img src="../../img/goods/b2.png" alt="【预售】苹果 Apple iPhone SE 64GB 颜色随机" /></a>
+                                    </div>
+                                    <div class="w-goods-content">
+                                        <p class="w-goods-title"><a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">【预售】苹果 Apple iPhone SE 64GB 颜色随机</a></p>
+                                        <p class="w-goods-price">期号：303248278</p>
+                                        <p class="w-goods-price">总需：4688人次</p>
+                                        <p class="w-goods-info">幸运号码：<strong class="txt-impt">10002680</strong></p>
+                                        <p class="w-goods-info">总共参与：<strong class="txt-dark">6</strong>人次</p>
+                                        <p class="w-goods-info">揭晓时间：2016-03-24 23:39:00.000</p>
+                                    </div>
+                                </div>
+                                <div class="w-goods" >
+                                    <div class="w-goods-pic">
+                                        <a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">
+                                            <img src="../../img/goods/b2.png" alt="【预售】苹果 Apple iPhone SE 64GB 颜色随机" /></a>
+                                    </div>
+                                    <div class="w-goods-content">
+                                        <p class="w-goods-title"><a title="【预售】苹果 Apple iPhone SE 64GB 颜色随机" target="_blank" href="#">【预售】苹果 Apple iPhone SE 64GB 颜色随机</a></p>
+                                        <p class="w-goods-price">期号：303248278</p>
+                                        <p class="w-goods-price">总需：4688人次</p>
+                                        <p class="w-goods-info">幸运号码：<strong class="txt-impt">10002680</strong></p>
+                                        <p class="w-goods-info">总共参与：<strong class="txt-dark">6</strong>人次</p>
+                                        <p class="w-goods-info">揭晓时间：2016-03-24 23:39:00.000</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

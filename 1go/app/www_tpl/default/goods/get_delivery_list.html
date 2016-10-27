@@ -1,0 +1,63 @@
+{empty name='list'}
+<div class="empty" style="display:none;">
+    <p class="status-empty">
+        <i class="littleU littleU-cry">
+        </i>
+        &nbsp;&nbsp;暂时还没有任何晒单
+    </p>
+</div>
+{else /}
+<ul class="m-detail-shareList-list" pro="list">
+    <!--晒单 循环-->
+    {volist name='list' id='vo'}
+    <li>
+        <div class="m-detail-shareList-author">
+            <a class="avatar" href="{:dwz_filter('ta/index',['uid'=>$vo['uid']])}" target="_blank">
+                <img onerror="no_img()" width="90" height="90"
+                     src="__image_path__{$vo.img_path}">
+            </a>
+            <a class="nickname f-txtabb" href="{:dwz_filter('ta/index',['uid'=>$vo['uid']])}"
+               target="_blank" title="{$vo.username|htmlspecialchars}(ID:{$vo.uid})">
+                {$vo.username|htmlspecialchars}
+            </a>
+        </div>
+        <div class="m-detail-shareList-detail">
+            <i class="ico ico-arrow ico-arrow-grayShareArr">
+            </i>
+            <div class="titleWrap">
+                            <span class="date">
+                              {$vo.create_time|date='Y-m-d H:i:s',###}
+                            </span>
+                            <span class="title">
+                              <a href="{:dwz_filter('share/detail',['id'=>$vo['id']])}"
+                                 target="_blank">
+                                  <b>
+                                      {$vo.title|htmlspecialchars}
+                                  </b>
+                              </a>
+                                    </span>
+            </div>
+            <div class="contentWrap">
+                <a href="{:dwz_filter('share/detail',['id'=>$vo['id']])}"
+                   target="_blank">{$vo.content|htmlspecialchars}</a>
+            </div>
+            <div class="imgWrap">
+                <!--循环展示-->
+                {volist name="vo.picture_list" id="each_picture"}
+                    <a href="{$each_picture}"
+                       target="_blank">
+                        <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                            <img onerror="no_img()" style="display: inline;vertical-align:middle;" width="140"
+                                 src="__image_path__{$each_picture}">
+                        </div>
+                    </a>
+                {/volist}
+            </div>
+        </div>
+    </li>
+    {/volist}
+</ul>
+<div class="xc_pages" data-flag="delivery">
+    {$pages}
+</div>
+{/empty}

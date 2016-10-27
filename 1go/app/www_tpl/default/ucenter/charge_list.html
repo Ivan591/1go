@@ -1,0 +1,56 @@
+<br clear="both">
+<div id="pro-view-11">
+    <ul class="user-chargerec-head">
+        <li class="item-a">购买时间</li>
+        <li class="item-a">交易号</li>
+        <li class="item-b">金额（元）</li>
+        <li class="item-b">获得香肠</li>
+        <li class="item-b">充值状态</li>
+        <li class="item-b">操作</li>
+    </ul>
+    <div pro="pager" class="pager" id="pager"></div>
+    <!--循环-->
+    {empty name='list'}
+    <li class="address-bar f-clear" style="text-align: center;padding-top: 40px;">
+        暂无数据
+    </li>
+    {else/}
+    {foreach name='list' item='vo' key='k'}
+    <ul class="user-chargerec-body has-pay" pro="charge-ul">
+        <li class="item-a">
+            {php}
+            if(!empty($vo["create_time"])){
+            echo date("Y-m-d H:i:s",$vo["create_time"]);
+            }
+            {/php}
+         </li>
+        <li class="item-a">{$vo.order_id|default='--'}</li>
+        <li class="item-b">{$vo.price|default='--'}</li>
+
+        <li class="item-b td-warm">{$vo.price|default='--'}</li>
+        <li class="item-b"><span class="">
+            {switch name='vo.pay_status'}
+                {case value='1' break='1'}<span style="color: #f36;">未付款</span>{/case}
+                {case value='2' break='1'}<span style="color: #107600;">已付款</span>{/case}
+                {case value='3' break='1'}<span style="color: #107600;">已到帐</span>{/case}
+            {default /}--
+            {/switch}
+        </span></li>
+        <li class="item-b td-warm">
+            {switch name='vo.pay_status'}
+            {case value='1' break='1'}<span style="color: #f36;"><a target="_blank" href="{$vo.url|default='javascript:'}">使用支付宝付款</a></span>{/case}
+            {case value='2' break='1'}<span style="color: #b04c00;">操作失败</span>{/case}
+            {case value='3' break='1'}--{/case}
+            {default /}--
+            {/switch}
+        </li>
+
+    </ul>
+    {/foreach}
+
+    <div class="xc_pages" data-flag="deposer">
+        {$pages}
+    </div>
+    {/empty}
+
+</div>

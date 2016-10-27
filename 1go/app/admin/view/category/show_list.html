@@ -1,0 +1,86 @@
+<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+        <th class="center">
+            <label>
+                <input type="checkbox" class="ace"/>
+                <span class="lbl"></span>
+            </label>
+        </th>
+        <th>ID</th>
+        <th>排序</th>
+        <th>分类名称</th>
+        <th>状态</th>
+        <th>分类标签</th>
+        <th>类型</th>
+        <th>菜单类型</th>
+        <th>查看子订单</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name='cate_list' id='vo'}
+    {if condition='!empty($vo["id"])'}
+    <tr>
+        <td class="center">
+
+            <label>
+                <input type="checkbox" class="ace"/>
+                <span class="lbl"></span>
+            </label>
+        </td>
+        <td>{$vo.id|default=''}</td>
+        <td>{$vo.orders|default=''}</td>
+        <td>{$vo.name|default=''}</td>
+        <td>
+            {notempty name='vo.status'}
+            {switch name='vo.status'}
+            {case value='1'}正常{/case}
+            {default/}
+            --
+            {/switch}
+            {/notempty}
+        </td>
+        <td>{$vo.tips|default=''}</td>
+        <td>{$vo.code|default=''}</td>
+        <td>
+            {notempty name='vo.type'}
+            {switch name='vo.type'}
+            {case value='1'}一级菜单{/case}
+            {case value='2'}多级菜单{/case}
+            {default/}
+            --
+            {/switch}
+            {/notempty}
+        </td>
+        <td style="text-decoration: none;text-align:center">
+            <a href="{:U('Category/son_index',array('id'=>$vo['id']))}" target="_blank" >
+                <button type="button" class="btn btn-primary">查看子分类</button>
+            </a>
+
+        </td>
+        <td>
+            <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                <a target="_blank" href="{:U('exec',array('type'=>'see','id'=>$vo['id']))}"
+                   class="btn btn-xs btn-success" title="查看">
+                    <i class="icon-eye-open bigger-120"></i>
+                </a>
+                <a target="_blank" href="{:U('exec',array('id'=>$vo['id'],'type'=>'edit'))}" class="btn btn-xs btn-info"
+                   title="编辑">
+                    <i class="icon-edit bigger-120"></i>
+                </a>
+                <a href="javascript:" data-id="{$vo.id|default=''}" class="btn btn-xs btn-danger del_btn" title="删除">
+                    <i class="icon-trash bigger-120"></i>
+                </a>
+
+            </div>
+        </td>
+    </tr>
+    {/if}
+    {/volist}
+    </tbody>
+</table>
+
+<div class="page">
+    {$pages|default=''}
+</div>

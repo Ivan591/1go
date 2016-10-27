@@ -1,0 +1,328 @@
+
+
+
+
+
+{extend name="base/base" /}
+{block name="content"}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            中奖纪录
+            <small>
+                <i class="icon-double-angle-right"></i>
+                编辑
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form" id="form_content">
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 期数 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="nper_id" value="{$info.nper_id|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">期数</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 商品名称 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5"  disabled="disabled" value="{$info.goods_name|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">商品名称</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 订单号 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="order_id" value="{$info.order_id|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">订单号</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 彩票开奖号码 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="open_num" value="{$info.open_num|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">彩票开奖号码</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 幸运数字 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="luck_num" value="{$info.luck_num|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">幸运数字</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 幸运用户 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="luck_user" value="{$info.luck_user|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">幸运用户</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 幸运时间 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="luck_time" value="{$info.luck_time|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">幸运时间</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 购买数量 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="order_num" value="{$info.order_num|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">购买数量</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 是否通知中奖 </label>
+                    <div class="col-sm-6">
+                        {switch name='info.notice'}
+                        {case value='1'}
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="order_num" value="已通知中奖"/>
+                        {/case}
+                        {case value='0'}
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" name="order_num" value="未通知中奖"/>
+                        {/case}
+                        {/switch}
+
+
+
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 中奖状态 </label>
+                    <div class="col-sm-6">
+
+                        {switch name='info.logistics_status'}
+                        {case value='2'}<input type="text" placeholder="请输入" disabled="disabled" class="col-xs-10 col-sm-5"  value="用户确认收货地址"/>{/case}
+                        {case value='3'}<input type="text" placeholder="请输入" disabled="disabled" class="col-xs-10 col-sm-5"  value="商品派发中"/>{/case}
+                        {case value='4'}<input type="text" placeholder="请输入" disabled="disabled" class="col-xs-10 col-sm-5"  value="用户签收"/>{/case}
+                        {case value='5'}<input type="text" placeholder="请输入" disabled="disabled" class="col-xs-10 col-sm-5"  value="用户签收"/>{/case}
+                        {default/}
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" disabled="disabled" value="用户获得商品"/>
+                        {/switch}
+
+
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">中奖状态</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 收货人</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="name" value="{$info['address_data']['name']|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">地址管理</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 手机号码</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="phone" value="{$info['address_data']['phone']|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">地址管理</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 邮政编码</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="code" value="{$info['address_data']['code']|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">地址管理</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 省</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="provice" value="{$info['address_data']['provice']|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">地址管理</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 市</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="city" value="{$info['address_data']['city']|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">地址管理</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 区</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="area" value="{$info['address_data']['area']|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">地址管理</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 详细地址</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="address" value="{$info['address_data']['address']|default=''}"/>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">地址管理</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 物流公司 </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="logistics_company">
+                            {volist name="info.logistics_list" id="vo"}
+                                <option value="{$vo.code}" {if condition="!empty($info['logistics_company']) AND $info['logistics_company'] eq $vo['code'] "}selected="selected"{/if}>{$vo.name}</option>
+                            {/volist}
+
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle">物流公司</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 物流单号 </label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="logistics_number" value="{$info.logistics_number|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">物流信息</span>
+                            </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+
+
+                <!--操作按钮-->
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+
+
+                        {if condition="($info['logistics_status'] <= 3) "}
+                            <button class="btn btn-info submit_btn" type="button">
+                                <i class="icon-ok bigger-110"></i>
+                                保存内容
+                            </button>
+                        {/if}
+
+                        <button class="btn btn-default close_page" type="button">
+                            <i class="fa fa-times bigger-110"></i>
+                            关闭页面
+                        </button>
+
+                    </div>
+                </div>
+
+
+
+                <input type="hidden" name="id" value="{$info.id|default=''}">
+            </form>
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+<input type="hidden" id="submit_url" value="{:U('update')}">
+<input type="hidden" id="root_url" value="{:U('index')}">
+
+{/block}
+{block name="js"}
+{js href='__common__/admin/js/win/form.js' /}
+
+<script>
+
+
+</script>
+{/block}

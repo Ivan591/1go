@@ -1,0 +1,76 @@
+{extend name='base/base' /}
+{block name='content'}
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="javascript:">后台管理</a>
+        </li>
+        <li>
+            <a href="javascript:">晒单管理</a>
+        </li>
+        <li class="active">全部晒单</li>
+    </ul><!-- .breadcrumb -->
+
+
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <form id="form_condition" class="form-search">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    <div class="input-group">
+                        <select class="form-control fc-select" id="form-field-select-1" name="field">
+                            <option value="order_id">订单号</option>
+                            <option value="username">用户名</option>
+                        </select>
+
+                        <input class="form-control search-query fc-input" placeholder="请输入" type="text" name="keywords">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-purple btn-sm search_btn">
+                                搜索
+                                <i class="icon-search icon-on-right bigger-110"></i>
+                            </button>
+							<!--<a href="{:U('exec',array('type'=>'add'))}" target="_blank" class="btn btn-success btn-sm">-->
+                                <!--<i class="icon-plus icon-on-right bigger-110"></i>-->
+                                <!--新增-->
+                            <!--</a>-->
+						</span>
+                        <span class="input-group-btn">
+                            <button class="btn btn-success btn-sm audit_all">批量审核</button>
+						</span>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                    <div id="form_content" data-url="{:U('show_list')}"></div>
+                    </div><!-- /.table-responsive -->
+                </div><!-- /span -->
+            </div><!-- /row -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+
+<input type="hidden" id="del_url" value="{:U('del')}">
+
+{/block}
+
+{block name="js"}
+{js href='__common__/admin/js/order/index.js' /}
+{/block}

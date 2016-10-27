@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>{block name="title"}{/block}-{$website_name}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{$site_config.website_desc|htmlspecialchars}">
+    <meta name="keywords" content="{$site_config.website_keyword|htmlspecialchars}">
+    {include file="base/common_css" /}
+    {block name="user_css"}{/block}
+    {js href="__static__/js/jquery.min.js" /}
+</head>
+<body>
+<div class="g-header">
+    {include file="base/tool_bar" /}
+    {include file="base/header" /}
+    <div class="m-nav" id="pro-view-1">
+        <div class="g-wrap f-clear">
+            <div class="m-catlog {php}echo strtolower(MODULE_NAME)=='yyg' && strtolower(CONTROLLER_NAME) == 'index' && strtolower(ACTION_NAME) == 'index'?' m-catlog-normal':' m-catlog-fold';{/php}">
+                <div class="m-catlog-hd" style="padding-left:30px;cursor:pointer">
+                    <h2>商品分类<i class="ico ico-arrow ico-arrow-white ico-arrow-white-down"></i></h2>
+                </div>
+                <div class="m-catlog-wrap"
+                     style="{php}echo strtolower(MODULE_NAME)=='yyg' && strtolower(CONTROLLER_NAME) == 'index' && strtolower(ACTION_NAME) == 'index'?'':'height: 0; ';{/php}">
+                    <div class="m-catlog-bd">
+                        <ul class="m-catlog-list">
+                            <li><a class="catlog-0" href="{:dwz_filter('lists/index',['category'=>0])}">全部商品</a></li>
+                            {volist name='category_list' id='each_category' }
+                            <li><a class="catlog-{$i}" href="{:dwz_filter('lists/index',['category'=>$each_category['id']])}">{$each_category.name}</a>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                    <div class="m-catlog-ft"></div>
+                </div>
+            </div>
+            <div class="m-menu">
+                <ul class="m-menu-list">
+                    <li class="m-menu-list-item {php}echo strtolower(CONTROLLER_NAME) == 'index' && strtolower(ACTION_NAME) == 'index'?' selected':' ';{/php}"
+                        data-name="index">
+
+                        <a class="m-menu-list-item-link" href="/">首页</a>
+
+                    </li>
+                    <li class="m-menu-list-item {php}echo strtolower(CONTROLLER_NAME) == 'lists' && strtolower(ACTION_NAME) == 'ten'?' selected':' ';{/php}"
+                        data-name="ten">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="{:dwz_filter('lists/ten')}">十元专区</a>
+
+                    </li>
+                    <li class="m-menu-list-item {php}echo strtolower(CONTROLLER_NAME) == 'lists' && strtolower(ACTION_NAME) == 'results'?' selected':' ';{/php}"
+                        data-name="results">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="{:dwz_filter('lists/results')}">最新揭晓</a>
+
+                    </li>
+                    <li class="m-menu-list-item {php}echo strtolower(CONTROLLER_NAME) == 'share' && strtolower(ACTION_NAME) == 'index'?' selected':' ';{/php}"
+                        data-name="share">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="{:dwz_filter('Share/index')}">晒单分享</a>
+
+                    </li>
+                    <!--<li class="m-menu-list-item dropdown" data-name="find">
+                        <var>|</var>
+                        <a class="m-menu-dropdown" href="javascript:void(0);">发现<i
+                                class="ico ico-arrow ico-arrow-gray-s ico-arrow-gray-s-down"></i></a>
+
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{block name="content"}{/block}
+{include file="base/footer" /}
+{present name="notify_list"}
+{volist name="notify_list" id="each_notify"}
+<div style="display: none;" class="luck">
+    <div class="luck-bg"></div>
+    <div class="luck-main active">
+        <button class="luck-close" title="关闭"><i class="iconfont"></i></button>
+        <img src="__image_path__{$each_notify.goods_image}">
+        <h6>{$each_notify.goods_name}</h6>
+        <p>期号：<span>{$each_notify.n_id|num_base_mask}</span><br>
+            中奖号码：<span>{$each_notify.luck_num|num_base_mask}</span></p>
+        <a href="{:U('ucenter/luck_detail',['id'=>$each_notify['w_id']])}" target="_blank" class="verify_btn">确认收货地址</a>
+    </div>
+</div>
+{/volist}
+{/present}
+{include file="base/base_url" /}
+{include file="base/common_js" /}
+{block name="user_js"}{/block}
+</body>
+
+<script>
+    //DUANG恭喜你中奖了
+//    $(".luck").show().find(".luck-main").addClass("active");
+//    $(document).on("click",".luck-close,.verify_btn",function(){
+//        $(this).parents(".luck").hide();
+//    });
+</script>
+<div style="display: none;">
+
+<!--WEBSITE_TONGJI_BD-->
+
+{$site_config.website_tongji_bd}
+<!--WEBSITE_TONGJI_CNZZ-->
+{$site_config.website_tongji_cnzz}
+
+</div>
+</html>

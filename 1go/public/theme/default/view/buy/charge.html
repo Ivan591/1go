@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="__TEXT[DESCRIPT]">
+    <meta name="keywords" content="__TEXT[KEYWORDS]">
+    <title>支付</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/payment.css">
+    <script type="text/javascript" charset="utf-8"  src="../../js/jquery.min.js"></script>
+</head>
+<body>
+<div class="g-header" >
+    <div class="m-toolbar" >
+        <div class="g-wrap f-clear">
+            <div class="m-toolbar-l">
+                <span class="m-toolbar-welcome">欢迎来到香肠一元购！</span>
+
+            </div>
+            <ul class="m-toolbar-r">
+                <li class="m-toolbar-login">
+                    <div id="pro-view-6"><a class="m-toolbar-login-btn" href="javascript:void(0)">请登录</a>
+                        <a href="#" target="_blank">免费注册</a></div></li>
+                <li class="m-toolbar-myDuobao">
+                    <a class="m-toolbar-myDuobao-btn" href="#">我的夺宝
+                        <i class="ico ico-arrow-gray-s ico-arrow-gray-s-down"></i></a>
+                    <ul class="m-toolbar-myDuobao-menu">
+                        <li><a href="#">夺宝记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-win"><a href="#">幸运记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-mall"><a href="#">购买记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-gems"><a href="#">我的宝石</a></li>
+                        <li><a href="#">账户充值</a></li>
+                    </ul>
+                </li>
+                <li class="m-toolbar-myBonus"><a href="#">我的红包</a><var>|</var></li>
+                <li><a href="{$site_config.website_sina_weibo}" target="_blank">
+                    <img width="16" height="13" style="float:left;margin:8px 3px 0 0;" src="../../img/icon_weibo_s.png">官方微博</a>
+                    <var>|</var>
+                </li>
+                <li><a href="#">官方交流群</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="g-body">
+    <div class="m-cashier m-cashier-usePayments">
+
+        <div class="g-wrap">
+            <div class="m-cashier-recharge" >
+                <h1 class="title">充值夺宝币</h1>
+                <div class="content" style="background: #fff;">
+                    <table>
+                        <tbody><tr>
+                            <th>充值金额：</th>
+                            <td><div class="w-pay w-money" id="pro-view-9"><div class="w-pay-selector" pro="selector"><div class="w-pay-money" id="pro-view-3">															10元																				</div><div class="w-pay-money" id="pro-view-4">															20元																				</div><div class="w-pay-money" id="pro-view-5">															100元																				</div><div class="w-pay-money" id="pro-view-6">															200元																				</div><div class="w-pay-money w-pay-money-selected" id="pro-view-7">																						<span>其他金额</span>&nbsp;&nbsp;<div class="w-input" id="pro-view-8"><input class="w-input-input" pro="input" type="text" maxlength="6" style="width: 50px;"></div>													</div></div></div></td>
+                        </tr>
+                        <tr>
+                            <th>支付方式：</th>
+                            <td>
+                                <div tag="payments" module="payments/Payments" cpid="20151217CP002" module-id="module-3" module-launched="true">
+                                    <div class="w-pay-selector" id="pro-view-12">
+                                        <div class="w-pay-type w-pay-selected" ><img src="../../img/0023.png" alt="支付宝"></div>
+                                       <!-- <div class="w-pay-type w-pay-type-multi" id="pro-view-15">
+                                            信用卡
+                                        </div>
+                                        <div class="w-pay-type w-pay-type-multi" id="pro-view-16">
+                                            储蓄卡
+                                        </div>-->
+                                        <!--信用卡-->
+                                        <div class="w-pay-layer" id="pro-view-17" style="display: none;">
+                                            <div class="w-pay-layer-inner">
+                                                <p class="w-pay-layer-title">请选择信用卡</p>
+                                                <div pro="entry">
+                                                    <!--循环-->
+                                                    <div class="w-pay-bank" id="pro-view-28">
+                                                        平安银行
+                                                    </div>
+                                                    <div class="w-pay-bank" id="pro-view-29">
+                                                        广发银行
+                                                    </div>
+                                                    <div class="w-pay-bank" id="pro-view-30">
+                                                        浦发银行
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--储蓄卡-->
+                                        <div class="w-pay-layer" id="pro-view-31" style="display: none;">
+                                            <div class="w-pay-layer-inner">
+                                                <p class="w-pay-layer-title">请选择储蓄卡</p>
+                                                <div pro="entry">
+                                                    <!--循环-->
+                                                    <div class="w-pay-bank" id="pro-view-44">
+                                                        华夏银行
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <button class="w-button w-button-main w-button-xl" type="button" id="pro-view-1"><span>立即充值</span></button>
+                            </td>
+                        </tr>
+                        </tbody></table>
+
+                </div>
+            </div>
+        </div>
+        <div class="g-wrap">
+            <div class="" >
+                <table class="m-cashier-result-wrapper">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="m-cashier-result">
+                                <b class="ico ico-suc"></b>
+                                <div class="cont">
+                                    <h1 class="title">恭喜您，获得1个夺宝币！</h1>
+                                    <ul class="tips txt-gray">
+                                        <li>您现在可以 <a class="w-button w-button-main" href="/index.do">返回首页</a></li>
+                                    </ul>
+                                </div>
+                            </div></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="g-footer">
+    <div class="m-instruction">
+        <div class="g-wrap f-clear">
+            <div class="g-main">
+                <ul class="m-instruction-list">
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-1"></i>新手指南</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">了解1元夺宝平台</a></li>
+                            <li><a href="#" target="_blank">服务协议</a></li>
+                            <li><a href="#" target="_blank">常见问题</a></li>
+                            <li><a href="#" target="_blank">投诉建议</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-2"></i>夺宝保障</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">公平保障</a></li>
+                            <li><a href="#" target="_blank">公正保障</a></li>
+                            <li><a href="#" target="_blank">公开保障</a></li>
+                            <li><a href="#" target="_blank">安全支付</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-3"></i>商品配送</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">商品配送</a></li>
+                            <li><a href="#" target="_blank">配送费用</a></li>
+                            <li><a href=#" target="_blank">商品验货与签收</a></li>
+                            <li><a href="#" target="_blank">长时间未收到商品</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-5"></i>友情链接</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">香肠严选</a></li>
+                            <li><a href="#" target="_blank">企业邮箱</a></li>
+                            <li><a href="#" target="_blank">考拉海购</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="g-side">
+                <div class="g-side-l">
+                    <ul class="m-instruction-state f-clear">
+                        <li><i class="ico ico-state-l ico-state-l-1"></i>100%公平公正公开</li>
+                        <li><i class="ico ico-state-l ico-state-l-2"></i>100%正品保证</li>
+                        <li><i class="ico ico-state-l ico-state-l-3"></i>100%权益保障</li>
+                    </ul>
+                </div>
+                <div class="g-side-r">
+                    <div class="m-instruction-yxCode">
+                        <a href="#" target="_blank"><img width="100%" src="../../img/qrcode_app.png"></a>
+                        <p style="line-height:12px;">下载客户端</p>
+                    </div>
+                    <div class="m-instruction-service">
+                        <p>周一至周五：9:00-18:00</p>
+                        <p>意见反馈请 <a href="#" target="_blank">点击这里</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- 201603161456 --><div class="m-copyright">
+    <div class="g-wrap">
+        <div class="m-copyright-logo">
+            <a href="#" target="_blank"><img width="130" src="../../img/netease_logo-m.gif"></a>
+            <a href="#" target="_blank"><img width="117" src="../../img/yy_logo.gif"></a>
+        </div>
+        <div class="m-copyright-txt">
+            <p>杭州妙得科技有限公司版权所有 © 1997-2016 ICP证浙B2-20160106</p>
+            <p><a href="#" target="_blank">关于香肠</a>
+                <a href="#" target="_blank">关于香肠免费邮</a>
+                <a href="#" target="_blank">邮箱官方博客</a>
+                <a href="#" target="_blank">客户服务</a>
+                <a href="#" target="_blank">隐私政策</a></p>
+        </div>
+    </div>
+</div>
+</div>
+
+
+</body></html>

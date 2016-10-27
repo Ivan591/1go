@@ -1,0 +1,336 @@
+{extend name="base/base"/}
+{block name="title"}进行晒单{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{css href="__plugin__/webuploader/webuploader.css" /}
+{css href="__static__/css/uc_share.css" /}
+<style type="text/css">
+    .webuploader-pick {
+        background-attachment: scroll;
+        background-clip: border-box;
+        background-color: rgb(245, 245, 245);
+        background-image: none;
+        background-origin: padding-box;
+        background-position: 0% 0%;
+        background-repeat: repeat;
+        background-size: auto auto;
+        border-bottom-color: rgb(204, 204, 204);
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-image-outset: 0 0 0 0;
+        border-image-repeat: stretch stretch;
+        border-image-slice: 100% 100% 100% 100%;
+        border-image-source: none;
+        border-image-width: 1 1 1 1;
+        border-left-color: rgb(204, 204, 204);
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-right-color: rgb(204, 204, 204);
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-top-color: rgb(204, 204, 204);
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-top-style: solid;
+        border-top-width: 1px;
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+        display: inline-block;
+        font-family: "Verdana";
+        font-size: 15px;
+        font-weight: 400;
+        height: 30px;
+        line-height: 24px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        outline-color: rgb(0, 0, 0);
+        outline-style: none;
+        outline-width: 0px;
+        padding-bottom: 0px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 0px;
+        text-align: center;
+        text-decoration: none;
+        text-decoration-color: rgb(0, 0, 0);
+        text-decoration-line: none;
+        text-decoration-style: solid;
+        vertical-align: 0px;
+        white-space: nowrap;
+        width: 100px;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+    }
+
+    #filePicker {
+        border: 0 none;
+        padding: 0;
+    }
+</style>
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user">
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav" /}
+
+
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+
+                            <li class="w-crumbs-item">
+                                <a href="#">我的晒单</a>
+                                <span class="w-crumbs-split">&gt;</span>
+                            </li>
+                            <li class="w-crumbs-item w-crumbs-active">新增晒单</li>
+
+                        </ul>
+                        <div>
+                            <div class="m-user-share-banner">
+                                <img src="__static__/img/banner.jpg" alt="">
+                            </div>
+                            <div class="m-user-shareAdd-panel" id="wrapper">
+                                <!--分享指引-->
+                                <div class="m-user-shareAdd-toknow" style="">
+                                    <div class="pic">
+                                        <img src="__static__/img/shareToKnow.jpg" alt="">
+                                    </div>
+                                    <div class="cont">
+                                        <p class="dearUser">亲爱的用户：</p>
+                                        <p>恭喜您在香肠一元购中获得幸运号码！</p>
+                                        <p>现在，我们邀请您进行晒单！您可以将获得的商品拍照，并附上文字放到网上。</p>
+                                        <p>您的晒单，可以和网友们分享您的喜悦，帮助大家更充分的了解香肠一元购平台的乐趣，而且，晒单成功，您会获得直减红包奖励，最高价值10夺宝币！</p>
+                                        <p class="attention">晒单的时候，我们提醒您注意以下几点：</p>
+                                        <p class="item"><span class="num">1</span> 详细的内容，是晒单的精华，因此，建议您的晒单不少于30字，并且配上3张以上不同的照片（跪求高清无码）；</p>
+                                        <p class="item"><span class="num">2</span> 真实，是晒单的灵魂，因此，您可以将快递单号也晒上来哦~</p>
+                                        <p class="item"><span class="num">3</span> 一般大家都喜欢沾仙气，因此，您能够出镜和商品合个影儿什么的，给大家一起膜拜就再好不过了！</p>
+                                        <p class="item"><span class="num">4</span> 晒单的质量越高越好玩，红包的价值就越高哦！</p>
+                                        <p class="item"><span class="num">5</span> 如果同一类商品多次获得，请勿简单的复制粘贴之前的晒单内容。</p>
+                                        <div class="toknow">
+                                            <button class="w-button w-button-main"><span>我知道了，开始晒单</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--分享编辑-->
+                                <div class="m-user-shareAdd-form" style="display: none;">
+                                    <div class="title">
+                                        编辑晒单内容<span>赢取红包，最高价值10夺宝币<i></i></span>
+                                    </div>
+                                    <div class="cont">
+                                        <form method="post" action="{:U('Ucenter/share_do')}" id="share_form">
+                                            <div class="share-title">
+                                                <lable>晒单主题 :</lable>
+                                                <div class="share-input">
+                                                    <div pro="titleInput">
+                                                        <div class="w-input" id="pro-view-8">
+                                                            <input name="title" form="share_form" class="w-input-input" pro="input" type="text" autocomplete="off"></div>
+                                                    </div>
+                                                    <span class="share-placeholder title-placeholder" pro="writeTitle">不少于6个字</span>
+                                                </div>
+                                                <div class="titleTips"></div>
+                                            </div>
+                                            <div class="share-cont">
+                                                <lable>幸运感言 :</lable>
+                                                <div class="share-input">
+                                                    <div pro="contentInput" style="line-height: 0;">
+                                                        <div class="w-input w-input-textarea" id="pro-view-9">
+                                                            <textarea name="content" form="share_form" class="w-input-input" pro="input"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <span class="share-placeholder cont-placeholder" pro="writeCont">为了更好地和网友分享您的喜悦，文字内容<span style="font-weight:bold;">不少于30字。审核通过会获得直减红包奖励，最高价值10夺宝币！</span></span>
+                                                    <div class="contTips"></div>
+                                                </div>
+                                            </div>
+                                            <div class="share-images">
+                                                <lable>上传图片 :</lable>
+                                                <div class="toUpload">
+                                                    <a id="filePicker" class="w-button w-button-simple" href="javascript:;">选择照片</a>
+                                                </div>
+                                                <span class="uploadTips">上传的照片，必须是真实的商品照片哦，单张照片大小请勿超过5M </span>
+                                                <div class="imgList" id="imgList">
+                                                </div>
+                                            </div>
+                                            <div class="share-buttons">
+                                                <div class="toPublish">
+                                                    <input type="hidden" name="id" value="{$Think.get.show_id|default=0}">
+                                                    <button class="w-button w-button-main" pro="toSubmit"><span>发布晒单</span></button>
+                                                </div>
+                                                <div class="toPreview">
+                                                    <a href="javascript:void(0);" pro="toPreview">预览</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--预览分享-->
+                                <div class="m-user-shareAdd-preview" style="display: none">
+                                    <div class="title">
+                                        晒单内容预览
+                                    </div>
+                                    <div class="cont">
+                                        <div class="preview-title">您的标题</div>
+                                        <div class="preview-cont">
+                                            <i class="ico ico-quote ico-quote-former"></i>
+                                            <i class="ico ico-quote ico-quote-after"></i>
+                                            <div class="preview-text">您填写的内容</div>
+                                        </div>
+                                        <div class="preview-images">
+                                            <div class="item">
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td valign="middle" align="center">
+                                                            <img src="__static__/img/share/1.jpg"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="item">
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td valign="middle" align="center">
+                                                            <img src="__static__/img/share/3.png"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-buttons">
+                                        <div class="toPublish">
+                                            <button class="w-button w-button-main" pro="toSubmit_Preview"><span>发布晒单</span></button>
+                                        </div>
+                                        <div class="toPreview">
+                                            <a href="javascript:void(0);" pro="toRechange">返回修改</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 模板部分-->
+                            <!--loading-->
+                            <script type="text/template" id="waitingTmpl">
+                                <div class="item" data-uploadId="">
+                                    <table>
+                                        <tr>
+                                            <td valign="middle" align="center">
+                                                <span></span>
+                                                <br/>
+                                                <img class="loading" src="__common__/yyg/images/loading.gif">
+                                                <div class="progress" style="display: none;">
+                                                    <div class="inner" style="width:0%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <a href="javascript:void(0);" data-func="cancleWait" data-cancleWait="" class="close" title="取消上传"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                                    <input type="hidden" name="share_img[]" disabled="disabled"/>
+                                </div>
+                            </script>
+                            <!--uploading-->
+                            <script type="text/template" id="uploadingTmpl">
+                                <table>
+                                    <tr>
+                                        <td valign="middle" align="center">
+                                            上传中…
+                                            <div class="progress">
+                                                <div class="inner" style="width:0%;"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <a href="javascript:void(0);" data-func="cancleUploading" data-cancleUploading="{{id}}" class="close" title="取消上传"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                            </script>
+                            <!--upload-->
+                            <script type="text/template" id="uploadedTmpl">
+                                <table>
+                                    <tr>
+                                        <td valign="middle" align="center">
+                                            <img src="{{url}}">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <a href="javascript:void(0);" data-func="delPic" data-delPic="{{prev}}" pro="delImg" class="close" title="删除图片"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                                <span class="mask"></span>
+                            </script>
+                            <!--预览-->
+                            <script type="text/template" id="previewTmpl">
+                                <div class="hd">
+                                    <h1 class="title">{{title}}</h1>
+                                </div>
+                                <div class="cont">
+                                    <i class="ico ico-quote ico-quote-former"></i>
+                                    <i class="ico ico-quote ico-quote-after"></i>
+                                    <div class="text">{{&content}}</div>
+                                </div>
+                                <div class="imgList">
+                                    {{#images}}
+                                    <div class="item">
+                                        <table>
+                                            <tbody>
+                                            <tr>
+                                                <td valign="middle" align="center">
+                                                    <img src="{{.}}s.jpg">
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {{/images}}
+                                </div>
+                            </script>
+                            <!--上传报错-->
+                            <script type="text/template" id="uploadErrTmpl">
+                                <table>
+                                    <tr>
+                                        <td valign="middle" class="txt-impt" align="center" style="line-height:20px;">
+                                            <p>传输错误</p>
+                                            <p>请删除重新上传</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <a href="javascript:void(0);" data-func="delErr" data-delErr="{{id}}" class="close" title="删除图片"><b class="ico m-user-shareAdd-icoClose"></b></a>
+                                <span class="mask"></span>
+                            </script>
+                            <script type="text/template" id="previewTmplImg">
+                                <div class="item">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td valign="middle" align="center">
+                                                <img class="loading" src="__common__/yyg/images/loading.gif">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="swf_path" value="__plugin__/webuploader/uploader.swf"><!--swf-->
+<input type="hidden" id="server_path" value="{:U('core/upload/upload_share_img')}"><!--上传-->
+{/block}
+{block name="user_js"}
+{js href="__plugin__/webuploader/webuploader.min.js" /}
+{js href="__static__/js/ucenter/share.js"/}
+{/block}

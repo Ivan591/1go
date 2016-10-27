@@ -1,0 +1,99 @@
+{extend name="base/base"/}
+{block name="title"}{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav_view" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" >
+
+                        <div class="m-user-duobao">
+                            <div class="m-user-comm-infoBox f-clear" module="user/common/infoBox/InfoBox" id="pro-view-4" module-id="module-4" module-launched="true">
+                                <img class="m-user-comm-infoBox-face"  src="../../img/user/1.jpeg" width="160" height="160">
+                                <div class="m-user-comm-infoBox-cont">
+                                    <ul>
+                                        <li class="item nickname">
+                                            <span class="txt">李自成</span>
+                                        </li>
+                                        <li class="item"><span class="txt">ID：<strong>797095</strong></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-user-share-panel">
+                                <div pro="module-holder" style="display: none;">
+                                    <div pro="userCommLoading" class="w-loading">
+                                        <b class="w-loading-ico"></b>
+                                        <span class="w-loading-txt">正在努力加载……</span>
+                                    </div>
+                                </div>
+                                <div class="m-user-share-blank" style="display:none;">
+                                    Ta 还没有晒单记录~
+                                </div>
+                                <div class="m-user-share-totalRecords" style="display: block;">
+                                    <span style="font-weight:bold;font-size:18px;margin-right:20px;">晒单</span>共有
+                                    <span class="m-user-share-totalCnt">1</span>条晒单~
+                                </div>
+                                <div class="m-user-share-list" style="display: block;">
+                                    <div id="ShareList">
+                                        <div class="m-shareList" id="pro-view-12">
+                                            <div class="group" id="groupOne">
+                                                <div class="item" id="pro-view-13">
+                                                    <div class="pic">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="middle" align="center">
+                                                                    <a href="#" target="_blank" title="感谢香肠，感谢香肠一元购。">
+                                                                        <img src="../../img/share/1.jpg" alt="感谢香肠，感谢香肠一元购。" width="270" /></a></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="name">
+                                                        <a href="#">Apple MacBook Air 13.3英寸 128G</a>
+                                                    </div>
+                                                    <div class="code">
+                                                        幸运号码：
+                                                        <strong class="txt-impt">10004159</strong>
+                                                    </div>
+                                                    <div class="post">
+                                                        <div class="title">
+                                                            <a href="#" target="_blank"><strong>感谢香肠，感谢香肠一元购。</strong></a>
+                                                        </div>
+                                                        <div class="time">
+                                                            03-15 13:55
+                                                        </div>
+                                                        <div class="abbr">
+                                                            <p> 一直以来，我不相信香肠一元购是真的，也投了好多钱下去，从没中获奖，前几天也是随便打开APP，参与了夺宝，没想到，真的就这么发生了，直到收到短信的那一刻，我还以为是骗人的，今天我要跟你们说，这一切都是真的，真的有实物奖品，货真价实。再次感谢香肠，感谢香肠一元购。 </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="group" id="groupTwo"></div>
+                                            <div class="group" id="groupThree"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="BottomBlank" style="display:none;text-align:center;">
+                                    已经到达列表底部～
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

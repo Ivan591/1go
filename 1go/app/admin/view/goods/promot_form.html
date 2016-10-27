@@ -1,0 +1,175 @@
+{extend name="base/base" /}
+{block name="content"}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            商品推荐
+            <small>
+                <i class="icon-double-angle-right"></i>
+                {notempty name='type'}
+                {switch name='type'}
+                {case value='add'}添加{/case}
+                {case value='edit'}编辑{/case}
+                {default /}查看
+                {/switch}
+                {/notempty}
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form" id="form_content">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">推荐类型</label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="type">
+                            <option value="1" {if condition="!empty($info['type']) AND $info['type'] eq '1'"}selected="selected"{/if} >首页分类左侧推荐</option>
+                            <option value="2" {if condition="!empty($info['type']) AND $info['type'] eq '2'"}selected="selected"{/if} >推荐夺宝</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">请选择平台  </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" id="sel_plat" >
+                            {volist name='category_list' id='vo'}
+                            <option value="{$vo.id|default=''}">{$vo.name|default=''}</option>
+                            {/volist}
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">请选择平台</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品分类</label>
+                    <div class="col-sm-6">
+                        <select id="sel_goods" class="col-xs-10 col-sm-5" data-placeholder="请选择" name="category">
+                            <option value="">请选择</option>
+
+                        </select>
+                        <span class="help-inline col-xs-12 col-sm-7">
+						    <span class="middle">请选择商品的分类</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品</label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="gid">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">商品连接</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入商品链接" class="col-xs-10 col-sm-5" name="url" value="{$info.url|default=''}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 上传图片 </label>
+                    <div class="col-sm-6">
+                        <input type="hidden" name="img" value="{$info.img|default=''}" class="pic_id"/>
+                        {switch name='type'}
+                        {case value='add'}
+                        <img alt="" src="" style="width: 150px;height: 150px;display: none;" class="pic_img">
+                        <div>
+                            <button class="btn btn-lg btn-success upload">上传图片</button>
+                        </div>
+                        {/case}
+                        {case value='edit'}
+                        <img alt="" src="{$img.img_path|default=''}" style="width: 150px;height: 150px;" class="pic_img">
+                        <div>
+                            <button class="btn btn-lg btn-success upload">修改图片</button>
+                        </div>
+                        {/case}
+
+                        {default /}
+                        <img alt="" src="{$img.img_path|default=''}" style="width: 150px;height: 150px;" class="pic_img">
+                        {/switch}
+
+
+                    </div>
+                    </div>
+                    <div class="space-4"></div>
+
+
+                    <!--操作按钮-->
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            {notempty name='type'}
+                            {switch name='type'}
+                            {case value='add'}
+                            <button class="btn btn-info submit_btn" type="button">
+                                <i class="icon-ok bigger-110"></i>
+                                提交表单
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn" type="reset">
+                                <i class="icon-undo bigger-110"></i>
+                                重置
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-default close_page" type="button">
+                                <i class="fa fa-times bigger-110"></i>
+                                关闭页面
+                            </button>
+                            {/case}
+                            {case value='edit'}
+                            <button class="btn btn-info submit_btn" type="button">
+                                <i class="icon-ok bigger-110"></i>
+                                保存内容
+                            </button>
+                            <button class="btn btn-default close_page" type="button">
+                                <i class="fa fa-times bigger-110"></i>
+                                关闭页面
+                            </button>
+                            {/case}
+                            {default /}
+                            {/switch}
+                            {/notempty}
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="{$info.id|default=''}">
+            </form>
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+
+<input type="hidden" id="submit_url" value="{:U('promot_update')}">
+<input type="hidden" id="sel_plat_url" value="{:U('sel_plat')}">
+<input type="hidden" id="sel_goods_url" value="{:U('sel_goods')}">
+<input type="hidden" id="root_url" value="{:U('recommend')}">
+<input type="hidden" id="category" value="{$info.category|default=''}">
+<input type="hidden" id="goods" value="{$info.gid|default=''}">
+<input type="hidden" id="type" value="{$type|default='add'}">
+<input type="hidden" id="mid" value="{$info.mid|default=''}">
+<input type="hidden" id="upload_url" value='{:U("tools/Up/up_img",array("limit"=>1))}'/>
+
+{/block}
+{block name="js"}
+{js href='__common__/admin/js/goods/promot_form.js' /}
+{js href='__plugin__/umeditor/umeditor.config.js' /}
+{js href='__plugin__/umeditor/umeditor.min.js' /}
+{js href='__plugin__/umeditor/lang/zh-cn/zh-cn.js' /}
+
+
+
+
+{/block}

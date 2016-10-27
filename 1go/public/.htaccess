@@ -1,0 +1,77 @@
+<IfModule mod_rewrite.c>
+	Options +FollowSymlinks
+	RewriteEngine On
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	
+	#跳转
+	RewriteRule ^jump\/(\d+)(?:\.html)?$ index.php?s=/yyg/goods/jump_to_goods_buying/gid/$1.html [QSA]
+	#跳转2
+	RewriteRule ^detail\/(\d+)(?:\.html)?$ index.php?s=/yyg/goods/jump_to_goods_buying/gid/$1.html [QSA]
+	#商品期数详情
+	RewriteRule ^detail\/(\d+\-\d+)(?:\.html)?$ index.php?s=/yyg/goods/detail/id/$1.html [QSA]
+
+
+    #帮助
+    RewriteRule ^help\-(\d+)(?:\.html)$ index.php?s=/yyg/help/read/id/$1.html [QSA]
+    #帮助2
+    RewriteRule ^help\/(.*)(?:\.html)$ index.php?s=/yyg/help/read/name/$1.html [QSA]
+
+	#搜索
+	RewriteRule ^search\/(.*)(?:\.html)?$ index.php?s=/yyg/lists/search?keyword=$1 [QSA]
+	#搜索
+	RewriteRule ^search\/?$ index.php?s=/yyg/lists/search [QSA]
+	
+	#分类列表
+	RewriteRule ^category\/(index\.html)?$ index.php?s=/yyg/lists/index [QSA]
+	#分类列表
+	RewriteRule ^category\/(\d+)\-(\d+)\-(\d+)?(?:\.html)?$ index.php?s=/yyg/lists/index/category/$1/sort/$2/page/$3.html [QSA]
+
+#   晒单分享
+	RewriteRule ^share(?:\.html)?$ index.php?s=/yyg/share/index [QSA,PT,L]
+	#晒单详情
+	RewriteRule ^share\/(\d+)(?:\.html)?$ index.php?s=/yyg/share/detail/id/$1.html [QSA]
+    #ta的详情首页
+	RewriteRule ^ta\/(\d+)(?:\.html)?$ index.php?s=/yyg/ta/index/uid/$1.html [QSA]
+    #夺宝记录
+	RewriteRule ^history\/(\d+)(?:\.html)$ index.php?s=/yyg/ta/history/uid/$1.html [QSA]
+    #ta的晒单
+	RewriteRule ^ta\/share\-(\d+)(?:\.html)?$ index.php?s=/yyg/ta/share/uid/$1.html [QSA]
+    #幸运记录
+	RewriteRule ^luck\/(\d+)(?:\.html)?$ index.php?s=/yyg/ta/luck/uid/$1.html [QSA]
+
+    #十元专区
+	RewriteRule ^ten(?:\.html)?$ index.php?s=/yyg/lists/ten [QSA]
+    #最新揭晓
+	RewriteRule ^results(?:\.html)?$ index.php?s=/yyg/lists/results [QSA]
+    #登录
+	RewriteRule ^login(?:\.html)?$ index.php?s=/yyg/user/login [QSA]
+    #注册
+	RewriteRule ^reg(?:\.html)?$ index.php?s=/yyg/user/reg [QSA]
+    #找回密码
+	RewriteRule ^forgot(?:\.html)?$ index.php?s=/yyg/user/forgot [QSA]
+
+    #用户中心-首页
+    RewriteRule ^ucenter(?:\.html)?$ index.php?s=/yyg/ucenter/index [QSA]
+    #用户中心-夺宝记录
+    RewriteRule ^deposer(?:\.html)?$ index.php?s=/yyg/ucenter/deposer [QSA]
+    #用户中心-幸运记录
+    RewriteRule ^luck(?:\.html)?$ index.php?s=/yyg/ucenter/luck [QSA]
+    #用户中心-晒单记录
+    RewriteRule ^order(?:\.html)?$ index.php?s=/yyg/ucenter/order [QSA]
+    #用户中心-个人资料
+    RewriteRule ^person(?:\.html)?$ index.php?s=/yyg/ucenter/person [QSA]
+    #用户中心-基本设置
+    RewriteRule ^base(?:\.html)?$ index.php?s=/yyg/ucenter/base [QSA]
+    #用户中心-收货地址
+    RewriteRule ^addr(?:\.html)?$ index.php?s=/yyg/ucenter/addr [QSA]
+    #用户中心-充值记录
+    RewriteRule ^charge(?:\.html)?$ index.php?s=/yyg/ucenter/charge [QSA]
+    #用户中心-充值
+    RewriteRule ^recharge(?:\.html)?$ index.php?s=/yyg/pay/recharge [QSA]
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ index.php?/$1 [QSA,PT,L]
+</IfModule>

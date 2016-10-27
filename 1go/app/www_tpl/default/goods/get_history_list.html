@@ -1,0 +1,70 @@
+<ul class="m-detail-tabHistory-list f-clear">
+
+    {volist name='list' id='vo'}
+    {switch name="vo.status"}
+    {case value="1"}即将开奖...{/case}
+    {case value="2"}
+    <li class="m-detail-tabHistory-item m-detail-tabHistory-countdown">
+        <div class="m-detail-tabHistory-period">
+            期号 {$vo.nper_id|default='--'}
+        </div>
+        <div class="m-detail-tabHistory-info">
+            {if condition='$vo["open_time"] gt NOW_TIME'}
+            <div class="w-countdown cd-t" data-nper="{$vo.nper_id}">
+                <span class="w-countdown-title">
+                揭晓倒计时
+                </span>
+                <span class="w-countdown-nums cd-t" time="{php}echo ($vo['open_time']-NOW_TIME)*1000;{/php}">
+                <b>--</b><b>--</b>:<b>--</b><b>--</b>:<b>--</b><b>--</b>
+                </span>
+            </div>
+            {else/}
+            <div class="w-countdown cd-t" data-nper="{$vo.nper_id}">
+                <span class="w-countdown-title">
+                正在开奖中,请等待....
+                </span>
+            </div>
+            {/if}
+        </div>
+        <div class="m-detail-tabHistory-result">
+        </div>
+        <div class="m-detail-tabHistory-operation">
+            <a href="{:dwz_filter('goods/detail',array('id'=>$vo['pid'].'-'.$vo['nper_id']))}">
+                查看详情
+            </a>
+        </div>
+    </li>
+    {/case}
+    {case value="3"}
+
+    <li id="pro-view-0" class="m-detail-tabHistory-item m-detail-tabHistory-published">
+        <div class="m-detail-tabHistory-period">期号 {$vo.nper_id|num_base_mask|default='--'}</div>
+        <div class="m-detail-tabHistory-info"><img
+                onerror="this.src='__yyg__/images/empty_img.jpg';this.onerror=null;"
+                src="__image_path__{$vo.img_path|default='__yyg__/images/empty_img.jpg'}">
+            <div class="m-detail-tabHistory-info-txt"><span>恭喜
+                <a href="{:dwz_filter('ta/index',['uid'=>$vo['uid']])}" title="{$vo.nick_name|default='--'}"
+                   target="_blank"><span
+                        class="m-detail-tabHistory-info-nickname">{$vo.nick_name|default='--'}</span></a>
+                （<span class="m-detail-tabHistory-info-address" title="">{$vo.ip_area|default='未知地区'}</span>）
+                获得了本期商品
+            </span>
+                <span>用户ID：{$vo.uid|default='0'}（ID为用户唯一不变标识）</span>
+                <span>本期参与：<strong>{$vo.sum_times|default='--'}人次</strong></span></div>
+        </div>
+        <div class="m-detail-tabHistory-result"><span>
+            幸运号码：<strong>{$vo.remainder+(int)__BASE1__|default='&#63;'}</strong></span>
+            <span>揭晓时间：{$vo.open_time|date='Y-m-d H:i:s',###}</span>
+            <span>夺宝时间：{$vo.luck_time|microtime_format=1,'Y-m-d H:i:s'}</span></div>
+        <div class="m-detail-tabHistory-operation"><a
+                href="{:dwz_filter('goods/detail',array('id'=>$vo['pid'].'-'.$vo['nper_id']))}" target="_blank">查看详情</a>
+        </div>
+    </li>
+    {/case}
+    {/switch}
+    {/volist}
+</ul>
+
+<div class="xc_pages" data-flag="history">
+    {$pages}
+</div>

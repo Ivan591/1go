@@ -1,0 +1,84 @@
+
+
+<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+        <th class="center">
+            <label>
+
+                <input type="checkbox" class="ace check_all"/>
+
+
+                <span class="lbl"></span>
+            </label>
+        </th>
+        <th>提现id</th>
+        <th>提现用户</th>
+        <th>提现金额</th>
+        <th>提现前用户余额</th>
+        <th>提现后用户余额</th>
+        <th>申请时间</th>
+        <th>审核时间</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {volist name='withdraw_list' id='vo'}
+    {if condition='!empty($vo["id"])'}
+    <tr>
+        <td class="center">
+
+            <label>
+                {eq name="vo.status" value="1"}
+                    <input type="checkbox" class="ace check" data-id="{$vo['id']}"/>
+                {else/}
+                    <input type="checkbox" class="ace check"  disabled="disabled"/>
+                {/eq}
+
+                <span class="lbl"></span>
+            </label>
+        </td>
+
+        <td>{$vo.id|default=''}</td>
+        <td>{$vo.username|default='--'}</td>
+        <td>{$vo.money|default='--'}</td>
+        <td>{$vo.pre_money|default='--'}</td>
+        <td>{$vo.last_money|default='--'}</td>
+        <td>{$vo.create_time|default='--'}</td>
+        <td>{$vo.audit_time|default=''}</td>
+        <td class="status">
+            {notempty name='vo.status'}
+                {switch name='vo.status'}
+                {case value='1'}未审核{/case}
+                {case value='2'}通过{/case}
+                {case value='-2'}未通过{/case}
+                {default/}
+                --
+                {/switch}
+            {/notempty}
+        </td>
+        <td>
+            {eq name="vo.status" value="1"}
+                <button type="button" data-id="{$vo['id']}" class="btn btn-primary withdraw">审核提现</button>
+            {else/}
+                --
+            {/eq}
+
+        </td>
+
+
+
+    </tr>
+    {/if}
+    {/volist}
+    </tbody>
+</table>
+<input type="hidden" id="submit" value="{:U('withdraw/update_withdraw_status')}"/>
+<input type="hidden" id="audit_all" value="{:U('withdraw/update_more_withdraw_status')}"/>
+<div class="page">
+    {$pages|default=''}
+</div>
+
+{js href='__common__/admin/js/withdraw/show_list.js' /}
+

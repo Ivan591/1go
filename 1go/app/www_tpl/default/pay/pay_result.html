@@ -1,0 +1,115 @@
+{extend name="base/base_no_menu"/}
+{block name="title"}支付结果{/block}
+{block name="user_css"}
+{css href="__static__/css/payment.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-order-pay-result">
+        <!--<div class="m-header f-clear">-->
+        <!--<div class="m-header-logo">-->
+        <!--<h1>-->
+        <!--<a class="m-header-logo-link" href="/" title="香肠一元购">香肠一元购</a>-->
+        <!--</h1>-->
+        <!--</div>-->
+        <!--<div class="m-cart-order-steps">-->
+        <!--<div class="w-step-duobao w-step-duobao-3"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="m-order-pay-result-content" module="duobaoOrder/orderResult/OrderResult" id="pro-view-0"
+             module-id="module-1" module-launched="true">
+            <div class="message">
+                <b class="ico ico-suc"></b>
+                <h1 class="title" style="white-space:nowrap;">恭喜您，参与成功！
+                    {if condition='$info["pay_status"] eq "2" '}系统正在为您分配幸运号码,请稍候...{/if}
+                    <a href="{:dwz_filter('ucenter/deposer')}" style="font-weight:normal;font-size:13px"
+                       id="seeDBRecord">查看夺宝记录</a></h1>
+                <ul class="tips">
+                    <li>您现在可以 <a id="back" href="/">返回首页</a> 或 <a id="seeMore"
+                                                                                  class="w-button w-button-main"
+                                                                                  href="/">查看更多商品</a>
+                    </li>
+                    <li style="margin-top: 8px;">
+                        您成功参与信息如下：
+                    </li>
+                </ul>
+            </div>
+
+            <div class="special" pro="special"></div>
+            {if condition='$info["pay_status"] eq "3" '}
+            <table class="list w-table" id="successList">
+                <caption>参与结果</caption>
+                <colgroup>
+                    <col class="w-table-col0">
+                    <col class="w-table-col1">
+
+                    <col class="w-table-col2">
+
+                    <col class="w-table-col3">
+                    <col class="w-table-col4">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>夺宝时间</th>
+                    <th>商品名称</th>
+                    <th style="text-align:center;">商品期号</th>
+                    <th style="text-align:center;">参与人次</th>
+                    <th style="text-align:center;width: 100px;">状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                {notempty name='list'}
+                {foreach name='list' item='vo' key='k'}
+                <tr>
+                    <td>
+                        {empty name='vo.pay_time'}--
+                        {else /}
+                        {php}echo microtime_format($vo['pay_time'], $type = 3, $format = 'Y-m-d H:i:s');{/php}
+                        {/empty}
+                    </td>
+                    <td>
+                        <p>
+                            <a target="_blank"
+                               href=" {:dwz_filter('goods/detail',array('id'=>$vo['goods_id'].'-'.$vo['nper_id']))}">
+                                {$vo.goods_name|default='--'}
+                            </a>
+                        </p>
+                    </td>
+                    <td style="text-align:center;">{$vo.nper_id+$nper_base}</td>
+                    <td style="text-align:center;">{$vo.num|default='--'}</td>
+                    <td style="text-align:center;">
+                        {switch name='vo.result'}
+                        {case value='true' break='1'/}成功{/case}
+                        {case value='false' break='1'/}成功:{$vo.success_num|default=0}<br/>失败:{$vo.failed_num|default=0}{/case}
+                        {default/}失败
+                        {/switch}
+                    </td>
+
+                </tr>
+                {/foreach}
+                {else/}
+                <tr>
+                    <td colspan="5" style="text-align: center;">暂无数据</td>
+                </tr>
+                {/notempty}
+                </tbody>
+            </table>
+            {/if}
+        </div>
+    </div>
+
+</div>
+<input type="hidden" id="charge_url" value="{:U('Pay/charge')}"><!--商品付款页面地址-->
+
+{/block}
+
+{block name="user_js"}
+{if condition='$info["pay_status"] eq "2" '}
+<script>
+    window.setInterval(function () {
+        location.reload();
+    }, 5000);
+</script>
+{/if}
+
+{/block}

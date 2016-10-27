@@ -1,0 +1,139 @@
+
+.m-helpcenter {
+    color:#808080;
+}
+.m-helpcenter .g-side {
+    float:left;
+    margin-top:20px;
+    width:240px;
+}
+.m-helpcenter .g-main {
+    float:none;
+    margin-left:250px;
+    padding-top:10px;
+}
+.m-helpcenter-detail {
+    padding:20px 30px;
+    height:auto;
+    _height:735px;
+    min-height:710px;
+    border:1px solid #ddd;
+}
+.m-helpcenter-detail-hd {
+    padding:7px 0 10px;
+    border-bottom:2px solid #ddd;
+    line-height:24px;
+    font-size:24px;
+}
+.m-helpcenter-detail-hd h4 {
+    padding-left:12px;
+    font-weight:normal;
+    border-left:6px solid #db3652;
+    color:#db3652;
+    font-family:"Microsoft Yahei";
+}
+.m-helpcenter-detail-bd {
+    padding-top:20px;
+    font-size:14px;
+    line-height:26px;
+}
+.m-helpcenter-list {
+}
+.m-helpcenter-list li {
+    margin-bottom:25px;
+}
+.m-helpcenter-list p {
+    padding-left:25px;
+}
+.m-helpcenter-list-q {
+    padding-left:0!important;
+    color:#3b3b3b;
+    font-weight:bold;
+}
+.m-helpcenter-main,.m-helpcenter-ext {
+    font-family:"Microsoft Yahei",simhei;
+    font-size:14px;
+    line-height:24px;
+    overflow:hidden;
+    *zoom:1;
+}
+.m-helpcenter-main h3 {
+    width:136px;
+    height:37px;
+    margin:24px 0 15px;
+    line-height:37px;
+    font-size:26px;
+    color:#fff;
+    text-align:center;
+    background:#db3652;
+}
+.m-helpcenter-main-intro {
+    margin-bottom:30px;
+    font-size:16px;
+    text-indent:2em;
+}
+.m-helpcenter-pic {
+    float:right;
+    margin:-70px 0 104px 50px;
+}
+.m-helpcenter-stepList {
+    padding-top:15px;
+    padding-left:30px;
+    margin-bottom:126px;
+}
+.m-helpcenter-stepPic {
+    padding-top:25px;
+}
+.m-helpcenter-stepList-item {
+    display:inline;
+    float:left;
+    margin-right:115px;
+    font-size:17px;
+    width:200px;
+    text-align:center;
+}
+.m-helpcenter-stepList .last {
+    margin:0;
+}
+.m-helpcenter-ext h4 {
+    margin-left:5px;
+    margin-bottom:10px;
+    padding-left:15px;
+    border-left:6px solid #db3652;
+    font-size:22px;
+    color:#db3652;
+    line-height:26px;
+    font-weight:bold;
+    *zoom :1;
+}
+.m-helpcenter-ext ol {
+    margin-bottom:50px;
+    padding:25px 0 0 25px;
+}
+.m-helpcenter-ext li {
+    margin-bottom:5px;
+}
+.m-helpcenter-ext .index {
+    margin-right:10px;
+    display:inline-block;
+    width:20px;
+    height:20px;
+    text-align:center;
+    line-height:20px;
+    border-radius:50%;
+    background-color:#ed9aa8;
+    color:#fff;
+}
+.m-helpcenter-ext .esp {
+    margin-top:25px;
+}
+.m-helpcenter-links {
+}
+.m-helpcenter-links li {
+    display:inline-block;
+    float:left;
+    width:115px;
+}
+.m-helpcenter-links a {
+    color:#808080;
+}

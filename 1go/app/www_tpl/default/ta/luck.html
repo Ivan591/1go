@@ -1,0 +1,56 @@
+{extend name="base/base"/}
+{block name="title"}TA的幸运记录{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ta/_nav_view" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+                        {include file="ta/_base_info" /}
+                        <div module="user/win/Win" class="m-win m-win-user" module-id="module-3" module-launched="true">
+                            <div class="m-user-comm-wraper" id="pro-view-12">
+                                <div class="m-user-comm-title m-user-comm-titleHasBdr">
+                                    <h2 class="title">幸运记录<span class="desc txt-gray">共有 <strong pro="total">{$count_all}</strong> 条幸运记录~</span></h2>
+                                </div>
+                                <!--循环-->
+                                {volist name="luck_list" id="each_list"}
+                                <div class="w-goods" >
+                                    <div class="col info">
+                                        <div class="w-goods-pic">
+                                            <a title="{$each_list.goods_name}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$each_list['goods_id'].'-'.$each_list['n_id']])}">
+                                                <img src="__image_path__{$each_list.goods_image}" alt="{$each_list.goods_name}" /></a>
+                                        </div>
+                                        <div class="w-goods-content">
+                                            <p class="w-goods-title">
+                                                <a title="{$each_list.goods_name|htmlspecialchars}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$each_list['goods_id'].'-'.$each_list['n_id']])}">{$each_list.goods_name}</a></p>
+                                            <p class="w-goods-price">期号：{$each_list.n_id|num_base_mask}</p>
+                                            <p class="w-goods-price">总需：{$each_list.n_sum}人次</p>
+                                            <p class="w-goods-info">幸运号码：<strong class="txt-impt">{$each_list.luck_num|num_base_mask}</strong>，总共参与了<strong class="txt-dark">{$each_list.o_num}</strong>人次</p>
+                                            <p class="buyTime">夺宝时间：{$each_list.create_time}</p>
+                                            <p class="calcTime">揭晓时间：{$each_list.open_time|date='Y-m-d H:i:s',###}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col status">
+                                        <span class="txt-suc">{$each_list.status_info|default=''}</span>
+                                    </div>
+                                </div>
+                                {/volist}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

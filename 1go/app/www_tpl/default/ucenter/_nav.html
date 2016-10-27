@@ -1,0 +1,45 @@
+
+                <div class="m-user-frame-colNav">
+
+                    <h3><a href="{:dwz_filter('ucenter/index')}">我的夺宝</a></h3>
+                    <hr>
+                    <ul pro="userFrameNav">
+                        <li  {if condition="strtolower(ACTION_NAME) eq 'deposer'"}class="active"{/if}><a href="{:dwz_filter('ucenter/deposer')}" >夺宝记录 <strong pro="userDuobao_num" data-pos="userNav" class="txt-impt"></strong></a> </li>
+                        <li {if condition="strtolower(ACTION_NAME) eq 'luck'"}class="active"{/if}><a href="{:dwz_filter('ucenter/luck')}" >幸运记录 <strong pro="userWin_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <!--<li><hr></li>-->
+                        <!--<li {if condition="strtolower(ACTION_NAME) eq 'buy'"}class="active"{/if}>-->
+                            <!--<a href="{:U('ucenter/buy')}" pro="userMall">购买记录 <strong pro="userMall_num" data-pos="userNav" class="txt-impt"></strong></a>-->
+                        <!--</li>-->
+                        <!--<li >-->
+                            <!--<hr>-->
+                        <!--</li>-->
+                        <!--<li {if condition="strtolower(ACTION_NAME) eq 'deposer'"}class="active"{/if}>-->
+                            <!--<a href="#" pro="userBonus">我的红包 <strong pro="userBonus_num" data-pos="userNav" class="txt-impt"></strong></a>-->
+                        <!--</li>-->
+                        <!--<li {if condition="strtolower(ACTION_NAME) eq 'deposer'"}class="active"{/if}>-->
+                            <!--<a href="#" pro="userGems">我的宝石 <strong pro="userGems_num" data-pos="userNav" class="txt-impt"></strong></a>-->
+                        <!--</li>-->
+                        <!--<li {if condition="strtolower(ACTION_NAME) eq 'deposer'"}class="active"{/if}>-->
+                            <!--<a href="#" pro="userWish">我的心愿单 <strong pro="userWish_num" data-pos="userNav" class="txt-impt"></strong></a>-->
+                        <!--</li>-->
+                        <li {if condition="strtolower(ACTION_NAME) eq 'order'"}class="active"{/if}>
+                            <a href="{:dwz_filter('ucenter/order')}" pro="userShare">我的晒单 <strong pro="userShare_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li >
+                            <hr>
+                        </li>
+                        <li {if condition="strtolower(ACTION_NAME) eq 'person'"}class="active"{/if}>
+                            <a href="{:dwz_filter('ucenter/person')}" pro="userProfile">个人资料 <strong pro="userProfile_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li {if condition="strtolower(ACTION_NAME) eq 'base'"}class="active"{/if}>
+                            <a href="{:dwz_filter('ucenter/base')}" pro="userSettings">基本设置 <strong pro="userSettings_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li {if condition="strtolower(ACTION_NAME) eq 'addr'"}class="active"{/if}>
+                            <a href="{:dwz_filter('ucenter/addr')}" pro="userAddress">收货地址 <strong pro="userAddress_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                        <li {if condition="strtolower(ACTION_NAME) eq 'charge'"}class="active"{/if}>
+                            <a href="{:dwz_filter('ucenter/charge')}" pro="userChargeRecord">充值记录 <strong pro="userChargeRecord_num" data-pos="userNav" class="txt-impt"></strong></a>
+                        </li>
+                    </ul>
+                </div>

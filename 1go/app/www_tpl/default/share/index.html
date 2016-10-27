@@ -1,0 +1,55 @@
+{extend name="base/base"/}
+{block name="user_css"}
+{css href="__static__/css/index.css" /}
+{css href="__static__/css/goods_list.css" /}
+{/block}
+{block name="title"}晒单分享{/block}
+{block name='content'}
+<div class="g-body">
+    <div  id="pro-view-0" >
+        <div class="m-share">
+            <div class="m-share-slogan">
+                <div class="g-wrap">
+                    <img src="__static__/img/share_slogan_dec.png" class="m-share-slogan-dec">
+                </div>
+                <div class="m-share-slogan-border"></div>
+            </div>
+            <div class="g-wrap f-clear">
+                <div class="m-share-hd">
+                    <h3>共 <span class="txt-impt" id="spTotal">23 </span> 条晒单</h3>
+                </div>
+                <div class="m-shareList">
+                    <div class="group group-first">
+
+                    </div>
+                    <div class="group ">
+
+                    </div>
+                    <div class="group ">
+
+                    </div>
+                    <div class="group group-last">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="w-loading" id="share_loading" style="display: none;">
+                <b class="w-loading-ico"></b>
+                <span class="w-loading-txt">正在努力加载……</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="temp_share" class="temp_share_list hidden_temp">
+
+</div>
+<input type="hidden" id="share_get" value="{:U('Share/pull_list')}">
+<input type="hidden" id="user_link" value="#" >
+<input type="hidden" id="goods_link" value="{:U('Goods/detail')}" >
+<input type="hidden" id="share_link" value="{:U('Share/detail')}" >
+{/block}
+{block name="user_js"}
+{js href='__static__/js/index.js' /}
+{js href="__yyg__/js/share/share_list.js" /}
+{/block}

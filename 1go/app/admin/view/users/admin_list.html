@@ -1,0 +1,192 @@
+{extend name='base/base' /}
+{block name='content'}
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="javascript:">后台管理</a>
+        </li>
+        <li>
+            <a href="javascript:">用户管理</a>
+        </li>
+        <li class="active">后台用户</li>
+    </ul><!-- .breadcrumb -->
+
+
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <form id="form_condition" class="form-search">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    <div class="input-group">
+                        <!--<input class="form-control search-query" placeholder="请输入" type="text" name="keywords">-->
+						<span class="input-group-btn">
+							<!--<button type="button" class="btn btn-purple btn-sm search_btn">-->
+                                <!--搜索-->
+                                <!--<i class="icon-search icon-on-right bigger-110"></i>-->
+                            <!--</button>-->
+							<a href="{:U('admin_exec',array('type'=>'add'))}" target="_blank" class="btn btn-success btn-sm">
+                                <i class="icon-plus icon-on-right bigger-110"></i>
+                                新增
+                            </a>
+						</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <div id="form_content">
+
+
+                            <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="center">
+                                        <label>
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </th>
+                                    <th>头像</th>
+                                    <th>ID</th>
+                                    <th>状态</th>
+                                    <th>用户名</th>
+                                    <th>昵称</th>
+                                    <th>手机</th>
+                                    <th>余额</th>
+                                    <th>积分</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {volist name='users_list' id='vo'}
+                                {if condition='!empty($vo["id"])'}
+                                <tr>
+                                    <td class="center">
+
+                                        <label>
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+                                    <td><img src="{$vo.user_face|default='--'}" alt="" style="width: 25px;height: 25px;"/></td>
+                                    <td>{$vo.id|default=''}</td>
+
+                                    <td>
+                                        {notempty name='vo.status'}
+                                        {switch name='vo.status'}
+                                        {case value='1'}正常{/case}
+                                        {case value='-1'}删除{/case}
+                                        {case value='-2'}禁用{/case}
+                                        {default/}
+                                        {/switch}
+                                        {/notempty}
+                                    </td>
+                                    <td>{$vo.username|default='--'}</td>
+                                    <td>{$vo.nick_name|default='--'}</td>
+                                    <td>{$vo.phone|default='--'}</td>
+                                    <td>{$vo.money|default='--'}</td>
+                                    <td>{$vo.score|default='--'}</td>
+                                    <td>
+                                        <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                            <a target="_blank" href="{:U('admin_exec',array('type'=>'see','id'=>$vo['id']))}" class="btn btn-xs btn-success" title="查看">
+                                                <i class="icon-eye-open bigger-120"></i>
+                                            </a>
+                                            <a target="_blank" href="{:U('admin_exec',array('id'=>$vo['id'],'type'=>'edit'))}" class="btn btn-xs btn-info" title="编辑">
+                                                <i class="icon-edit bigger-120"></i>
+                                            </a>
+                                            <a href="javascript:" data-id="{$vo.id|default=''}" class="btn btn-xs btn-danger del_btn" title="删除">
+                                                <i class="icon-trash bigger-120"></i>
+                                            </a>
+                                            <button class="btn btn-warning btn-xs modify_admin_password" data-id="{$vo.id}" title="修改密码">
+                                                <i class="icon-wrench  bigger-110 icon-only"></i>
+                                            </button>
+                                            <!--<a href="{:U('set')}" class="btn btn-xs btn-warning">-->
+                                            <!--<i class="icon-flag bigger-120"></i>-->
+                                            <!--</a>-->
+                                        </div>
+
+                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                            <div class="inline position-relative">
+                                                <button class="btn btn-minier btn-primary dropdown-toggle"
+                                                        data-toggle="dropdown">
+                                                    <i class="icon-cog icon-only bigger-110"></i>
+                                                </button>
+
+                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                                    <li>
+                                                        <a href="javascript:" class="tooltip-info" data-rel="tooltip" title="View">
+														<span class="blue">
+															<i class="icon-zoom-in bigger-120"></i>
+														</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="javascript:" class="tooltip-success" data-rel="tooltip" title="Edit">
+														<span class="green">
+															<i class="icon-edit bigger-120"></i>
+														</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="javascript:" class="tooltip-error" data-rel="tooltip" title="Delete">
+													    <span class="red">
+													    	<i class="icon-trash bigger-120"></i>
+													    </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/if}
+                                {/volist}
+                                </tbody>
+                            </table>
+
+                            <div class="page">
+                                {$pages|default=''}
+                            </div>
+
+                            <input type="hidden" id="modify_password" value="{:U('Users/modify_password')}"/>
+
+
+
+
+
+                        </div>
+                    </div><!-- /.table-responsive -->
+                </div><!-- /span -->
+            </div><!-- /row -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+
+<input type="hidden" id="del_url" value="{:U('del')}">
+
+{/block}
+
+{block name="js"}
+{js href='__plugin__/layer/extend/layer.ext.js' /}
+
+{js href='__common__/admin/js/users/admin_show_list.js' /}
+
+{/block}

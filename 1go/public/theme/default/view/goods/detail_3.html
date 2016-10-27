@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="__TEXT[DESCRIPT]">
+    <meta name="keywords" content="__TEXT[KEYWORDS]">
+    <title>详情  正在进行</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/detail.css">
+    <script type="text/javascript" charset="utf-8"  src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8"  src="../../js/goods/detail.js"></script>
+</head>
+<body>
+<div class="g-header" >
+    <div class="m-toolbar" >
+        <div class="g-wrap f-clear">
+            <div class="m-toolbar-l">
+                <span class="m-toolbar-welcome">欢迎来到香肠一元购！</span>
+
+            </div>
+            <ul class="m-toolbar-r">
+                <li class="m-toolbar-login">
+                    <div id="pro-view-6"><a class="m-toolbar-login-btn" href="javascript:void(0)">请登录</a>
+                        <a href="#" target="_blank">免费注册</a></div></li>
+                <li class="m-toolbar-myDuobao">
+                    <a class="m-toolbar-myDuobao-btn" href="#">我的夺宝
+                        <i class="ico ico-arrow-gray-s ico-arrow-gray-s-down"></i></a>
+                    <ul class="m-toolbar-myDuobao-menu">
+                        <li><a href="#">夺宝记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-win"><a href="#">幸运记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-mall"><a href="#">购买记录</a></li>
+                        <li class="m-toolbar-myDuobao-menu-gems"><a href="#">我的宝石</a></li>
+                        <li><a href="#">账户充值</a></li>
+                    </ul>
+                </li>
+                <li class="m-toolbar-myBonus"><a href="#">我的红包</a><var>|</var></li>
+                <li><a href="" target="_blank">
+                    <img width="16" height="13" style="float:left;margin:8px 3px 0 0;" src="../../img/icon_weibo_s.png">官方微博</a>
+                    <var>|</var>
+                </li>
+                <li><a href="">官方交流群</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-header">
+        <div class="g-wrap f-clear">
+            <div class="m-header-logo">
+                <h1><a class="m-header-logo-link" href="http://1.xiangchang.com/">香肠一元购</a></h1>
+                <div class="m-header-slogan">
+                    <a class="m-header-slogan-link" href="" target="_blank">
+                        <img src="../../img/logo_banner_v3.png"></a>
+                </div>
+            </div>
+
+            <div class="w-miniCart"  id="pro-view-14" >
+                <a class="w-miniCart-btn" href="javascript:void(0);" data-pro="btn"><i class="ico ico-miniCart"></i>清 单
+                    <b class="w-miniCart-count" id="pro-view-15"><i class="ico ico-arrow-white-solid ico-arrow-white-solid-l"></i>0</b></a>
+            </div>
+
+            <div class="w-search"  id="pro-view-2" >
+                <div  id="searchForm" class="w-search-form f-clear">
+                    <div class="w-input" id="pro-view-3"><input class="w-input-input" type="text" placeholder="请输入要搜索的商品"></div>
+                    <a class="w-search-btn" href="javascript:void(0)"><i class="ico ico-search"></i></a>
+                </div>
+                <div class="w-search-recKeyWrap">
+                    <a class="w-search-recKey" href="javascript:void(0);">苹果</a>
+                    <a class="w-search-recKey" href="javascript:void(0);">手机</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="m-nav"  id="pro-view-1" >
+        <div class="g-wrap f-clear">
+            <div class="m-catlog m-catlog-normal">
+                <div class="m-catlog-hd" style="padding-left:30px;cursor:pointer">
+                    <h2>商品分类<i class="ico ico-arrow ico-arrow-white ico-arrow-white-down"></i></h2>
+                </div>
+                <div class="m-catlog-wrap" style="display: none;">
+                    <div class="m-catlog-bd">
+                        <ul class="m-catlog-list">
+                            <li><a href="#">全部商品</a></li>
+                            <li><a href="#">手机平板</a></li>
+                            <li><a href="#">电脑办公</a></li>
+                            <li><a href="#">数码影音</a></li>
+                            <li><a href="#">女性时尚</a></li>
+                            <li><a href="#">美食天地</a></li>
+                            <li><a href="#">潮流新品</a></li>
+                            <li><a href="#">香肠周边</a></li>
+                            <li><a href="#">其他商品</a></li>
+                        </ul>
+                    </div>
+                    <div class="m-catlog-ft"></div>
+                </div>
+            </div>
+            <div class="m-menu" >
+                <ul class="m-menu-list">
+                    <li class="m-menu-list-item selected" data-name="index">
+
+                        <a class="m-menu-list-item-link" href="#">首页</a>
+
+                    </li>
+                    <li class="m-menu-list-item" data-name="ten">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="#">十元专区</a>
+
+                    </li>
+                    <li class="m-menu-list-item" data-name="results">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="#">最新揭晓</a>
+
+                    </li>
+                    <li class="m-menu-list-item" data-name="share">
+                        <var>|</var>
+                        <a class="m-menu-list-item-link" href="#">晒单分享</a>
+
+                    </li>
+                    <li class="m-menu-list-item dropdown" data-name="find">
+                        <var>|</var>
+                        <a class="m-menu-dropdown" href="javascript:void(0);">发现<i class="ico ico-arrow ico-arrow-gray-s ico-arrow-gray-s-down"></i></a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="g-body">
+
+
+    <div class="m-detail m-detail-willReveal">
+        <div class="g-wrap g-body-hd f-clear">
+            <div class="g-main">
+                <div class="w-dir">
+                    <a href="#">首页</a> &gt; <a href="#">数码影音</a> &gt; <span class="txt-gray">第303231078期 富士 FUJIFILM 趣奇 checky instax mini25相机礼盒套装（Kitty版）</span>
+                </div>
+                <div class="g-main-l m-detail-show">
+                    <div class="w-gallery" >
+                        <div class="w-gallery-fullsize">
+                            <div class="w-gallery-picture">
+                                <img  src="../../img/goods/demo/c.jpg" >
+                            </div>
+                        </div>
+                        <i class="ico ico-arrow ico-arrow-red ico-arrow-red-up" style="left: 31px;"></i>
+                        <div class="w-gallery-thumbnail">
+                            <ul class="w-gallery-thumbnail-list" >
+                                <!--循环-->
+                                <li class="w-gallery-thumbnail-item w-gallery-thumbnail-item-odd w-gallery-thumbnail-item-selected" >
+                                    <img src="../../img/goods/demo/c1.jpg">
+                                </li>
+                                <li class="w-gallery-thumbnail-item w-gallery-thumbnail-item-odd w-gallery-thumbnail-item-selected" >
+                                    <img src="../../img/goods/demo/c1.jpg">
+                                </li>
+                                <li class="w-gallery-thumbnail-item w-gallery-thumbnail-item-odd w-gallery-thumbnail-item-selected" >
+                                    <img src="../../img/goods/demo/c1.jpg">
+                                </li>
+                                <li class="w-gallery-thumbnail-item w-gallery-thumbnail-item-odd w-gallery-thumbnail-item-selected" >
+                                    <img src="../../img/goods/demo/c1.jpg">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-detail-promise f-clear">
+                        <span class="m-detail-promise-item"><i class="ico ico-detail-promise ico-detail-promise-open"></i><span class="m-detail-promise-item-txt">公正公开</span></span>
+                        <span class="m-detail-promise-item"><i class="ico ico-detail-promise ico-detail-promise-real"></i><span class="m-detail-promise-item-txt">正品保证</span></span>
+                        <span class="m-detail-promise-item"><i class="ico ico-detail-promise ico-detail-promise-right"></i><span class="m-detail-promise-item-txt">权益保障</span></span>
+                        <span class="m-detail-promise-item m-detail-promise-item-last"><i class="ico ico-detail-promise ico-detail-promise-ship"></i>
+                            <span class="m-detail-promise-item-txt">免费配送</span></span>
+                    </div>
+                    <div class="w-shareTo" style="height: 20px; padding-top: 12px;" >
+
+                        <div class="w-new-shareTo f-clear" id="pro-view-10">
+                            <span class="w-new-shareTo-txt">分享到</span>
+                            <!--分享-->
+                            <ul class="w-new-shareTo-list f-clear">
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-yixin" title="分享至易信"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-weibo" title="分享至新浪微博"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-qzone" title="分享至Qzone"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-tqq" title="分享至腾讯微博"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-weixin" title="分享至微信"></a></li>
+                            </ul></div></div>
+                </div>
+                <div class="g-main-m m-detail-main">
+                    <div class="m-detail-main-intro">
+                        <div class="m-detail-main-title">
+                            <h1 title="Apple iPhone6s 64G 颜色随机">Apple iPhone6s 64G 颜色随机</h1>
+                        </div>
+                        <p class="m-detail-main-desc" title="唯一的不同，就是处处不同">唯一的不同，就是处处不同</p>
+                    </div>
+                    <div class="m-detail-main-ing m-detail-main-onlyOne" pro="buyMain">
+                        <div class="m-detail-main-onlyOne-content" id="typeOne">
+                            <div class="m-detail-main-one-header f-clear">
+                                <h2 class="m-detail-main-type-title">十元夺宝</h2>
+                                <h3 class="m-detail-main-type-subtitle"><span class="period">期号 303232806</span>每满总需人次，即抽取1人获得该商品</h3>
+                                <div class="m-detail-main-one-explanation" pro="oneExplanationTip">?
+                                    <div class="more-box">
+                                        <i class="ico ico-detail-main-left-anchor"></i>
+                                        <div class="content">
+                                            <p>“香肠一元购”指用户花费1元兑换一个夺宝币，随后可凭夺宝币使用香肠一元购的服务并可根据宝石获得规则获取相应的宝石。</p>
+                                            <p>每件商品的全部夺宝号码分配完毕后，香肠一元购根据夺宝规则计算出的一个号码。<strong>持有该幸运号码的用户可直接获得该商品。</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-detail-main-one-progress">
+                                <div class="w-progressBar f-clear" title="40%">
+                                    <div class="w-progressBar-wrap">
+                                        <span class="w-progressBar-bar" style="width:40%;"></span>
+                                    </div>
+                                    <div class="w-progressBar-txt">已完成40%</div>
+                                </div>
+                            </div>
+                            <div class="m-detail-main-one-intro f-clear">
+                                <div class="m-detail-main-one-price">总需人次6480</div>
+                                <div class="m-detail-main-one-remain">剩余人次3870</div>
+                            </div>
+                            <div class="m-detail-main-one-count f-clear">
+                                <span>参与</span>
+                                <div id="buyNumbers" class="m-detail-main-count-number m-detail-main-count-buyTimes f-clear"><div class="w-number" id="pro-view-10"><a class="w-number-btn w-number-btn-minus" pro="minus" href="javascript:void(0);">－</a><input class="w-number-input" pro="input" type="text" value="10"><a class="w-number-btn w-number-btn-plus" pro="plus" href="javascript:void(0);">＋</a></div></div>
+                                <span style="padding-left: 0;">元</span>
+                                <span class="m-detail-main-buyHint"><i class="ico ico-arrow ico-arrow-grayBubbleArr"></i><b pro="txtOneBuyTip">加大参与人次，夺宝在望！</b></span>
+                                <span class="m-detail-main-buyUnitHint">参与人次需是10的倍数</span>
+                            </div>
+                            <div class="m-detail-main-one-operation f-clear">
+                                <a id="quickBuy" class="m-detail-main-type-btn m-detail-main-one-buy" href="javascript:void(0)">立即夺宝</a>
+                                <a id="addToCart" class="m-detail-main-type-btn m-detail-main-one-cart" href="javascript:void(0)"><i class="ico ico-miniCart"></i><span class="btn-txt">加入清单</span></a>
+                            </div>
+                            <!--已参与-->
+                            <div class="m-detail-main-one-codes">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>您已参与：</th>
+                                        <td><strong class="txt-red">1</strong>人次</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>夺宝号码：</th>
+                                        <td class="list-join">
+                                            10013047
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--未参与-->
+                            <!--<div class="m-detail-main-one-codes">
+                                你还没参与本期商品哦~
+                            </div>-->
+                        </div>
+                        <div id="wrapOutOfStock" class="m-detail-main-outOfStock f-clear" style="display: none;">
+                            <i class="ico m-detail-main-outOfStock-ico"></i>
+                            <div class="m-detail-main-outOfStock-content">
+                                <p><span>此商品暂时缺货。我们会尽快重新上架，</span><span>敬请期待！</span></p>
+                                <a href="/list.html">去逛逛其它商品</a>
+                            </div>
+                        </div>
+                        <div id="wrapExpired" class="m-detail-main-soldOut" style="display: none;">商品已下架</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-tabs w-tabs-main m-detail-mainTab" >
+        <div class="g-wrap g-body-bd f-clear">
+            <div class="w-tabs-tab">
+                <div id="introTab" class="w-tabs-tab-item w-tabs-tab-item-selected pro-tabs-tab-item-selected">商品详情</div>
+                <div id="recordTab" class="w-tabs-tab-item">夺宝参与记录</div>
+                <div id="shareTab" class="w-tabs-tab-item">晒单</div>
+                <div id="historyTab" class="w-tabs-tab-item">往期夺宝</div>
+            </div>
+            <div class="w-tabs-panel">
+                <!--模块切换,默认display : none;-->
+                <!--商品详情-->
+                <div id="introPanel" class="w-tabs-panel-item" style="">
+                    <!--循环-->
+                    <img src="../../img/goods/0.jpg">
+                    <img src="../../img/goods/0.jpg">
+                    <img src="../../img/goods/0.jpg">
+                    <dl class="special">
+                        <dt>重要说明：</dt>
+                        <dd>1、本商品由第三方提供；<br>2、以上详情页面展示信息仅供参考，商品以实物为准；<br>3、如快递无法配送至获得者提供的送货地址，将默认配送到距离最近的送货地，由获得者本人自提。</dd>
+                    </dl>
+                </div>
+                <!--参与纪录-->
+                <div id="recordPanel" class="w-tabs-panel-item m-detail-mainTab-record"
+                     style="display: none;">
+                    <div class="content">
+                        <div class="m-detail-recordList-start">
+                            <i class="ico ico-clock">
+                            </i>
+                        </div>
+                        <div id="pro-view-13">
+                            <div class="m-detail-recordList-timeSeperate">
+                                2016-03-23
+                                <i class="ico ico-recordDot ico-recordDot-solid">
+                                </i>
+                            </div>
+                            <ul class="m-detail-recordList m-detail-recordList-2016-03-23" pro="list">
+                                <!--循环-->
+                                <li class="f-clear">
+                                  <span class="time">
+                                    14:48:57.684
+                                  </span>
+                                    <i class="ico ico-recordDot ico-recordDot-hollow">
+                                    </i>
+                                    <div class="m-detail-recordList-userInfo">
+                                        <div class="inner">
+                                            <p>
+                                                <span class="avatar">
+                                                  <img width="20" height="20"
+                                                       src="../../img/goods/b2.png">
+                                                </span>
+                                                <a href="#" target="_blank"
+                                                   title="轮也该轮到我中了吧(ID:77125162)">
+                                                    轮也该轮到我中了吧
+                                                </a>
+                                                ( IP：121.22.253.230) 参与了
+                                                <b class="times txt-red">
+                                                    60人次
+                                                </b>
+                                                <a style="display:none" class="w-button w-button-simple btn-checkCodes"
+                                                   data-func="code" data-rid="370" href="javascript:void(0)">
+                                                    所有夺宝号码
+                                                    <i class="ico ico-arrow-gray ico-arrow-gray-down">
+                                                    </i>
+                                                </a>
+                                            </p>
+                                            <a style="display:none" class="btn-close" href="javascript:void(0)">
+                                                x
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="f-clear">
+                                  <span class="time">
+                                    14:48:57.684
+                                  </span>
+                                    <i class="ico ico-recordDot ico-recordDot-hollow">
+                                    </i>
+                                    <div class="m-detail-recordList-userInfo">
+                                        <div class="inner">
+                                            <p>
+                                                <span class="avatar">
+                                                  <img width="20" height="20"
+                                                       src="../../img/goods/b2.png">
+                                                </span>
+                                                <a href="#" target="_blank"
+                                                   title="轮也该轮到我中了吧(ID:77125162)">
+                                                    轮也该轮到我中了吧
+                                                </a>
+                                                ( IP：121.22.253.230) 参与了
+                                                <b class="times txt-red">
+                                                    60人次
+                                                </b>
+                                                <a style="display:none" class="w-button w-button-simple btn-checkCodes"
+                                                   data-func="code" data-rid="370" href="javascript:void(0)">
+                                                    所有夺宝号码
+                                                    <i class="ico ico-arrow-gray ico-arrow-gray-down">
+                                                    </i>
+                                                </a>
+                                            </p>
+                                            <a style="display:none" class="btn-close" href="javascript:void(0)">
+                                                x
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="f-clear">
+                                  <span class="time">
+                                    14:48:57.684
+                                  </span>
+                                    <i class="ico ico-recordDot ico-recordDot-hollow">
+                                    </i>
+                                    <div class="m-detail-recordList-userInfo">
+                                        <div class="inner">
+                                            <p>
+                                                <span class="avatar">
+                                                  <img width="20" height="20"
+                                                       src="../../img/goods/b2.png">
+                                                </span>
+                                                <a href="#" target="_blank"
+                                                   title="轮也该轮到我中了吧(ID:77125162)">
+                                                    轮也该轮到我中了吧
+                                                </a>
+                                                ( IP：121.22.253.230) 参与了
+                                                <b class="times txt-red">
+                                                    60人次
+                                                </b>
+                                                <a style="display:none" class="w-button w-button-simple btn-checkCodes"
+                                                   data-func="code" data-rid="370" href="javascript:void(0)">
+                                                    所有夺宝号码
+                                                    <i class="ico ico-arrow-gray ico-arrow-gray-down">
+                                                    </i>
+                                                </a>
+                                            </p>
+                                            <a style="display:none" class="btn-close" href="javascript:void(0)">
+                                                x
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pager">
+                        <div class="w-pager" id="pro-view-64">
+                            <button class="w-button w-button-aside w-button-disabled" type="button"
+                                    id="pro-view-65" disabled="disabled">
+                                <span>
+                                  上一页
+                                </span>
+                            </button>
+                            <button class="w-button w-button-main" type="button" id="pro-view-66">
+                                <span>
+                                  1
+                                </span>
+                            </button>
+                            <button class="w-button w-button-aside" type="button" id="pro-view-67">
+                                <span>
+                                  2
+                                </span>
+                            </button>
+                            <button class="w-button w-button-aside" type="button" id="pro-view-74">
+                                <span>
+                                  下一页
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--晒单-->
+                <div id="sharePanel" class="w-tabs-panel-item m-detail-mainTab-share"
+                     style="display: none;">
+                    <div pro="sharelist-wrapper" id="pro-view-80">
+                        <!--没有晒单-->
+                        <div class="empty" style="display:none;">
+                            <p class="status-empty">
+                                <i class="littleU littleU-cry">
+                                </i>
+                                &nbsp;&nbsp;暂时还没有任何晒单
+                            </p>
+                        </div>
+                        <ul class="m-detail-shareList-list" pro="list">
+                            <!--晒单 循环-->
+                            <li >
+                                <div class="m-detail-shareList-author">
+                                    <a class="avatar" href="#" target="_blank">
+                                        <img width="90" height="90"
+                                             src="../../img/goods/b2.png">
+                                    </a>
+                                    <a class="nickname f-txtabb" href="#"
+                                       target="_blank" title="肠哥我回来了给我希望(ID:69886347)">
+                                        肠哥我回来了给我希望
+                                    </a>
+                                </div>
+                                <div class="m-detail-shareList-detail">
+                                    <i class="ico ico-arrow ico-arrow-grayShareArr">
+                                    </i>
+                                    <div class="titleWrap">
+                            <span class="date">
+                              2016-03-21 22:58:16
+                            </span>
+                            <span class="title">
+                              <a href="#"
+                                 target="_blank">
+                                  <b>
+                                      感谢肠哥感谢香肠一元购
+                                  </b>
+                              </a>
+                                    </span>
+                                    </div>
+                                    <div class="contentWrap">
+                                        <a href="#"
+                                           target="_blank">
+                                            一直以来都好喜欢这个拍立得，终于中到了，谢谢肠哥。我都推荐好多人玩香肠一元购了，肠哥再赐我一台笔记本吧！我会努力给你做宣传的！爱你么么哒
+                                        </a>
+                                    </div>
+                                    <div class="imgWrap">
+                                        <!--循环展示-->
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li >
+                                <div class="m-detail-shareList-author">
+                                    <a class="avatar" href="#" target="_blank">
+                                        <img width="90" height="90"
+                                             src="../../img/goods/b2.png">
+                                    </a>
+                                    <a class="nickname f-txtabb" href="#"
+                                       target="_blank" title="肠哥我回来了给我希望(ID:69886347)">
+                                        肠哥我回来了给我希望
+                                    </a>
+                                </div>
+                                <div class="m-detail-shareList-detail">
+                                    <i class="ico ico-arrow ico-arrow-grayShareArr">
+                                    </i>
+                                    <div class="titleWrap">
+                            <span class="date">
+                              2016-03-21 22:58:16
+                            </span>
+                            <span class="title">
+                              <a href="#"
+                                 target="_blank">
+                                  <b>
+                                      感谢肠哥感谢香肠一元购
+                                  </b>
+                              </a>
+                                    </span>
+                                    </div>
+                                    <div class="contentWrap">
+                                        <a href="#"
+                                           target="_blank">
+                                            一直以来都好喜欢这个拍立得，终于中到了，谢谢肠哥。我都推荐好多人玩香肠一元购了，肠哥再赐我一台笔记本吧！我会努力给你做宣传的！爱你么么哒
+                                        </a>
+                                    </div>
+                                    <div class="imgWrap">
+                                        <!--循环展示-->
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="m-detail-shareList-author">
+                                    <a class="avatar" href="#" target="_blank">
+                                        <img width="90" height="90"
+                                             src="../../img/goods/b2.png">
+                                    </a>
+                                    <a class="nickname f-txtabb" href="#"
+                                       target="_blank" title="肠哥我回来了给我希望(ID:69886347)">
+                                        肠哥我回来了给我希望
+                                    </a>
+                                </div>
+                                <div class="m-detail-shareList-detail">
+                                    <i class="ico ico-arrow ico-arrow-grayShareArr">
+                                    </i>
+                                    <div class="titleWrap">
+                            <span class="date">
+                              2016-03-21 22:58:16
+                            </span>
+                            <span class="title">
+                              <a href="#"
+                                 target="_blank">
+                                  <b>
+                                      感谢肠哥感谢香肠一元购
+                                  </b>
+                              </a>
+                                    </span>
+                                    </div>
+                                    <div class="contentWrap">
+                                        <a href="#"
+                                           target="_blank">
+                                            一直以来都好喜欢这个拍立得，终于中到了，谢谢肠哥。我都推荐好多人玩香肠一元购了，肠哥再赐我一台笔记本吧！我会努力给你做宣传的！爱你么么哒
+                                        </a>
+                                    </div>
+                                    <div class="imgWrap">
+                                        <!--循环展示-->
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                           target="_blank">
+                                            <div style="display:block;writing-mode:tb-rl;height:140px;line-height:140px;vertical-align:middle">
+                                                <img style="display: inline;vertical-align:middle;" width="140" src="../../img/goods/demo/c2.png">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="pager" pro="pager">
+                            <div class="w-pager" id="pro-view-91">
+                                <button class="w-button w-button-aside w-button-disabled" type="button"
+                                        id="pro-view-92" disabled="disabled"><span>上一页</span>
+                                </button>
+                                <button class="w-button w-button-main" type="button" id="pro-view-93">
+                                    <span>1</span>
+                                </button>
+                                <button class="w-button w-button-aside" type="button" id="pro-view-98"><span> 14</span>
+                                </button>
+                                <button class="w-button w-button-aside" type="button" id="pro-view-99">
+                                    <span>下一页</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--历史-->
+                <div  class="w-tabs-panel-item m-detail-mainTab-history"
+                      style=" display: none;">
+                    <div class="content">
+                        <ul class="m-detail-tabHistory-list f-clear">
+                            <div id="pro-view-103">
+                                <li class="m-detail-tabHistory-item m-detail-tabHistory-countdown">
+                                    <div class="m-detail-tabHistory-period">
+                                        期号 303231078
+                                    </div>
+                                    <div class="m-detail-tabHistory-info">
+                                        <div class="w-countdown">
+                                          <span class="w-countdown-title">
+                                            揭晓倒计时
+                                          </span>
+                                          <span class="w-countdown-nums" >
+                                            <b>0 </b><b>1</b>:<b>4</b><b>2</b>:<b>1</b><b>0</b>
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="m-detail-tabHistory-result">
+                                    </div>
+                                    <div class="m-detail-tabHistory-operation">
+                                        <a href="#">
+                                            查看详情
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="m-detail-tabHistory-item m-detail-tabHistory-countdown">
+                                    <div class="m-detail-tabHistory-period">
+                                        期号 303231078
+                                    </div>
+                                    <div class="m-detail-tabHistory-info">
+                                        <div class="w-countdown">
+                                          <span class="w-countdown-title">
+                                            揭晓倒计时
+                                          </span>
+                                          <span class="w-countdown-nums" >
+                                            <b>0 </b><b>1</b>:<b>4</b><b>2</b>:<b>1</b><b>0</b>
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="m-detail-tabHistory-result">
+                                    </div>
+                                    <div class="m-detail-tabHistory-operation">
+                                        <a href="#">
+                                            查看详情
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="m-detail-tabHistory-item m-detail-tabHistory-countdown">
+                                    <div class="m-detail-tabHistory-period">
+                                        期号 303231078
+                                    </div>
+                                    <div class="m-detail-tabHistory-info">
+                                        <div class="w-countdown">
+                                          <span class="w-countdown-title">
+                                            揭晓倒计时
+                                          </span>
+                                          <span class="w-countdown-nums" >
+                                            <b>0 </b><b>1</b>:<b>4</b><b>2</b>:<b>1</b><b>0</b>
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="m-detail-tabHistory-result">
+                                    </div>
+                                    <div class="m-detail-tabHistory-operation">
+                                        <a href="#">
+                                            查看详情
+                                        </a>
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="pager">
+                        <div class="w-pager" id="pro-view-114">
+                            <button class="w-button w-button-aside w-button-disabled" type="button"
+                                    id="pro-view-115" disabled="disabled"><span>上一页</span>
+                            </button>
+                            <button class="w-button w-button-main" type="button" id="pro-view-116">
+                                <span>1</span>
+                            </button>
+                            <button class="w-button w-button-aside" type="button" id="pro-view-121">
+                                <span>下一页</span>
+                            </button>
+                        </div>
+                    </div>
+                </div></div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="g-footer">
+    <div class="m-instruction">
+        <div class="g-wrap f-clear">
+            <div class="g-main">
+                <ul class="m-instruction-list">
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-1"></i>新手指南</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">了解1元夺宝平台</a></li>
+                            <li><a href="#" target="_blank">服务协议</a></li>
+                            <li><a href="#" target="_blank">常见问题</a></li>
+                            <li><a href="#" target="_blank">投诉建议</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-2"></i>夺宝保障</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">公平保障</a></li>
+                            <li><a href="#" target="_blank">公正保障</a></li>
+                            <li><a href="#" target="_blank">公开保障</a></li>
+                            <li><a href="#" target="_blank">安全支付</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-3"></i>商品配送</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">商品配送</a></li>
+                            <li><a href="#" target="_blank">配送费用</a></li>
+                            <li><a href=#" target="_blank">商品验货与签收</a></li>
+                            <li><a href="#" target="_blank">长时间未收到商品</a></li>
+                        </ul>
+                    </li>
+                    <li class="m-instruction-list-item">
+                        <h5><i class="ico ico-instruction ico-instruction-5"></i>友情链接</h5>
+                        <ul class="list">
+                            <li><a href="#" target="_blank">香肠严选</a></li>
+                            <li><a href="#" target="_blank">企业邮箱</a></li>
+                            <li><a href="#" target="_blank">考拉海购</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="g-side">
+                <div class="g-side-l">
+                    <ul class="m-instruction-state f-clear">
+                        <li><i class="ico ico-state-l ico-state-l-1"></i>100%公平公正公开</li>
+                        <li><i class="ico ico-state-l ico-state-l-2"></i>100%正品保证</li>
+                        <li><i class="ico ico-state-l ico-state-l-3"></i>100%权益保障</li>
+                    </ul>
+                </div>
+                <div class="g-side-r">
+                    <div class="m-instruction-yxCode">
+                        <a href="#" target="_blank"><img width="100%" src="../../img/qrcode_app.png"></a>
+                        <p style="line-height:12px;">下载客户端</p>
+                    </div>
+                    <div class="m-instruction-service">
+                        <p>周一至周五：9:00-18:00</p>
+                        <p>意见反馈请 <a href="#" target="_blank">点击这里</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- 201603161456 --><div class="m-copyright">
+    <div class="g-wrap">
+        <div class="m-copyright-logo">
+            <a href="#" target="_blank"><img width="130" src="../../img/netease_logo-m.gif"></a>
+            <a href="#" target="_blank"><img width="117" src="../../img/yy_logo.gif"></a>
+        </div>
+        <div class="m-copyright-txt">
+            <p>杭州妙得科技有限公司版权所有 © 1997-2016 ICP证浙B2-20160106</p>
+            <p><a href="#" target="_blank">关于香肠</a>
+                <a href="#" target="_blank">关于香肠免费邮</a>
+                <a href="#" target="_blank">邮箱官方博客</a>
+                <a href="#" target="_blank">客户服务</a>
+                <a href="#" target="_blank">隐私政策</a></p>
+        </div>
+    </div>
+</div>
+</div>
+<div  style="position: fixed;top:0;left:0;z-index: 99;">
+
+    <div class="modal_bg" style="position: fixed;background: rgba(50,50,50,0.3);width:100%;height: 100%;z-index: 0;"></div>
+    <div class="modal_body" style="position: fixed;width:500px;height:400px;top:50%;left:50%;margin:-200px 0 0 -250px;background: #fff;">
+        <style>
+            .login_page{width:100%;text-align: center;}
+            .login_page>form{width:350px;margin:auto;margin-top:60px;}
+            .login_input{width:100%;height: 48px;line-height: 48px;margin-top:15px;position: relative;}
+            .login_input:after{display: block;content:'.';clear:both;
+                visibility: hidden;height: 0;}
+            .login_input>i{width:50px;height: 48px;display: block;color:#ccc;font-size: 30px;
+                font-weight:100;position: absolute;left:0;top:0;}
+            .login_input>input{float: left;border:1px solid #DCDCDC;outline: none;font-size:18px;color:#666;
+                line-height: 48px;width:350px;padding-left:50px;box-sizing: border-box;}
+            .login_input>input:focus{border:1px solid #3376dc;}
+            .login_m_sub{width:100%;height: 48px;border-radius: 4px; background: #dd344f;line-height: 48px;
+                margin-top:20px;color:#fff;font-size:24px;border:none;text-align: center;cursor: pointer;;
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;}
+            .login_m_sub:hover{background: #ea4163;}
+            .login_page .reg_link{color:#3399ff;font-size:14px;text-decoration: none;line-height: 36px;display: block;text-align: left;}
+            .login_page .reg_link:hover{text-decoration: underline;}
+            .login_types{width:100%;margin-top:15px;border-top:1px solid #ddd;display: block;position: relative;text-align: center;}
+            .login_types>h4{font-size:14px;font-weight: 100;color:#666;padding:0 5px;background: #fff;position: relative;
+                line-height:20px;top:-12px;display: block;width:80px;margin:auto;}
+            .login_types>a{position: relative;width:35px;height: 35px;margin:0 15px;opacity: 0.6;text-decoration: none;;
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s;
+                transition: all 0.3s;}
+            .login_types>a:hover{opacity: 1;}
+            .login_types>a.lg_qq{color:#44a8da;}
+            .login_types>a.lg_wx{color:#47c853;}
+            .login_types>a.lg_wb{color:#d42024;}
+            .login_types>a.lg_qq>span{position: relative;top:-4px;}
+            .login_types>a>span{font-size:38px;}
+        </style>
+        <div class="login_page">
+            <form>
+                <div class="login_input">
+                    <i class="iconfont">&#xe601</i>
+                    <input placeholder="请输入用户名">
+                </div>
+                <div class="login_input">
+                    <i class="iconfont">&#xe600</i>
+                    <input type="password" placeholder="请输入密码">
+                </div>
+                <input class="login_m_sub" type="button" value="登&nbsp;&nbsp;录">
+                <a class="reg_link" href="register.html" >马上注册</a>
+                <div class="login_types">
+                    <h4>第三方登录</h4>
+                    <a href="javascript:;" class="iconfont lg_qq" title="qq登录"><span>&#xe60b</span></a>
+                    <a href="javascript:;" class="iconfont lg_wx" title="微信登录"><span>&#xe60c</span></a>
+                    <a href="javascript:;" class="iconfont lg_wb" title="微博登录"><span>&#xe60d</span></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    var add_into_market=function(start,end){
+        var s =start.offset(),
+            w=start.width(),
+            h=start.height(),
+            src=start.attr("src"),
+            e=end.offset();
+        var temp=$("<img>");
+        temp.attr("style","position:absolute;display:block;" +
+                "transition:all 1s ease-in;-webkit-transition:all 1s ease-in;" +
+                "z-index:999;border:1px solid #ccc;opacity:1;").css({
+            "left": s.left-1,"top": s.top-1,
+            "width":w,"height":h
+        }).attr("src",src);
+        $("body").append(temp);
+         setTimeout(function(){
+            temp.css({"left":e.left+50,"top": e.top,"opacity":0.3,"width":0,"height":0});
+        },50)
+    };
+
+</script>
+
+
+</html>

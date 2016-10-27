@@ -1,0 +1,170 @@
+.body{
+  height: 640px;
+  position: relative;
+  background: url("../../images/account/log-bg.png") center no-repeat ;
+  background-size:cover;
+
+}
+.login-con{
+  width:1200px;
+  margin: auto;
+  height: 450px;
+  position: relative;
+}
+.login-bot{
+  width:326px;
+  height: 346px;
+  background: url("../../images/account/log-bt.png");
+  display: block;
+  position: absolute;
+  bottom:0;left:0;
+}
+.login-bgcon{
+  width:100%;
+  height: 100%;
+  display: table;
+  vertical-align:middle;
+  table-layout: fixed;
+}
+
+.bgcon{
+  position: absolute;
+  width:100%;
+  height: 100%;
+  left:0;top:0;
+  display: block;
+  background: url("../../images/account/log-bmain.png") center no-repeat ;
+}
+.center-cell{
+  display: table-cell;
+  vertical-align: middle;
+  width:100%;
+
+}
+.lgn-link{
+  float: left;
+  width:720px;
+  height: 100%;
+}
+.lgn-link>h4{
+  width:350px;
+  height: 100px;
+  background: url("../../images/account/login_title.png") no-repeat;
+  margin:20px 100px;
+}
+.lgn-link>a{
+  margin:82px 130px;
+  display: block;
+  width:100px;
+  height: 34px;
+  text-align: center;
+  line-height: 34px;
+  background: #000;
+  color:#fff;
+  border:1px solid #000;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.lgn-link>a:hover{
+  background: #00aef1;
+  border:1px solid #fff;
+}
+
+.logo-form{
+  width:420px;
+  box-sizing: border-box;
+  float: left;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.3);
+  *background:#bae8fb;
+  padding: 0 40px 50px 40px
+}
+.logo-form>h2{
+  height:160px;
+  line-height: 160px;
+  width:100%;
+  color:#0797b5;
+  font-size:36px;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  letter-spacing: 4px;
+}
+.lgn-f-l{
+  width:300px;
+  height: 42px;
+  background: #fff;
+  border-radius: 5px;
+  position: relative;
+  margin: 0 auto 30px ;
+}
+.lgn-f-l>.icon{
+  width:40px;
+  height: 42px;
+  float: left;
+  display: block;
+  background: url("../../images/account/man-login-icon.png") no-repeat ;
+
+}
+.icon.username{
+   background-position: 12px 12px;
+ }
+.icon.password{
+  background-position: 12px -30px;
+}
+.lgn-f-l>input{
+  width:250px;
+  float: left;
+  height: 36px;
+  margin: 3px;
+  box-sizing: border-box;
+  border:0;
+  outline: none;
+}
+.lgn-f-l.v-code{
+  background: none;
+}
+.lgn-f-l.v-code >input{
+  width:200px;
+  height: 42px;
+  margin:0;
+  background: #fff;
+  border-radius: 5px;
+  padding-left:10px;
+}
+.val-img{
+  float: left;
+  width:90px;
+  margin-left:8px;
+  height: 42px;
+}
+.lgn-submit{
+  width:300px;
+  height: 42px;
+  display: block;
+  margin:auto;
+  text-align: center;
+  line-height: 42px;
+  color:#fff;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+  background: #0098b7;
+  border:none;
+  border-radius: 5px;
+  font-size:18px;
+  letter-spacing: 5px;
+  margin-top:20px;
+}
+.lgn-submit:hover{
+  background: #03697D;
+  cursor: pointer;
+}
+

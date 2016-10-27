@@ -1,0 +1,43 @@
+<div class="tabbable">
+    <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+        {volist name="category_info" id="vo" key="k" }
+        {if condition="($k == 1) "}
+        <li class="active">
+            {else /}
+        <li>
+            {/if}
+            <a data-toggle="tab" href="#home{$k}">{$vo.category}</a>
+        </li>
+        {/volist}
+    </ul>
+    <div class="tab-content">
+        {volist name="category_arr" id="value1" key="key1" }
+        {if condition="($key1 == 1) "}
+        <div id="home{$key1}" class="tab-pane active">
+            {else /}
+            <div id="home{$key1}" class="tab-pane">
+                {/if}
+                <form class="form-horizontal" role="form" id="form_content{$key1}">
+                    {volist name="value1" id="value2" key="key2" }
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> {$value2.title} </label>
+                        <div class="col-sm-9">
+                            {if condition='$value2["type"] eq "textarea"'}
+                            <textarea data-id="{$value2['id']}" class="col-xs-10 col-sm-5 conf_text" name="" id="" cols="30" rows="3">{$value2['value']|default=''}</textarea>
+                            {else /}
+                            <input type="text" data-id="{$value2['id']}" placeholder=""
+                                   class="col-xs-10 col-sm-5 conf_text" value="{$value2['value']}">
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    {/volist}
+                </form>
+            </div>
+            {/volist}
+        </div>
+    </div>
+</div>
+<input type="hidden" id="update_conf" value="{:U('conf/update_conf')}"/>
+{js href='__common__/admin/js/conf/show_list.js' /}
+

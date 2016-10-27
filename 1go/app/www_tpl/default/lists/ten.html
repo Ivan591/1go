@@ -1,0 +1,86 @@
+{extend name="base/base"/}
+{block name="user_css"}
+{css href="__static__/css/index.css" /}
+{css href="__static__/css/goods_list.css" /}
+{/block}
+{block name='title'}十元专区{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-list">
+        <div class="g-wrap g-body-bd f-clear">
+
+            <div class="m-list-mod m-list-goodsList m-search-goodsList">
+                <!--搜索结果,仅在搜索出现-->
+                <div class="m-list-mod-bd">
+                    <ul class="w-quickBuyList f-clear" id="goodsList">
+                        <!--循环 ,一行4个 ,每行最后一个 row-last-->
+                        {volist name="goods_list" id="each_goods" mod="4"}
+                        <li class="w-quickBuyList-item {$mod==3 ? ' row-last' : ' '}" data-gid="{$each_goods['gid']}" data-nper="{$each_goods['id']}">
+                            <!--十元专区图标-->
+                            <!--<i class="ico ico-label ico-label-ten"></i>-->
+                            <div class="w-goods w-goods-l w-goods-ing">
+                                <div class="w-goods-pic">
+                                    <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}" title="{$each_goods['name']|htmlspecialchars}" target="_blank">
+                                        <img width="200" height="200" alt="{$each_goods['name']|htmlspecialchars}" src="__image_path__{$each_goods['img_path']}" class="">
+                                    </a>
+                                </div>
+                                <p class="w-goods-title f-txtabb">
+                                    <a title="{$each_goods['name']|htmlspecialchars}" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}" target="_blank">{$each_goods['name']|htmlspecialchars}</a></p>
+                                <p class="w-goods-price">总需：{$each_goods['sum_times']} 人次</p>
+                                <div class="w-progressBar" title="{$each_goods['percent']}%">
+                                    <p class="w-progressBar-wrap">
+                                        <span class="w-progressBar-bar" style="width:{$each_goods['percent']}%;"></span>
+                                    </p>
+                                    <ul class="w-progressBar-txt f-clear">
+                                        <li class="w-progressBar-txt-l"><p><b>{$each_goods['participant_num']}</b></p>
+                                            <p>已参与人次</p></li>
+                                        <li class="w-progressBar-txt-r"><p><b>{$each_goods['remain']}</b></p>
+                                            <p>剩余人次</p></li>
+                                    </ul>
+                                </div>
+                                <p class="w-goods-progressHint">
+                                    <b class="txt-blue">{$each_goods['participant_num']}</b>人次已参与，赶快去参加吧！剩余<b class="txt-red">{$each_goods['remain']}</b>人次
+                                </p>
+                                <div class="w-goods-opr">
+
+                                    我要参与：
+                                    <div class="w-goods-opr-number">
+                                        <div class="w-number w-number-inline">
+                                            <a class="w-number-btn w-number-btn-minus" href="javascript:;">－</a>
+                                            <input data-last="{$each_goods['remain']}"
+                                                   data-unit="{$each_goods['unit_price']}"
+                                                   data-min="{$each_goods['min_times']}"
+                                                   class="w-number-input participation_num" type="text"
+                                                   value="{$each_goods['init_times']}">
+                                            <a class="w-number-btn w-number-btn-plus" href="javascript:;">＋</a></div>
+                                    </div>
+                                    人次
+
+                                    <p class="w-goods-opr-buy">
+                                        <a class="w-button w-button-main w-button-l w-goods-btn-quickBuy" href="javascript:void(0)" style="width:90px;">立即夺宝</a>
+                                        <a class="w-button w-button-l w-goods-btn-addToCart" href="javascript:void(0)" style="width:90px;">加入清单</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="g-wrap g-body-ft f-clear">
+            <div class="m-list-pager">
+                <div class="w-pager" id="pro-view-10"><a class="w-button w-button-aside w-button-disabled" href="javascript:void(0)" target="" id="pro-view-11" disabled="disabled"><span>上一页</span></a><a class="w-button w-button-main"
+                                                                                                                                                                                                           href="http://1.xiangchang.com/list/1-0-1-1.html"
+                                                                                                                                                                                                           target="_self" id="pro-view-12"><span>1</span></a><a
+                        class="w-button w-button-aside w-button-disabled" href="javascript:void(0)" target="" id="pro-view-13" disabled="disabled"><span>下一页</span></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="add_to_cart_url" value="{:U('Pay/add_to_cart')}"><!--添加到购物车-->
+{/block}
+
+{block name="user_js"}
+{js href="__yyg__/js/lists/lists.js" /}
+{/block}

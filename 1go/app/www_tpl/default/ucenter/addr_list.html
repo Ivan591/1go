@@ -1,0 +1,36 @@
+<div class="w-address-bar" id="pro-view-20">
+    <div class="address-bar-title" style="display: none;"><span class="title-txt">已保存的有效收货地址</span><a
+            class="title-btn" href="javascript:void(0)" pro="addAddress">新增收货地址</a>
+    </div>
+    <ul pro="addressbar" class="bar-view">
+        <li class="bar-header f-clear">
+            <div class="bar-item receiver">收货人</div>
+            <div class="bar-item address">收货地址</div>
+            <div class="bar-item mobile">联系电话</div>
+            <div class="bar-item operation">操作</div>
+        </li>
+        {empty name='addr_list'}
+        <li class="address-bar f-clear" style="text-align: center;padding-top: 40px;">
+            暂无数据
+        </li>
+
+        {else /}
+        {foreach name='addr_list' item='vo' key='k'}
+        <li class="address-bar f-clear" id="pro-view-21">
+            <div class="bar-item receiver" style="margin-left:16px;">{$vo.name|default='--'}</div>
+            <div class="bar-item address">{$vo.provice|default=''}&nbsp;{$vo.city|default=''}&nbsp;{$vo.area|default=''}&nbsp;{$vo.address|default=''}</div>
+            <div class="bar-item mobile">{$vo.phone|default='--'}</div>
+            <div class="bar-item operation">
+                {if condition="$vo['type'] eq 1"}
+                <span class="address-status default-status">默认地址</span>
+                &nbsp;
+                {/if}
+                <a href="javascript:void(0)" pro="modify" data-id="{$vo.id}" class="edit_addr">修改</a>&nbsp;|&nbsp;
+                <a href="javascript:void(0)" data-id="{$vo.id}" class="del_addr">删除</a>
+            </div>
+            <i class="selected-ico"></i>
+        </li>
+        {/foreach}
+        {/empty}
+    </ul>
+</div>

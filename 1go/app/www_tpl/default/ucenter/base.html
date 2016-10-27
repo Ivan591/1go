@@ -1,0 +1,68 @@
+{extend name="base/base"/}
+{block name="title"}基本设置{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user">
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content">
+
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="/user/index.do?cid=76344798">我的夺宝</a><span
+                                    class="w-crumbs-split">&gt;</span></li>
+
+                            <li class="w-crumbs-item w-crumbs-active">基本设置</li>
+
+                        </ul>
+                        <div class="m-user-setting" module="user/setting/Setting">
+                            <div class="m-user-comm-wraper">
+                                <div class="m-user-comm-title m-user-comm-titleHasBdr">
+                                    <h3 class="title">通知设置</h3>
+                                </div>
+                                <div class="m-user-setting-secTit"><h4>揭晓通知</h4> | 参与的商品在揭晓前一分钟将收到通知</div>
+                                <div class="m-user-setting-secCont">
+                                    <div module="user/setting/pushsms/Pushsms" id="pro-view-8" module-id="module-7"
+                                         module-launched="true">
+                                        <ul class="s-list" id="pro-view-9">
+                                            <li class="s-item">
+                                                <div class="s-name">短信提醒</div>
+                                                <div class="s-option">
+                                                    {if condition='$info["receive_sms"] eq "true"'}<span class="txt-suc"
+                                                                                                         pro="descSms"><b
+                                                        class="ico ico-suc-s"></b> 已开启</span>
+                                                    <a class="s-set set_receive" href="javascript:"
+                                                       data-val="false">关闭</a></div>
+                                                {else/}
+                                                <span class="txt-gray" pro="descSms">
+                                                    <b class="ico ico-disable-s"></b> 已关闭</span>
+                                                <a class="s-set set_receive" href="javascript:" data-val="true">开启</a>
+                                    </div>
+                                    {/if}
+                                    </li>
+                                    </ul>
+                                </div>
+                                <div class="s-hr"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="m-user-frame-clear"></div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="set_receive" value="{:U('user/set_receive')}">
+{/block}
+{block name="user_js"}
+{js href="__yyg__/js/ucenter/base.js" /}
+{/block}

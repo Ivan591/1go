@@ -1,0 +1,61 @@
+<script>
+    function no_img(img){
+        img.attr('src',$("#no_img_url").val());
+        img.onerror=null;
+    }
+</script>
+<div class="m-header">
+    <div class="g-wrap f-clear">
+        <div class="m-header-logo">
+            <h1><a class="m-header-logo-link" href="/" style="background: url('{$conf.WEBSITE_LOGO|default=''}')">香肠一元购</a></h1>
+            <div class="m-header-slogan">
+                <a class="m-header-slogan-link" href="" target="_blank" style="height: 70px;">
+                    <img src="{$conf.WEBSITE_LOGO_SUB|default=''}" style="height: 70px;"></a>
+            </div>
+        </div>
+
+        <div class="w-miniCart" id="cart_list_fade_in">
+            <a class="w-miniCart-btn" href="javascript:void(0);" data-pro="btn"><i class="ico ico-miniCart"></i>清 单
+                <b class="w-miniCart-count" >
+                    <i class="ico ico-arrow-white-solid ico-arrow-white-solid-l"></i><p id="cart_num">{$cart_num|default='0'}</p></b>
+            </a>
+            <div class="w-layer w-miniCart-layer" style="display: none" id="cart_box_hidden">
+
+                <div pro="title">
+                    <p class="w-miniCart-layer-title" id="pro-view-28"><strong>最近加入的商品</strong></p>
+                </div>
+
+                <div id="cart_div_area">
+                    <div class="w-miniCart-loading">
+                        <b class="w-loading-ico"></b><span class="w-loading-txt">加载中……</span>
+                    </div>
+                   <!-- <ul pro="list" class="w-miniCart-list">
+                        <li class="w-miniCart-item" id="pro-view-27">
+                            <div class="w-miniCart-item-pic">
+                                <img src="../../img/goods/b2.png" alt="佳能 EOS 5D Mark III 单反机身(无镜头)" width="74px" height="74px" />
+                            </div>
+                            <div class="w-miniCart-item-text">
+                                <p><strong>佳能 EOS 5D Mark III 单反机身(无镜头)</strong></p>
+                                <p><em>730夺宝币 &times; 1期</em><a class="w-miniCart-item-del" href="javascript:void(0);" pro="del">删除</a></p>
+                            </div></li>
+                    </ul>
+                    <div pro="footer" class="w-miniCart-layer-footer" id="pro-view-29">
+                        <p><strong>共有<b pro="count">1</b>件商品，金额总计：<em><span pro="amount">730</span>夺宝币</em></strong></p>
+                        <p><button pro="go" class="w-button w-button-main">查看清单并结算</button></p>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="w-search"  id="pro-view-2" >
+            <form action="{:dwz_filter('lists/search')}" method="get" id="searchForm" class="w-search-form f-clear" target="_blank">
+                <div class="w-input" id="pro-view-3"><input class="w-input-input" type="text" placeholder="请输入要搜索的商品" name="keyword"></div>
+                <button type="submit" class="w-search-btn" ><i class="ico ico-search"></i></button>
+            </form>
+            <div class="w-search-recKeyWrap">
+                <a class="w-search-recKey" href="javascript:void(0);">苹果</a>
+                <a class="w-search-recKey" href="javascript:void(0);">手机</a>
+            </div>
+        </div>
+    </div>
+</div>

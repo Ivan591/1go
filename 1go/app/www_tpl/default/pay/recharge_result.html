@@ -1,0 +1,35 @@
+{extend name="base/base"/}
+{block name="title"}充值结果{/block}
+{block name="user_css"}
+{css href="__static__/css/payment.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-cashier m-cashier-usePayments">
+        <div class="g-wrap">
+            <div class="">
+                <table class="m-cashier-result-wrapper">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="m-cashier-result">
+                                <b class="ico ico-suc"></b>
+                                <div class="cont">
+                                    <h1 class="title">恭喜您，获得{$add_money|default='--'}个夺宝币！</h1>
+                                    <ul class="tips txt-gray">
+                                        <li>您现在可以 <a class="w-button w-button-main" href="/">返回首页</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{js href="__yyg__/js/pay/recharge.js" /}
+{/block}

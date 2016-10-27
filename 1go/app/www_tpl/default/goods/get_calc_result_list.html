@@ -1,0 +1,131 @@
+<style>
+    table th, table td {
+        text-align: center;
+    }
+</style>
+<table class="m-detail-mainTab-resultList" cellpadding="0" cellspacing="0">
+    <thead>
+    <tr>
+        <th class="time" colspan="2">夺宝时间</th>
+        <th>会员帐号</th>
+        <th>用户IP</th>
+        <th>用户地区</th>
+        <th>参与人次</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="startRow">
+        <td colspan="6">
+            截至本商品最后一名用户购买时间【{php}echo microtime_format($n_info['trigger_time'],3,'Y-m-d H:i:s');{/php}】购买记录
+        </td>
+    </tr>
+    <!--循环-->
+    {volist name="list" id="vo"}
+    <tr class="calcRow">
+        <td class="day">{php}echo microtime_format($vo['pay_time'],1,'Y-m-d');{/php}</td>
+        <td class="time">{php}echo microtime_format($vo['pay_time'],3,'H:i:s');{/php}
+            <i class="ico ico-arrow-transfer"></i>
+            <b class="txt-red">{$vo.pay_time_format}</b>
+        </td>
+        <td class="user">
+            <div class="f-txtabb"><a title="{$vo.username|default='--'}(ID:{$vo.id|default='--'})" href="{:dwz_filter('ta/index',['uid'=>$vo['uid']])}" target="_blank">{$vo.uname}</a>
+            </div>
+        </td>
+        <td>{$vo.reg_ip|default='--'}</td>
+        <td>{$vo.ip_area|default='--'}</td>
+        <td>{$vo.num}次</td>
+    </tr>
+    {/volist}
+    <!--结果-->
+    <tr class="resultRow">
+        <td colspan="6" style="text-align: left">
+            <h4>计算结果<a name="calcResult"></a></h4>
+            <ol>
+                <li><span class="index">1、</span>求和：{$n_info.sum_timestamp|default='0'}
+                    (上面50条参与记录的时间取值相加)
+                </li>
+                <li><span class="index">2、</span>
+                    最近下一期 ({$n_info.lottery_issue|default='--'}期)“老时时彩”幸运号码：
+                    {empty name='open_num'}
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    {else/}
+                    {volist name="open_num" id="vo"}
+                    <b class="ball">{$vo}</b>
+                    {/volist}
+                    {/empty}
+                </li>
+                <li><span class="index">3、</span>
+                    求余：({$n_info.sum_timestamp|default='0'} +
+                    {empty name='open_num'}
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    <b class="ball">?</b>
+                    {else/}
+                    {volist name="open_num" id="vo"}
+                    <b class="ball">{$vo}</b>
+                    {/volist}
+                    {/empty}
+                    ) % {$n_info.sum_times|default='0'} (商品所需人次) =
+                    <!--余数-->
+                    {empty name='remainder'}
+                    <b class="square">?</b>
+                    <b class="square">?</b>
+                    <b class="square">?</b>
+                    {else/}
+                    {volist name="remainder" id="vo"}
+                    <b class="square">{$vo}</b>
+                    {/volist}
+                    {/empty}
+                    (余数) <i data-func="remainder" class="ico ico-questionMark"></i>
+                </li>
+                <li><span class="index">4、</span>
+                    <!--余数-->
+                    {empty name='remainder'}
+                    <b class="square">?</b>
+                    <b class="square">?</b>
+                    <b class="square">?</b>
+                    {else/}
+                    {volist name="remainder" id="vo"}
+                    <b class="square">{$vo}</b>
+                    {/volist}
+                    {/empty}
+                    (余数) + {$lottory_base} =
+
+                    <!--开奖号码-->
+                    {empty name='luck_num'}
+                    <b class="square">?</b>
+                    <b class="square">?</b>
+                    <b class="square">?</b>
+                    {else/}
+                    {volist name="luck_num" id="vo"}
+                    <b class="square">{$vo}</b>
+                    {/volist}
+                    {/empty}
+                </li>
+            </ol>
+            <span class="resultCode">幸运号码：
+                <span style="margin-left:10px;color:#bbb">
+
+                    <!--开奖号码-->
+                    {empty name='luck_num'}
+                    等待揭晓...
+                    {else/}
+                    {volist name="luck_num" id="vo"}
+                    <b class="ball">{$vo}</b>
+                    {/volist}
+                    {/empty}
+                </span>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="xc_pages" data-flag="calc_result">
+    {$pages}
+</div>

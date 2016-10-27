@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="__TEXT[DESCRIPT]">
+    <meta name="keywords" content="__TEXT[KEYWORDS]">
+    <title>详情 等待开奖</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="__statics__/css/common.css">
+    <link rel="stylesheet" type="text/css" href="__statics__/css/detail.css">
+    <script type="text/javascript" charset="utf-8"  src="__statics__/js/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8"  src="__statics__/js/goods/detail.js"></script>
+    <style>
+        .error_body{ display: table;table-layout: fixed;width: 100%;}
+        .error_main{display: table-cell;vertical-align: middle;height:550px;}
+        .error_main>div{display: block;padding-top:80px;background:url("__statics__/img/404.png") top center no-repeat; text-align: center}
+        .error_main h4{line-height: 64px;font-size:32px;color:#555;font-weight:bold;}
+        .error_main h6{font-size:14px;color:#999;line-height: 18px;}
+        .error_main .error_link{width:300px;margin:auto;}
+        .error_link a{width:120px;height:40px;display: inline-block;margin:10px 12px;
+        color:#fff;font-size:18px;text-decoration: none;background: #e3453d;
+        border-bottom:4px solid #c50e05;line-height: 40px;
+
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;}
+        .error_link a:hover{background:#c50e05;border-bottom: 4px solid #8a160a;}
+        .error_link a:active{border-bottom: 0 solid #8a160a;
+            -webkit-transform: translateY(4px);
+            -moz-transform: translateY(4px);
+            -ms-transform: translateY(4px);
+            -o-transform: translateY(4px);
+            transform: translateY(4px);}
+    </style>
+</head>
+<body>
+
+<div class="error_body">
+    <div class="error_main">
+        <div>
+            <h4>很抱歉，您访问的页面不在地球上...</h4>
+            <h6 class="waiting"><span></span>
+                正在自动跳转到上一页，如没有跳转请点击下面链接</h6>
+            <div class="error_link">
+                <a href="/" >返回首页</a>
+                <a href="javascript:history.go(-1);" >返回上一页</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body></html>
+<script>
+    setTimeout(function(){
+        history.go(-1);
+    },5000);
+    var wh=$(window).height(),
+            em=$(".error_body"),
+            ot=em.offset().top;
+    em.height(wh-ot);
+</script>

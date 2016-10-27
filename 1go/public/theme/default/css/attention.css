@@ -1,0 +1,44 @@
+.atten{background: #fff;}
+.att_top{width:100%;height: 450px;background: #fc253d url("../img/attend.png") top center no-repeat;z-index: 1;position: relative;}
+.att_top>span{width:100%;height:245px;position: relative;display: block;
+    bottom:-320px;background:url("../img/attend4.png") bottom center no-repeat; }
+.att_s1{width:1400px;margin:auto;margin-top:90px;position: relative;}
+.as1-top{width:100%;height:130px;background:url("../img/attend2.png") top center no-repeat;position: absolute;top:-120px;}
+.as1-bot{width:100%;height:130px;background:url("../img/attend5.png") top center no-repeat;position: absolute;bottom:-120px;}
+.att_main{background: #4589da;position: relative;z-index: 2;}
+.at_title{width:840px;margin:auto;position: relative; line-height: 66px;color:#fff;font-size:36px;}
+.at_title>span{float: left;width:103px;height:66px;background: url("../img/att_tile.png") center no-repeat;
+    line-height: 50px;font-size:28px;color:#ff0052;text-align: center;font-weight:600;}
+.at_title>h2{font-size:28px;line-height: 40px;position: relative; left:15px; top:-2px;padding:0 5px;
+    border-bottom: 1px dashed #fff;display: inline-block;}
+.att1{top:-40px;}
+
+.at_im1{width:100%;height: 465px;display: block;margin:auto;}
+.at_im1>.imgcon{width:540px;height:440px;background: url("../img/attend3.png") center no-repeat;
+    position: relative;margin:auto;}
+.imgcon>img{position: absolute;padding:10px;background: #fff;top:15px; left:180px;}
+.at_im2{width:990px;margin:auto;margin-top:40px;}
+.at_im2>ul{}
+.at_im2>ul:after{height:0;content:'.';visibility: hidden;display: block;clear:both;}
+.at_im2>ul>li{float: left;width:330px;position: relative;text-align: center;}
+.at_im2 li>img{display: block;margin:auto;}
+.at_im2 li>span{display: block;width:40px;height: 40px;background: #fff;opacity: 0.9;color:#7c96be;line-height: 40px;
+    border-radius: 20px;margin:20px auto;font-size:24px;}
+.at_im2 li>label{width:100%;height: 30px;background: url("../img/att_txt.png") no-repeat;display: block; }
+.at_im2 .a2-1>label{background-position:40px 4px;  }
+.at_im2 .a2-2>label{background-position:40px -62px;}
+.at_im2 .a2-3>label{background-position:30px -130px;}
+.at_im3{position: relative;z-index: 0;background: url("../img/att_bg.png") center repeat;}
+.at_im3>span{background: url("../img/att_bg.png") center repeat;height: 180px;line-height: 180px;padding-top:10px;
+    color:#0071db;font-size:30px;display: block;width:100%;text-align: center;}
+.at_im3>ol{width:1160px;display: block;margin:auto;}
+.at_im3>ol:after{visibility: hidden;height: 0;display: block;clear: both;content:'.'}
+.at_im3>ol>li{width:280px;float: left;height:200px;text-align: center;}
+.at_im3>ol>li a{cursor: pointer;text-decoration: none;}
+.at_im3>ol>li img{display: block;margin:auto;}
+.at_im3>ol>li h4{line-height: 64px;color:#666;font-size: 22px;}
+
+.right_btn{position: absolute;top:300px;right:120px;z-index: 3;width:68px;}
+.right_btn li{width:68px;height: 68px;display: block;border-radius: 5px;background: #3171bc;position: relative;margin-top:25px;text-align: center;cursor: pointer;}
+.right_btn li i{text-align: center;font-size: 40px;color:#fff;line-height: 68px;}
+.slideimg{display: none;}

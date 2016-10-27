@@ -1,0 +1,371 @@
+{extend name="base/base" /}
+{block name="css"}
+<link rel="stylesheet" href="__plugin__/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+{/block}
+{block name="content"}
+<div class="page-content">
+<div class="page-header">
+    <h1>
+        菜单
+        <small>
+            <i class="icon-double-angle-right"></i>
+            {switch name='type'}
+            {case value='add'}添加{/case}
+            {case value='edit'}编辑{/case}
+            {default /}查看
+            {/switch}
+        </small>
+    </h1>
+</div><!-- /.page-header -->
+
+<div class="row">
+<div class="col-xs-12">
+<!-- PAGE CONTENT BEGINS -->
+<form class="form-horizontal" role="form" id="form_content">
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 状态 </label>
+        <div class="col-sm-6">
+            <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="status">
+                <option value="1" {if condition="!empty($info['status']) AND $info['status'] eq '1'"}selected="selected"{/if} >正常</option>
+                <option value="-2" {if condition="!empty($info['status']) AND $info['status'] eq '-2'"}selected="selected"{/if} >禁用</option>
+            </select>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">禁用的用户无法登陆</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 用户类型 </label>
+        <div class="col-sm-6">
+            <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="type">
+                <option value="1" {if condition="!empty($info['type']) AND $info['type'] eq '1'"}selected="selected"{/if} >普通用户</option>
+                <option value="-1" {if condition="!empty($info['type']) AND $info['type'] eq '-1'"}selected="selected"{/if} >系统用户</option>
+                <option value="2" {if condition="!empty($info['type']) AND $info['type'] eq '2'"}selected="selected"{/if} >商家用户</option>
+            </select>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">用户类型</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 用户名 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="username" value="{$info.username|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">用户名</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 密码 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="password" value=""/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">输入密码即可修改该用户密码</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 确认密码 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="re_password" value=""/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">输入密码即可修改该用户密码</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 手机号 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="phone" value="{$info.phone|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">手机号</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 昵称 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="nick_name" value="{$info.nick_name|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">昵称</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 来源 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="origin" value="{$info.origin|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">来源</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 头像 </label>
+        <div class="col-sm-6">
+            <input type="hidden" name="user_pic" value="{$info.user_pic|default=''}" class="pic_id"/>
+
+
+
+
+            {switch name='type'}
+            {case value='add'}
+            <img alt="150x150" src="" style="width: 150px;height: 150px;display: none;" class="pic_img">
+            <div>
+                <button class="btn btn-lg btn-success upload">上传头像</button>
+            </div>
+            {/case}
+            {case value='edit'}
+            <img alt="150x150" src="{$info.user_face|default=''}" style="width: 150px;height: 150px;" class="pic_img">
+            <div>
+                <button class="btn btn-lg btn-success upload">修改头像</button>
+            </div>
+            {/case}
+
+            {default /}
+            <img alt="150x150" src="{$info.user_face|default=''}" style="width: 150px;height: 150px;" class="pic_img">
+            {/switch}
+
+
+        </div>
+
+
+
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 年龄 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="age" value="{$info.age|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">年龄</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 性别 </label>
+        <div class="col-sm-6">
+            <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="sex">
+
+                <option value="man" {if condition="!empty($info['sex']) AND $info['sex'] eq 'man'"}selected="selected"{/if} >男</option>
+                <option value="woman" {if condition="!empty($info['sex']) AND $info['sex'] eq 'woman'"}selected="selected"{/if} >女</option>
+                <option value="" {if condition="empty($info['sex'])"}selected="selected"{/if} >请选择</option>
+            </select>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">性别</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 余额 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="money" value="{$info.money|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">余额</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 积分 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="score" value="{$info.score|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">积分</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> email </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="email" value="{$info.email|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">email</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 真实姓名 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="real_name" value="{$info.real_name|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">真实姓名</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> qq </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="qq" value="{$info.qq|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">qq</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> IP归属地 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="ip_area" value="{$info.ip_area|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">IP归属地</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 注册ip </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="reg_ip" value="{$info.reg_ip|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">注册ip</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 邮编 </label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="zip_code" value="{$info.zip_code|default=''}"/>
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">邮编</span>
+                            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 角色管理 </label>
+        <div class="col-sm-6">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+    </div>
+    <div class="space-4"></div>
+
+
+    <!--<div class="form-group">-->
+    <!--<label class="col-sm-3 control-label no-padding-right"> 修改时间 </label>-->
+    <!--<div class="col-sm-6">-->
+    <!--<input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="update_time" value="{$info.update_time|default=''}" onclick="laydate()"/>-->
+    <!--<span class="help-inline col-xs-12 col-sm-7">-->
+    <!--<span class="middle">修改时间</span>-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="space-4"></div>-->
+
+
+    <!--<div class="form-group">-->
+    <!--<label class="col-sm-3 control-label no-padding-right"> 创建时间 </label>-->
+    <!--<div class="col-sm-6">-->
+    <!--<input type="text" placeholder="请输入" class="col-xs-10 col-sm-5" name="create_time" value="{$info.create_time|default=''}" onclick="laydate()"/>-->
+    <!--<span class="help-inline col-xs-12 col-sm-7">-->
+    <!--<span class="middle">创建时间</span>-->
+    <!--</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="space-4"></div>-->
+
+
+
+
+
+
+
+
+
+    <!--操作按钮-->
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            {switch name='type'}
+            {case value='add'}
+            <button class="btn btn-info admin_submit_btn" type="button">
+                <i class="icon-ok bigger-110"></i>
+                提交表单
+            </button>
+            &nbsp; &nbsp; &nbsp;
+            <button class="btn" type="reset">
+                <i class="icon-undo bigger-110"></i>
+                重置
+            </button>
+            &nbsp; &nbsp; &nbsp;
+            <button class="btn btn-default close_page" type="button">
+                <i class="fa fa-times bigger-110"></i>
+                关闭页面
+            </button>
+            {/case}
+            {case value='edit'}
+            <button class="btn btn-info admin_submit_btn" type="button">
+                <i class="icon-ok bigger-110"></i>
+                保存内容
+            </button>
+            <button class="btn btn-default close_page" type="button">
+                <i class="fa fa-times bigger-110"></i>
+                关闭页面
+            </button>
+            {/case}
+            {default /}
+            {/switch}
+        </div>
+    </div>
+    <input type="hidden" name="id" value="{$info.id|default=''}">
+    <input type="hidden" name="user_group" value="1"/>
+</form>
+</div><!-- /.row -->
+</div><!-- /.page-content -->
+</div>
+<input type="hidden" id="submit_url" value="{:U('admin_update')}">
+<input type="hidden" id="root_url" value="{:U('admin_list')}">
+<input type="hidden" id="upload_url" value='{:U("tools/Up/up_img",array("limit"=>1))}'/>
+<input type="hidden" id="role_list" value='{$all_role_list}'/>
+{/block}
+{block name="js"}
+{js href='__plugin__/zTree/js/jquery.ztree.core.js' /}
+{js href='__plugin__/zTree/js/jquery.ztree.excheck.js' /}
+{js href='__common__/admin/js/users/form.js' /}
+
+
+{/block}

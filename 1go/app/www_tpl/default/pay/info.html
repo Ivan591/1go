@@ -1,0 +1,58 @@
+<!--确认订单-->
+<div class="m-duobao-order-list">
+    <ul class="order-list">
+        <li class="order-list-header f-clear">
+            <div class="order-list-items-name items-goods-name">商品名称</div>
+            <div class="order-list-items-name items-goods-period">商品期号</div>
+            <div class="order-list-items-name items-goods-price">价值</div>
+            <div class="order-list-items-name items-goods-buyunit">夺宝价</div>
+            <div class="order-list-items-name items-goods-num">参与人次</div>
+            <div class="order-list-items-name items-goods-regular">参与期数</div>
+            <div class="order-list-items-name items-goods-total">小计</div>
+        </li>
+        <!--循环-->
+        {notempty name='list'}
+        {foreach name='list' item='vo' key='key'}
+        <li class="order-list-items f-clear">
+            <div class="order-list-items-content items-goods-name">
+                <p>
+                    <a href="#l" target="_blank" title="{$vo.g_name|default='--'}">{$vo.g_name|default='--'}</a>
+                </p>
+            </div>
+            <div class="order-list-items-content items-goods-period f-items-center">{$vo.nper_id|num_base_mask|default='--'}</div>
+            <div class="order-list-items-content items-goods-price f-items-center">{$vo.price|number_format='0'}根香肠
+            </div>
+            <div class="order-list-items-content items-goods-buyunit f-items-center">
+                {$vo.unit_price|number_format='0'}根香肠
+            </div>
+            <div class="order-list-items-content items-goods-num f-items-center">{$vo.num|default='0'}</div>
+            <div class="order-list-items-content items-goods-regular f-items-center">1</div>
+            <div class="order-list-items-content items-goods-total f-items-center">
+                <span>{$vo.sum_price|number_format='0'}根香肠</span>
+            </div>
+        </li>
+        {/foreach}
+        {else/}
+        <div class="cart-empty-tips"><p>您的清单里还没有任何商品，<a href="/">马上去逛逛~</a></p></div>
+        {/notempty}
+        <!--循环-->
+
+        <li class="order-list-footer f-clear">
+            <a href="javascript:" onclick="location.reload();">返回清单修改</a>
+            <span class="order-total txt-gray">商品合计：<strong>{$sum_price|number_format='0'}</strong>&nbsp;根香肠</span>
+        </li>
+    </ul>
+    <div class="m-coupon-options f-clear" pro="orderfooter">
+        <div class="m-order-footer-msg">
+            {}
+            <div class="footer-items pay-total">
+                总需支付：
+                <span class="footer-items-money"><strong>&yen;</strong><strong>{$sum_price|number_format='2'}</strong></span>
+            </div>
+            <div class="m-order-operation f-clear" style="">
+                <button class="w-button w-button-main w-button-xl go_to_pay" type="button"><span>去支付</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="submit_ids" value="{$ids|default=''}">

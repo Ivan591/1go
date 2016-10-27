@@ -1,0 +1,129 @@
+{extend name="base/base"/}
+{block name="title"}我的幸运记录{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+                            <li class="w-crumbs-item w-crumbs-active">幸运记录</li>
+                        </ul>
+                        <div module="user/win/MyWin" class="m-win m-win-myself" >
+                            <div class="m-user-comm-wraper" id="pro-view-12">
+                                <!--没有纪录-->
+                                {empty name="luck_list"}
+                                <div class="m-user-comm-empty" >
+                                    <b class="ico ico-face-sad"></b>
+                                    <div class="i-desc">您还没有此记录哦~</div>
+                                    <div class="i-opt">
+                                        <a href="/" class="w-button w-button-main w-button-xl">马上试试运气</a>
+                                    </div></div>
+                                {else/}
+                                <div pro="cont" class="m-user-comm-cont">
+                                    <div class="m-win-hd">
+                                        <div class="col info">
+                                            商品信息
+                                        </div>
+                                        <div class="col status">
+                                            商品状态
+                                        </div>
+                                        <div class="col opt">
+                                            操作
+                                        </div>
+                                    </div>
+                                    <div class="m-win-bd" pro="list">
+                                        <!--中奖结果-->
+                                        {volist name="luck_list" id="each_list"}
+                                        <div class="w-goods">
+                                            <div class="col info">
+                                                <div class="w-goods-pic">
+                                                    <a title="{$each_list.goods_name}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$each_list['goods_id'].'-'.$each_list['n_id']])}">
+                                                        <img src="__image_path__{$each_list.goods_image}" style="max-width: 80px;max-height: 80px;" alt="{$each_list.goods_name}" /></a>
+                                                </div>
+                                                <div class="w-goods-content">
+                                                    <p class="w-goods-title">
+                                                        <a title="{$each_list.goods_name}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$each_list['goods_id'].'-'.$each_list['n_id']])}">{$each_list.goods_name}</a></p>
+                                                    <p class="w-goods-price">期号：{$each_list.n_id|num_base_mask}</p>
+                                                    <p class="w-goods-price">总需：{$each_list.n_sum}人次</p>
+                                                    <p class="w-goods-info">幸运号码：<strong class="txt-impt">{$each_list.luck_num|num_base_mask}</strong>，总共参与了<strong class="txt-dark">{$each_list.o_num}</strong>人次</p>
+                                                    <p class="buyTime">夺宝时间：{$each_list.create_time|date='Y-m-d H:i:s',###}</p>
+                                                    <p class="calcTime">揭晓时间：{notempty name='each_list.open_time'}
+                                                                                    {$each_list.open_time|microtime_format='3','Y-m-d H:i:s'}
+                                                                                    {else /}
+                                                                                    暂无
+                                                                                    {/notempty}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col status">
+                                                {switch name="each_list.logistics_status|intval"}
+                                                {case value="0"}<span class="txt-blue">等待确认</span>{/case}
+                                                {case value="1"}<span class="txt-blue">未填写收货地址</span>{/case}
+                                                {case value="2"}<span class="txt-suc">等待发货</span>{/case}
+                                                {case value="3"}<span class="txt-suc">等待收货</span>{/case}
+                                                {case value="4"}<span class="txt-suc">已完成</span>{/case}
+                                                {/switch}
+                                            </div>
+                                            <div class="col opt">
+                                                <p><a href="{:U('ucenter/luck_detail',['id'=>$each_list['id']])}" target="_blank">查看详情</a></p>
+                                            </div>
+                                        </div>
+                                        {/volist}
+                                    </div>
+                                </div>
+                                {/empty}
+                                <!--<div class="w-pager" >-->
+                                    <!--<button class="w-button w-button-aside w-button-disabled" type="button" disabled="disabled"><span>上一页</span></button>-->
+                                    <!--<button class="w-button w-button-main" type="button" id="pro-view-16"><span>1</span></button>-->
+                                    <!--<button class="w-button w-button-aside w-button-disabled" type="button" disabled="disabled"><span>下一页</span></button>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pager">
+                        <div class="w-pager">
+                            {gt name="page_current" value="1"}
+                            <a class="w-button w-button-main w-button-aside" href="?page={$page_current-1}"><span>上一页</span></a>
+                            {else}
+                            <a class="w-button w-button-aside w-button-disabled" href="javascript:;"><span>上一页</span></a>
+                            {/gt}
+                            {for start="1" end="$page_count+1" name="page"}
+							
+        {php}
+        if($page<=3 | $page>=$page_count-2 | ($page<=$page_current+3 && $page>=$page_current-3)){
+        {/php}
+                            <a title="第{$page}页" class="w-button {$page_current==$page?'w-button-main':'w-button-aside'}"  href="?page={$page}">{$page}</a>
+		{php}
+        }else if($page==4 || $page==$page_current+4){
+        {/php}
+        <a href="javascript:;" class="w-button w-button-aside">...</a>
+        {php}
+        }
+        {/php}
+                            {/for}
+                            {if condition="($page_current < $page_count)"}
+                            <a class="w-button w-button-aside" href="?page={$page_current+1}"><span>下一页</span></a>
+                            {else/}
+                            <a class="w-button w-button-aside w-button-disabled"><span>下一页</span></a>
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

@@ -1,0 +1,64 @@
+
+<ul class="nav nav-list">
+    {notempty name="list"}
+    {volist name="list" id="menu_1"}
+
+
+
+    <li {php}if( $menu_1['id'] == $select_path) echo  'class="active"' ;if( in_array($menu_1['id'],$open_path)) echo  'class="open"' ;{/php}>
+
+
+        <a target="_{$menu1.target|default='self'}" href="{empty name='menu_1._child'}{:U($menu_1['url'])}{notempty name='menu_1.param'}?{$menu_1['param']}{/notempty}{else /}javascript:{/empty}" class="dropdown-toggle">
+            <i class="fa {$menu_1.ico|default='fa-cogs'}"></i>
+            <span class="menu-text">{$menu_1.title|default='暂无标题'}</span>
+            {notempty name="menu_1._child"}
+            <b class="arrow icon-angle-down"></b>
+            {/notempty}
+        </a>
+        {notempty name="menu_1._child"}
+        <ul class="submenu" {php}if( in_array($menu_1['id'],$open_path)) echo  'style="display:block;"' ;{/php}>
+            {volist name="menu_1._child" id="menu_2"}
+            <li {php}if( $menu_2['id'] == $select_path) echo  'class="active"' ;{/php} {php}if( in_array($menu_2['id'],$open_path)) echo  'class="open"' ;{/php}>
+                <a target="_{$menu2.target|default='self'}" href="{empty name='menu_2._child'}{:U($menu_2['url'])}{notempty name='menu_2.param'}?{$menu_2['param']}{/notempty}{else /}javascript:{/empty}" class="dropdown-toggle">
+                    <i class="fa {$menu_1.ico|default='fa-cogs'}-angle-right"></i>
+                    {$menu_2.title|default='暂无标题'}
+                    {notempty name="menu_2._child"}
+                    <b class="arrow icon-angle-down"></b>
+                    {/notempty}
+                </a>
+                {notempty name="menu_2._child"}
+                <ul class="submenu" {php}if( in_array($menu_2['id'],$open_path)) echo  'style="display:block;"' ;{/php}>
+                    {volist name="menu_2._child" id="menu_3"}
+                    <li {php}if( $menu_3['id'] == $select_path) echo  'class="active"' ;{/php} {php}if( in_array($menu_3['id'],$open_path)) echo  'class="open"' ;{/php}>
+                        <a target="_{$menu3.target|default='self'}" href="{empty name='menu_3._child'}{:U($menu_3['url'])}{notempty name='menu_3.param'}?{$menu_3['param']}{/notempty}{else /}javascript:{/empty}" class="dropdown-toggle">
+                            <i class="fa {$menu_1.ico|default='fa-cogs'}"></i>
+                            {$menu_3.title|default='暂无标题'}
+                            {notempty name="menu_3._child"}
+                            <b class="arrow icon-angle-down"></b>
+                            {/notempty}
+                        </a>
+                        {notempty name="menu_3._child"}
+                        <ul class="submenu" {php}if( in_array($menu_3['id'],$open_path)) echo  'style="display:block;"' ;{/php}>
+                            {foreach name="menu_3._child" item="menu_4" key="k"}
+                            <li {php}if( $menu_4['id'] == $select_path) echo  'class="active"' ;{/php}>
+                                <a target="_{$menu4.target|default='self'}" href="{empty name='menu_4._child'}{:U($menu_4['url'])}{notempty name='menu_4.param'}?{$menu_4['param']}{/notempty}{else /}javascript:{/empty}">
+                                    <i class="fa {$menu_1.ico|default='fa-cogs'}"></i>
+                                    {$menu_4.title|default='暂无标题'}
+                                </a>
+                            </li>
+                            {/foreach}
+                        </ul>
+                        {/notempty}
+                    </li>
+                    {/volist}
+                </ul>
+                {/notempty}
+            </li>
+            {/volist}
+        </ul>
+        {/notempty}
+    </li>
+    {/volist}
+    {/notempty}
+</ul><!-- /.nav-list -->
+

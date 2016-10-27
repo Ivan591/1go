@@ -1,0 +1,90 @@
+{extend name="base/base_no_menu"/}
+{block name="user_css"}
+{css href="__static__/css/login.css" /}
+<style>
+    .show_jiyan {
+        overflow: hidden;
+        width: 315px;
+        height: 195px;
+        padding: 20px 0px 10px 20px;
+    }
+
+    .vacode.disabled {
+        background-color: #eee;
+        color: #aaaaaa;
+        border: 1px solid #aaaaaa;
+    }
+</style>
+
+{/block}
+{block name="title"}登录-香肠一元购{/block}
+{block name="content"}
+
+<div class="login">
+    <div class="lg-main">
+        <div class="lgm">
+            <form class="login_form" id="form_content">
+                <div class="lf_block">
+                    <h2>账号登录</h2>
+                    <div class="lf_line">
+                        <label class="iconfont">&#xe601;</label>
+                        <input placeholder="用户名" name="username" value="{:cookie('username')}">
+                        <div class="error">
+                            <i class="iconfont">&#xe606;</i>
+                            <span><i class="iconfont"></i></span>
+                        </div>
+                    </div>
+                    <div class="lf_line" style="margin-top:30px;">
+                        <label class="iconfont">&#xe600;</label>
+                        <input type="password" placeholder="密码" name="password">
+                        <div class="error">
+                            <i class="iconfont">&#xe606;</i>
+                            <span><i class="iconfont"></i>请输入密码</span>
+                        </div>
+                    </div>
+                    <div class="lf_en">
+                        <input class="rember" type="checkbox" name="remember" value="on"
+                        {if condition="cookie('remember') eq '1'"}checked="checked"{/if}
+                        >
+                        <label>记住用户名</label>
+                        <a href="{:dwz_filter('user/forgot')}">忘记密码？</a>
+                    </div>
+                    <input value="登录" type="button" class="lg-sub submit" style="display:none;">
+                    <input value="登录" type="button" class="lg-sub submit_need_verify"><!--需要验证码时候显示-->
+                    <div class="tpl-login">
+                        <span>快捷登录方式 : </span>
+                        <a href="javascript:;" data-href="{:U('user/union_login',['plat'=>'qq'])}" class="qq"></a>
+                        <a href="javascript:;" data-href="{:U('user/union_login',['plat'=>'wechat_open'])}" class="wx"></a>
+                        <a href="javascript:;" data-href="{:U('user/union_login',['plat'=>'sina_weibo'])}" class="wb"></a>
+                        <a href="javascript:;" data-href="javascript:;" class="debug"></a>
+                    </div>
+                    <a class="reg-link" href="{:dwz_filter('user/reg')}">马上注册</a>
+                </div>
+                <input name="geetest_challenge" type="hidden">
+                <input name="geetest_validate" type="hidden">
+                <input name="geetest_seccode" type="hidden">
+            </form>
+
+        </div>
+    </div>
+</div>
+<input type="hidden" id="gee_test" value="{:U('core/api/gee_test')}"><!--极验证-->
+<input type="hidden" id="user_login_do" value="{:U('user_login_do')}"><!--ajax登录-->
+<input type="hidden" id="check_need_verify" value="{:U('check_need_verify')}"><!--ajax登录-->
+{/block}
+
+{block name='user_js'}
+<script language="javascript">
+    $(function(){
+        $('.debug').click(function(){
+            $('.tpl-login>a').each(function(index,ele){
+                $(ele).attr('href',$(ele).data('href'));
+            });
+        });
+    })
+</script>
+{js href="http://static.geetest.com/static/tools/gt.js" /}
+{js href="__static__/js/login.js" /}
+{js href="__static__/js/form_tip.js" /}
+{js href="__yyg__/js/user/login.js" /}
+{/block}

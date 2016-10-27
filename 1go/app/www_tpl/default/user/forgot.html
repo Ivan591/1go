@@ -1,0 +1,101 @@
+{extend name="base/base_no_menu"/}
+{block name="user_css"}
+{css href="__static__/css/forget.css" /}
+{css href="__static__/css/register.css" /}
+<style>
+    .show_jiyan {
+        overflow: hidden;
+        width: 315px;
+        height: 195px;
+        padding: 20px 0px 10px 20px;
+    }
+
+    .vacode.disabled {
+        background-color: #eee;
+        color: #aaaaaa;
+        border: 1px solid #aaaaaa;
+    }
+</style>
+
+{/block}
+{block name="title"}找回密码-香肠一元购{/block}
+{block name="content"}
+<div class="register">
+    <div class="reg-main">
+        <ul class="step">
+            <li class="active">
+                <i class="iconfont">&#xe609;</i>
+                填写手机验证
+                <span></span>
+            </li>
+            <li class="">
+                <i class="iconfont" >&#xe60a;</i>
+                设置新密码
+                <span style="border-left: 12px solid #c8c8c8;"></span>
+            </li>
+            <li class="">
+                <i class="iconfont">&#xe61f;</i>
+                密码修改成功
+                <span style="border-left: 12px solid #c8c8c8;"></span>
+            </li>
+        </ul>
+        <!--填写手机验证-->
+        <div class="reg_form">
+            <form id="form_verify">
+                <div class="reg_input">
+                    <label>手机号</label>
+                    <div class="inputgroup">
+                        <input placeholder="请输入手机号" name="phone" type="text" maxlength="11">
+                    </div>
+                </div>
+                <div class="reg_input">
+                    <label>验证码</label>
+                    <div class="inputgroup">
+                        <input placeholder="请输入验证码" name="code" type="text" maxlength="6">
+                        <a class="vacode" id="btn_phone_code">获取验证码</a>
+                    </div>
+                </div>
+                <input name="geetest_challenge" type="hidden">
+                <input name="geetest_validate" type="hidden">
+                <input name="geetest_seccode" type="hidden">
+                <input value="下一步" class="reg_btn disable" type="button" id="step1_next">
+            </form>
+        </div>
+        <div class="reg_form" style="display: none;">
+            <form id="form_passwd">
+                <div class="reg_input">
+                    <label>新密码</label>
+                    <div class="inputgroup">
+                        <input type="password" name="password" placeholder="请输入新密码">
+                    </div>
+                </div>
+
+                <div class="reg_input">
+                    <label>新密码</label>
+                    <div class="inputgroup">
+                        <input type="password" name="re_password" placeholder="请输入新密码">
+                    </div>
+                </div>
+                <input value="完成" class="reg_btn reg_btn1" type="button" id="step2_finish">
+            </form>
+        </div>
+        <div class="reg_form" style="display: none;">
+            <div class="reg_form1">
+                <section class="winning11">密码修改成功！<span class="redirect_timer">3</span>s 。<a href="{:dwz_filter('user/login')}" style="color:#ee585a">返回登录</a></section>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="gee_test" value="{:U('core/api/gee_test')}"><!--极验证-->
+<input type="hidden" id="chk_countdown" value="{:U('chk_countdown')}"><!--检查倒计时-->
+<input type="hidden" id="get_phone_code_forgot" value="{:U('core/api/get_phone_code_forgot')}">
+<input type="hidden" id="verify_phone" value="{:U('core/api/get_phone_code_forgot')}">
+<input type="hidden" id="forgot_check_phone" value="{:U('forgot_check_phone')}">
+<input type="hidden" id="forgot_set_passwd" value="{:U('forgot_set_passwd')}">
+{/block}
+
+{block name='user_js'}
+{js href="http://static.geetest.com/static/tools/gt.js" /}
+{js href="__static__/js/form_tip.js" /}
+{js href="__yyg__/js/user/forgot.js" /}
+{/block}

@@ -1,0 +1,828 @@
+.m-win {
+    overflow: hidden;
+    zoom: 1;
+}
+
+.m-win-hd {
+    overflow: hidden;
+    zoom: 1;
+    font-size: 14px;
+    background: #F7F7F7;
+}
+
+.m-win .w-goods-pic {
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.m-win .w-pager {
+    clear: both;
+    float: right;
+    margin: 20px 10px 20px;
+}
+
+.m-win-bd {
+    overflow: hidden;
+    zoom: 1
+}
+
+.m-win-user {
+    margin-top: 20px
+}
+
+.m-win-user .w-goods {
+    width: 290px;
+    height: 405px;
+    overflow: hidden;
+    zoom: 1;
+    float: left;
+    margin: 15px;
+    border: 1px solid #ddd;
+    line-height: 1.8;
+    color: #7d7d7d;
+    background: #fff
+}
+
+.m-win-user .w-goods-content {
+    padding: 0 18px;
+}
+
+.m-win-user .w-goods-title {
+    height: 49px;
+    margin: 15px 0 5px;
+    padding-right: 20px;
+    overflow: hidden;
+}
+
+.m-win-user .w-goods-title a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.m-win-user .w-goods-pic {
+    width: 200px;
+    height: auto;
+    margin: 10px auto 0;
+}
+
+.m-win-user .w-goods-pic img {
+    width: 200px;
+}
+
+.m-win-user .m-user-comm-wraper {
+    background: #f8f8f8;
+    overflow: hidden;
+    zoom: 1;
+    padding: 20px 33px
+}
+
+.m-win-user .m-user-comm-title {
+    margin: 0 15px 10px;
+    border-bottom: 2px solid #888
+}
+
+.m-win-user .m-user-comm-title .desc {
+    font-size: 12px;
+    margin-left: 10px;
+    font-weight: normal
+}
+
+.m-win-myself .m-user-comm-wraper {
+    overflow: hidden;
+    zoom: 1
+}
+
+.m-win-myself .col {
+    padding: 10px 20px;
+}
+
+.m-win-myself .info {
+    float: left;
+    width: 600px;
+}
+
+.m-win-myself .status {
+    float: left;
+    width: 100px;
+    text-align: center;
+}
+
+.m-win-myself .opt {
+    float: right;
+    width: 100px;
+    text-align: center;
+}
+
+.m-win-myself .w-pager {
+    margin-top: 10px;
+}
+
+.m-win-myself .w-goods {
+    font-size: 14px;
+    line-height: 2;
+    overflow: hidden;
+    zoom: 1;
+    padding: 30px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.m-win-myself .w-goods-pic {
+    width: 120px;
+    margin-right: 20px;
+    float: left;
+}
+
+.m-win-myself .w-goods-content {
+    overflow: hidden;
+    zoom: 1;
+}
+
+.m-win-myself-complete {
+    text-align: center;
+    font-size: 18px
+}
+
+.m-win-myself-complete .ico {
+    margin-right: 15px
+}
+@charset "utf-8";
+
+.m-address-form {
+    font-family: "Microsoft YaHei","微软雅黑";
+    font-size: 14px;
+}
+
+.w-txt-impt {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    color: #db3652;
+}
+
+.w-address-form-item {
+    margin-bottom: 20px;
+}
+
+.w-address-form-name {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
+    margin-top: 7px;
+    margin-right: 15px;
+    width: 100px;
+    text-align: right;
+}
+
+.w-address-form-name.address {
+    vertical-align: top;
+    margin-top: 0;
+}
+
+.w-address-area textarea {
+    width: 482px;
+    height: 78px;
+    resize: none;
+    overflow-y: auto;
+}
+
+.w-address-err-tips {
+    margin-left: 115px;
+    color: #db3652;
+    vertical-align: middle;
+}
+
+.w-address-list-wrap {
+    padding-bottom: 20px;
+    width: 1200px;
+    overflow: hidden;
+}
+
+.w-address-list {
+    width: 1245px;
+    overflow: hidden;
+}
+
+.w-address-list .address-block {
+    float: left;
+    margin-right: 45px;
+    margin-bottom: 30px;
+    width: 368px;
+    height: 180px;
+    border: 1px solid #ddd;
+}
+
+.w-address-list .address-block .selected-ico {
+    display: none;
+}
+
+.w-address-list .address-block:hover {
+    background-color: #f7f7f7;
+}
+
+.w-address-list .address-block:hover .set-default {
+    display: block;
+}
+
+.w-address-list .address-block .address-content {
+    padding: 16px 20px 8px;
+    height: 156px;
+    color: #333;
+    font-size: 14px;
+}
+
+.w-address-list .address-block .address-status {
+    float: right;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.w-address-list .address-block .default-status {
+    color: #808080;
+}
+
+.w-address-list .address-block .set-default {
+    display: none;
+    color: #3399ff;
+}
+
+.w-address-list .address-block .receiver {
+    margin-bottom: 7px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.w-address-list .address-block .address {
+    width: 100%;
+    height: 46px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.w-address-list .address-block .operation {
+    display: none;
+}
+
+.w-address-list .selected {
+    position: relative;
+    width: 368px;
+    border: 1px solid #db3652;
+}
+
+.w-address-list .selected .selected-ico {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 33px;
+    height: 33px;
+    background: url(../../address/img/36b403be1a67df1993d3861be1ebefdb5f3dd0c7.png) no-repeat;
+}
+
+.w-address-list .selected .address-content {
+    padding: 15px 19px 7px;
+    height: 156px;
+    border: 1px solid #db3652;
+}
+
+.w-address-list .selected .operation {
+    display: inline;
+    position: absolute;
+    left: 22px;
+    bottom: 8px;
+}
+
+.w-address-list .selected .operation a {
+    color: #808080;
+}
+
+.w-address-list-wrap .w-address-operation {
+    color: #808080;
+    font-size: 15px;
+}
+
+.w-address-list-wrap .w-address-operation:hover {
+    text-decoration: none;
+    outline: none;
+}
+
+.w-address-bar {
+    position: relative;
+}
+
+.w-address-bar .bar-view {
+    width: auto!important;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.w-address-bar .address-bar {
+    height: auto!important;
+    min-height: 76px;
+    *height: 76px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 14px;
+}
+
+.w-address-bar .bar-header {
+    height: 36px;
+    background-color: #f7f7f7;
+}
+
+.w-address-bar .bar-item {
+    float: left;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.w-address-bar .bar-header .bar-item {
+    color: #808080;
+    font-size: 14px;
+    line-height: 36px;
+}
+
+.w-address-bar .address-bar .bar-item.receiver,.w-address-bar .bar-header .bar-item.receiver {
+    margin-right: 63px;
+    width: 120px;
+}
+
+.w-address-bar .address-bar .bar-item.address,.w-address-bar .bar-header .bar-item.address {
+    margin-right: 80px;
+    width: 264px;
+}
+
+.w-address-bar .address-bar .bar-item.mobile,.w-address-bar .bar-header .bar-item.mobile {
+    margin-right: 78px;
+    width: 130px;
+}
+
+.w-address-bar .address-bar .bar-item.operation,.w-address-bar .bar-header .bar-item.operation {
+    width: 226px;
+}
+
+.w-address-bar .address-bar:hover {
+    background-color: #fffbf0;
+}
+
+.w-address-bar .address-bar .bar-item {
+    margin: 16px 0 8px;
+}
+
+.w-address-bar .address-bar .address {
+    text-align: left;
+}
+
+.w-address-bar .bar-header .bar-item.operation {
+    margin-left: 26px;
+    width: 200px;
+}
+
+.w-address-bar .address-bar .bar-item.operation {
+    padding-right: 40px;
+    width: auto!important;
+    min-width: 186px;
+    text-align: right;
+}
+
+.w-address-bar .address-bar .operation a {
+    color: #3399ff;
+}
+
+.w-address-bar .address-bar .operation .set-default {
+    display: none;
+    margin-right: 10px;
+}
+
+.w-address-bar .address-bar:hover .operation .set-default {
+    display: inline;
+}
+
+.w-address-bar .address-bar .default-status {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-right: 10px;
+    width: 70px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid #db3652;
+    border-radius: 2px;
+    color: #db3652;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.w-address-bar .address-bar.empty {
+    text-align: center;
+    height: 76px;
+    line-height: 76px;
+}
+
+.w-address-bar .address-bar .bar-item.receiver {
+    text-align: left;
+}
+
+.w-address-bar .bar-header .bar-item.mobile {
+    padding-left: 30px;
+    width: 108px;
+}
+
+.w-address-bar .address-bar.bar-selected {
+    position: relative;
+    border: 1px solid #db3652;
+}
+
+.w-address-bar .address-bar .selected-ico {
+    display: none;
+}
+
+.w-address-bar .address-bar.bar-selected .selected-ico {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 33px;
+    height: 33px;
+    background: url(../../address/img/36b403be1a67df1993d3861be1ebefdb5f3dd0c7.png) no-repeat;
+}
+
+.w-address-bar .address-bar-title {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.w-address-bar .address-bar-title .title-txt {
+    color: #808080;
+}
+
+.w-address-bar .address-bar-title .title-btn {
+    float: right;
+    clear: right;
+}
+
+.m-winDetail {
+    border: 1px solid #ddd;
+    padding: 30px;
+}
+
+.m-winDetail .w-address-list {
+    width: auto!important;
+    margin-bottom: 20px
+}
+
+.m-winDetail .w-address-list .operation {
+    float: right
+}
+
+.m-winDetail .winDetail-goodsInfo {
+    margin-top: 20px;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.m-winDetail .winDetail-goodsInfo .col1 {
+    width: 64px;
+    text-align: center;
+}
+
+.m-winDetail .winDetail-goodsInfo th.col1 {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.m-winDetail .winDetail-goodsInfo .col1 img {
+    margin: 0 auto;
+}
+
+.m-winDetail .winDetail-goodsInfo .col2 {
+    padding-left: 20px;
+}
+
+.m-winDetail .winDetail-goodsInfo .col2 .w-goods-title {
+    width: 500px;
+}
+
+.m-winDetail .winDetail-goodsInfo .col3 {
+    padding-left: 0;
+    width: 150px;
+    text-align: center;
+    line-height: 2;
+}
+
+.m-winDetail .winDetail-goodsInfo .col4 {
+    width: 120px;
+    text-align: center;
+}
+
+.m-winDetail .winDetail-goodsInfo .col5 {
+    width: 200px;
+    text-align: center;
+}
+
+.m-winDetail .winDetail-goodsInfo td {
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 2
+}
+
+.m-winDetail .winDetail-goodsInfo td .name {
+    color: #333;
+}
+
+.m-winDetail .winDetail-progress {
+    text-align: center;
+    margin-top: 39px;
+    margin-bottom: 49px;
+    zoom: 1;
+    position: relative;
+}
+
+.m-winDetail .inner {
+    display: inline-block;
++display: inline;
++zoom: 1;
+}
+
+.m-winDetail .winDetail-progress .step {
+    float: left;
+    width: 215px;
+    position: relative;
+    +zoom: 1;
+    height: 95px;
+}
+
+.m-winDetail .winDetail-progress .step .name {
+    color: #ccc;
+    position: absolute;
+    left: 50%;
+    width: 128px;
+    margin-left: -64px;
+    top: 0;
+    line-height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 2;
+}
+
+.m-winDetail .winDetail-progress .step .ico {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-left: -25px;
+    width: 50px;
+    height: 50px;
+    background: url(../img/buyicons.png) no-repeat;
+}
+
+.m-winDetail .winDetail-progress .step:before {
+    content: "";
+    width: 125px;
+    background: #ccc;
+    position: absolute;
+    right: 150px;
+    bottom: 25px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.m-winDetail .winDetail-progress .step-first:before {
+    display: none
+}
+
+.m-winDetail .winDetail-progress .step-2 .ico {
+    background-position: -50px 0
+}
+
+.m-winDetail .winDetail-progress .step-3 .ico {
+    background-position: -100px 0
+}
+
+.m-winDetail .winDetail-progress .step-4 .ico {
+    background-position: -150px 0
+}
+
+.m-winDetail .winDetail-progress .step-5 .ico {
+    background-position: -200px 0
+}
+
+.m-winDetail .winDetail-progress .step-6 .ico {
+    background-position: -250px 0
+}
+
+.m-winDetail .winDetail-progress .step-7 .ico {
+    background-position: -300px 0
+}
+
+.m-winDetail .winDetail-progress .act.step-1 .ico {
+    background-position: 0 -50px
+}
+
+.m-winDetail .winDetail-progress .act.step-2 .ico {
+    background-position: -50px -50px
+}
+
+.m-winDetail .winDetail-progress .act.step-3 .ico {
+    background-position: -100px -50px
+}
+
+.m-winDetail .winDetail-progress .act.step-4 .ico {
+    background-position: -150px -50px
+}
+
+.m-winDetail .winDetail-progress .act.step-5 .ico {
+    background-position: -200px -50px
+}
+
+.m-winDetail .winDetail-progress .act.step-6 .ico {
+    background-position: -250px -50px
+}
+
+.m-winDetail .winDetail-progress .act.step-7 .ico {
+    background-position: -300px -50px
+}
+
+.m-winDetail .winDetail-progress .act .name {
+    color: #333
+}
+
+.m-winDetail .winDetail-progress .act:before {
+    background: #59C735
+}
+
+.m-winDetail .winDetail-info {
+    margin-top: 15px;
+}
+
+.m-winDetail .winDetail-info .title {
+    font-size: 14px;
+    border-bottom: 1px dotted #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    line-height: normal;
+    position: relative;
++zoom: 1;
+}
+
+.m-winDetail .winDetail-info .status {
+    color: #36BD01;
+    font-weight: bold;
+}
+
+.m-winDetail .winDetail-info .status .w-button {
+    margin-left: 15px;
+}
+
+.m-winDetail .winDetail-info .tips,.m-winDetail .winDetail-info .tips p {
+    color: #999;
+    margin-top: 10px;
+}
+
+.m-winDetail .winDetail-info .content {
+    margin-top: 20px;
+}
+
+.m-winDetail .winDetail-info .share-wrapper {
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
++zoom: 1;
+}
+
+.m-winDetail .winDetail-info .w-shareTo {
+    display: inline;
+}
+
+.m-winDetail .winDetail-info .share-inner {
+    vertical-align: top;
+    line-height: 20px;
+}
+
+.m-winDetail .winDetail-info .share-inner .w-button {
+    position: relative;
+    top: -7px;
+}
+
+.m-winDetail .winDetail-info .addressInfo {
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.m-winDetail .winDetail-shipEdit .confirm {
+    text-align: right;
+    padding-top: 15px;
+}
+
+.m-winDetail .winDetail-shipEdit .m-form {
+    position: relative;
++zoom: 1;
+}
+
+.m-winDetail .winDetail-info-impt {
+    background-color: #FFFFE1;
+    border-color: #DFDDB4;
+}
+
+.m-winDetail .winDetail-shipInfo {
+    line-height: 1.8;
+}
+
+.m-winDetail .winDetail-shipInfo .confirm {
+    text-align: left;
+    padding-top: 15px;
+}
+
+.m-winDetail .winDetail-shipInfo .tips {
+    padding-top: 10px;
+}
+
+.m-winDetail .winDetail-shipInfo .addressInfo {
+    padding-top: 20px;
+    color: #3D3B40;
+}
+
+.m-winDetail .winDetail-shipInfo .addressInfo .name {
+    padding-bottom: 5px;
+}
+
+.m-winDetail .m-shipAdress .w-table .col1 {
+    width: 82px;
+    padding-left: 5px;
+}
+
+.m-winDetail .m-shipAdress .w-table .col2 {
+    width: 151px;
+}
+
+.m-winDetail .m-shipAdress .w-table .col3 {
+    width: 358px;
+}
+
+.m-winDetail .m-shipAdress .w-table .col4 {
+    width: 80px;
+}
+
+.m-winDetail .m-shipAdress .w-table .col5 {
+    width: 120px;
+}
+
+.m-winDetail .m-shipAdress .m-shipAdress-title {
+    margin-top: 10px;
+}
+
+.m-winDetail .submit {
+    text-align: right;
+    margin: 20px 0 40px
+}
+
+.m-winDetail-confirm .w-msgbox-title {
+    text-align: center;
+}
+
+.m-winDetail-confirmAddress .shipInfo {
+    font-size: 12px;
+    padding-top: 3px;
+    padding-left: 38px;
+}
+
+.m-winDetail-confirmAddress .g-twoCol .name {
+    width: 66px;
+}
+
+.m-winDetail .w-address-bar .operation {
+    float: right
+}
+
+.m-winDetail-complete {
+    text-align: center;
+    font-size: 18px
+}
+
+.m-winDetail-complete .ico {
+    margin-right: 15px
+}
+
+.m-winDetail .addressInfo .folder {
+    margin-left: 20px
+}
+
+.m-winDetail .addressInfo .subitem {
+    margin-right: 10px;
+}
+
+.m-winDetail .addressInfo .detail {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dotted;
+    color: #999
+}

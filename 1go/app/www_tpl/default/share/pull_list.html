@@ -1,0 +1,34 @@
+{volist name='list' id='vo'}
+<div class="item">
+    <div class="pic">
+        <table>
+            <tbody>
+            <tr>
+                <td valign="middle" align="center">
+                    <a target="_blank" href="{:dwz_filter('share/detail',array('id'=>$vo['id']))}" title="">
+                        <img src="__image_path__{$vo.img_path|default='__image_path____yyg__/images/empty_img.jpg'}"  alt="" />
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="name">
+        <a target="_blank" href="{:dwz_filter('share/detail',array('id'=>$vo['id']))}">{$vo.username|default='--'}</a>
+    </div>
+    <div class="code">
+        幸运号码：
+        <strong class="txt-impt">{$vo.luck_num|num_base_mask|default='--'}</strong>
+    </div>
+    <div class="post">
+        <div class="title">
+            <a target="_blank" href="{:dwz_filter('share/detail',array('id'=>$vo['id']))}"><strong>{$vo.title|default='--'}</strong></a>
+        </div>
+        <div class="author">
+            <a target="_blank" href="{:dwz_filter('share/detail',array('id'=>$vo['id']))}" title="">{$vo.username|default='--'}</a>
+            <span class="time"></span>
+        </div>
+        <div class="abbr"></div>
+    </div>
+</div>
+{/volist}

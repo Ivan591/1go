@@ -1,0 +1,646 @@
+.m-user-share-banner {
+    height: 96px;
+}
+
+.m-user-share-panel {
+    width: 904px;
+    background-color: #f7f7f7;
+    padding: 20px 65px 58px 65px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+
+.m-user-share-totalRecords {
+    border-bottom: 2px #808080 solid;
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+.m-user-share-totalRecords a {
+    display: inline-block;
+    height: 26px;
+    width: 60px;
+    color: #fff;
+    background-color: #3399fe;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.m-user-share-list .shareList .m-shareList .pic {
+    min-height: 200px;
+}
+
+.m-user-share-totalCnt {
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+.m-user-share-toShareCnt {
+    font-weight: bold;
+    padding: 0 5px;
+    color: #db3652;
+}
+
+.m-user-share-blank {
+    text-align: center;
+    padding: 97px 0;
+    font-size: 20px;
+    color: #999;
+}
+
+.m-user-share-blank a {
+    display: inline-block;
+    text-decoration: none;
+    height: 50px;
+    width: 180px;
+    background-color: #db3652;
+    color: #fff;
+    line-height: 50px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.m-user-shareDetail-panel {
+    border: 1px #D0D0D0 solid;
+    padding: 30px 50px 50px 50px;
+    margin-bottom: 90px;
+}
+
+.m-user-shareDetail-header {
+    text-align: center;
+    border-bottom: 1px #D0D0D0 dotted;
+    position: relative;
++zoom: 1;
+}
+
+.m-user-shareDetail-header .title {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.m-user-shareDetail-header .time {
+    color: #999;
+    font-size: 13px;
+    position: absolute;
+    bottom: -10px;
+    background-color: #fff;
+    padding: 0 10px;
+    left: 50%;
+    margin-left: -106px;
+}
+
+.m-user-shareDetail-header .share {
+    position: absolute;
+    display: inline-block;
++display: inline;
+    right: 0;
+    top: 10px;
+}
+
+.m-user-shareDetail-winDetail {
+    position: relative;
++zoom: 1;
+    margin-top: 30px;
+    border: 1px #DEDEDE solid;
+    background-color: #FAFAFA;
+    height: 130px;
+}
+
+.m-user-shareDetail-winDetail .owner {
+    position: relative;
++zoom: 1;
+    width: 279px;
+    height: 110px;
+    background-color: #fff;
+    padding-left: 130px;
+    padding-top: 20px;
+    line-height: 22px;
+}
+
+.m-user-shareDetail-winDetail .owner .avatar {
+    display: inline;
++display: inline;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.m-user-shareDetail-winDetail .owner .avatar img {
+    border-radius: 3px;
+}
+
+.m-user-shareDetail-winDetail .info {
+    color: #808080;
+    font-size: 13px;
+}
+
+.m-user-shareDetail-winDetail .goods {
+    position: absolute;
+    left: 408px;
+    border-left: 1px dashed #CBCBCB;
+    top: 0;
+    height: 130px;
+    width: 689px;
+}
+
+.m-user-shareDetail-winDetail .goods .pic {
+    position: absolute;
+    left: 20px;
+    top: 14px;
+}
+
+.m-user-shareDetail-winDetail .goods .info {
+    padding-left: 160px;
+    font-size: 12px;
+    line-height: 22px;
+    padding-top: 15px;
+}
+
+.m-user-shareDetail-winDetail .goods .info .more {
+    margin-top: 10px;
+}
+
+.m-user-shareDetail-cont {
+    margin: 20px 19px;
+    position: relative;
++zoom: 1;
+    font-size: 15px;
+    line-height: 2;
+    padding: 12px 35px;
+    white-space: normal;
+    word-wrap: break-word;
+    text-indent: 2em;
+    color: #808080;
+}
+
+.m-user-shareDetail-cont .ico-quote {
+    position: absolute;
+}
+
+.m-user-shareDetail-cont .ico-quote-former {
+    left: 0;
+    top: 0;
+}
+
+.m-user-shareDetail-cont .ico-quote-after {
+    right: 0;
+    bottom: 0;
+}
+
+.m-user-shareDetail-pics {
+    margin-left: -16px;
+    overflow: hidden;
+}
+
+.m-user-shareDetail-pics .item {
+    display: inline-block;
++display: inline;
++zoom: 1;
+    width: 540px;
+    text-align: center;
+    line-height: 0;
+    font-size: 0;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+.m-user-shareAdd-panel {
+    border: 1px #D0D0D0 solid;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.m-user-shareAdd-toknow .cont {
+    padding: 0 60px;
+    font-size: 14px;
+    color: #808080;
+}
+
+.m-user-shareAdd-toknow .cont .dearUser {
+    padding-top: 24px;
+    padding-bottom: 14px;
+    font-size: 18px;
+    color: #000;
+}
+
+.m-user-shareAdd-toknow .cont p {
+    padding-left: 16px;
+}
+
+.m-user-shareAdd-toknow .cont .attention {
+    padding-top: 30px;
+    font-size: 18px;
+    color: #000;
+}
+
+.m-user-shareAdd-toknow .cont .num {
+    display: inline-block;
++display: inline;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    background-color: #ed9aa5;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.m-user-shareAdd-toknow .cont .item {
+    line-height: 20px;
+    margin-top: 12px;
+}
+
+.m-user-shareAdd-toknow .toknow {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.m-user-shareAdd-toknow .toknow button {
+    width: 215px;
+    height: 50px;
+    display: inline-block;
++display: inline;
+}
+
+.m-user-shareAdd-form,.m-user-shareAdd-preview {
+    background-color: #f7f7f7;
+    padding: 30px 30px 80px 30px;
+    position: relative;
++zoom: 1;
+}
+
+.m-user-shareAdd-form .title,.m-user-shareAdd-preview .title {
+    border-bottom: 1px #000 solid;
+    padding-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.m-user-shareAdd-form .title span {
+    display: inline-block;
++display: inline;
+    font-weight: normal;
+    font-size: 12px;
+    color: #fe7542;
+    background-color: #fff0e8;
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    border: 1px #fe7542 solid;
+    border-radius: 2px;
+    margin-left: 10px;
+}
+
+.m-user-shareAdd-form .title i {
+    display: inline-block;
++display: inline;
+    width: 22px;
+    height: 15px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.m-user-shareAdd-form .cont {
+    padding-left: 30px;
+    font-size: 15px;
+}
+
+.m-user-shareAdd-form .cont .share-input {
+    display: inline-block;
++display: inline;
+    vertical-align: middle;
+    position: relative;
++zoom: 1;
+}
+
+.m-user-shareAdd-form .cont .share-placeholder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 6px 5px 6px 10px;
+    color: #999;
+}
+
+.m-user-shareAdd-form .cont .share-title {
+    margin-top: 30px;
+}
+
+.m-user-shareAdd-form .cont .share-title input {
+    width: 250px;
+}
+
+.m-user-shareAdd-form .cont .share-title input:focus {
+    border-color: #fdc15e;
+}
+
+.m-user-shareAdd-form .cont .share-title .titleTips {
+    display: inline;
+    font-size: 14px;
+    color: #db4b5f;
+    margin-left: 10px;
+}
+
+.m-user-shareAdd-form .cont .share-cont {
+    margin-top: 20px;
+}
+
+.m-user-shareAdd-form .cont .share-cont .share-input {
+    vertical-align: top;
+}
+
+.m-user-shareAdd-form .cont .share-cont textarea {
+    width: 800px;
+    height: 150px;
+    margin: 0px;
+    max-width: 800px;
+}
+
+.m-user-shareAdd-form .cont .share-cont textarea:focus {
+    border-color: #fdc15e;
+}
+
+.m-user-shareAdd-form .cont .share-cont .contTips {
+    display: inline-block;
++display: inline;
+    font-size: 14px;
+    color: #db4b5f;
+    margin-top: 10px;
+}
+
+.m-user-shareAdd-form .cont .share-images {
+    margin-top: 20px;
+}
+
+.m-user-shareAdd-form .cont .share-images .toUpload {
+    display: inline-block;
++display: inline;
+    position: relative;
++zoom: 1;
+}
+
+.m-user-shareAdd-form .cont .share-images .toUpload .flash {
+    display: inline-block;
++display: inline;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 30px;
+    width: 100px;
+    overflow: hidden;
+}
+
+.m-user-shareAdd-form .cont .share-images .toUpload button {
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    color: #000;
+}
+
+.m-user-shareAdd-form .cont .share-images .uploadTips {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #808080;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList {
+    margin-left: 62px;
+    margin-top: 20px;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item {
+    display: inline-block;
+    border: 1px #D0D0D0 solid;
+    position: relative;
++zoom: 1;
++display: inline;
+    line-height: 0;
+    width: 140px;
+    height: 140px;
+    margin-left: 8px;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item .close {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    z-index: 3;
+    background-color: #000;
+    width: 16px;
+    height: 16px;
+    display: none;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item .close:hover {
+    background-color: #e94163;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item .close .ico {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    cursor: pointer;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item .mask {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    z-index: 2;
+    background-color: #000;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    top: 1px;
+    left: 1px;
+    display: none;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item:hover .close {
+    display: inline-block;
++display: inline;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item:hover .mask {
+    display: inline-block;
++display: inline;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item td {
+    height: 140px;
+    width: 140px;
+    font-size: 12px;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item .progress {
+    height: 8px;
+    width: 100px;
+    border: 1px solid #ddd;
+    padding: 1px;
+    text-align: left;
+    margin-top: 6px;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item .progress .inner {
+    background-color: #35BC00;
+    height: 8px;
+}
+
+.m-user-shareAdd-form .cont .share-images .imgList .item .loading {
+    margin-top: 10px;
+}
+
+.m-user-shareAdd-form .share-buttons {
+    margin-left: 70px;
+    margin-top: 30px;
+}
+
+.m-user-shareAdd-form .cont .share-buttons .toPublish {
+    display: inline-block;
++display: inline;
+}
+
+.m-user-shareAdd-form .cont .share-buttons .toPublish button {
+    display: inline-block;
++display: inline;
+    width: 140px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.m-user-shareAdd-form .cont .share-buttons .toPreview {
+    display: inline-block;
++display: inline;
+    margin-left: 10px;
+}
+
+.m-user-shareAdd-preview .cont {
+    border: 1px #D0D0D0 solid;
+    padding: 30px 60px 30px 60px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.m-user-shareAdd-preview .cont .preview-title {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px #D0D0D0 dotted;
+    font-size: 18px;
+}
+
+.m-user-shareAdd-preview .cont .preview-cont {
+    margin-top: 25px;
+    position: relative;
++zoom: 1;
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 28px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.m-user-shareAdd-preview .ico-quote {
+    position: absolute;
+}
+
+.m-user-shareAdd-preview .ico-quote-former {
+    left: 0;
+    top: 0;
+}
+
+.m-user-shareAdd-preview .ico-quote-after {
+    right: 0;
+    bottom: 0;
+}
+
+.m-user-shareAdd-preview .cont .preview-images {
+    margin-top: 30px;
+    padding: 0 40px;
+}
+
+.m-user-shareAdd-preview .cont .preview-images .item {
+    display: inline-block;
++display: inline;
+    width: 140px;
+    height: 140px;
+    padding: 1px;
+    border: 1px solid #CCC;
+    position: relative;
++zoom: 1;
+    zoom: 1;
+    line-height: 0;
+    margin-right: 7px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.m-user-shareAdd-preview .cont .preview-images .item td {
+    height: 140px;
+}
+
+.m-user-shareAdd-preview .preview-buttons {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.m-user-shareAdd-preview .preview-buttons .toPublish {
+    display: inline-block;
++display: inline;
+}
+
+.m-user-shareAdd-preview .preview-buttons .toPublish button {
+    display: inline-block;
++display: inline;
+    width: 140px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.m-user-shareAdd-preview .preview-buttons .toPreview {
+    display: inline-block;
++display: inline;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.m-user-shareAdd-icoClose {
+    background-image: url(../img/sharespng.png);
+    background-repeat: no-repeat;
+    height: 8px;
+    width: 8px;
+    background-position: -32px -96px;
+}
+
+.user-ico {
+    background-image: url(../img/infotips.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.user-err-ico {
+    width: 32px;
+    height: 32px;
+    background-position: 0 0;
+}
+
+.user-alert-ico {
+    width: 32px;
+    height: 32px;
+    background-position: -32px 0;
+}
+
+.user-suc-ico {
+    width: 32px;
+    height: 32px;
+    background-position: -64px 0;
+}
+
+.m-user-shipAdress-del {
+    text-align: center;
+}

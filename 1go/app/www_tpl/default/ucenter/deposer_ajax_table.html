@@ -1,0 +1,169 @@
+<table class="w-table m-user-comm-table" pro="listHead">
+    <thead>
+    <tr>
+        <th class="col-info">商品信息</th>
+        <th class="col-period">期号</th>
+        <th class="col-joinNum">参与人次</th>
+        <th class="col-status">夺宝状态</th>
+        <th class="col-opt">操作</th>
+    </tr>
+    </thead>
+</table>
+<div pro="duobaoList" class="duobaoList">
+    {empty name="order_list"}
+    <div id="pro-view-0">
+        <div pro="duobaoList" class="duobaoList m-user-duobao-multi">
+            <div id="pro-view-49" class="m-user-comm-empty"><b class="ico ico-face-sad"></b>
+                <div class="i-desc">您一年内没有多期夺宝记录哦~</div>
+                <div class="i-opt"><a href="/" class="w-button w-button-main w-button-xl">马上去逛逛</a></div>
+            </div>
+        </div>
+        <div pro="pager" class="pager"></div>
+    </div>
+    {else/}
+    {volist name='order_list' id='vo'}
+    {switch name="vo.n_status"}
+    {case value="1"}
+    <table id="pro-view-{$vo.o_id}" class="m-user-comm-table">
+        <tbody>
+        <tr>
+            <td class="col-info">
+                <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                    <div class="w-goods-pic">
+                        <a target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">
+                            <img src="__image_path__{$vo.g_image}" alt="{$vo.g_name|htmlspecialchars}" width="74" height="74">
+                        </a>
+
+                    </div>
+                    <p class="w-goods-title f-txtabb">
+                        <a title="{$vo.g_name|htmlspecialchars}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">{$vo.g_name|htmlspecialchars}</a>
+                    </p>
+                    <p class="w-goods-price">总需：{$vo.n_sum}人次</p>
+                    <div class="w-progressBar">
+                        <p class="w-progressBar-wrap">
+                            <span class="w-progressBar-bar" style="width:{$vo.n_percent}%"></span>
+                        </p>
+                        <ul class="w-progressBar-txt f-clear">
+                            <li class="w-progressBar-txt-l">已完成{$vo.n_percent}%，剩余<span class="txt-residue">{$vo.n_remain}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            <td class="col-period">{$vo.n_id|num_base_mask}</td>
+            <td class="col-joinNum">{$vo.num}人次</td>
+            <td class="col-status">
+                <span class="txt-suc">正在进行</span>
+            </td>
+            <td class="col-opt">
+                <a class="w-button w-button-main" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$vo['g_id']])}" target="_blank"><span>追加人次</span></a>
+                <p><a href="javascript:void(0)" pro="viewCode" data-luckcode="" class="see_luck_num" data-uid="{:login_id()}" data-nper="{$vo.n_id}">查看夺宝号码</a></p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {/case}
+    {case value="2"}
+    <table id="pro-view-36" class="m-user-comm-table">
+        <tbody>
+        <tr>
+            <td class="col-info">
+                <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                    <div class="w-goods-pic">
+                        <a target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">
+                            <img src="__image_path__{$vo.g_image}" alt="{$vo.g_name|htmlspecialchars}" width="74" height="74">
+                        </a>
+                    </div>
+                    <p class="w-goods-title f-txtabb">
+                        <a title="{$vo.g_name|htmlspecialchars}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">{$vo.g_name|htmlspecialchars}</a>
+                    </p>
+                    <p class="w-goods-price">总需：{$vo.n_sum}人次</p>
+                    <div class="w-progressBar">
+                        <p class="w-progressBar-wrap">
+                            <span class="w-progressBar-bar" style="width:100%"></span>
+                        </p>
+                        <ul class="w-progressBar-txt f-clear">
+                            <li class="w-progressBar-txt-l">已完成100%，剩余<span class="txt-residue">0</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </td>
+            <td class="col-period">{$vo.n_id|num_base_mask}</td>
+            <td class="col-joinNum">{$vo.num}人次</td>
+            <td class="col-status">
+                <span class="txt-wait">等待揭晓</span>
+            </td>
+            <td class="col-opt">
+                <a class="w-button w-button-main" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$vo['g_id']])}" target="_blank"><span>追加人次</span></a>
+                <p><a href="javascript:void(0)" pro="viewCode" data-luckcode=""  class="see_luck_num" data-uid="{:login_id()}" data-nper="{$vo.n_id}">查看夺宝号码</a></p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {/case}
+    {case value="3"}
+    <table id="pro-view-21" class="m-user-comm-table">
+        <tbody>
+        <tr>
+            <td class="col-info">
+                <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                    <div class="w-goods-pic">
+                        <a target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">
+                            <img src="__image_path__{$vo.g_image}" alt="{$vo.g_name|htmlspecialchars}" width="74" height="74">
+                        </a>
+                    </div>
+                    <p class="w-goods-title f-txtabb">
+                        <a title="{$vo.g_name|htmlspecialchars}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">{$vo.g_name|htmlspecialchars}</a>
+                    </p>
+                    <p class="w-goods-price">总需：{$vo.n_sum}人次</p>
+                    <div class="winner">
+                        <div class="name">获得者：<a href="{:dwz_filter('ta/index',['uid'=>$vo['luck_uid']])}" title="{$vo.nick_name}">{$vo.nick_name}</a>（本期参与<strong class="txt-dark">{$vo.n_sum}</strong>人次）</div>
+                        <div class="code">幸运代码：<strong class="txt-impt">{$vo.luck_num|num_base_mask}</strong></div>
+                        <div class="time_">揭晓时间：{$vo.open_time|date='Y-m-d H:i:s',###}</div>
+                    </div>
+                </div>
+            </td>
+            <td class="col-period">{$vo.n_id|num_base_mask}</td>
+            <td class="col-joinNum">{$vo.num}人次</td>
+            <td class="col-status">
+                <span>已揭晓</span>
+            </td>
+            <td class="col-opt">
+                <a class="w-button w-button-main" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$vo['g_id']])}" target="_blank"><span>追加人次</span></a>
+                <p><a href="javascript:void(0)" pro="viewCode" data-luckcode="" class="see_luck_num" data-uid="{:login_id()}" data-nper="{$vo.n_id}">查看夺宝号码</a></p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {/case}
+    {/switch}
+    {/volist}
+    {/empty}
+</div>
+<div class="pager">
+    <div class="w-pager">
+        {gt name="page_current" value="1"}
+        <a class="w-button w-button-main w-button-aside" data-url="{:U('ucenter/deposer_list')}" data-container="ajax_container" data-param='{"page":{$page_current-1},"action":"{$Think.post.action|default='all'}"}' ajax_table="ajax_table"><span>上一页</span></a>
+        {else}
+        <a class="w-button w-button-aside w-button-disabled"><span>上一页</span></a>
+        {/gt}
+        {for start="1" end="$page_count+1" name="page"}
+        {php}
+        if($page<=3 | $page>=$page_count-2 | ($page<=$page_current+3 && $page>=$page_current-3)){
+        {/php}
+        <a data-page="{$page}" data-url="{:U('ucenter/deposer_list')}" title="第{$page}页" class="w-button {$page_current==$page?'w-button-main':'w-button-aside'}" data-container="ajax_container" data-param='{"page":{$page},"action":"{$Think.post.action|default='all'}"}' ajax_table="ajax_table">{$page}</a>
+        {php}
+        }else if($page==4 || $page==$page_current+4){
+        {/php}
+        <a href="javascript:;" class="w-button w-button-aside">...</a>
+        {php}
+        }
+        {/php}
+        {/for}
+        {if condition="($page_current < $page_count)"}
+        <a class="w-button w-button-aside" data-url="{:U('ucenter/deposer_list')}" data-container="ajax_container" data-param='{"page":{$page_current+1},"action":"{$Think.post.action|default='all'}"}' ajax_table="ajax_table"><span>下一页</span></a>
+        {else/}
+        <a class="w-button w-button-aside w-button-disabled"><span>下一页</span></a>
+        {/if}
+    </div>
+</div>
+<div pro="limitTips" class="limitTips" style="display:none"></div>

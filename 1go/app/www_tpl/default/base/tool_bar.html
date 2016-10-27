@@ -1,0 +1,36 @@
+<div class="m-toolbar" >
+    <div class="g-wrap f-clear">
+        <div class="m-toolbar-l">
+            <span class="m-toolbar-welcome">{$conf.WEBSITE_WELCOME|default='欢迎!'}</span>
+        </div>
+        <ul class="m-toolbar-r">
+            <li class="m-toolbar-login">
+                {if condition='is_user_login()'}
+
+                <div id="pro-view-6"><a class="m-toolbar-login-btn" href="{:dwz_filter('ucenter/index')}">{:get_user_nick_name()}</a>
+                    <a href="javascript:" class="login_out">退出登录</a></div>
+                {else/}
+                <div id=""><a class="m-toolbar-login-btn" href="{:dwz_filter('user/login')}">请登录</a>
+                    <a href="{:dwz_filter('user/reg')}" >免费注册</a></div>
+                {/if}
+            </li>
+            <li class="m-toolbar-myDuobao">
+                <a class="m-toolbar-myDuobao-btn" href="{:dwz_filter('ucenter/index')}">我的夺宝
+                    <i class="ico ico-arrow-gray-s ico-arrow-gray-s-down"></i></a>
+                <ul class="m-toolbar-myDuobao-menu">
+                    <li><a href="{:dwz_filter('ucenter/deposer')}">夺宝记录</a></li>
+                    <li class="m-toolbar-myDuobao-menu-win"><a href="{:dwz_filter('ucenter/luck')}">幸运记录</a></li>
+                    <!--<li class="m-toolbar-myDuobao-menu-mall"><a href="{:dwz_filter('ucenter/index')}">购买记录</a></li>-->
+                    <!--<li class="m-toolbar-myDuobao-menu-gems"><a href="#">我的宝石</a></li>-->
+                    <li><a href="{:dwz_filter('pay/recharge')}">账户充值</a></li>
+                </ul>
+            </li>
+            <!--<li class="m-toolbar-myBonus"><a href="#">我的红包</a><var>|</var></li>-->
+            <li><a href="{$site_config.website_sina_weibo}" target="_blank">
+                <img width="16" height="13" style="float:left;margin:8px 3px 0 0;" src="__static__/img/icon_weibo_s.png">官方微博</a>
+                <var>|</var>
+            </li>
+            <!--<li><a href="http://1.xiangchang.com/groups.do">官方交流群</a></li>-->
+        </ul>
+    </div>
+</div>

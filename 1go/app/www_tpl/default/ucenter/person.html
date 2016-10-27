@@ -1,0 +1,176 @@
+{extend name="base/base"/}
+{block name="title"}个人资料{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{css href="__plugin__/webuploader/webuploader.css" /}
+{/block}
+{block name='content'}
+<form id="form_content" autocomplete="off">
+    <div class="g-body">
+        <div class="m-user">
+            <div class="g-wrap">
+                <div class="m-user-frame-wraper">
+                    <!--用户中心  菜单-->
+                    {include file="ucenter/_nav" /}
+                    <!--用户中心 main-->
+                    <div class="m-user-frame-colMain ">
+                        <div class="m-user-frame-content">
+                            <ul class="w-crumbs f-clear">
+                                <li class="w-crumbs-item">当前位置：</li>
+                                <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span>
+                                </li>
+                                <li class="w-crumbs-item w-crumbs-active">个人资料</li>
+                            </ul>
+                            <div class="m-user-profile">
+                                <div class="m-user-comm-wraper">
+                                    <table style="width:100%">
+                                        <tbody>
+                                        <tr>
+                                            <th>头像</th>
+                                            <td>
+                                                <a pro="UC_avatarEdit"
+                                                   class="w-user-avatarEdit w-user-avatarEdit-160 open_up_box" data-id="{$info.user_pic|default=''}"
+                                                   href="javascript:void(0);">
+                                                    <img id="user_img" pro="avatar" width="160" height="160" src="__image_path__{$info.img_path|default='__yyg__/images/empty_img.jpg'}">
+
+                                                    <span class="w-user-avatarEdit-tips" >点击更换头像</span>
+                                                    <input type="hidden" name="user_pic" value="{$info.user_pic|default=''}">
+                                                    <input type="hidden" name="user_pic_path" value="{$info.img_path|default='__yyg__/images/empty_img.jpg'}">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr pro="nickname">
+                                            <th>昵称</th>
+                                            <td>
+                                                <input type="hidden" class="nick_name"
+                                                       value="{$info.nick_name|default=''}">
+                                                <div id="pro-view-10" class="edit_nick_name" style="display: none;">
+                                                    <div id="pro-view-11" class="w-input">
+                                                        <input class="w-input-input edit_nick_name_input" pro="input"
+                                                               maxlength="80"
+                                                               placeholder="请输入昵称"
+                                                               type="text">
+                                                    </div>
+                                                    <button style="margin-left: 8px; margin-right: 8px;" id=""
+                                                            class="w-button w-button-main save_nick_name" type="button">
+                                                        <span>保存</span>
+                                                    </button>
+                                                    <button id=""
+                                                            class="w-button w-button-aside cancel_edit_nick"
+                                                            type="button">
+                                                        <span>取消</span></button>
+                                                </div>
+
+
+                                                <div class="edit_nick_name_show">
+                                                    <span class="contTxt nickname_text">{$info.nick_name|default=''}</span>
+                                                    <a href="javascript:void(0)" class="linkEdit edit_nick_name_btn"><b
+                                                            class="ico ico-edit"></b>修改</a>
+                                                </div>
+                                                <div class="nameEdit" pro="nameEdit" style="display:none"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>ID</th>
+                                            <td>
+                                                {$info.id|default=''}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>登录帐号</th>
+                                            <td>
+                                                <span pro="username"> {$info.username|default=''}</span>
+                                            </td>
+                                        </tr>
+                                        <tr pro="mobileWp" class="iMobileWp">
+                                            <th>手机号</th>
+                                            <td>
+                                                <div id="mobileShow">
+                                                    <span class="contTxt mobile_text" >{$info.phone|default='--'}</span>
+                                                    <a href="javascript:void(0)" class="linkEdit mobile_edit_btn">
+                                                        <b class="ico ico-edit"></b>修改</a>
+                                                </div>
+                                                <div id="mobileEdit" style="display:none;">
+                                                    <div id="" pro="mobilecheck" class="w-mobilecheck">
+                                                        <div class="w-mobilecheck-item w-mobilecheck-mobile-item">
+                                                            <div id="pro-view-17" class="w-input">
+                                                                <input style="width: 222px;" class="w-input-input"
+                                                                    pro="input" name="phone"
+                                                                    maxlength="11" placeholder="请输入手机号" type="text">
+                                                            </div>
+                                                            <a pro="modifymobile" href="javascript:void(0)"
+                                                               style="display: none;margin-left: 5px;font-size: 14px;">修改</a>
+                                                        </div>
+                                                        <div pro="sncheck" class="w-mobilecheck-item">
+                                                            <div id="pro-view-16" class="w-input">
+                                                                <input style="width: 122px;"
+                                                                       class="w-input-input phone_code" pro="input"
+                                                                       name="phone_code"
+                                                                       maxlength="6" placeholder="请输入验证码" type="text">
+                                                            </div>
+                                                            <button style="margin-left: 10px; width: 88px; height: 35px; color: rgb(51, 51, 51); font-size: 14px; font-weight: normal; vertical-align: top;"
+                                                                    id="pro-view-15"
+                                                                    class="w-button w-button-simple get_phone_code vacode"
+                                                                    type="button">
+                                                                <span>获取验证码</span>
+                                                            </button>
+                                                        </div>
+                                                        <div pro="smscheck" style="margin-bottom:12px;"><label
+                                                                id="pro-view-18" class="w-checkbox">
+                                                            <input checked="checked" type="checkbox" name="receive_sms" value="1">
+                                                            <span>接收揭晓通知</span></label></div>
+                                                        <div class="w-mobilecheck-operation">
+                                                            <button style="margin-right: 9px; width: 65px; height: 32px; font-weight: normal; font-size: 14px;"
+                                                                    id="pro-view-14"
+                                                                    class="w-button w-button-main save_phone"
+                                                                    type="button"><span>保存</span></button>
+                                                            <button style="width: 65px; height: 32px; font-weight: normal; font-size: 14px;"
+                                                                    id=""
+                                                                    class="w-button w-button-aside cancel_edit_mobile"
+                                                                    type="button"><span>取消</span></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m-user-frame-clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input name="geetest_challenge" type="hidden">
+    <input name="geetest_validate" type="hidden">
+    <input name="geetest_seccode" type="hidden">
+    <input name="reg" type="hidden" value="1">
+</form>
+<input type="hidden" id="open_cut_box" value="{:U('cut_box')}">
+<input type="hidden" id="swf_path" value="__plugin__/webuploader/uploader.swf"><!--swf-->
+<input type="hidden" id="server_path" value="{:U('core/upload/upload_img')}"><!--上传-->
+
+<input type="hidden" id="save_nick_name" value="{:U('user/save_nick_name')}"><!--保存用户昵称-->
+
+<input type="hidden" id="get_phone_code" value="{:U('core/api/get_phone_code')}"><!--获取验证码-->
+<input type="hidden" id="gee_test" value="{:U('core/api/gee_test')}"><!--极验证-->
+<input type="hidden" id="chk_countdown" value="{:U('User/chk_countdown')}"><!--检查倒计时-->
+<input type="hidden" id="write_countdown" value="{:U('User/write_countdown')}"><!--写倒计时-->
+<input type="hidden" id="save_phone" value="{:U('User/save_phone')}"><!--写倒计时-->
+
+<input type="hidden" id="get_login_user_img" value="{:U('ucenter/get_login_user_img')}"><!--获取图片信息-->
+<input type="hidden" id="save_login_user_img" value="{:U('ucenter/save_login_user_img')}"><!--保存用户头像信息-->
+
+
+{/block}
+{block name="user_js"}
+
+{js href="http://static.geetest.com/static/tools/gt.js" /}
+
+{js href="__plugin__/webuploader/webuploader.min.js" /}
+{js href="__yyg__/js/ucenter/person.js" /}
+{/block}

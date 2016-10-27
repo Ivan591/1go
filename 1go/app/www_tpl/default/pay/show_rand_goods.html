@@ -1,0 +1,28 @@
+<!--循环-->
+{notempty name='groom_list'}
+{foreach name='groom_list' item='vo' key='k'}
+{if condition='$k lt 6'}
+<li class="w-goodsList-item">
+    <div class="w-goods w-goods-brief">
+        <div class="w-goods-pic">
+            <a href="{:dwz_filter('goods/jump_to_goods_buying',array('gid'=>$vo['g_id']))}" title="点击抢购" target="_blank">
+                <img width="200" height="200"  src="__image_path__{$vo.i_img_path|default='__yyg__/images/empty_img.jpg'}"
+                     alt="{$vo.g_name|default='--'}">
+            </a>
+        </div>
+        <p class="w-goods-title f-txtabb">
+            <a title="{$vo.g_name|default='--'}" href="#" target="_blank">{$vo.g_name|default='--'}</a>
+        </p>
+        <p class="w-goods-price">剩余：
+            {php}
+            $last_num_1 = (int)$vo['sum_times'] - (int)$vo['participant_num'];
+            echo $last_num_1 < 0 ? 0 :$last_num_1;
+            {/php}
+            人次</p>
+    </div>
+</li>
+{/if}
+{/foreach}
+{else/}
+暂无推荐
+{/notempty}

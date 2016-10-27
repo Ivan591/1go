@@ -1,0 +1,33 @@
+运行环境：
+
+web主程序：php版本大于5.3.0 mysql
+
+程序安装完成后需要到后台配置邮件服务和阿里大鱼短信服务否则用户无法注册或是无法激活
+
+阿里大鱼短信说明
+	如果配置完成后短信无法发送，请到后台配置
+
+图片无法显示 请到后台配置网站地址
+
+
+
+开奖程序配置:
+
+	请先安装python2.7
+
+	安装完成后请安装python组件 pymysql、apscheduler
+
+	打开cmd
+
+	pip install pymysql
+	pip install apscheduler
+
+	onekaijiang目录修改config.json文件
+	配置mysql设置
+	如果不清楚已经设置好的mysql配置可以打开Application\Common\Conf\config.php查看
+
+	运行onekj.py
+	自动投注程序 usertz.py
+
+支付设置:
+	cacert目录为支付证书目录

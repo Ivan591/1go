@@ -1,0 +1,158 @@
+{extend name="base/base" /}
+{block name="css"}
+{css href="__common__/admin/css/goods/form.css" /}
+{css href="__plugin__/umeditor/themes/default/css/umeditor.min.css"/}
+{/block}
+{block name="content"}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            分类管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                {notempty name='type'}
+                {switch name='type'}
+                {case value='add'}添加{/case}
+                {case value='edit'}编辑{/case}
+                {default /}查看
+                {/switch}
+                {/notempty}
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <form class="form-horizontal" role="form" id="form_content">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">排序号</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入排序号" class="col-xs-10 col-sm-5" name="orders"
+                        {switch name='type'}
+                        {case value='add'}{/case}
+                        {case value='edit|see'}value="{$cate_data.orders}{/case}
+                        {default /}
+                        {/switch} "/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 状态 </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="status">
+                            <option value= "1" {if condition="!empty($cate_data.status) AND $cate_data.status eq '1'"}selected="selected"{/if} >显示</option>
+                            <option value= "-1" {if condition="!empty($cate_data.status) AND $cate_data.status eq '-1'"}selected="selected"{/if} >删除</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">分类名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入分类名称" class="col-xs-10 col-sm-5" name="name"                                                 {switch name='type'}
+                         {case value='add'}{/case}
+                        {case value='edit|see'}value="{$cate_data.name}{/case}
+                        {default /}
+                        {/switch} "/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">分类标签</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入分类标签" class="col-xs-10 col-sm-5" name="tips"                              {switch name='type'}
+                        {case value='add'}{/case}
+                        {case value='edit|see'}value="{$cate_data.tips}{/case}
+                        {default /}
+                        {/switch} "/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">类型</label>
+                    <div class="col-sm-6">
+                        <input type="text" placeholder="请输入类型" class="col-xs-10 col-sm-5" name="code"                              {switch name='type'}
+                               {case value='add'}{/case}
+                        {case value='edit|see'}value="{$cate_data.code}{/case}
+                        {default /}
+                        {/switch} "/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 菜单类型 </label>
+                    <div class="col-sm-6">
+                        <select class="col-xs-10 col-sm-5" data-placeholder="请选择" name="type1">
+                            <option value= "1" {if condition="!empty($cate_data.type) AND $cate_data.type eq '1'"}selected="selected"{/if} >一级目录</option>
+                            <option value= "2" {if condition="!empty($cate_data.type) AND $cate_data.type eq '2'"}selected="selected"{/if} >多级目录</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <!--操作按钮-->
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        {notempty name='type'}
+                        {switch name='type'}
+                        {case value='add'}
+                        <button class="btn btn-info submit_btn" type="button">
+                            <i class="icon-ok bigger-110"></i>
+                            提交表单
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn" type="reset">
+                            <i class="icon-undo bigger-110"></i>
+                            重置
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-default close_page" type="button">
+                            <i class="fa fa-times bigger-110"></i>
+                            关闭页面
+                        </button>
+                        {/case}
+                        {case value='edit'}
+                        <button class="btn btn-info submit_btn" type="button">
+                            <i class="icon-ok bigger-110"></i>
+                            保存内容
+                        </button>
+                        <button class="btn btn-default close_page" type="button">
+                            <i class="fa fa-times bigger-110"></i>
+                            关闭页面
+                        </button>
+                        {/case}
+                        {default /}
+                        {/switch}
+                        {/notempty}
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="{$cate_data.id|default=''}">
+            </form>
+        </div><!-- /.row -->
+    </div><!-- /.page-content -->
+</div>
+
+<input type="hidden" id="submit_url" value="{:U('update')}">
+<input type="hidden" id="root_url" value="{:U('index')}">
+<input type="hidden" id="type" value="{$type|default='add'}">
+{/block}
+{block name="js"}
+{js href='__common__/admin/js/category/form.js' /}
+{js href='__plugin__/umeditor/umeditor.config.js' /}
+{js href='__plugin__/umeditor/umeditor.min.js' /}
+{js href='__plugin__/umeditor/lang/zh-cn/zh-cn.js' /}
+
+
+
+
+{/block}

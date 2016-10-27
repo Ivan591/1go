@@ -1,0 +1,131 @@
+{extend name="base/base"/}
+{block name="title"}我的晒单{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" p>
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+                            <li class="w-crumbs-item w-crumbs-active">我的晒单</li>
+                        </ul>
+                        <div >
+                            <div class="m-user-share-banner">
+                                <img src="__static__/img/banner.jpg" alt="">
+                            </div>
+                            <div class="m-user-share-panel">
+                                <div pro="module-holder" style="display: none;">
+                                    <div pro="userCommLoading" class="w-loading"><b class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span></div>
+                                </div>
+                                <div class="m-user-share-blank" style="display:none;">
+                                    <span class="m-user-share-blank-text">只有签收了幸运商品才可以晒单哦!</span>
+                                    <br>
+                                    <a href="#">立即查看</a>
+                                </div>
+                                <div class="m-user-share-totalRecords" style="display: block;">
+                                    共有
+                                    <span class="m-user-share-totalCnt">{$show_count}</span>条晒单记录
+                                </div>
+                                <div class="m-user-share-list" style="display: block;">
+                                    <div id="ShareList">
+                                        <div class="m-shareList" id="pro-view-10">
+                                            <!-- group 1 2 3  , 瀑布流  3列, 内容循环-->
+                                            {volist name="show_list" id="each_show"}
+                                            {eq name="each_show.complete" value="1"}
+                                            <div class="group" >
+                                                <div class="item" >
+                                                    <div class="pic">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="middle" align="center">
+                                                                    <a href="{:dwz_filter('share/detail',array('id'=>$each_show['id']))}" target="_blank" title="{$each_show.goods_name|htmlspecialchars}">
+                                                                        <img src="__image_path__{$each_show.goods_image}" alt="{$each_show.goods_name|htmlspecialchars}" width="270" /></a></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="name">
+                                                        <a href="{:dwz_filter('share/detail',array('id'=>$each_show['id']))}">{$each_show.goods_name}</a>
+                                                    </div>
+                                                    <div class="code">
+                                                        幸运号码：
+                                                        <strong class="txt-impt">{$each_show.luck_num|num_base_mask}</strong>
+                                                    </div>
+                                                    <div class="status">
+                                                        晒单状态：
+                                                        {switch name="each_show.status"}
+                                                        {case value="1"}<span class="toAudit">晒单完成</span>{/case}
+                                                        {case value="-1"}<span class="toAudit">审核失败</span>{/case}
+                                                        {default/}
+                                                        <span class="toAudit">等待审核</span>
+                                                        {/switch}
+
+                                                    </div>
+                                                    <div class="post">
+                                                        <div class="title">
+                                                            <a href="{:dwz_filter('share/detail',array('id'=>$each_show['id']))}" target="_blank"><strong>{$each_show.title|htmlspecialchars}</strong></a>
+                                                        </div>
+                                                        <div class="time">
+                                                            {$each_show.create_time|date='Y-m-d H:i:s',###}
+                                                        </div>
+                                                        <div class="abbr">
+                                                            <p>{$each_show.content}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {else/}
+                                            <div class="group" >
+                                                <div class="item" >
+                                                    <div class="pic">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="middle" align="center">
+                                                                    <a href="{:U('ucenter/share',['id'=>$each_show['id']])}" target="_blank" title="{$each_show.goods_name|htmlspecialchars}">
+                                                                        <img src="__image_path__{$each_show.goods_image}" alt="{$each_show.goods_name|htmlspecialchars}" width="270" /></a></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="name">
+                                                        <a href="{:U('ucenter/share',['id'=>$each_show['id']])}">{$each_show.goods_name}</a>
+                                                    </div>
+                                                    <div class="code">
+                                                        幸运号码：
+                                                        <strong class="txt-impt">{$each_show.luck_num|num_base_mask}</strong>
+                                                    </div>
+                                                    <div class="status">
+                                                        晒单状态：
+                                                        <span class="toAudit">未晒单</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/eq}
+                                            {/volist}
+                                        </div>
+                                    </div>
+                                </div> <div id="BottomBlank" style="display:none;text-align:center;">已经到达列表底部～</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

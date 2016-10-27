@@ -1,0 +1,314 @@
+.table-list td,.table-list th{
+    vertical-align:middle !important;
+    text-align: center;
+}
+
+.search-query{
+    width: 200px;
+}
+
+.main-content{
+    padding-bottom:70px;
+}
+
+
+
+#page{
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+#page>a{
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+
+}
+#page>a.cur{
+    cursor: default;
+    background-color: #6faed9;
+    border-color: #6faed9;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+}
+#page>p{
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color:#999;
+
+}
+#page>a{
+    cursor: pointer;
+}
+#page>a:hover{background: #eaeff2;}
+#page p.pageRemark{
+    border:none;
+    margin:0 10px;
+    background: #fff;
+}
+#page p.pageRemark b{
+    font-size:12px;
+    margin:0 5px;
+    color :#428bca;
+    font-weight:bold;
+}
+
+.navbar-container:after,
+.main-container-inner:after,
+.page-content:after
+{
+    height:0;
+    display: block;
+    visibility: hidden;
+    content:'';
+    clear: both;
+}
+.m-footer{
+    width:100%;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    padding-left:190px;
+}
+.m-copyright{
+    float: left;
+    width: 100%;
+    text-align: center;
+    background: #eee;
+    padding: 10px;
+    z-index: 10;
+    box-shadow: 0 0 3px #999;
+}
+.m-copyright .g-wrap:after{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    content: " ";
+    clear:both;
+}
+.m-copyright .g-wrap{
+    width:1000px;
+    margin:auto;
+}
+.m-copyright-logo{
+    float: left;
+    width:500px;
+    height: 50px;
+}
+.m-copyright-logo a{
+    margin:0 10px;
+}
+.m-copyright-txt{
+    width:400px;
+    float: left;
+    height: 50px;
+    text-align: left;
+    padding-left:10px;
+    line-height: 20px;
+    box-sizing: border-box;
+}
+.m-copyright-txt p{
+    margin-top:20px;
+}
+
+
+.fc-select{width:20% !important;float: left;height:34px !important;}
+.fc-input{width:80% !important;float: left;box-sizing: border-box;}
+
+.btn-scroll-up{
+    position: fixed !important;
+}
+
+.page-content{
+    background: #eff2f7;
+}
+.ad-index h4{line-height: 20px;
+    font-size:16px;
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    margin:30px 0;
+    color:#4d5763;
+
+}
+
+.ad-index h4 i{
+    padding-right:10px;
+    color:#f1565e;
+    font-size: 20px;
+}
+.ad-qbox .widget-box{
+    border:none;
+}
+.ad-qbox .widget-title{
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.ad-qbox .widget-header{
+    border:none;
+    line-height: 36px;
+    color:#888;
+    padding-left:20px;
+    font-weight:600;
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.ad-qbox .widget-body{
+    border:none;
+}
+.ad-qbox .ad-line1{
+
+}
+.ad-u-info{
+    width:100%;
+    list-style: none;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+
+}
+.ad-u-info li{
+    width:100%;
+    display: block;
+}
+.ad-u-info li:after{
+    content:' ';
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+}
+.ad-u-info span,.ad-u-info label{
+    float: left;
+    margin:10px 0;
+    line-height: 22px;
+    display: block;
+    color:#888;
+    font-size: 14px;
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-weight: bold;
+}
+.ad-u-info span{
+    text-align: left;
+    box-sizing: border-box;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+.ad-u-info label{
+    text-align: right;
+    width:120px;
+    padding-right:10px;
+    font-weight: normal;
+}
+.ad-qumenu{
+    width:100%;
+    box-sizing: border-box;
+    padding:30px 5%;
+}
+.ad-qumenu>a{
+    width:100%;
+    display: block;
+    height: 56px;
+    line-height: 56px;
+    background: #edeef2;
+    margin-bottom:10px;
+    cursor: pointer;
+}
+.ad-qumenu>a>span{
+    padding-left:60px;
+    width:160px;
+    margin:auto;
+    font-size:16px;
+    color:#666;
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    display: block;
+
+    box-sizing: border-box;
+}
+.ad-qumenu>a:hover{
+    text-decoration: none;
+    box-shadow: 0 0 6px #ddd;
+    border:1px solid #ccc;
+}
+.ad-qumenu>a.aqbtn-btn1>span{
+    background: url("../images/menulogo.png") 10px center no-repeat ;
+}
+.ad-qumenu>a.aqbtn-btn2>span{
+    background: url("../images/menulogo.png") 10px center no-repeat ;
+}
+.ad-qumenu>a.aqbtn-btn3>span{
+    background: url("../images/menulogo.png") 10px center no-repeat ;
+}
+.ad-site-info{
+    padding:20px 5%;
+    box-sizing: border-box;
+}
+.ad-site-info ul{
+    margin:0;
+    padding:0;
+}
+.ad-site-info li{
+    list-style: none;
+    background: #edeef2;
+    border-radius: 5px;
+    line-height: 36px;
+    padding-left:15px;
+    display: block;
+    color:#666;
+    font-size: 12px;
+    margin-bottom:10px;
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.ad-about{
+    margin-top:20px;
+}
+.ad-about .widget-main ul{
+    list-style: none;
+}
+.ad-about .widget-main li{
+    line-height: 38px;
+    font-size:16px;
+    color:#666;
+    font-weight: 100;
+
+}
+.ad-about .widget-main li span{
+    margin-left:10px;
+    color:#666;
+}
+.sys-info .widget-main ul{
+    margin:0 10px;
+    padding-bottom: 20px;
+
+}
+.sys-info .widget-main li{
+    list-style: none;
+    border-bottom:1px dashed #d6e0e7;
+    line-height: 46px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding:0 5px;
+    color:#666;
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-weight: 100;
+}
+.ad-qbox{
+    padding-bottom:20px;
+}
+.ad-qbox>div{
+    margin-bottom:20px;
+}
+
+
+@media screen and (max-width: 1200px) {
+}
+@media screen and (min-width: 1200px ) and(max-width: 1600px) {
+}
+@media screen and (min-width: 1600px ) {
+
+}

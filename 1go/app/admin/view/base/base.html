@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{block name="title"}{/block}</title>
+    <meta name="keywords" content="{$keywords|default=''}" />
+    <meta name="description" content="{$description|default=''}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {include file="base/common_css" /}
+    {block name="css"}{/block}
+
+</head>
+
+<body>
+
+{include file="base/navbar" /}
+
+<div class="main-container" id="main-container">
+
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+
+        <div class="sidebar" id="sidebar">
+
+
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts" style="display:none;">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <button class="btn btn-success">
+                        <i class="icon-signal"></i>
+                    </button>
+
+                    <button class="btn btn-info">
+                        <i class="icon-pencil"></i>
+                    </button>
+
+                    <button class="btn btn-warning">
+                        <i class="icon-group"></i>
+                    </button>
+
+                    <button class="btn btn-danger">
+                        <i class="icon-cogs"></i>
+                    </button>
+                </div>
+
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success"></span>
+
+                    <span class="btn btn-info"></span>
+
+                    <span class="btn btn-warning"></span>
+
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!-- #sidebar-shortcuts -->
+            {:W('Menu/show_menu')}<!--菜单-->
+
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left"
+                   data-icon2="icon-double-angle-right"></i>
+            </div>
+
+
+        </div>
+
+        <div class="main-content">
+            {block name="content"}{/block}
+
+        </div><!-- /.main-content -->
+        <div class="ace-settings-container" id="ace-settings-container">
+            <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                <i class="icon-cog bigger-150"></i>
+            </div>
+
+            <div class="ace-settings-box" id="ace-settings-box">
+                <div>
+                    <div class="pull-left">
+                        <select id="skin-colorpicker" class="hide">
+                            <option data-skin="default" value="#438EB9">#438EB9</option>
+                            <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                            <option data-skin="skin-2" value="#C6487E">#C6487E</option>
+                            <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                        </select>
+                    </div>
+                    <span>&nbsp; 选择皮肤</span>
+                </div>
+
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar"/>
+                    <label class="lbl" for="ace-settings-navbar"> 固定标题</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar"/>
+                    <label class="lbl" for="ace-settings-sidebar">固定侧边</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs"/>
+                    <label class="lbl" for="ace-settings-breadcrumbs"> 固定面包屑</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl"/>
+                    <label class="lbl" for="ace-settings-rtl">菜单转移</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container"/>
+                    <label class="lbl" for="ace-settings-add-container">
+                        缩小
+                        <b>.放大</b>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+
+</div>
+<div class="m-footer">
+    <div class="m-copyright">
+        <div class="g-wrap">
+            <div class="m-copyright-logo">
+                <a href="http://www.mengdie.com" target="_blank">
+                    <img src="http://7xtj6t.com2.z0.glb.qiniucdn.com/src/image/logo-mengdie-bot.png" width="130"></a>
+                <!--<a href="http://www.mengdie.com" target="_blank"><img src="/theme/default/img/lingjiang_logo.png" width="130"></a>-->
+                <a href="http://1.xiangchang.com" target="_blank">
+                    <img src="/theme/default/img/yy_logo.png" width="117"></a>
+            </div>
+            <div class="m-copyright-txt">
+                <p> Powered by LingJiang tech. © 2016 | 苏ICP备16018502号-4</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--[if lt IE 9]>
+{js href="__assets__/js/html5shiv.js" /}
+{js href="__assets__/js/respond.min.js" /}
+<![endif]-->
+{include file="base/common_js" /}
+{js href="__assets__/js/bootstrap.min.js" /}
+{js href="__assets__/js/typeahead-bs2.min.js" /}
+{js href="__assets__/js/ace-elements.min.js" /}
+{js href="__assets__/js/ace.min.js" /}
+{js href="__assets__/js/ace-extra.min.js"/}
+{js href="__assets__/js/jquery.mobile.custom.min.js" /}
+{block name="js"}{/block}
+
+<script type="text/javascript">
+    try {
+        ace.settings.check('sidebar', 'collapsed')
+
+        ace.settings.check('main-container', 'fixed')
+
+        ace.settings.check('sidebar', 'fixed')
+    } catch (e) {
+    }
+</script>
+<div style="display:none">
+    {include file="base/base_url" /}
+</div>
+</body>
+</html>

@@ -1,0 +1,315 @@
+{extend name="base/base"/}
+{block name="title"}我的奖品{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css"
+{css href="__static__/css/uc_win.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <div class="m-user-frame-colMain m-user-frame-colMain-noLeft">
+                    <div class="m-user-frame-content">
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="{:dwz_filter('ucenter/index')}">我的夺宝</a>
+                                <span class="w-crumbs-split">&gt;</span></li>
+                            <li class="w-crumbs-item">
+                                <a href="{:dwz_filter('ucenter/luck')}">幸运记录</a>
+                                <span class="w-crumbs-split">&gt;</span>
+                            </li>
+                            <li class="w-crumbs-item w-crumbs-active">记录详情</li>
+                        </ul>
+                        <div class="m-winDetail">
+                            <div class="winDetail-progress">
+                                <ol class="inner">
+                                    <li class="step step-first step-1 {$luck_info.logistics_status>=1?' act':' '}">
+                                        <p class="name">1. 获得商品</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-2 {$luck_info.logistics_status>=2?' act':' '}">
+                                        <p class="name">2. 确认收货地址</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-3 {$luck_info.logistics_status>=3?' act':' '}">
+                                        <p class="name">3. 商品派发</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-4 {$luck_info.logistics_status>=4?' act':' '}">
+                                        <p class="name">4. 确认收货</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-5 {$luck_info.logistics_status>=5?' act':' '}">
+                                        <p class="name">5. 晒单分享</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                </ol>
+                            </div>
+                            {switch name="luck_info.logistics_status"}
+                            {case value="0" break="0"}{/case}
+                            {case value="1"}
+                            <!--确认收货地址-->
+                            <div class="winDetail-info">
+                                <div class="title">
+                                    <div class="status" pro="status">
+                                        当前状态：确认收货地址
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <div class="address" tag="address" module="address/Address" selectable="true"
+                                         module-id="module-7" module-launched="true">
+                                        <div id="pro-view-9">
+                                            <div class="w-address-bar" id="pro-view-13">
+                                                <div class="address-bar-title">
+                        <span class="title-txt">
+                            已保存的有效收货地址
+                        </span>
+                                                    <a class="title-btn" href="{:dwz_filter('ucenter/addr')}" pro="addAddress" style="display: block;">
+                                                        管理收货地址
+                                                    </a>
+                                                </div>
+                                                <ul pro="addressbar" class="bar-view">
+                                                    <li class="bar-header f-clear">
+                                                        <div class="bar-item receiver">
+                                                            收货人
+                                                        </div>
+                                                        <div class="bar-item address">
+                                                            收货地址
+                                                        </div>
+                                                        <div class="bar-item mobile">
+                                                            联系电话
+                                                        </div>
+                                                    </li>
+                                                    {volist name="addr_list" id="each_addr"}
+                                                    <li class="address-bar f-clear {$each_addr.type==1?' bar-selected':' '}" data-addr_id="{$each_addr.id}">
+                                                        <label class="w-radio" id="pro-view-18" style="float: left; margin: 18px 0px 8px; padding: 0px 8px;">
+                                                            <input type="radio" form="confirm_addr_frm" name="addr_id_sel" value="{$each_addr.id}" {$each_addr.type==1?' checked="checked"':' '}>
+                                                        </label>
+                                                        <div class="bar-item receiver {$each_addr.type==1?' bar-selected':' '}">
+                                                            {$each_addr.name|htmlspecialchars}
+                                                        </div>
+                                                        <div class="bar-item address">
+                                                            {$each_addr.provice|htmlspecialchars}/
+                                                            {$each_addr.city|htmlspecialchars}/
+                                                            {$each_addr.area|htmlspecialchars}/
+                                                            {$each_addr.address|htmlspecialchars}
+                                                        </div>
+                                                        <div class="bar-item mobile">
+                                                            {$each_addr.phone|htmlspecialchars}
+                                                        </div>
+                                                        <i class="selected-ico">
+                                                        </i>
+                                                    </li>
+                                                    {/volist}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form action="{:U('ucenter/luck_detail',['id'=>$luck_info['id']])}" id="confirm_addr_frm" method="post">
+                                        <input type="hidden" name="addr_id" id="addr_id">
+                                        <input type="hidden" name="step" value="1">
+                                        <input type="hidden" name="id" value="{$luck_info.id}">
+                                    <div pro="submit" class="submit">
+                                        <a href="javascript:;" class="w-button w-button-xl w-button-main" type="button" id="confirm_addr">
+                                        <span>
+                                            确认收货地址
+                                        </span>
+                                        </a>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {/case}
+                            {case value="2"}
+                            <!--等待派发-->
+                            <div class="winDetail-info">
+                                <div class="title">
+                                    <div class="status" pro="status">当前状态：等待商品派发</div>
+                                    <div class="tips">
+                                        已收到您填写/确认的配送地址信息，我们会尽快处理，请您耐心等候！
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    <div class="addressInfo">
+                                        <div class="name"><strong>收货信息</strong></div>
+                                        <div class="cont">
+                                            <p>收 货 人：{$address_data.name|htmlspecialchars}</p>
+                                            <p>联系电话：
+                                                {$address_data.phone|htmlspecialchars}
+                                            </p>
+                                            <p>收货地址：
+                                                {$address_data.provice|htmlspecialchars}/
+                                                {$address_data.city|htmlspecialchars}/
+                                                {$address_data.area|htmlspecialchars}/
+                                                {$address_data.address|htmlspecialchars}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            {/case}
+                            {case value="3"}
+                            <!--等待确认收货-->
+                            <div class="winDetail-info">
+                                <div class="title">
+                                    <form action="{:U('ucenter/luck_detail',['id'=>$luck_info['id']])}" id="confirm_prize_frm" method="post">
+                                        <input type="hidden" name="step" value="3">
+                                        <input type="hidden" name="id" value="{$luck_info.id}">
+                                    </form>
+                                    <div class="status">当前状态：商品已派发<button class="w-button w-button-main" type="submit" form="confirm_prize_frm">
+                                        <span>确认收货</span></button></div>
+                                    <div class="tips">
+                                        我们已将商品发往您填写/确认的配送地址信息，请您耐心等候！
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    <div class="addressInfo">
+                                        <div class="name"><strong>收货信息</strong></div>
+                                        <div class="cont">
+                                            <p>收 货 人：{$address_data.name|htmlspecialchars}</p>
+                                            <p>联系电话：
+                                                {$address_data.phone|htmlspecialchars}
+                                            </p>
+                                            <p>收货地址：
+                                                {$address_data.provice|htmlspecialchars}/
+                                                {$address_data.city|htmlspecialchars}/
+                                                {$address_data.area|htmlspecialchars}/
+                                                {$address_data.address|htmlspecialchars}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="addressInfo">
+                                        <div class="name"><strong>物流信息</strong></div>
+                                        <div class="cont">
+                                            <p>物流公司：{$luck_info.logistics_company}</p>
+                                            <p>运单号码：{$luck_info.logistics_number}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/case}
+                            {case value="4"}
+                            <!--请进行晒单-->
+                            <div class="winDetail-info">
+                            <div class="title">
+                                <div class="status">当前状态：商品已经签收<a class="w-button w-button-main" href="{:U('ucenter/share',['id'=>$luck_info['show_order']])}">进行晒单</a></div>
+                                <div class="tips">
+                                    我们已将商品发往您填写/确认的配送地址信息，请您耐心等候！
+                                </div>
+                            </div>
+
+                                <div class="content">
+                                    <div class="addressInfo">
+                                        <div class="name"><strong>收货信息</strong></div>
+                                        <div class="cont">
+                                            <p>收 货 人：{$address_data.name|htmlspecialchars}</p>
+                                            <p>联系电话：
+                                                {$address_data.phone|htmlspecialchars}
+                                            </p>
+                                            <p>收货地址：
+                                                {$address_data.provice|htmlspecialchars}/
+                                                {$address_data.city|htmlspecialchars}/
+                                                {$address_data.area|htmlspecialchars}/
+                                                {$address_data.address|htmlspecialchars}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="addressInfo">
+                                        <div class="name"><strong>物流信息</strong></div>
+                                        <div class="cont">
+                                            <p>物流公司：{$luck_info.logistics_company}</p>
+                                            <p>运单号码：{$luck_info.logistics_number}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                            {/case}
+                            {/switch}
+                            <table class="w-table winDetail-goodsInfo">
+                                <thead>
+                                <tr>
+                                    <th class="col1">商品</th>
+                                    <th class="col2"></th>
+                                    <th class="col3">价格(香肠)</th>
+                                    <th class="col4">数量</th>
+                                    <th class="col5">商品状态</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col1">
+                                        <!-- 商品通用模板 -->
+                                        <div class="w-goods">
+                                            <div class="w-goods-pic">
+                                                <a href="#" target="_blank">
+                                                    <img src="__image_path__{$luck_info.goods_image}" style="max-width: 80px;max-height: 80px;" alt="{$luck_info.goods_name|htmlspecialchars}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col2">
+                                        <div class="w-goods">
+                                            <p class="w-goods-title f-txtabb"><a href="#" target="_blank">{$luck_info.goods_name|htmlspecialchars}</a></p>
+                                            <div class="code">幸运号码：<strong class="txt-impt">{$luck_info.luck_num|num_base_mask}</strong></div>
+                                            <div class="calcTime">揭晓时间：{$luck_info.luck_time|microtime_format=1,'Y-m-d H:i:s'}</div>
+                                        </div>
+                                    </td>
+                                    <td class="col3">
+                                        {$luck_info.order_num}
+                                    </td>
+                                    <td class="col4">1</td>
+                                    <td class="col5">
+                                        {switch name="luck_info.logistics_status|intval"}
+                                        {case value="0"}<span class="txt-blue">等待确认</span>{/case}
+                                        {case value="1"}<span class="txt-blue">未填写收货地址</span>{/case}
+                                        {case value="2"}<span class="txt-suc">等待发货</span>{/case}
+                                        {case value="3"}<span class="txt-suc">等待收货</span>{/case}
+                                        {case value="4"}<span class="txt-suc">已签收</span>{/case}
+                                        <!--{case value="5"}<span class="txt-suc">已完成</span>{/case}-->
+                                        {/switch}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--弹出层用遮罩-->
+<div class="w-mask" style="display: none;"></div>
+<!--确认信息弹出层-->
+<div class="w-msgbox" tabindex="0" style="display:none;left: 700.5px; top: 110px;margin: auto;">
+    <a pro="close" href="javascript:void(0);" class="w-msgbox-close">&times;</a>
+    <div class="w-msgbox-hd" pro="header"></div>
+    <div class="w-msgbox-bd w-msgbox-bd-hasIcon" pro="entry">
+        <i class="w-msgbox-ico ico ico-alert-m"></i>
+        <div class="w-msgbox-cont">
+            <h2 class="w-msgbox-title">确定提交以下收货地址吗？</h2>
+            <div id="pro-view-65">
+                <p>收货人：<span class="receiver"></span></p>
+                <p>联系电话：<span class="mobile"></span></p>
+                <p>收货地址：<span class="address"></span></p>
+                <p class="txt-red">（注意：确认之后不能修改！）</p>
+            </div>
+        </div>
+    </div>
+    <div pro="footer" class="w-msgbox-ft">
+        <button class="w-button w-button-main confirm_ok" type="button" id="pro-view-67"><span>确定</span></button>
+        <button class="w-button w-button-aside confirm_cancel" type="button" id="pro-view-68"><span>取消</span></button>
+    </div>
+</div>
+
+{/block}
+{block name="user_js"}
+{js href="__yyg__/js/ucenter/luck_detail.js" /}
+{/block}

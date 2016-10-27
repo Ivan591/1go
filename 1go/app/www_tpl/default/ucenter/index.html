@@ -1,0 +1,550 @@
+{extend name="base/base"/}
+{block name="title"}我的香肠{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{css href="__plugin__/webuploader/webuploader.css" /}
+{/block}
+
+{block name="title"}我的首页{/block}
+{block name='content'}
+<form id="form_content" autocomplete="off">
+    <div class="g-body">
+        <div class="m-user">
+            <div class="g-wrap">
+                <div class="m-user-frame-wraper">
+                    <!--用户中心  菜单-->
+                    {include file="ucenter/_nav" /}
+                    <!--用户中心 main-->
+                    <div class="m-user-frame-colMain ">
+                        <div class="m-user-frame-content" pro="userFrameWraper">
+
+                            <div module-launched="true" module-id="module-3" id="pro-view-2" module="user/index/Index">
+                                <div class="m-user-frame-content-bd">
+                                    <div class="m-user-frame-content-m">
+                                        <div module-launched="true" module-id="module-8" id="pro-view-9" class="m-user-comm-infoBox f-clear" module="user/common/infoBox/InfoBox">
+                                            <a pro="UC_avatarEdit" class="w-user-avatarEdit w-user-avatarEdit-160 m-user-comm-infoBox-face" href="javascript:void(0);">
+                                                <img pro="avatar" src="__image_path__{$info.img_path|default='__AVATAR_DEFAULT__'}" width="160" height="160">
+                                            </a>
+                                            <div class="m-user-comm-infoBox-cont">
+                                                <ul>
+                                                    <li class="item nickname">
+
+                                                        <div pro="nameShow">
+                                                            <span class="txt" pro="nickname">{$info.nick_name|default=''}</span>
+                                                            <a pro="UC_nicknameEdit" href="javascript:void(0)" class="optLink" style="display:none;">编辑</a>
+                                                        </div>
+                                                        <div class="nameEdit" pro="nameEdit" style="display:none"></div>
+
+                                                    </li>
+                                                    <li class="item"><span class="txt">ID：<strong>{$info.id|default=''}</strong></span></li>
+                                                    <li class="item">
+                                                        <span class="txt">账户余额：<strong class="txt-impt">{$info.money|default=0}根香肠</strong></span>
+                                                        <a pro="UC_goRecharge" href="{:dwz_filter('pay/recharge')}" class="w-button w-button-s"><span>充值</span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="m-user-index-duobaoRecord">
+                                            <div class="m-user-comm-title m-user-comm-titleHasBdr">
+                                                <a class="ext" href="/user/duobao.do?cid=78203681">查看更多记录</a>
+                                                <h3 class="title">我最近的夺宝</h3>
+                                            </div>
+
+                                            <div module-launched="true" module-id="module-11" tag="moduleRecord" module="duobaoRecord/DuobaoRecord" cid="78203681" status="9" region="4" full-list="false" pagesize="6" class="m-user-duobao">
+
+                                                <div id="pro-view-34">
+                                                    <table class="w-table m-user-comm-table" pro="listHead">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="col-info">商品信息</th>
+                                                            <th class="col-period">期号</th>
+                                                            <th class="col-opt">操作</th>
+                                                        </tr>
+                                                        </thead>
+                                                    </table>
+                                                    <div pro="duobaoList" class="duobaoList duobaoList-simple">
+                                                        {empty name="order_list"}
+                                                        <div id="pro-view-0">
+                                                            <div pro="duobaoList" class="duobaoList m-user-duobao-multi">
+                                                                <div id="pro-view-49" class="m-user-comm-empty"><b class="ico ico-face-sad"></b>
+                                                                    <div class="i-desc">您一年内没有多期夺宝记录哦~</div>
+                                                                    <div class="i-opt"><a href="/" class="w-button w-button-main w-button-xl">马上去逛逛</a></div>
+                                                                </div>
+                                                            </div>
+                                                            <div pro="pager" class="pager"></div>
+                                                        </div>
+                                                        {else/}
+                                                        {volist name='order_list' id='vo'}
+                                                        {switch name="vo.n_status"}
+                                                        {case value="1"}
+                                                        <table id="pro-view-{$vo.o_id}" class="m-user-comm-table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="col-info">
+                                                                    <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                                        <div class="w-goods-pic">
+                                                                            <a target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">
+                                                                                <img src="__image_path__{$vo.g_image}" alt="{$vo.g_name|htmlspecialchars}" width="74" height="74">
+                                                                            </a>
+
+                                                                        </div>
+                                                                        <p class="w-goods-title f-txtabb">
+                                                                            <a title="{$vo.g_name|htmlspecialchars}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">{$vo.g_name|htmlspecialchars}</a>
+                                                                        </p>
+                                                                        <p class="w-goods-price">总需：{$vo.n_sum}人次</p>
+                                                                        <div class="w-progressBar">
+                                                                            <p class="w-progressBar-wrap">
+                                                                                <span class="w-progressBar-bar" style="width:{$vo.n_percent}%"></span>
+                                                                            </p>
+                                                                            <ul class="w-progressBar-txt f-clear">
+                                                                                <li class="w-progressBar-txt-l">已完成{$vo.n_percent}%，剩余<span class="txt-residue">{$vo.n_remain}</span></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="col-period">{$vo.n_id|num_base_mask}</td>
+                                                                <td class="col-joinNum">{$vo.num}人次</td>
+                                                                <td class="col-status">
+
+                                                                    <span class="txt-suc">正在进行</span>
+
+
+                                                                </td>
+                                                                <td class="col-opt">
+                                                                    <a class="w-button w-button-main" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$vo['g_id']])}" target="_blank"><span>追加人次</span></a>
+                                                                    <p><a href="javascript:void(0)" pro="viewCode" data-luckcode="" class="see_luck_num" data-uid="{:login_id()}" data-nper="{$vo.n_id}">查看夺宝号码</a></p>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        {/case}
+                                                        {case value="2"}
+                                                        <table id="pro-view-36" class="m-user-comm-table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="col-info">
+                                                                    <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                                        <div class="w-goods-pic">
+                                                                            <a target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">
+                                                                                <img src="__image_path__{$vo.g_image}" alt="{$vo.g_name|htmlspecialchars}" width="74" height="74">
+                                                                            </a>
+                                                                        </div>
+                                                                        <p class="w-goods-title f-txtabb">
+                                                                            <a title="{$vo.g_name|htmlspecialchars}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">{$vo.g_name|htmlspecialchars}</a>
+                                                                        </p>
+                                                                        <p class="w-goods-price">总需：{$vo.n_sum}人次</p>
+                                                                        <div class="w-progressBar">
+                                                                            <p class="w-progressBar-wrap">
+                                                                                <span class="w-progressBar-bar" style="width:100%"></span>
+                                                                            </p>
+                                                                            <ul class="w-progressBar-txt f-clear">
+                                                                                <li class="w-progressBar-txt-l">已完成100%，剩余<span class="txt-residue">0</span></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="col-period">{$vo.n_id|num_base_mask}</td>
+                                                                <td class="col-joinNum">{$vo.num}人次</td>
+                                                                <td class="col-status">
+                                                                    <span class="txt-wait">等待揭晓</span>
+                                                                </td>
+                                                                <td class="col-opt">
+                                                                    <a class="w-button w-button-main" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$vo['g_id']])}" target="_blank"><span>追加人次</span></a>
+                                                                    <p><a href="javascript:void(0)" pro="viewCode" data-luckcode="" class="see_luck_num" data-uid="{:login_id()}" data-nper="{$vo.n_id}">查看夺宝号码</a></p>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        {/case}
+                                                        {case value="3"}
+                                                        <table id="pro-view-21" class="m-user-comm-table">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="col-info">
+                                                                    <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                                        <div class="w-goods-pic">
+                                                                            <a target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">
+                                                                                <img src="__image_path__{$vo.g_image}" alt="{$vo.g_name|htmlspecialchars}" width="74" height="74">
+                                                                            </a>
+                                                                        </div>
+                                                                        <p class="w-goods-title f-txtabb">
+                                                                            <a title="{$vo.g_name|htmlspecialchars}" target="_blank" href="{:dwz_filter('goods/detail',['id'=>$vo['g_id'].'-'.$vo['n_id']])}">{$vo.g_name|htmlspecialchars}</a>
+                                                                        </p>
+                                                                        <p class="w-goods-price">总需：{$vo.n_sum}人次</p>
+                                                                        <div class="winner">
+                                                                            <div class="name">获得者：<a href="#" title="{$vo.luck_user}">{$vo.luck_user}</a>（本期参与<strong class="txt-dark">{$vo.n_sum}</strong>人次）</div>
+                                                                            <div class="code">幸运代码：<strong class="txt-impt">{$vo.luck_num|num_base_mask}</strong></div>
+                                                                            <div class="time_">揭晓时间：{$vo.open_time|microtime_format=3,'Y-m-d H:i:s'}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="col-period">{$vo.n_id|num_base_mask}</td>
+                                                                <td class="col-joinNum">{$vo.num}人次</td>
+                                                                <td class="col-status">
+                                                                    <span>已揭晓</span>
+                                                                </td>
+                                                                <td class="col-opt">
+                                                                    <a class="w-button w-button-main" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$vo['g_id']])}" target="_blank"><span>追加人次</span></a>
+                                                                    <p><a href="javascript:void(0)" pro="viewCode" data-luckcode="" class="see_luck_num" data-uid="{:login_id()}" data-nper="{$vo.n_id}">查看夺宝号码</a></p>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        {/case}
+                                                        {/switch}
+                                                        {/volist}
+                                                        {/empty}
+                                                    </div>
+                                                    <div pro="pager" class="pager"></div>
+                                                    <div pro="limitTips" class="limitTips" style="display:none"></div>
+                                                </div>
+                                            </div>
+                                            <div class="lineWhite"></div>
+                                        </div>
+                                    </div>
+                                    <div class="m-user-frame-content-r">
+                                        <div class="m-user-frame-extension">
+                                            <a href="/" target="_blank"><img src="http://res.126.net/p/dbqb/resupload/onlinepath/2016/1/11/6/eb6117c05b36eb22f6195a9065161486.jpg" alt="在这里，惊喜只卖1元"></a>
+                                        </div>
+                                        <div module-launched="true" module-id="module-10" tag="moduleHistory" module="user/viewhistory/ViewHistory" class="m-user-frame-history">
+
+                                            <!--<div id="pro-view-22"><h3 class="mTitle">我最近浏览的商品</h3>-->
+                                                <!--<div class="mCont">-->
+                                                    <!--<ul class="f-clear" pro="entry">-->
+                                                        <!--<li id="pro-view-23" class="item"><a href="/detail/117.html" target="_blank" title="Apple Mac Pro ME253CH/A"><img src="http://onegoods.nosdn.127.net/goods/117/8595f30e9a1e58f63a9b386bbca2ee46.png"-->
+                                                                                                                                                                          <!--alt="Apple Mac Pro ME253CH/A"></a></li>-->
+                                                        <!--<li id="pro-view-24" class="item"><a href="/detail/1899.html" target="_blank" title="绝对 Absolute 伏特加（原味） 700ml/瓶"><img-->
+                                                                <!--src="http://onegoods.nosdn.127.net/goods/1899/3b2718a127804e1b7d99a41295ada2fc.jpg" alt="绝对 Absolute 伏特加（原味） 700ml/瓶"></a></li>-->
+                                                        <!--<li id="pro-view-25" class="item"><a href="/detail/1859.html" target="_blank" title="气味图书馆 花觉香水礼盒 女士淡香水小样"><img src="http://onegoods.nosdn.127.net/goods/1859/ada9d4b556a934c8fc414a3613078bed.jpg"-->
+                                                                                                                                                                        <!--alt="气味图书馆 花觉香水礼盒 女士淡香水小样"></a></li>-->
+                                                        <!--<li id="pro-view-26" class="item"><a href="/detail/552.html" target="_blank" title="顶诺家庭牛排套餐10片装"><img src="http://onegoods.nosdn.127.net/goods/552/068b10992f05fcbf19c42d1bda3e3e6e.png"-->
+                                                                                                                                                               <!--alt="顶诺家庭牛排套餐10片装"></a></li>-->
+                                                        <!--<li id="pro-view-27" class="item"><a href="/detail/1880.html" target="_blank" title="气味图书馆 车载固体香水 自然系列 香薰罐头礼盒"><img src="http://onegoods.nosdn.127.net/goods/1880/8bffbd9d3882a81b552b9595da7f83b0.jpg"-->
+                                                                                                                                                                            <!--alt="气味图书馆 车载固体香水 自然系列 香薰罐头礼盒"></a></li>-->
+                                                        <!--<li id="pro-view-28" class="item"><a href="/detail/216.html" target="_blank" title="飞利浦（Philips）充电式声波震动牙刷"><img src="http://onegoods.nosdn.127.net/goods/216/9e6134565e00edf067bd12002713e7d2.png"-->
+                                                                                                                                                                        <!--alt="飞利浦（Philips）充电式声波震动牙刷"></a></li>-->
+                                                        <!--<li id="pro-view-29" class="item"><a href="/detail/1413.html" target="_blank" title="三星 SAMSUNG 曲面电视 UA65JU6800JXXZ 65英寸 超高清4K"><img-->
+                                                                <!--src="http://onegoods.nosdn.127.net/goods/1413/ffbefceee1814adfbd45f636b5c7a74c.png" alt="三星 SAMSUNG 曲面电视 UA65JU6800JXXZ 65英寸 超高清4K"></a></li>-->
+                                                        <!--<li id="pro-view-30" class="item"><a href="/detail/1093.html" target="_blank" title="Apple iPhone6s Plus 128G 颜色随机"><img-->
+                                                                <!--src="http://onegoods.nosdn.127.net/goods/1093/1613ccae60869faab080f8503580cb9e.png" alt="Apple iPhone6s Plus 128G 颜色随机"></a></li>-->
+                                                        <!--<li id="pro-view-31" class="item"><a href="/detail/348.html" target="_blank" title="Apple Watch Sport 38毫米 铝金属表壳 运动表带"><img-->
+                                                                <!--src="http://onegoods.nosdn.127.net/goods/348/edbde701b205bef7a89a92cce674e797.png" alt="Apple Watch Sport 38毫米 铝金属表壳 运动表带"></a></li>-->
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        </div>
+
+                                    </div>
+                                    <div class="f-clear"></div>
+
+                                    <div module-launched="true" module-id="module-7" tag="moduleRecommend" module="goodsRecommend/GoodsRecommend">
+                                        <div id="pro-view-127" class="w-goodsRecommend">
+                                            <!--<div class="w-hd"><h3 class="w-hd-title">推荐夺宝</h3><span>根据你的浏览记录推荐的商品</span><a pro="pswitch" class="w-hd-refresh" href="javascript:void(0);"><i class="ico ico-refresh"></i>换一批</a></div>-->
+                                            <!--<div class="w-recommend-bd">-->
+                                                <!--<ul class="w-goodsList f-clear" pro="goodsList">-->
+                                                    <!--<li id="pro-view-128" class="w-goodsList-item">-->
+                                                        <!--<div class="w-goods w-goods-brief">-->
+                                                            <!--<div class="w-goods-pic"><a href="/detail/1801.html" title="1箱8袋 | 百草味 在一起礼盒 坚果干果零食大礼包" target="_blank"><img alt="1箱8袋 | 百草味 在一起礼盒 坚果干果零食大礼包"-->
+                                                                                                                                                                         <!--src="http://onegoods.nosdn.127.net/goods/1801/aa87cbcde445de0f850e549543f30ec7.jpg"-->
+                                                                                                                                                                         <!--width="200" height="200"></a></div>-->
+                                                            <!--<p class="w-goods-title f-txtabb"><a title="1箱8袋 | 百草味 在一起礼盒 坚果干果零食大礼包" href="/detail/1801.html" target="_blank">1箱8袋 | 百草味 在一起礼盒 坚果干果零食大礼包</a></p>-->
+                                                            <!--<p class="w-goods-price">总需：159人次</p></div>-->
+                                                    <!--</li>-->
+                                                    <!--<li id="pro-view-129" class="w-goodsList-item">-->
+                                                        <!--<div class="w-goods w-goods-brief">-->
+                                                            <!--<div class="w-goods-pic"><a href="/detail/1723.html" title="巧克力与爱牌 Chocolate and Love 黑巧克力精选礼盒 400g" target="_blank"><img alt="巧克力与爱牌 Chocolate and Love 黑巧克力精选礼盒 400g"-->
+                                                                                                                                                                                      <!--src="http://onegoods.nosdn.127.net/goods/1723/1bad8f83a381d45c4ac350e8cbd89bf4.jpg"-->
+                                                                                                                                                                                      <!--width="200" height="200"></a></div>-->
+                                                            <!--<p class="w-goods-title f-txtabb"><a title="巧克力与爱牌 Chocolate and Love 黑巧克力精选礼盒 400g" href="/detail/1723.html" target="_blank">巧克力与爱牌 Chocolate and Love 黑巧克力精选礼盒 400g</a></p>-->
+                                                            <!--<p class="w-goods-price">总需：288人次</p></div>-->
+                                                    <!--</li>-->
+                                                    <!--<li id="pro-view-130" class="w-goodsList-item">-->
+                                                        <!--<div class="w-goods w-goods-brief">-->
+                                                            <!--<div class="w-goods-pic"><a href="/detail/1889.html" title="海购商品 MCM 男士短款钱包 棕色" target="_blank"><img alt="海购商品 MCM 男士短款钱包 棕色"-->
+                                                                                                                                                                 <!--src="http://onegoods.nosdn.127.net/goods/k/37569/be3078e9e51542757f93e4ebbcdc3b00.jpg"-->
+                                                                                                                                                                 <!--width="200" height="200"></a></div>-->
+                                                            <!--<p class="w-goods-title f-txtabb"><a title="海购商品 MCM 男士短款钱包 棕色" href="/detail/1889.html" target="_blank">海购商品 MCM 男士短款钱包 棕色</a></p>-->
+                                                            <!--<p class="w-goods-price">总需：1650人次</p></div>-->
+                                                    <!--</li>-->
+                                                    <!--<li id="pro-view-131" class="w-goodsList-item">-->
+                                                        <!--<div class="w-goods w-goods-brief">-->
+                                                            <!--<div class="w-goods-pic"><a href="/detail/1705.html" title="1箱6盒装 | 肯迪雅 candia 全脂纯牛奶 1L/盒" target="_blank"><img alt="1箱6盒装 | 肯迪雅 candia 全脂纯牛奶 1L/盒"-->
+                                                                                                                                                                            <!--src="http://onegoods.nosdn.127.net/goods/1705/f4430988da5110893ddf89e5bce76997.jpg"-->
+                                                                                                                                                                            <!--width="200" height="200"></a></div>-->
+                                                            <!--<p class="w-goods-title f-txtabb"><a title="1箱6盒装 | 肯迪雅 candia 全脂纯牛奶 1L/盒" href="/detail/1705.html" target="_blank">1箱6盒装 | 肯迪雅 candia 全脂纯牛奶 1L/盒</a></p>-->
+                                                            <!--<p class="w-goods-price">总需：150人次</p></div>-->
+                                                    <!--</li>-->
+                                                    <!--<li id="pro-view-132" class="w-goodsList-item">-->
+                                                        <!--<div class="w-goods w-goods-brief">-->
+                                                            <!--<div class="w-goods-pic"><a href="/detail/1862.html" title="Calvin Klein 卡文克莱 女士Ladies系列 K2G23620 女士石英表" target="_blank"><img alt="Calvin Klein 卡文克莱 女士Ladies系列 K2G23620 女士石英表"-->
+                                                                                                                                                                                          <!--src="http://onegoods.nosdn.127.net/goods/1862/132eedf5ce5d235c4f2ed29f7e61ba92.jpg"-->
+                                                                                                                                                                                          <!--width="200" height="200"></a></div>-->
+                                                            <!--<p class="w-goods-title f-txtabb"><a title="Calvin Klein 卡文克莱 女士Ladies系列 K2G23620 女士石英表" href="/detail/1862.html" target="_blank">Calvin Klein 卡文克莱 女士Ladies系列 K2G23620 女士石英表</a></p>-->
+                                                            <!--<p class="w-goods-price">总需：1899人次</p></div>-->
+                                                    <!--</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <script type="text/template" id="tplItemDuobaoNormal">
+                                <table class="m-user-comm-table">
+                                    <tbody>
+                                    <tr
+                                    {{#isMyWin}} class="getWin"{{/isMyWin}}>
+                                    <td class="col-info">
+                                        <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                            <div class="w-goods-pic">
+                                                <a target="_blank" href="{{goodsUrl}}">
+                                                    <img src="{{goods.smallPic}}" alt="{{goods.gname}}" width="74" height="74">
+                                                </a>
+                                                {{#isMyWin}}<b class="ico ico-winner"></b>{{/isMyWin}}
+                                            </div>
+                                            <p class="w-goods-title f-txtabb">
+                                                {{#isTen}}<span class="type type-ten">十元专区</span>{{/isTen}}
+                                                {{#isMulti}}<span class="type type-hd">多期参与</span>{{/isMulti}}
+                                                {{#isFree}}<span class="type type-free">赠币专区</span>{{/isFree}}
+                                                {{#isLimit}}<span class="type type-limit">限时夺宝</span>{{/isLimit}}
+                                                <a title="{{goods.gname}}" target="_blank" href="{{goodsUrl}}">{{goods.gname}}</a>
+                                            </p>
+                                            <p class="w-goods-price">总需：{{goods.totalDesc}}</p>
+
+                                            {{#isShowPreprogress}}
+                                            <div class="w-progressBar">
+                                                <p class="w-progressBar-wrap">
+                                                    <span class="w-progressBar-bar" style="width:{{percent}}"></span>
+                                                </p>
+                                                <ul class="w-progressBar-txt f-clear">
+                                                    <li class="w-progressBar-txt-l">已完成{{percent}}，剩余<span class="txt-residue">{{remain}}</span></li>
+                                                </ul>
+                                            </div>
+                                            {{/isShowPreprogress}}
+
+
+                                            {{^isShowPreprogress}}
+                                            <div class="winner">
+                                                <div class="name">获得者：<a href="/user/index.do?cid={{ownerId}}" title="{{ownerName}}">{{ownerName}}</a>（本期参与<strong class="txt-dark">{{ownerTotal}}</strong>人次）</div>
+                                                <div class="code">幸运代码：<strong class="txt-impt">{{luckyCode}}</strong></div>
+                                                <div class="time">揭晓时间：{{calcTime}}</div>
+                                            </div>
+                                            {{/isShowPreprogress}}
+
+                                        </div>
+
+                                    </td>
+                                    <td class="col-period">{{period}}</td>
+                                    <td class="col-joinNum">{{num}}人次</td>
+                                    <td class="col-status">
+                                        {{#isExpire}}<span>已结束</span>{{/isExpire}}
+                                        {{#isPerioding}}<span class="txt-suc">正在进行</span>{{/isPerioding}}
+                                        {{#iswillReveal}}<span class="txt-wait">等待揭晓</span>{{/iswillReveal}}
+                                        {{#isRevealed}}<span>已揭晓</span>{{/isRevealed}}
+                                    </td>
+                                    <td class="col-opt">
+                                        <p>我参与<span class="txt-impt">{{num}}</span>人次 <a href="javascript:void(0)" pro="viewCode" data-gid="{{goods.gid}}" data-period="{{period}}" data-cid="78203681" data-luckCode="{{luckyCode}}">查看</a></p>
+
+                                        {{#saleOff}}<a class="w-button w-button-disabled w-button-main" href="javascript:void(0)"><span>暂无最新</span></a>{{/saleOff}}
+                                        {{^saleOff}}
+                                        {{#isPerioding}}
+                                        <a class="w-button w-button-main" href="{{goods.url}}" target="_blank"><span>追加人次</span></a>
+                                        {{/isPerioding}}
+                                        {{^isPerioding}}
+                                        <a class="w-button w-button-main" href="{{goods.url}}" target="_blank"><span>参与最新</span></a>
+                                        {{/isPerioding}}
+                                        {{/saleOff}}
+                                    </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </script>
+
+
+                            <script type="text/template" id="tplItemDuobaoOrder">
+
+                                <div class="m-user-duobao-order-title">
+                                    <div class="orderNo">订单号：{{code}} &nbsp;&nbsp;&nbsp;&nbsp; 夺宝时间：{{time}}</div>
+                                    <div class="opt">
+                                        {{#isPayAble}}
+                                        <a class="w-button w-button-main  w-button-s" href="{{payUrl}}"><span>支付订单</span></a>
+                                        {{/isPayAble}}&nbsp;
+                                    </div>
+                                    <div class="price">总价：<span class="txt-impt">{{price}}夺宝币</span></div>
+                                </div>
+
+
+                                {{#multi}}
+                                <table class="m-user-comm-table multi">
+                                    <tbody>
+                                    <tr>
+                                        <td class="col-info">
+                                            <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                <div class="w-goods-pic">
+                                                    <a target="_blank" href="{{goods.url}}">
+                                                        <img src="{{goods.smallPic}}" alt="{{goods.gname}}" width="74" height="74">
+                                                    </a>
+                                                </div>
+                                                <p class="w-goods-title f-txtabb">
+                                                    {{#isTen}}<span class="type type-ten">十元专区</span>{{/isTen}}
+                                                    <span class="type type-hd">多期参与</span>
+                                                    <a title="{{goods.gname}}" target="_blank" href="{{goods.url}}">{{goods.gname}}</a>
+                                                </p>
+                                                <p class="w-goods-price">总需：{{goods.totalDesc}}</p>
+                                            </div>
+                                        </td>
+
+                                        <td class="col-periodNum">
+                                            {{periodNum}}期
+                                            {{#isPerioding}}<p>（剩余{{remainNum}}期）</p>{{/isPerioding}}
+                                        </td>
+                                        <td class="col-joinNum">
+                                            {{duobaoNum}}人次
+                                        </td>
+                                        <td class="col-status">
+                                            {{#isExpire}}<span>已结束</span>{{/isExpire}}
+                                            {{#isPerioding}}<span class="txt-suc">正在进行</span>{{/isPerioding}}
+                                            {{#isCancel}}<span>已取消</span>{{/isCancel}}
+                                        </td>
+                                        <td class="col-opt">&nbsp;</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                {{/multi}}
+
+                                {{#record}}
+                                <table class="m-user-comm-table normal">
+                                    <tbody>
+                                    <tr
+                                    {{#isRevealed}} class="isRevealed"{{/isRevealed}}>
+                                    <td class="col-info">
+                                        <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                            <div class="w-goods-pic">
+                                                <a target="_blank" href="{{goods.url}}">
+                                                    <img src="{{goods.smallPic}}" alt="{{goods.gname}}" width="74" height="74">
+                                                </a>
+                                                {{#isMyWin}}<b class="ico ico-winner"></b>{{/isMyWin}}
+                                            </div>
+                                            <p class="w-goods-title f-txtabb">
+                                                {{#isTen}}<span class="type type-ten">十元专区</span>{{/isTen}}
+                                                {{#isMulti}}<span class="type type-hd">多期参与</span>{{/isMulti}}
+                                                {{#isFree}}<span class="type type-free">赠币专区</span>{{/isFree}}
+                                                {{#isLimit}}<span class="type type-limit">限时夺宝</span>{{/isLimit}}
+                                                <a title="{{goods.gname}}" target="_blank" href="{{goods.url}}">{{goods.gname}}</a>
+                                            </p>
+                                            <p class="w-goods-price">总需：{{goods.totalDesc}}</p>
+
+                                            {{#isShowPreprogress}}
+                                            <div class="w-progressBar">
+                                                <p class="w-progressBar-wrap">
+                                                    <span class="w-progressBar-bar" style="width:{{percent}}"></span>
+                                                </p>
+                                                <ul class="w-progressBar-txt f-clear">
+                                                    <li class="w-progressBar-txt-l">已完成{{percent}}，剩余<span class="txt-residue">{{remain}}</span></li>
+                                                </ul>
+                                            </div>
+                                            {{/isShowPreprogress}}
+
+
+                                            {{^isShowPreprogress}}
+                                            <div class="winner">
+                                                <div class="name">获得者：<a href="/user/index.do?cid={{ownerId}}" title="{{ownerName}}">{{ownerName}}</a>（本期参与<strong class="txt-dark">{{ownerTotal}}</strong>人次）</div>
+                                                <div class="code">幸运代码：<strong class="txt-impt">{{luckyCode}}</strong></div>
+                                                <div class="time">揭晓时间：{{calcTime}}</div>
+                                            </div>
+                                            {{/isShowPreprogress}}
+
+                                        </div>
+
+                                    </td>
+                                    <td class="col-period">{{period}}</td>
+                                    <td class="col-joinNum">{{num}}人次</td>
+                                    <td class="col-status">
+                                        {{#isExpire}}<span>已结束</span>{{/isExpire}}
+                                        {{#isPerioding}}<span class="txt-suc">正在进行</span>{{/isPerioding}}
+                                        {{#iswillReveal}}<span class="txt-wait">等待揭晓</span>{{/iswillReveal}}
+                                        {{#isRevealed}}<span>已揭晓</span>{{/isRevealed}}
+                                    </td>
+                                    <td class="col-opt">&nbsp;</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                {{/record}}
+                                <div style="margin-bottom:20px;"></div>
+                            </script>
+
+
+                            <script type="text/template" id="tplItemDuobaoMulti">
+                                <table class="m-user-comm-table">
+                                    <tbody>
+                                    <tr>
+                                        <td class="col-info">
+                                            <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                <div class="w-goods-pic">
+                                                    <a target="_blank" href="{{goods.url}}">
+                                                        <img src="{{goods.smallPic}}" alt="{{goods.gname}}" width="74" height="74">
+                                                    </a>
+                                                </div>
+                                                <p class="w-goods-title f-txtabb">
+                                                    {{#isTen}}<span class="type type-ten">十元专区</span>{{/isTen}}
+                                                    <a title="{{goods.gname}}" target="_blank" href="{{goods.url}}">{{goods.gname}}</a>
+                                                </p>
+                                                <p class="w-goods-price">总需：{{goods.totalDesc}}</p>
+                                            </div>
+                                        </td>
+                                        <td class="col-time">{{time}}</td>
+                                        <td class="col-joinNum">{{duobaoNum}}人次</td>
+                                        <td class="col-periodNum">
+                                            {{periodNum}}期
+                                            {{#isPerioding}}<p>（剩余{{remainNum}}期）</p>{{/isPerioding}}
+                                        </td>
+                                        <td class="col-status">
+                                            {{#isExpire}}<span>已结束</span>{{/isExpire}}
+                                            {{#isPerioding}}<span class="txt-suc">正在进行</span>{{/isPerioding}}
+                                            {{#isCancel}}<span>已取消</span>{{/isCancel}}
+                                        </td>
+                                        <td class="col-opt"><a target="_blank" href="/user/multiDetail.do?gid={{goods.gid}}&mid={{id}}&cid=78203681">查看详情</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </script>
+
+
+                        </div>
+                    </div>
+                    <div class="m-user-frame-clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input name="geetest_challenge" type="hidden">
+    <input name="geetest_validate" type="hidden">
+    <input name="geetest_seccode" type="hidden">
+</form>
+<input type="hidden" id="open_cut_box" value="{:U('cut_box')}">
+<input type="hidden" id="swf_path" value="__plugin__/webuploader/uploader.swf"><!--swf-->
+<input type="hidden" id="server_path" value="{:U('core/upload/upload_img')}"><!--上传-->
+
+<input type="hidden" id="save_nick_name" value="{:U('user/save_nick_name')}"><!--保存用户昵称-->
+
+<input type="hidden" id="get_phone_code" value="{:U('core/api/get_phone_code')}"><!--获取验证码-->
+<input type="hidden" id="gee_test" value="{:U('core/api/gee_test')}"><!--极验证-->
+<input type="hidden" id="chk_countdown" value="{:U('User/chk_countdown')}"><!--检查倒计时-->
+<input type="hidden" id="write_countdown" value="{:U('User/write_countdown')}"><!--写倒计时-->
+<input type="hidden" id="save_phone" value="{:U('User/save_phone')}"><!--写倒计时-->
+
+<input type="hidden" id="get_login_user_img" value="{:U('ucenter/get_login_user_img')}"><!--获取图片信息-->
+<input type="hidden" id="save_login_user_img" value="{:U('ucenter/save_login_user_img')}"><!--保存用户头像信息-->
+<input type="hidden" id="see_luck_num" value="{:U('goods/see_luck_num')}"><!--获取用户购买幸运数字-->
+
+
+{/block}
+{block name="user_js"}
+{js href="__plugin__/webuploader/webuploader.min.js" /}
+{js href="__yyg__/js/ucenter/person.js" /}
+{js href="__static__/js/ucenter/view_num.js" /}
+{/block}

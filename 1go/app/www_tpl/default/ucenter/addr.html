@@ -1,0 +1,119 @@
+{extend name="base/base"/}
+{block name="title"}我的收货地址{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user">
+        <div class="g-wrap">
+            <form id="form_content" autocomplete="off">
+                <div class="m-user-frame-wraper">
+                    <!--用户中心  菜单-->
+                    {include file="ucenter/_nav" /}
+                    <!--用户中心 main-->
+                    <div class="m-user-frame-colMain ">
+                        <div class="m-user-frame-content">
+                            <ul class="w-crumbs f-clear">
+                                <li class="w-crumbs-item">当前位置：</li>
+                                <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span>
+                                </li>
+                                <li class="w-crumbs-item w-crumbs-active">收货地址</li>
+                            </ul>
+                            <div class="m-user-address" module-id="module-3">
+
+                                <div class="m-user-address-title m-user-address-title-list f-clear"
+                                     style="display: block;">
+                                    <b>我的地址</b>
+                                    <p class="m-user-address-subtitle">已保存了
+                                        <strong class="nowAmount addr_num">--</strong>条地址，还可以保存<strong
+                                                class="leftAmount addr_num_last">--</strong>条哦~</p>
+                                </div>
+                                <div class="m-user-address-list addr_list">
+                                    <div pro="userCommLoading" class="w-loading"><b
+                                            class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span>
+                                    </div>
+                                </div>
+                                <div class="m-user-address-title m-user-address-title-add" style="display: block;">
+                                    <b>新增收货地址</b>
+                                </div>
+                                <div pro="addressedit" class="m-user-address-edit">
+                                    <div pro="addressform" class="m-address-form" id="pro-view-4">
+                                        <div pro="area" class="w-address-form-item">
+                                            <div id="city_china">
+                                                <select name="province" class="province" style="margin-left: 120px;"></select>
+                                                <select name="city" class="city"></select>
+                                                <select name="area" class="area"></select>
+                                            </div>
+                                        </div>
+                                        <div pro="address" class="w-address-form-item">
+                                            <div class="w-address-form-name address"><span
+                                                    class="w-txt-impt">*&nbsp;</span>街道地址
+                                            </div>
+                                            <div class="w-input w-input-textarea w-address-area"
+                                                 id="pro-view-19"><textarea name="address"
+                                                    class="w-input-input" pro="input"
+                                                    placeholder="不需要重复填写省/市/区"></textarea>
+                                            </div>
+                                        </div>
+                                        <div pro="zipcode" class="w-address-form-item">
+                                            <div class="w-address-form-name">邮政编码</div>
+                                            <div class="w-input" id="pro-view-18">
+                                                <input name="code" class="w-input-input" pro="input" type="text" maxlength="6" style="width: 482px;"></div>
+                                        </div>
+                                        <div pro="receiver" class="w-address-form-item">
+                                            <div class="w-address-form-name"><span class="w-txt-impt">*&nbsp;</span>收 货
+                                                人
+                                            </div>
+                                            <div class="w-input" id="pro-view-17">
+                                                <input name="name" class="w-input-input" pro="input" type="text" placeholder="请使用真实姓名，长度不超过8个字"
+                                                                                         style="width: 482px;"></div>
+                                        </div>
+                                        <div pro="identity" class="w-address-form-item">
+                                            <div class="w-address-form-name">身份证号码</div>
+                                            <div class="w-input" id="pro-view-16">
+                                                <input name="sn_id" class="w-input-input" pro="input" type="text" maxlength="18" style="width: 482px;"></div>
+                                        </div>
+                                        <div pro="mobile" class="w-address-form-item">
+                                            <div class="w-address-form-name"><span class="w-txt-impt">*&nbsp;</span>手机号码
+                                            </div>
+                                            <div class="w-input" id="pro-view-15">
+                                                <input name="phone" class="w-input-input" pro="input" type="text" maxlength="11" placeholder="手机号码必须填"
+                                                                                         style="width: 482px;"></div>
+                                        </div>
+                                        <div pro="default" class="w-address-form-item">
+                                            <div class="w-address-form-name">&nbsp;</div>
+                                            <label class="w-checkbox" id="pro-view-14"><input type="checkbox" name="default_addr" value="1"> <span>设置为默认收货地址</span></label>
+                                        </div>
+                                        <div class="w-address-form-item">
+                                            <div class="w-address-form-name">&nbsp;</div>
+                                            <button class="w-button w-button-main save_btn" type="button"
+                                                    id="pro-view-5"
+                                                    style="width: 140px; height: 45px; font-size: 18px; font-weight: normal;">
+                                                <span>保存地址</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="m-user-frame-clear"></div>
+                </div>
+                <input type="hidden" name="id" value="">
+            </form>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="city_data" value="__plugin__/city_sel/cityData.min.json">
+<input type="hidden" id="addr_list" value="{:U('ucenter/addr_list')}">
+<input type="hidden" id="add_new_addr" value="{:U('ucenter/add_new_addr')}">
+<input type="hidden" id="del_addr_by_id" value="{:U('ucenter/del_addr_by_id')}">
+<input type="hidden" id="get_addr_info_by_id" value="{:U('ucenter/get_addr_info_by_id')}">
+{/block}
+{block name="user_js"}
+{js href="__plugin__/city_sel/jquery.cxselect.min.js" /}
+{js href="__yyg__/js/ucenter/addr.js" /}
+{/block}

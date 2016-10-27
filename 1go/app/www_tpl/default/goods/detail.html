@@ -1,0 +1,664 @@
+{extend name="base/base"/}
+{block name="title"}{$g_info.name}{/block}
+{block name="user_css"}
+{css href="__static__/css/detail.css" /}
+<style>
+    .luck_num {
+        color: #fff;
+        background: #f36;
+    }
+
+    .list-join {
+        text-align: left;
+        color: #aaa;
+        font-size: 17px;
+    }
+</style>
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-detail m-detail-willReveal">
+        <div class="g-wrap g-body-hd f-clear">
+            <div class="g-main">
+                <div class="w-dir">
+                    <a href="/">首页</a> &gt;{notempty name='cat_name'} <a href="{:dwz_filter('lists/index',['category'=>$g_info['category']])}">{$cat_name}</a> &gt; {/notempty}<span
+                        class="txt-gray">第{$now_issue}期 {$g_info.name}</span>
+                </div>
+                <div class="g-main-l m-detail-show pic_start">
+                    <div class="w-gallery">
+                        <div class="w-gallery-fullsize">
+                            <div class="w-gallery-picture">
+                                {notempty name='pic_index'}
+                                <img src="__image_path__{$pic_index}">
+                                {else /}
+                                <img src="__image_path____yyg__/images/empty_img.jpg">
+                                {/notempty}
+                            </div>
+                        </div>
+                        <i class="ico ico-arrow ico-arrow-red ico-arrow-red-up" style="left: 31px;"></i>
+                        <div class="w-gallery-thumbnail">
+                            <ul class="w-gallery-thumbnail-list">
+                                <!--循环-->
+                                {notempty name='pic_list'}
+                                {foreach name='pic_list' item='vo' key='k'}
+                                {if condition='$k lt 4'}
+                                <li class="w-gallery-thumbnail-item ">
+                                    <img src="__image_path__{$vo.img_path|default='__image_path____yyg__/images/empty_img.jpg'}">
+                                </li>
+                                {/if}
+                                {/foreach}
+                                {/notempty}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-detail-promise f-clear">
+                        <span class="m-detail-promise-item"><i
+                                class="ico ico-detail-promise ico-detail-promise-open"></i><span
+                                class="m-detail-promise-item-txt">公正公开</span></span>
+                        <span class="m-detail-promise-item"><i
+                                class="ico ico-detail-promise ico-detail-promise-real"></i><span
+                                class="m-detail-promise-item-txt">正品保证</span></span>
+                        <span class="m-detail-promise-item"><i
+                                class="ico ico-detail-promise ico-detail-promise-right"></i><span
+                                class="m-detail-promise-item-txt">权益保障</span></span>
+                        <span class="m-detail-promise-item m-detail-promise-item-last"><i
+                                class="ico ico-detail-promise ico-detail-promise-ship"></i>
+                            <span class="m-detail-promise-item-txt">免费配送</span></span>
+                    </div>
+                    <div class="w-shareTo" style="height: 20px; padding-top: 12px;">
+
+                        <div class="w-new-shareTo f-clear">
+                            <span class="w-new-shareTo-txt">分享到</span>
+                            <!--分享-->
+                            <ul class="w-new-shareTo-list f-clear">
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-yixin"
+                                       title="分享至易信"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-weibo"
+                                       title="分享至新浪微博"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-qzone"
+                                       title="分享至Qzone"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-tqq"
+                                       title="分享至腾讯微博"></a></li>
+                                <li><a href="javascript:void(0)" class="w-new-shareTo-ico w-new-shareTo-weixin"
+                                       title="分享至微信"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {if condition="$n_info['status'] eq '1'"}
+                <!--未开奖S-->
+                <div class="g-main-m m-detail-main" id="no_lottery">
+                    <div class="m-detail-main-intro">
+                        <div class="m-detail-main-title">
+                            <h1 title="{$g_info.name}">{$g_info.name}</h1>
+                        </div>
+                        <p class="m-detail-main-desc" title="{$g_info.sub_title}">{$g_info.sub_title}</p>
+                    </div>
+                    <div class="m-detail-main-ing m-detail-main-onlyOne">
+                        {if condition='$g_info["status"] eq 1 AND $g_info["num"] gt 0'}
+                        <!--正常-->
+                        <div class="m-detail-main-onlyOne-content" id="typeOne">
+                            <div class="m-detail-main-one-header f-clear">
+                                <h2 class="m-detail-main-type-title">{$n_info.de_name}</h2>
+                                <h3 class="m-detail-main-type-subtitle"><span class="period">期号：{php}echo (int)$now_issue+(int)__BASE0__{/php} </span>每满总需{$n_info.sum_times}人次，即抽取1人获得该商品
+                                </h3>
+                                <div class="m-detail-main-one-explanation">?
+                                    <div class="more-box">
+                                        <i class="ico ico-detail-main-left-anchor"></i>
+                                        <div class="content">
+                                            <p>“香肠一元购”指用户花费1元兑换一个夺宝币，随后可凭夺宝币使用香肠一元购的服务并可根据宝石获得规则获取相应的宝石。</p>
+                                            <p>每件商品的全部夺宝号码分配完毕后，香肠一元购根据夺宝规则计算出的一个号码。<strong>持有该幸运号码的用户可直接获得该商品。</strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-detail-main-one-progress">
+                                <div class="w-progressBar f-clear" title="40%">
+                                    <div class="w-progressBar-wrap">
+                                        <span class="w-progressBar-bar" style="width:{$precent}%;"></span>
+                                    </div>
+                                    <div class="w-progressBar-txt">已完成{$precent}%</div>
+                                </div>
+                            </div>
+                            <div class="m-detail-main-one-intro f-clear">
+                                <div class="m-detail-main-one-price">总需人次{$n_info.sum_times}</div>
+                                <div class="m-detail-main-one-remain">剩余人次{$last_times}</div>
+                            </div>
+                            <div class="m-detail-main-one-count f-clear">
+                                <span>参与</span>
+                                <div id="buyNumbers"
+                                     class="m-detail-main-count-number m-detail-main-count-buyTimes f-clear">
+                                    <div class="w-number">
+                                        <a class="w-number-btn w-number-btn-minus reduce_num change_num_btn"
+                                           href="javascript:void(0);">－</a>
+                                        <input data-last="{$last_times|default=1}"
+                                               data-unit="{$n_info.unit_price|default=1}"
+                                               data-min="{$n_info.min_times|default=1}"
+                                               data-max="{$n_info.max_times|default=1000}"
+                                               class="w-number-input participation_num" type="text"
+                                               value="{$n_info.init_times|default=1}">
+                                        <a class="w-number-btn w-number-btn-plus add_num change_num_btn"
+                                           href="javascript:void(0);">＋</a>
+                                    </div>
+                                </div>
+                                <span style="padding-left: 0;">次</span>
+                                <span class="m-detail-main-buyHint"><i
+                                        class="ico ico-arrow ico-arrow-grayBubbleArr"></i><b>
+                                    加大参与人次，夺宝在望！</b></span>
+                                <span class="m-detail-main-buyUnitHint">每次参与{php}echo ceil($n_info['unit_price']);{/php}元,参与次数需是{$n_info.min_times|default='1'}的倍数</span>
+                            </div>
+                            <div class="m-detail-main-one-operation f-clear">
+                                <a data-type="quick_buy" data-nper="{$n_info.id}" data-id="{:$n_info['pid']}"
+                                   id="quick_buy" class="m-detail-main-type-btn m-detail-main-one-buy buy_now_btn"
+                                   href="javascript:void(0)">立即夺宝</a>
+                                <a data-type="add_to_cart" data-nper="{$n_info.id}" data-id="{:$n_info['pid']}"
+                                   id="add_to_cart"
+                                   class="m-detail-main-type-btn m-detail-main-one-cart buy_now_btn"
+                                   href="javascript:void(0)">
+                                    <i class="ico ico-miniCart"></i>
+                                    <span class="btn-txt">加入清单</span>
+                                </a>
+                            </div>
+                            <!--已参与-->
+                            <div class="m-detail-main-one-codes">
+                                {notempty name='luck_list'}
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>您已参与：</th>
+                                        <td style="text-align: left"><strong
+                                                class="txt-red">{$now_user_num|default=0}</strong>人次
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th>夺宝号码：</th>
+                                        <td class="list-join" style="text-align: left">
+                                            <div>{php}$i=0;{/php}
+                                                {foreach name='luck_list' item='vo' key='k'}
+                                                {php}$i++;{/php}
+            <span style="margin-left: 15px;" class="single ">
+                {$vo+__BASE1__}
+            </span>
+                                                {if condition='(($i) % 5) eq 0'}
+                                            </div>
+                                            <div>
+                                                {/if}
+                                                {/foreach}
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                {else /}
+                                <span>你还没参与本期商品哦~</span>
+                                {/notempty}
+                            </div>
+                            <!--未参与-->
+                            <!--<div class="m-detail-main-one-codes">
+                                你还没参与本期商品哦~
+                            </div>-->
+                        </div>
+                        {elseif condition='$g_info["status"] eq 1 AND $g_info["num"] lt 1'/}
+                        <!--缺货-->
+                        <div id="wrapOutOfStock" class="m-detail-main-outOfStock f-clear">
+                            <i class="ico m-detail-main-outOfStock-ico"></i>
+                            <div class="m-detail-main-outOfStock-content">
+                                <p><span>此商品暂时缺货。我们会尽快重新上架，</span><span>敬请期待！</span></p>
+                                <a href="/">去逛逛其它商品</a>
+                            </div>
+                        </div>
+                        {else /}
+                        <!--下架-->
+                        <div id="wrapExpired" class="m-detail-main-soldOut">商品已下架</div>
+                        {/if}
+                    </div>
+                </div>
+                <!--未开奖E--->
+                {/if}
+                {if condition="$n_info['status'] eq '2'"}
+                <!--开奖中S-->
+                <div class="g-main-m m-detail-main">
+                    <div class="m-detail-main-intro">
+                        <div class="m-detail-main-title">
+                            <h1 title="{$g_info.name}）">{$g_info.name}</h1>
+                        </div>
+                        <p class="m-detail-main-desc" title="{$g_info.sub_title}">{$g_info.sub_title}</p>
+                    </div>
+                    <div class="m-detail-main-countdown f-clear">
+                        <i class="ico ico-detail-main-hourglass"></i>
+                        <div class="m-detail-main-countdown-content">
+                            <div class="m-detail-main-countdown-hd">
+                                <span class="period">期号：{$now_issue}</span>
+                                <span class="split">|</span>
+                                <span class="title">揭晓倒计时</span>
+                            </div>
+                            {empty name='sec'}
+                            <div class="m-detail-main-countdown-num count_down" data-sec="0" style="font-size: 16px;">
+                                等待最新一期彩票开奖中,即将开奖,不要走开...
+                            </div>
+                            {else /}
+                            <div class="m-detail-main-countdown-num count_down" data-sec="{$sec}">
+                                <span class="cd_min">--</span>:
+                                <span class="cd_sec">--</span>:
+                                <span class="cd_ms">--</span>
+                            </div>
+                            {/empty}
+
+                        </div>
+                    </div>
+                    <div class="m-detail-main-calculation f-clear">
+                        <div class="m-detail-main-calculation-formula m-detail-main-calculation-main f-clear">
+                            <div class="m-detail-main-calculation-title">如何计算？</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-luckyCode">
+                                <span class="num">?</span>
+                                <span class="tip">本期幸运号码</span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-equal">=</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-constant">
+                                <span class="num">{$lottory_base|default='--'}</span>
+                                <span class="tip">固定数值</span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-add">+</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-variable">
+                                <span class="num">?</span>
+                                <span class="tip">变化数值</span>
+                            </div>
+                        </div>
+                        <div class="m-detail-main-calculation-formula m-detail-main-calculation-secondary f-clear">
+                            <div class="m-detail-main-calculation-title"><strong>变化数值</strong>是取下面公式的余数</div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-leftBracket">(
+                            </div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-sum"
+                            >
+                                <span class="num">{$n_info.sum_timestamp|default='0'}</span>
+                                <span class="tip" style="font-size: 12px;">最后50个订单时间和</span>
+            <span class="more">
+                <i class="ico ico-detail-main-calculation-tipBox"></i>
+                <span class="more-content">商品的最后一个号码分配完毕，公示该分配时间点前本站全部商品的<strong>全部参与时间</strong>，并求和。</span>
+            </span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-add">+</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-lottery"
+                            >
+                                <span class="num">?</span>
+                                <span class="tip" style="font-size: 12px;">“老时时彩”开奖号</span>
+            <span class="more">
+                <i class="ico ico-detail-main-calculation-tipBox"></i>
+                <span class="more-content">取最近一期“老时时彩” (第{$n_info.lottory_issue|default='--'}期) 揭晓结果。</span>
+            </span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-rightBracket">)
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-divide">求余</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-price">
+                                <span class="num">{$n_info.sum_times}</span>
+                                <span class="tip" style="font-size: 12px;">总需人次</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-detail-main-codes">
+                        {notempty name='luck_list'}
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>您已参与：</th>
+                                <td style="text-align: left"><strong class="txt-red">{$now_user_num|default=0}</strong>人次
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>夺宝号码：</th>
+                                <td class="list-join" style="text-align: left">
+                                    <div>{php}$i=0;{/php}
+                                        {foreach name='luck_list' item='vo' key='k'}
+                                        {php}$i++;{/php}
+            <span style="margin-left: 15px;" class="single">
+                {$vo+__BASE1__}
+            </span>
+                                        {if condition='(($i) % 5) eq 0'}
+                                    </div>
+                                    <div>
+                                        {/if}
+                                        {/foreach}
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        {else /}
+                        <span>你还没参与本期商品哦~</span>
+                        {/notempty}
+                    </div>
+                    <div class="m-detail-main-newest f-clear">
+                        <div class="m-detail-main-newest-title">
+                            <strong>【最新一期】</strong>正在火热进行中…
+                        </div>
+                        <div class="m-detail-main-newest-progress">
+                            <div class="w-progressBar f-clear">
+                                <div class="w-progressBar-wrap"><span class="w-progressBar-bar"
+                                                                      style="width: {$new_precent|default='0'}%;"></span>
+                                </div>
+                                <div class="w-progressBar-txt w-progressBar-empty">
+                                    已完成{$new_precent|default='0'}%，剩余{$new_last_times|default='0'}
+                                </div>
+                            </div>
+                        </div>
+                        {notempty name='new_nper_info'}
+                        <a class="m-detail-main-newest-go"
+                           href="{:dwz_filter('goods/detail',array('id'=>$g_info['id'].'-'.$new_nper_info['id']))}"
+                           target="_blank">立即前往</a>
+                        {else /}
+                        <a class="m-detail-main-newest-go" href="javascript:" style="background-color: #aaa;">暂无最新一期</a>
+                        {/notempty}
+                    </div>
+                </div>
+                <!--开奖中E--->
+                {/if}
+                {if condition="$n_info['status'] eq '3'"}
+                <!--已开奖S-->
+                <div class="g-main-m m-detail-main">
+                    <!--中奖状态-->
+                    <div class="m-detail-main-intro">
+                        <div class="m-detail-main-title">
+                            <h1 title="{$g_info.name}">{$g_info.name}</h1>
+                        </div>
+                        <p class="m-detail-main-desc" title="{$g_info.sub_title}">{$g_info.sub_title}</p>
+                    </div>
+                    <div class="m-detail-main-winner">
+                        <div class="m-detail-main-winner-luckyCode f-clear">
+                            <div class="hd">
+                                <span class="period">期号<span class="period-num">{$now_issue}</span></span>
+                                <span class="title">幸运号码</span>
+                            </div>
+                            <div class="code">
+                                {empty name='remainder'}
+                                {php}echo (int)__BASE1__;{/php}
+                                {else /}
+                                {$remainder+(int)__BASE1__|default='&#63;'}
+                                {/empty}
+                            </div>
+                        </div>
+                        <!--中奖用户信息-->
+                        <div class="m-detail-main-winner-detail f-clear">
+                            <i class="ico ico-detail-main-winner"></i>
+
+
+                            <img width="90" height="90" src='__image_path__{empty name="u_info.img_path"}__yyg__/images/empty_img.jpg{else
+                            /}__image_path__{$u_info.img_path}{/empty}' class="user-avatar">
+                            <div class="user-info">
+                                <div class="info-item user-nickname">
+                                    <span class="hd">用户昵称</span>：
+                                    <span class="bd">
+                                        <a href="#" target="_blank" title="{$u_info.username|default='--'}">{$u_info.nick_name|default='--'}</a>{notempty name='u_info.ip_area'}（{$u_info.ip_area|default=''}）{/notempty}</span>
+                                </div>
+                                <div class="info-item user-id"><span class="hd">用户UID</span>：
+                                    <span class="bd">
+                                    {$u_info.id|default='--'}
+                                    <span style="font-size: 12px;color:#aaa;">（ID为用户唯一不变标识）</span>
+                                </span>
+                                </div>
+                                <div class="info-item user-buyTimes"><span class="hd">本期参与</span>：<span
+                                        class="bd">{$luck_num_count|default='0'}人次</span></div>
+                            </div>
+                            <div class="record-info">
+                                <div class="info-item published-time"><span class="hd">揭晓时间</span>：<span class="bd">
+                                    {php}echo microtime_format($n_info['luck_time'],3,'Y-m-d H:i:s');{/php}
+                                </span>
+                                </div>
+                                <div class="info-item buy-time">
+                                    <span class="hd">夺宝时间</span>：
+                                    <span class="bd">
+                                        {php}echo microtime_format($luck_time,3,'Y-m-d H:i:s');{/php}
+                                    </span>
+                                </div>
+                                <div class="info-item codes">
+                                    <a id="btnWinnerCodes" class="see_luck_num" href="javascript:void(0)">
+                                        查看TA的号码&gt;&gt;
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-detail-main-calculation f-clear">
+                        <div class="m-detail-main-calculation-formula m-detail-main-calculation-main f-clear">
+                            <div class="m-detail-main-calculation-title">如何计算？</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-luckyCode">
+                                <span class="num">
+                                     {empty name='remainder'}
+                                    {php}echo (int)__BASE1__;{/php}
+                                    {else /}
+                                    {$remainder+(int)__BASE1__|default='&#63;'}
+                                    {/empty}
+                                </span>
+                                <span class="tip">本期幸运号码</span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-equal">=</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-constant">
+                                <span class="num">{php}echo __BASE1__;{/php}</span>
+                                <span class="tip">固定数值</span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-add">+</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-variable">
+                                <span class="num">{$remainder|default='&#63;'}</span>
+                                <span class="tip">变化数值</span>
+                            </div>
+                        </div>
+                        <div class="m-detail-main-calculation-formula m-detail-main-calculation-secondary f-clear">
+                            <div class="m-detail-main-calculation-title"><strong>变化数值</strong>是取下面公式的余数</div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-leftBracket">(
+                            </div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-sum"
+                            >
+                                <span class="num">{$n_info.sum_timestamp|default='--'}</span>
+                                <span class="tip" style="font-size: 12px;">最后50个订单时间和</span>
+                                    <span class="more">
+                                        <i class="ico ico-detail-main-calculation-tipBox"></i>
+                                        <span class="more-content">商品的最后一个号码分配完毕，公示该分配时间点前本站全部商品的<strong>全部参与时间</strong>，并求和。</span>
+                                    </span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-add">+</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-lottery"
+                            >
+                                <span class="num">{$n_info.open_num|default='--'}</span>
+                                <span class="tip" style="font-size: 12px;">“老时时彩”开奖号</span>
+                                    <span class="more">
+                                        <i class="ico ico-detail-main-calculation-tipBox"></i>
+                                        <span class="more-content">取最近一期“老时时彩” (第{$n_info.lottery_issue|default='--'}期) 揭晓结果。</span>
+                                    </span>
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-rightBracket">)
+                            </div>
+                            <div class="m-detail-main-calculation-operation m-detail-main-calculation-divide">求余</div>
+                            <div class="m-detail-main-calculation-parameter m-detail-main-calculation-price">
+                                <span class="num">{$n_info.sum_times}</span>
+                                <span class="tip" style="font-size: 12px;">总需人次</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-detail-main-codes">
+
+                        {notempty name='luck_list'}
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>您已参与：</th>
+                                <td style="text-align: left">
+                                    <strong class="txt-red">{$now_user_num|default=0}</strong>人次
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>夺宝号码：</th>
+                                <td class="list-join" style="">
+                                    <div>{php}$i=0;{/php}
+                                        {foreach name='luck_list' item='vo' key='k'}
+                                        {php}$i++;{/php}
+            <span style="margin-left: 15px;" class="single {if condition='$vo eq $luck_num'} luck_num{/if}">
+                {$vo+__BASE0__}
+            </span>
+                                        {if condition='(($i) % 5) eq 0'}
+                                    </div>
+                                    <div>
+                                        {/if}
+                                        {/foreach}
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        {else /}
+                        <span>你还没参与本期商品哦~</span>
+                        {/notempty}
+                    </div>
+                    <div class="m-detail-main-newest f-clear">
+                        <div class="m-detail-main-newest-title"><strong>【最新一期】</strong>正在火热进行中…</div>
+                        <div class="m-detail-main-newest-progress">
+                            <div class="w-progressBar f-clear">
+                                <div class="w-progressBar-wrap">
+                                    <span class="w-progressBar-bar" style="width: {$new_precent|default='0'}%;"></span>
+                                </div>
+                                <div class="w-progressBar-txt w-progressBar-empty">
+                                    已完成{$new_precent|default='0'}%，剩余{$new_last_times|default='0'}
+                                </div>
+                            </div>
+                        </div>
+                        {notempty name='new_nper_info'}
+                        <a class="m-detail-main-newest-go"
+                           href="{:dwz_filter('goods/detail',array('id'=>$g_info['id'].'-'.$new_nper_info['id']))}"
+                           target="_blank">立即前往</a>
+                        {else /}
+                        <a class="m-detail-main-newest-go" href="javascript:" style="background-color: #aaa;">暂无最新一期</a>
+                        {/notempty}
+                    </div>
+                    <!--中奖状态-->
+                </div>
+                <!--已开奖E--->
+                {/if}
+            </div>
+        </div>
+    </div>
+    <div class="w-tabs w-tabs-main m-detail-mainTab">
+        <div class="g-wrap g-body-bd f-clear">
+            <div class="w-tabs-tab">
+                {if condition="$n_info['status'] eq '1'"}
+                <div id="intro_tab" class="w-tabs-tab-item w-tabs-tab-item-selected">商品详情</div>
+                {else /}
+                <div id="result_tab" class="w-tabs-tab-item w-tabs-tab-item-selected get_calc_result_list"
+                     data-id="{$n_info.id}">计算结果
+                </div>
+                {/if}
+                <div id="record_tab" class="w-tabs-tab-item get_deposer_list" data-id="{$n_info.id}">夺宝参与记录</div>
+                <div id="share_tab" class="w-tabs-tab-item get_delivery_list" data-id="{$g_info.id}">晒单</div>
+                <div id="history_tab" class="w-tabs-tab-item get_history_list" data-id="{$g_info.id}">往期夺宝
+                </div>
+            </div>
+            <div class="w-tabs-panel">
+                {if condition="$n_info['status'] eq '1'"}
+                <!--商品详情-->
+                <div id="intro_panel" class="w-tabs-panel-item intro_tab" style="">
+                    <!--循环-->
+                    {$g_info.detail}
+                    <!--<dl class="special">-->
+                        <!--<dt>重要说明：</dt>-->
+                        <!--<dd>1、本商品由第三方提供；<br>2、以上详情页面展示信息仅供参考，商品以实物为准；<br>3、如快递无法配送至获得者提供的送货地址，将默认配送到距离最近的送货地，由获得者本人自提。-->
+                        <!--</dd>-->
+                    <!--</dl>-->
+                </div>
+                {else /}
+                <!--计算结果-->
+                <div id="result_panel" class="w-tabs-panel-item result_tab">
+                    <div class="m-detail-mainTab-calcRule">
+                        <h4>
+                        <span class="wrap">
+                                <i class="ico ico-text"></i><span class="txt">幸运号码计算规则</span>
+                        </span>
+                        </h4>
+                        <div class="ruleWrap">
+                            <ol class="ruleList">
+                                <li><span class="index">1</span>商品的最后一个号码分配完毕后，将公示该分配时间点前本站全部商品的全部参与时间；</li>
+                                <li><span class="index">2</span>将这全部时间的数值进行求和（得出数值A）（每个时间按时、分、秒、毫秒的顺序组合，如20:15:25.362则为201525362）；
+                                </li>
+                                <li><span class="index">3</span>为保证公平公正公开，系统还会等待一小段时间，取最近下一期中国福利彩票“老时时彩”的揭晓结果（一个五位数值B）；
+                                </li>
+                                <li><span class="index">4</span>（数值A+数值B）除以该商品总需人次得到的余数<i style="margin-top:-3px;"
+                                                                                          data-func="remainder"
+                                                                                          class="ico ico-questionMark"></i>
+                                    + 原始数&nbsp;{$lottory_base|default='--'}，得到最终幸运号码，拥有该幸运号码者，直接获得该商品。
+                                </li>
+                                <li class="txt-red">
+                                    注：如遇福彩中心通讯故障，无法获取上述期数的中国福利彩票“老时时彩”揭晓结果，且24小时内该期“老时时彩”揭晓结果仍未公布，则默认“老时时彩”揭晓结果为00000。
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="calc_result_list_content">
+                        <!--计算结果-->
+                        <div class="w-loading">
+                            <b class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span>
+                        </div>
+                    </div>
+
+                </div>
+                {/if}
+                <!--参与纪录-->
+                <div id="record_panel" class="w-tabs-panel-item record_tab m-detail-mainTab-record"
+                     style="display: none;">
+                    <!--夺宝参与记录-->
+                    <div class="content deposer_list_content">
+                        <div class="w-loading">
+                            <b class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span>
+                        </div>
+                    </div>
+                </div>
+                <!--晒单-->
+                <div id="share_panel" class="w-tabs-panel-item share_tab m-detail-mainTab-share"
+                     style="display: none;">
+                    <!--晒单列表-->
+                    <div class="delivery_list_content" id="pro-view-80">
+                        <div class="w-loading">
+                            <b class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span>
+                        </div>
+                    </div>
+                </div>
+                <!--历史-->
+                <div class="w-tabs-panel-item history_tab m-detail-mainTab-history"
+                     style="display: none;">
+                    <div class="content history_content">
+                        <div class="w-loading" id="pro-view-16">
+                            <b class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="get_calc_result_list" value="{:U('get_calc_result_list')}"><!--夺宝参与记录-->
+<input type="hidden" id="get_deposer_list" value="{:U('get_deposer_list')}"><!--夺宝参与记录-->
+<input type="hidden" id="get_delivery_list" value="{:U('get_delivery_list')}"><!--晒单-->
+<input type="hidden" id="get_history_list" value="{:U('get_history_list')}"><!--往期夺宝-->
+<input type="hidden" id="see_luck_num" value="{:U('see_luck_num')}"><!--获取用户购买幸运数字-->
+
+<input type="hidden" id="nper_id" value="{$n_info.id|default='0'}"><!--期数id-->
+<input type="hidden" id="goods_id" value="{$g_info.id|default='0'}"><!--商品id-->
+<input type="hidden" id="luck_uid" value="{$n_info.luck_uid|default='0'}"><!--幸运用户id-->
+
+<input type="hidden" id="add_to_cart_url" value="{:U('Pay/add_to_cart')}"><!--添加到购物车-->
+<input type="hidden" id="quick_buy_url" value="{:U('Pay/quick_buy')}"><!--幸运用户id-->
+<input type="hidden" id="nper_open_api" value="{:U('core/Gdfc/open_by_nper')}"><!--开奖api-->
+<input type="hidden" id="nper_status" value="{$n_info['status']|default=1}"><!--开奖状态-->
+
+{/block}
+
+{block name="user_js"}
+{js href='__static__/js/goods/detail.js' /}
+{js href='__static__/js/img_modal.js' /}
+{js href="__yyg__/js/goods/detail.js" /}
+{js href="__static__/js/count_down.js" /}
+{/block}

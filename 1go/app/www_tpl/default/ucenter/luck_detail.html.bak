@@ -1,0 +1,135 @@
+{extend name="base/base"/}
+{block name="title"}{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css"
+{css href="__static__/css/uc_win.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <div class="m-user-frame-colMain m-user-frame-colMain-noLeft">
+                    <div class="m-user-frame-content">
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a>
+                                <span class="w-crumbs-split">&gt;</span></li>
+                            <li class="w-crumbs-item">
+                                <a href="#">幸运记录</a>
+                                <span class="w-crumbs-split">&gt;</span>
+                            </li>
+                            <li class="w-crumbs-item w-crumbs-active">记录详情</li>
+                        </ul>
+                        <div class="m-winDetail">
+                            <div class="winDetail-progress">
+                                <ol class="inner">
+                                    <li class="step step-first step-1 {$luck_info.logistics_status>=1?' act':' '}">
+                                        <p class="name">1. 获得商品</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-2 {$luck_info.logistics_status>=2?' act':' '}">
+                                        <p class="name">2. 确认收货地址</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-3 {$luck_info.logistics_status>=3?' act':' '}">
+                                        <p class="name">3. 商品派发</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-4 {$luck_info.logistics_status>=4?' act':' '}">
+                                        <p class="name">4. 确认收货</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                    <li class="step step-5 {$luck_info.logistics_status>=5?' act':' '}">
+                                        <p class="name">5. 晒单分享</p>
+                                        <i class="ico"></i>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="winDetail-info">
+                                <div class="title">
+                                    <div class="status">当前状态：商品已派发<button class="w-button w-button-main" type="button">
+                                        <span>确认收货</span></button></div>
+                                    <div class="tips">
+                                        我们已将商品发往您填写/确认的配送地址信息，请您耐心等候！
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    <div class="addressInfo">
+                                        <div class="name">
+                                            <strong>收货信息</strong></div>
+                                        <div class="cont">
+                                            <p>收 货 人：大鹏</p>
+                                            <p>联系电话：
+                                                18151809934
+                                            </p>
+                                            <p>收货地址：江苏省，徐州市，泉山区，矿大科技园735</p>
+                                        </div>
+                                    </div>
+                                    <div class="addressInfo">
+                                        <div class="name"><strong>物流信息</strong></div>
+                                        <div class="cont">
+                                            <p>物流公司：汇通</p>
+                                            <p>运单号码：70523334118874</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table class="w-table winDetail-goodsInfo">
+                                <thead>
+                                <tr>
+                                    <th class="col1">商品</th>
+                                    <th class="col2"></th>
+                                    <th class="col3">价格(香肠)</th>
+                                    <th class="col4">数量</th>
+                                    <th class="col5">商品状态</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col1">
+                                        <!-- 商品通用模板 -->
+                                        <div class="w-goods">
+                                            <div class="w-goods-pic">
+                                                <a href="#" target="_blank">
+                                                    <img src="{$luck_info.goods_image}" style="max-width: 80px;max-height: 80px;" alt="{$luck_info.goods_name|htmlspecialchars}">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="col2">
+                                        <div class="w-goods">
+                                            <p class="w-goods-title f-txtabb"><a href="#" target="_blank">{$luck_info.goods_name|htmlspecialchars}</a></p>
+                                            <div class="code">幸运号码：<strong class="txt-impt">{$luck_info.luck_num|htmlspecialchars}</strong></div>
+                                            <div class="calcTime">揭晓时间：{$luck_info.open_time|date='Y-m-d H:i:s',###}</div>
+                                        </div>
+                                    </td>
+                                    <td class="col3">
+                                        {$luck_info.n_sum}
+                                    </td>
+                                    <td class="col4">1</td>
+                                    <td class="col5">
+                                        {switch name="luck_info.logistics_status|intval"}
+                                        {case value="0"}<span class="txt-blue">等待确认</span>{/case}
+                                        {case value="1"}<span class="txt-blue">未填写收货地址</span>{/case}
+                                        {case value="2"}<span class="txt-suc">等待发货</span>{/case}
+                                        {case value="3"}<span class="txt-suc">等待收货</span>{/case}
+                                        {case value="4"}<span class="txt-suc">已完成</span>{/case}
+                                        {/switch}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

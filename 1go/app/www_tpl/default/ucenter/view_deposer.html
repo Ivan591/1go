@@ -1,0 +1,266 @@
+{extend name="base/base"/}
+{block name="title"}{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav_view" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" >
+
+                        <div class="m-user-duobao">
+                            <div class="m-user-comm-infoBox f-clear" module="user/common/infoBox/InfoBox" id="pro-view-4" module-id="module-4" module-launched="true">
+                                <img class="m-user-comm-infoBox-face"  src="../../img/user/1.jpeg" width="160" height="160">
+                                <div class="m-user-comm-infoBox-cont">
+                                    <ul>
+                                        <li class="item nickname">
+                                            <span class="txt">李自成</span>
+                                        </li>
+                                        <li class="item"><span class="txt">ID：<strong>797095</strong></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-user-comm-wraper">
+                                <div module="user/duobao/DuobaoOther" class="m-user-comm-cont m-user-duobaoOther" id="pro-view-8" module-id="module-7" module-launched="true">
+                                    <div class="m-user-comm-title">
+                                        <div class="m-user-comm-navLandscape">
+                                            <span class="title">夺宝记录</span>
+                                            <a class="i-item i-item-active" pro="dNav" data-name="join" href="javascript:void(0)">参与成功</a>
+                                            <span class="i-sptln">|</span>
+                                            <a class="i-item" pro="dNav" data-name="multi" href="javascript:void(0)">多期参与</a>
+                                        </div>
+                                        <div style="display:none;">
+                                            <div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-9"><span pro="text">1年内</span><i class="w-select-arr">▼</i></div>
+                                            <div class="w-select m-user-comm-selectTitle" tabindex="0" id="pro-view-10" style="display: none;"><span pro="text">1年内</span><i class="w-select-arr">▼</i></div>
+                                        </div>
+                                    </div>
+                                    <div pro="container">
+                                        <div class="listCont" data-name="join" style="display: block;">
+                                            <div id="pro-view-16">
+                                                <table class="w-table m-user-comm-table" pro="listHead">	<thead>	<tr>
+                                                    <th class="col-info">商品信息</th>
+                                                    <th class="col-period">期号</th>
+                                                    <th class="col-joinNum">参与人次</th>
+                                                    <th class="col-status">夺宝状态</th>
+                                                    <th class="col-opt">操作</th>
+                                                </tr>	</thead>
+                                                </table>
+                                                <div pro="duobaoList" class="duobaoList">
+                                                    <!--循环-->
+                                                    <table class="m-user-comm-table" >
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="col-info">
+                                                                <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                                    <div class="w-goods-pic">
+                                                                        <a target="_blank" href="#">
+                                                                            <img src="../../img/goods/3.png" alt="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" width="74" height="74">
+                                                                        </a>
+                                                                    </div>
+                                                                    <p class="w-goods-title f-txtabb">
+                                                                        <a title="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" target="_blank" href="#">
+                                                                            1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒</a>
+                                                                    </p>
+                                                                    <p class="w-goods-price">总需：7999人次</p>
+                                                                    <div class="w-progressBar">
+                                                                        <p class="w-progressBar-wrap">
+                                                                            <span class="w-progressBar-bar" style="width:14%"></span>
+                                                                        </p>
+                                                                        <ul class="w-progressBar-txt f-clear">
+                                                                            <li class="w-progressBar-txt-l">已完成14%，剩余<span class="txt-residue">6859</span></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="col-period">303251471</td>
+                                                            <td class="col-joinNum">6人次</td>
+                                                            <td class="col-status">
+
+                                                                <span class="txt-suc">正在进行</span>
+
+
+                                                            </td>
+                                                            <td class="col-opt">
+                                                                <p>Ta参与<span class="txt-impt">6</span>人次 <a href="javascript:void(0)" pro="viewCode" data-gid="1592" data-period="303251471" data-cid="75597095" data-luckcode="">查看</a></p>
+
+
+
+                                                                <a class="w-button w-button-main" href="/detail/1592.html" target="_blank"><span>跟 买</span></a>
+
+
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="m-user-comm-table" >
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="col-info">
+                                                                <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                                    <div class="w-goods-pic">
+                                                                        <a target="_blank" href="#">
+                                                                            <img src="../../img/goods/3.png" alt="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" width="74" height="74">
+                                                                        </a>
+                                                                    </div>
+                                                                    <p class="w-goods-title f-txtabb">
+                                                                        <a title="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" target="_blank" href="#">
+                                                                            1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒</a>
+                                                                    </p>
+                                                                    <p class="w-goods-price">总需：7999人次</p>
+                                                                    <div class="w-progressBar">
+                                                                        <p class="w-progressBar-wrap">
+                                                                            <span class="w-progressBar-bar" style="width:14%"></span>
+                                                                        </p>
+                                                                        <ul class="w-progressBar-txt f-clear">
+                                                                            <li class="w-progressBar-txt-l">已完成14%，剩余<span class="txt-residue">6859</span></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="col-period">303251471</td>
+                                                            <td class="col-joinNum">6人次</td>
+                                                            <td class="col-status">
+
+                                                                <span class="txt-suc">正在进行</span>
+
+
+                                                            </td>
+                                                            <td class="col-opt">
+                                                                <p>Ta参与<span class="txt-impt">6</span>人次 <a href="javascript:void(0)" pro="viewCode" data-gid="1592" data-period="303251471" data-cid="75597095" data-luckcode="">查看</a></p>
+
+
+
+                                                                <a class="w-button w-button-main" href="/detail/1592.html" target="_blank"><span>跟 买</span></a>
+
+
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="m-user-comm-table" >
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="col-info">
+                                                                <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                                    <div class="w-goods-pic">
+                                                                        <a target="_blank" href="#">
+                                                                            <img src="../../img/goods/3.png" alt="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" width="74" height="74">
+                                                                        </a>
+                                                                    </div>
+                                                                    <p class="w-goods-title f-txtabb">
+                                                                        <a title="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" target="_blank" href="#">
+                                                                            1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒</a>
+                                                                    </p>
+                                                                    <p class="w-goods-price">总需：7999人次</p>
+                                                                    <div class="w-progressBar">
+                                                                        <p class="w-progressBar-wrap">
+                                                                            <span class="w-progressBar-bar" style="width:14%"></span>
+                                                                        </p>
+                                                                        <ul class="w-progressBar-txt f-clear">
+                                                                            <li class="w-progressBar-txt-l">已完成14%，剩余<span class="txt-residue">6859</span></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="col-period">303251471</td>
+                                                            <td class="col-joinNum">6人次</td>
+                                                            <td class="col-status">
+
+                                                                <span class="txt-suc">正在进行</span>
+
+
+                                                            </td>
+                                                            <td class="col-opt">
+                                                                <p>Ta参与<span class="txt-impt">6</span>人次 <a href="javascript:void(0)" pro="viewCode" data-gid="1592" data-period="303251471" data-cid="75597095" data-luckcode="">查看</a></p>
+
+
+
+                                                                <a class="w-button w-button-main" href="/detail/1592.html" target="_blank"><span>跟 买</span></a>
+
+
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <table class="m-user-comm-table" >
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="col-info">
+                                                                <div class="w-goods w-goods-l w-goods-hasLeftPic">
+                                                                    <div class="w-goods-pic">
+                                                                        <a target="_blank" href="#">
+                                                                            <img src="../../img/goods/3.png" alt="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" width="74" height="74">
+                                                                        </a>
+                                                                    </div>
+                                                                    <p class="w-goods-title f-txtabb">
+                                                                        <a title="1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒" target="_blank" href="#">
+                                                                            1箱6瓶装&thinsp;|&thinsp;茅台 新飞天53度 500毫升/瓶 酱香型白酒</a>
+                                                                    </p>
+                                                                    <p class="w-goods-price">总需：7999人次</p>
+                                                                    <div class="w-progressBar">
+                                                                        <p class="w-progressBar-wrap">
+                                                                            <span class="w-progressBar-bar" style="width:14%"></span>
+                                                                        </p>
+                                                                        <ul class="w-progressBar-txt f-clear">
+                                                                            <li class="w-progressBar-txt-l">已完成14%，剩余<span class="txt-residue">6859</span></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="col-period">303251471</td>
+                                                            <td class="col-joinNum">6人次</td>
+                                                            <td class="col-status">
+
+                                                                <span class="txt-suc">正在进行</span>
+
+
+                                                            </td>
+                                                            <td class="col-opt">
+                                                                <p>Ta参与<span class="txt-impt">6</span>人次 <a href="javascript:void(0)" pro="viewCode" data-gid="1592" data-period="303251471" data-cid="75597095" data-luckcode="">查看</a></p>
+
+
+
+                                                                <a class="w-button w-button-main" href="/detail/1592.html" target="_blank"><span>跟 买</span></a>
+
+
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div pro="pager" class="pager">
+                                                    <div class="w-pager" id="pro-view-27">
+                                                        <button class="w-button w-button-aside w-button-disabled" type="button" id="pro-view-28" disabled="disabled">
+                                                            <span>上一页</span></button><button class="w-button w-button-main" type="button" id="pro-view-29">
+                                                        <span>1</span></button><button class="w-button w-button-aside" type="button" id="pro-view-30"><span>2</span>
+                                                    </button><button class="w-button w-button-aside" type="button" id="pro-view-31"><span>3</span></button>
+                                                        <button class="w-button w-button-aside" type="button" id="pro-view-32"><span>4</span></button>
+                                                        <button class="w-button w-button-aside" type="button" id="pro-view-33"><span>5</span></button>
+                                                        <button class="w-button w-button-aside" type="button" id="pro-view-34"><span>下一页</span></button
+                                                        ></div></div><div pro="limitTips" class="limitTips" style="display: block;">一年内共有<span class="txt-impt">2162</span>条夺宝记录，仅可查看其最近50条记录~</div></div></div>
+                                        <div class="listCont" data-name="multi" style="display:none">    <div pro="userCommLoading" class="w-loading"><b class="w-loading-ico"></b><span class="w-loading-txt">正在努力加载……</span></div>
+                                        </div>
+                                    </div>
+                                </div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

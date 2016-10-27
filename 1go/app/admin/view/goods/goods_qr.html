@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取二维码</title>
+    {css href='__common__/tools/css/upload/img_up.css' /}
+
+
+    <style>
+        .webuploader-container {
+            position: relative;
+        }
+
+        .webuploader-element-invisible {
+            position: absolute !important;
+            clip: rect(1px 1px 1px 1px); 
+            clip: rect(1px, 1px, 1px, 1px);
+        }
+
+        .webuploader-pick {
+            background: none repeat scroll 0 0 #00B7EE;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 18px;
+            height: 44px;
+            line-height: 44px;
+            width: 100%;
+            min-width: 120px;
+            margin: 0 auto 0px;
+            transition: background 0.2s;
+            -moz-transition: background 0.2s;
+            -webkit-transition: background 0.2s;
+            -o-transition: background 0.2s;
+        }
+
+        .webuploader-pick-hover {
+            background: #00a2d4;
+        }
+
+        .webuploader-pick-disable {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div style="width: 100%; height: auto;min-width: 600px;" id="demo" class="demo">
+    <div class="upload_box">
+        <div class="upload_main">
+            <div class="upload_choose" style="text-align: center">
+               <p>
+                <img src="{:U('api/qrcode/index')}?text=http://sss" style="width:150px;height:150px">
+                    </p>
+                <p>
+                    外链:<span color="blue">http://wwhjs</span>
+                </p>
+                <p>
+                    <button type="button" >下载图片</button>
+                    <button type="button"  class="">复制链接</button>
+                </p>
+                </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

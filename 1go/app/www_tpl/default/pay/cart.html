@@ -1,0 +1,208 @@
+{extend name="base/base"/}
+{block name="title"}购物车{/block}
+{block name="user_css"}
+{css href="__static__/css/cart.css" /}
+{css href="__static__/css/payment.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-cart main_content">
+        <div class="m-header f-clear">
+            <div class="m-header-logo">
+                <h1>
+                    <a class="m-header-logo-link" href="#">香肠一元购</a>
+                </h1>
+            </div>
+            <div class="m-cart-order-steps">
+                <div class="w-step-duobao w-step-duobao-1"></div>
+            </div>
+        </div>
+        <!--购物车-->
+        <div id="show_result_area">
+            <div class="m-cart-content step_1">
+                <div id="content_area">
+                    <div id="pro-view-11">
+                        <ul class="m-cart-list" id="content_ul">
+                            {notempty name='list'}
+                            <li class="m-cart-list-items m-cart-list-header f-clear">
+                                <div class="cart-list-items-name items-content-checkbox">
+                                    <label class="w-checkbox" id="pro-view-20"><input checked="checked" type="checkbox"
+                                                                                      class="sel_all"/>
+                                    </label>
+                                </div>
+                                <div class="cart-list-items-name items-content-gpic">
+                                    商品名称
+                                </div>
+                                <div class="cart-list-items-name items-content-gname"></div>
+                                <div class="cart-list-items-name items-content-price">
+                                    价值
+                                </div>
+                                <div class="cart-list-items-name items-content-buyunit">
+                                    夺宝价
+                                </div>
+                                <div class="cart-list-items-name items-content-numberInput">
+                                    参与人次
+                                </div>
+                                <div class="cart-list-items-name items-content-numberInput">
+                                    <!--参与期数-->
+                                </div>
+                                <div class="cart-list-items-name items-content-total">
+                                    小计
+                                </div>
+                                <div class="cart-list-items-name items-content-operation">
+                                    操作
+                                </div>
+                            </li>
+                            {/notempty}
+                            <!--循环-->
+
+                            {notempty name='list'}
+                            {foreach name='list' item='vo' key='key'}
+                            <li class="m-cart-list-items f-clear cart_li" data-nper_id="{$vo.nper_id}">
+                                <div class="cart-list-items-content items-content-checkbox">
+                                <span>
+                                    <label class="w-checkbox">
+                                        <input checked="checked" type="checkbox" class="sel_one"
+                                               data-id="{$vo.nper_id}"/>
+                                    </label>
+                                </span>
+                                </div>
+                                <div class="cart-list-items-content items-content-gpic">
+                                    <img src="__image_path__{$vo.i_img_path|default='__yyg__/images/empty_img.jpg'}"
+                                         alt="{$vo.g_name|default='--'}">
+                                </div>
+                                <div class="cart-list-items-content items-content-gname">
+                                    <!--十元区LOGO-->
+                                    <p><a target="_blank" href="#"
+                                          class="w-tag w-tag-ten">{$vo.deposer_type|default='香肠一元购'}</a>
+                                        <a href="{:dwz_filter('goods/detail',array('id'=>$vo['g_id'].'-'.$vo['nper_id']))}"
+                                           target="_blank">{$vo.g_name|default='--'}</a></p>
+                                    <p>总需
+                                        <span style="color: #39f;">{$vo.sum_times|default=''|intval}</span>
+                                        人次参与，还剩：
+                                    <span class="rest-num">
+                                        {php}
+                                        $last_num_1 = (int)$vo['sum_times'] - (int)$vo['participant_num'];
+                                        echo $last_num_1 < 0 ? 0 :$last_num_1;
+                                        {/php}
+                                    </span>
+                                        人次
+                                    </p>
+                                </div>
+                                <div class="cart-list-items-content items-content-price f-cart-item-center">
+                                    <p>{$vo.price|intval}根香肠</p>
+                                </div>
+                                <div class="cart-list-items-content items-content-buyunit f-cart-item-center">
+                                    <p>{php}echo ceil($vo['unit_price']);{/php}根香肠</p>
+                                </div>
+                                <div class="cart-list-items-content items-content-numberInput">
+                                    <!--numbic-->
+                                <span class="items-content-numberInput-number">
+                                 <div class="w-number" id="pro-view-13">
+                                     <a class="w-number-btn w-number-btn-minus reduce_num change_num_btn"
+                                        href="javascript:void(0);">－</a>
+                                     <input class="w-number-input participation_num"
+                                            type="text"
+                                            data-nper="{$vo.nper_id|default=''}"
+                                            data-last="{$vo.last_num|default=1}"
+                                            data-unit="{$vo.unit_price|default=1}"
+                                            data-min="{$vo.min_times|default=1}"
+                                            value="{$vo.num|default=1}"/>
+                                     <a class="w-number-btn w-number-btn-plus add_num change_num_btn"
+                                        href="javascript:void(0);">＋</a>
+                                 </div>
+                                </span>
+                                </div>
+                                <div class="cart-list-items-content items-content-numberInput">
+                                <!--<span class="items-content-numberInput-regular">-->
+                                 <!--<div class="w-number w-number-disabled" >-->
+                                     <!--<a class="w-number-btn w-number-btn-minus" href="javascript:void(0);">－</a>-->
+                                     <!--<input class="w-number-input" type="text" value="1" disabled="true"/>-->
+                                     <!--<a class="w-number-btn w-number-btn-plus" href="javascript:void(0);">＋</a>-->
+                                 <!--</div></span>-->
+                                </div>
+                                <div class="cart-list-items-content items-content-total f-cart-item-center">
+                                    <span><em class="money_count">--</em>根香肠</span>
+                                </div>
+                                <div class="cart-list-items-content items-content-operation f-cart-item-center">
+                                    <a href="javascript:void(0)" class="del_one" data-nper_id="{$vo.nper_id}">删除</a>
+                                </div>
+                            </li>
+                            {/foreach}
+                            {else/}
+                            <div class="cart-empty-tips"><p>您的清单里还没有任何商品，<a href="/">马上去逛逛~</a></p></div>
+                            {/notempty}
+
+                        </ul>
+                        <div class="m-cart-list-footer f-clear ">
+                            {notempty name='list'}
+                            <div id="pro-view-21" class="no_goods_hide">
+                                <div class="cart-list-footer-total">
+                                    <p class="txt-bold">总计：<strong id="total_amount">--</strong>&nbsp;根香肠</p>
+                                    <p class="txt-gray balance">账户余额：{$money|default=0}&nbsp;根香肠</p>
+                                </div>
+                                <div class="cart-list-footer-checkbox">
+                                <span>
+                                    <label class="w-checkbox" id="pro-view-22">
+                                        <input checked="checked" type="checkbox" class="sel_all"/>
+                                    </label>
+                                </span>
+                                </div>
+                                <div class="cart-list-footer-operation f-cart-list-footer-center">
+                                    <a href="javascript:void(0)" class="del_all">删除选中</a>
+                                </div>
+                            </div>
+                            {/notempty}
+                        </div>
+                    </div>
+                    {notempty name='list'}
+                    <div class="m-cart-content-footer no_goods_hide" id="pro-view-23">
+                        <div class="footer-submit-btn">
+                            <button class="w-button w-button-main sure_order_btn" type="button"
+                                    style="width: 118px; height: 45px; line-height: 45px; font-size: 16px;">
+                                <span>去结算</span>
+                            </button>
+                        </div>
+                        <div class="footer-returnhome-btn">
+                            <a class="w-button w-button-aside" href="/" target="_self" id="pro-view-24"
+                               style="width: 66px; height: 45px; line-height: 45px; font-size: 14px;"><span>返回首页</span></a>
+                        </div>
+                        <!--<div class="footer-tips">-->
+                            <!--<p>现在可以一次参与多期商品哦&nbsp;&nbsp;<a href="javascript:void(0)">详情</a></p>-->
+                        <!--</div>-->
+                    <span><p style="float: right;clear: right;margin-top: 13px;color: #808080;font-size: 13px;"
+                             id="pro-view-26">夺宝有风险，参与需谨慎</p></span>
+                    </div>
+                    {/notempty}
+                </div>
+                <div style="margin-top:30px;">
+                    <div class="w-goodsRecommend" id="pro-view-5">
+                        <div class="w-hd">
+                            <h3 class="w-hd-title">推荐夺宝</h3>
+                            <span>根据你的浏览记录推荐的商品</span>
+                            <a class="w-hd-refresh refresh_rand_goods" href="javascript:void(0);"><i
+                                    class="ico ico-refresh"></i>换一批</a>
+                        </div>
+                        <div class="w-recommend-bd">
+                            <ul class="w-goodsList f-clear rand_goods">
+                                <!--异步加载隐藏loading-->
+                                <div class="w-loading" id="pro-view-0" style="display: none1;">
+                                    <b class="w-loading-ico"></b>
+                                    <span class="w-loading-txt">正在努力加载……</span>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="show_rand_goods_url" value="{:U('Pay/show_rand_goods')}"><!--显示随机商品url-->
+<input type="hidden" id="pay_info_url" value="{:U('Pay/info')}"><!--确认商品信息-->
+<input type="hidden" id="charge_url" value="{:U('Pay/charge')}"><!--商品付款页面地址-->
+{/block}
+
+{block name="user_js"}
+{js href="__yyg__/js/pay/cart.js" /}
+{/block}

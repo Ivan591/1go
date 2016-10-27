@@ -1,0 +1,77 @@
+{extend name="base/base"/}
+{block name="user_css"}
+{css href="__static__/css/index.css" /}
+{css href="__static__/css/help.css" /}
+{/block}
+{block name="title"}{$article_detail.title|htmlspecialchars}{/block}
+{block name='content'}
+<div class="g-body">
+
+    <div class="m-helpcenter" >
+        <div class="g-wrap">
+            <div class="g-side">
+                <div class="w-msg-news">
+                    <h3><i class="ico ico-instruction ico-instruction-5"></i><a href="javascript:;">系统公告</a></h3>
+                </div>
+
+                <div class="w-msg-catlog">
+                    <div class="w-msg-catlog-hd">
+                        <h3 class="selected">帮助中心</h3>
+                    </div>
+                    <div class="w-msg-catlog-bd">
+                        <dl class="w-msg-catlog-list">
+
+                                {volist name="help_category" id="each_help_category"}
+                            <dt><i class="ico ico-instruction {$each_help_category.style}"></i>{$each_help_category.name|htmlspecialchars}</dt>
+                            <dd>
+                                <ol>
+                                        {volist name="$each_help_category.articles" id="each_help_article"}
+                                        <li>
+                                        {empty name="$each_help_article.outlink"}
+                                        {empty name="$each_help_article.name"}
+                                        <a class="{$each_help_article.id==$article_detail.id?'selected':''}" href="{:dwz_filter('help/read',['id'=>$each_help_article['id']])}" >{$each_help_article.title|htmlspecialchars}</a>
+                                        {else/}
+                                        <a class="{$each_help_article.id==$article_detail.id?'selected':''}" href="{:dwz_filter('help/read',['name'=>$each_help_article['name']])}" >{$each_help_article.title|htmlspecialchars}</a>
+                                        {/empty}
+                                        {else/}
+                                        <a class="{$each_help_article.id==$article_detail.id?'selected':''}" href="{$each_help_article.outlink}" target="_blank">{$each_help_article.title|htmlspecialchars}</a>
+                                        {/empty}
+                                        </li>
+                                        {/volist}
+                                </ol>
+                            </dd>
+                                {/volist}
+
+                        </dl>
+                    </div>
+                </div>
+                <div class="w-msg-more">
+                    <p>如果不能在帮助内容中找到答案，<br>您还可以拨打：</p>
+                    <div class="w-msg-more-wrap">
+                        <p class="w-msg-more-call"><i class="ico ico-call"></i>服务热线</p>
+                        <p class="w-msg-more-phoneNum">{$site_config.website_hotline|default='400-188-3321'}</p>
+                    </div>
+                </div>        </div>
+            <div class="g-main">
+                <div class="w-dir">
+                    <a href="/">首页</a> &gt; <a href="javascript:;">帮助中心</a> &gt; <span class="txt-red"></span>
+                </div>
+                <div class="m-helpcenter-detail">
+                    <div class="m-helpcenter-detail-hd">
+                        <h4>{$article_detail.title|htmlspecialchars}</h4>
+                    </div>
+                    <div class="m-helpcenter-detail-bd">
+                        {$article_detail.content}
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{js href='__static__/js/index.js' /}
+{js href='__static__/js/count_down.js' /}
+{js href="__yyg__/js/index/index.js" /}
+{/block}

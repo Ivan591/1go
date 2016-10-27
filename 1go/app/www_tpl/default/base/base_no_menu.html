@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>{block name="title"}{/block}</title>
+
+    {include file="base/common_css" /}
+    {block name="user_css"}{/block}
+    {js href="__static__/js/jquery.min.js" /}
+</head>
+<body>
+<div class="g-header">
+    {include file="base/tool_bar" /}
+    {include file="base/header" /}
+</div>
+
+{block name="content"}{/block}
+{include file="base/footer" /}
+{include file="base/base_url" /}
+
+{include file="base/common_js" /}
+{block name="user_js"}{/block}
+</body>
+</html>

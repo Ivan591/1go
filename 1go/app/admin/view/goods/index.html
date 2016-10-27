@@ -1,0 +1,72 @@
+{extend name='base/base' /}
+{block name='css'}
+{css href='__plugin__/lightbox/lightbox.min.css'}
+{/block}
+{block name='content'}
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="javascript:">后台管理</a>
+        </li>
+        <li>
+            <a href="javascript:">商品管理</a>
+        </li>
+        <li class="active">全部商品</li>
+    </ul><!-- .breadcrumb -->
+
+
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <form id="form_condition" class="form-search">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4">
+                    <div class="input-group">
+                        <input class="form-control search-query" placeholder="请输入" type="text" name="keywords">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-purple btn-sm search_btn">
+                                搜索
+                                <i class="icon-search icon-on-right bigger-110"></i>
+                            </button>
+							<a href="{:U('exec',array('type'=>'add'))}" target="_blank" class="btn btn-success btn-sm">
+                                <i class="icon-plus icon-on-right bigger-110"></i>
+                                新增
+                            </a>
+						</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                    <div id="form_content" data-url="{:U('show_list')}"></div>
+                    </div><!-- /.table-responsive -->
+                </div><!-- /span -->
+            </div><!-- /row -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+<input type="hidden" id="qr_url" value="{:U('goods_qr')}">
+<input type="hidden" id="del_url" value="{:U('del')}">
+<input type="hidden" id="del_nper_url" value="{:U('del_nper')}">
+<input type="hidden" id="trigger_open_url" value="{:U('core/gdfc/init_new_nper')}">
+{/block}
+
+{block name="js"}
+{js href='__common__/plugin/lightbox/lightbox.min.js' /}
+{js href='__common__/admin/js/goods/index.js' /}
+{/block}

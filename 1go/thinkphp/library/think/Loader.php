@@ -1,0 +1,392 @@
+<?php
+// +----------------------------------------------------------------------
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: liu21st <liu21st@gmail.com>
+// +----------------------------------------------------------------------
+
+namespace think;
+
+class Loader
+{
+    // 类名映射
+    protected static $map = [];
+    // 加载列表
+    protected static $load = [];
+    // 命名空间
+    protected static $namespace = [];
+    // 命名空间别名
+    protected static $namespaceAlias = [];
+    // PSR-4
+    private static $prefixLengthsPsr4 = [];
+    private static $prefixDirsPsr4    = [];
+    // PSR-0
+    private static $prefixesPsr0 = [];
+
+    // 自动加载
+    public static function autoload($class)
+    {
+        // 检测命名空间别名
+        if (!empty(self::$namespaceAlias)) {
+            $namespace = dirname($class);
+            if (isset(self::$namespaceAlias[$namespace])) {
+                $original = self::$namespaceAlias[$namespace] . '\\' . basename($class);
+                if (class_exists($original)) {
+                    return class_alias($original, $class, false);
+                }
+            }
+        }
+        // 检查是否定义类库映射
+        if (isset(self::$map[$class])) {
+            if (is_file(self::$map[$class])) {
+                // 记录加载信息
+                APP_DEBUG && self::$load[] = self::$map[$class];
+                include self::$map[$class];
+            } else {
+                return false;
+            }
+        } elseif ($file = self::findFileInComposer($class)) {
+            // Composer自动加载
+            // 记录加载信息
+            APP_DEBUG && self::$load[] = $file;
+            include $file;
+        } else {
+            // 命名空间自动加载
+            if (!strpos($class, '\\')) {
+                return false;
+            }
+            // 解析命名空间
+            list($name, $class) = explode('\\', $class, 2);
+            if (isset(self::$namespace[$name])) {
+                // 注册的命名空间
+                $path = self::$namespace[$name];
+            } elseif (is_dir(EXTEND_PATH . $name)) {
+                // 扩展类库命名空间
+                $path = EXTEND_PATH . $name . DS;
+            } else {
+                return false;
+            }
+            $filename = $path . str_replace('\\', DS, $class) . EXT;
+            if (is_file($filename)) {
+                // 开启调试模式Win环境严格区分大小写
+                if (APP_DEBUG && IS_WIN && false === strpos(realpath($filename), $class . EXT)) {
+                    return false;
+                }
+                // 记录加载信息
+                APP_DEBUG && self::$load[] = $filename;
+                include $filename;
+            } else {
+                Log::record('autoloader error : ' . $filename, 'notice');
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // 注册classmap
+    public static function addMap($class, $map = '')
+    {
+        if (is_array($class)) {
+            self::$map = array_merge(self::$map, $class);
+        } else {
+            self::$map[$class] = $map;
+        }
+    }
+
+    // 注册命名空间
+    public static function addNamespace($namespace, $path = '')
+    {
+        if (is_array($namespace)) {
+            self::$namespace = array_merge(self::$namespace, $namespace);
+        } else {
+            self::$namespace[$namespace] = $path;
+        }
+    }
+
+    // 注册命名空间别名
+    public static function addNamespaceAlias($namespace, $original = '')
+    {
+        if (is_array($namespace)) {
+            self::$namespaceAlias = array_merge(self::$namespace, $namespace);
+        } else {
+            self::$namespaceAlias[$namespace] = $original;
+        }
+    }
+
+    // 注册自动加载机制
+    public static function register($autoload = '')
+    {
+        // 注册系统自动加载
+        spl_autoload_register($autoload ? $autoload : 'think\\Loader::autoload');
+        // 注册composer自动加载
+        self::registerComposerLoader();
+    }
+
+    // 注册composer自动加载
+    private static function registerComposerLoader()
+    {
+        if (is_file(VENDOR_PATH . 'composer/autoload_namespaces.php')) {
+            $map = require VENDOR_PATH . 'composer/autoload_namespaces.php';
+            foreach ($map as $namespace => $path) {
+                self::$prefixesPsr0[$namespace[0]][$namespace] = (array) $path;
+            }
+        }
+
+        if (is_file(VENDOR_PATH . 'composer/autoload_psr4.php')) {
+            $map = require VENDOR_PATH . 'composer/autoload_psr4.php';
+            foreach ($map as $namespace => $path) {
+                $length = strlen($namespace);
+                if ('\\' !== $namespace[$length - 1]) {
+                    throw new \InvalidArgumentException("A non-empty PSR-4 prefix must end with a namespace separator.");
+                }
+                self::$prefixLengthsPsr4[$namespace[0]][$namespace] = $length;
+                self::$prefixDirsPsr4[$namespace]                   = (array) $path;
+            }
+        }
+
+        if (is_file(VENDOR_PATH . 'composer/autoload_classmap.php')) {
+            $classMap = require VENDOR_PATH . 'composer/autoload_classmap.php';
+            if ($classMap) {
+                self::addMap($classMap);
+            }
+        }
+
+        if (is_file(VENDOR_PATH . 'composer/autoload_files.php')) {
+            $includeFiles = require VENDOR_PATH . 'composer/autoload_files.php';
+            foreach ($includeFiles as $fileIdentifier => $file) {
+                self::composerRequire($fileIdentifier, $file);
+            }
+        }
+    }
+
+    private static function composerRequire($fileIdentifier, $file)
+    {
+        if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
+            require $file;
+            $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
+        }
+    }
+
+    private static function findFileInComposer($class, $ext = '.php')
+    {
+        // PSR-4 lookup
+        $logicalPathPsr4 = strtr($class, '\\', DS) . $ext;
+
+        $first = $class[0];
+        if (isset(self::$prefixLengthsPsr4[$first])) {
+            foreach (self::$prefixLengthsPsr4[$first] as $prefix => $length) {
+                if (0 === strpos($class, $prefix)) {
+                    foreach (self::$prefixDirsPsr4[$prefix] as $dir) {
+                        if (file_exists($file = $dir . DS . substr($logicalPathPsr4, $length))) {
+                            return $file;
+                        }
+                    }
+                }
+            }
+        }
+        // PSR-0 lookup
+        if (false !== $pos = strrpos($class, '\\')) {
+            // namespaced class name
+            $logicalPathPsr0 = substr($logicalPathPsr4, 0, $pos + 1)
+            . strtr(substr($logicalPathPsr4, $pos + 1), '_', DS);
+        } else {
+            // PEAR-like class name
+            $logicalPathPsr0 = strtr($class, '_', DS) . $ext;
+        }
+
+        if (isset(self::$prefixesPsr0[$first])) {
+            foreach (self::$prefixesPsr0[$first] as $prefix => $dirs) {
+                if (0 === strpos($class, $prefix)) {
+                    foreach ($dirs as $dir) {
+                        if (file_exists($file = $dir . DS . $logicalPathPsr0)) {
+                            return $file;
+                        }
+                    }
+                }
+            }
+        }
+        // Remember that this class does not exist.
+        return self::$map[$class] = false;
+    }
+
+    
+    public static function import($class, $baseUrl = '', $ext = EXT)
+    {
+        static $_file = [];
+        $class        = str_replace(['.', '#'], [DS, '.'], $class);
+        if (isset($_file[$class . $baseUrl])) {
+            return true;
+        }
+
+        if (empty($baseUrl)) {
+            list($name, $class) = explode(DS, $class, 2);
+            if (isset(self::$namespace[$name])) {
+                // 注册的命名空间
+                $baseUrl = self::$namespace[$name];
+            } elseif ('@' == $name) {
+                //加载当前模块应用类库
+                $baseUrl = MODULE_PATH;
+            } elseif (is_dir(EXTEND_PATH . $name)) {
+                $baseUrl = EXTEND_PATH;
+            } else {
+                // 加载其它模块的类库
+                $baseUrl = APP_PATH . $name . DS;
+            }
+        } elseif (substr($baseUrl, -1) != DS) {
+            $baseUrl .= DS;
+        }
+        // 如果类存在 则导入类库文件
+        $filename = $baseUrl . $class . $ext;
+        if (is_file($filename)) {
+            // 开启调试模式Win环境严格区分大小写
+            if (APP_DEBUG && IS_WIN && false === strpos(realpath($filename), $class . $ext)) {
+                return false;
+            }
+            include $filename;
+            $_file[$class . $baseUrl] = true;
+            return true;
+        }
+        return false;
+    }
+
+    
+    public static function table($name = '', array $options = [])
+    {
+        static $_model = [];
+        if (strpos($name, ':')) {
+            list($class, $name) = explode(':', $name);
+        } else {
+            $class = 'think\\Model';
+        }
+        $guid = $name . '_' . $class;
+        if (!isset($_model[$guid])) {
+            $_model[$guid] = new $class($name, $options);
+        }
+        return $_model[$guid];
+    }
+
+    
+    public static function model($name = '', $layer = MODEL_LAYER)
+    {
+        if (empty($name)) {
+            return new Model;
+        }
+        static $_model = [];
+        if (isset($_model[$name . $layer])) {
+            return $_model[$name . $layer];
+        }
+        if (strpos($name, '/')) {
+            list($module, $name) = explode('/', $name, 2);
+        } else {
+            $module = APP_MULTI_MODULE ? MODULE_NAME : '';
+        }
+        $class = self::parseClass($module, $layer, $name);
+        $name  = basename($name);
+        if (class_exists($class)) {
+            $model = new $class($name);
+        } else {
+            $class = str_replace('\\' . $module . '\\', '\\' . COMMON_MODULE . '\\', $class);
+            if (class_exists($class)) {
+                $model = new $class($name);
+            } else {
+                Log::record('实例化不存在的类：' . $class, 'notice');
+                $model = new Model($name);
+            }
+        }
+        $_model[$name . $layer] = $model;
+        return $model;
+    }
+
+    
+    public static function controller($name, $layer = '', $empty = '')
+    {
+        static $_instance = [];
+        $layer            = $layer ?: CONTROLLER_LAYER;
+        if (isset($_instance[$name . $layer])) {
+            return $_instance[$name . $layer];
+        }
+        if (strpos($name, '/')) {
+            list($module, $name) = explode('/', $name);
+        } else {
+            $module = APP_MULTI_MODULE ? MODULE_NAME : '';
+        }
+        $class = self::parseClass($module, $layer, $name);
+        if (class_exists($class)) {
+            $action                    = new $class;
+            $_instance[$name . $layer] = $action;
+            return $action;
+        } elseif ($empty && class_exists($emptyClass = self::parseClass($module, $layer, $empty))) {
+            return new $emptyClass;
+        } else {
+            throw new Exception('class [ ' . $class . ' ] not exists', 10001);
+        }
+    }
+
+    
+    public static function db($config = [])
+    {
+        return Db::connect($config);
+    }
+
+    
+    public static function action($url, $vars = [], $layer = CONTROLLER_LAYER)
+    {
+        $info   = pathinfo($url);
+        $action = $info['basename'];
+        $module = '.' != $info['dirname'] ? $info['dirname'] : CONTROLLER_NAME;
+        $class  = self::controller($module, $layer);
+        if ($class) {
+            if (is_scalar($vars)) {
+                if (strpos($vars, '=')) {
+                    parse_str($vars, $vars);
+                } else {
+                    $vars = [$vars];
+                }
+            }
+            return App::invokeMethod([$class, $action . Config::get('action_suffix')], $vars);
+        }
+    }
+    
+    public static function instance($class, $method = '')
+    {
+        static $_instance = [];
+        $identify         = $class . $method;
+        if (!isset($_instance[$identify])) {
+            if (class_exists($class)) {
+                $o = new $class();
+                if (!empty($method) && method_exists($o, $method)) {
+                    $_instance[$identify] = call_user_func_array([ & $o, $method], []);
+                } else {
+                    $_instance[$identify] = $o;
+                }
+            } else {
+                throw new Exception('class not exist :' . $class, 10007);
+            }
+        }
+        return $_instance[$identify];
+    }
+
+    
+    public static function parseName($name, $type = 0)
+    {
+        if ($type) {
+            return ucfirst(preg_replace_callback('/_([a-zA-Z])/', function ($match) {return strtoupper($match[1]);}, $name));
+        } else {
+            return strtolower(trim(preg_replace("/[A-Z]/", "_\\0", $name), "_"));
+        }
+    }
+
+    
+    public static function parseClass($module, $layer, $name)
+    {
+        $name  = str_replace(['/', '.'], '\\', $name);
+        $array = explode('\\', $name);
+        $class = self::parseName(array_pop($array), 1) . (CLASS_APPEND_SUFFIX ? ucfirst($layer) : '');
+        $path  = $array ? implode('\\', $array) . '\\' : '';
+        return APP_NAMESPACE . '\\' . (APP_MULTI_MODULE ? $module . '\\' : '') . $layer . '\\' . $path . $class;
+    }
+}

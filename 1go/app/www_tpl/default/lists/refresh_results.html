@@ -1,0 +1,22 @@
+{eq name="vo.status" value="3"/}
+<div class="w-record">
+    <div class="w-record-avatar">
+        <a href="{:dwz_filter('goods/detail',array('id'=>$vo['goods_id'].'-'.$vo['nper_id']))}" target="_blank">
+            <img width="40" height="40"  src="__image_path__{$vo.avatar|default='__yyg__/images/empty_img.jpg'}"  onerror="no_img($(this));" /></a>
+    </div>
+    <div class="w-record-detail">
+        <p class="user f-breakword">恭喜
+            <a href="{:dwz_filter('goods/detail',array('id'=>$vo['goods_id'].'-'.$vo['nper_id']))}" title="">{$vo.nick_name|default=''}</a>
+            <span class="txt-green"></span>获得该商品</p>
+        <p class="lucknum">幸运号码：<b class="txt-red">{$vo.luck_num|num_base_mask|default='--'}</b></p>
+        <p class="join_num">本期参与：<b class="txt-red">{$vo.luck_o_num|default='--'}</b>人次</p>
+        <p class="open_time">揭晓时间：<span title="">{$vo.open_time|date='Y-m-d H:i:s',###}</span></p>
+        <p class="detail_link">
+            <a class="w-button w-button-simple" href="{:dwz_filter('goods/detail',array('id'=>$vo['goods_id'].'-'.$vo['nper_id']))}" target="_blank">查看详情</a></p>
+    </div>
+</div>
+{else /}
+<div class="w-record">
+    <p class="w-countdown-title"><i class="ico ico-countdown ico-countdown-gray"></i>服务器开小差了，请刷新查看最新结果；</p>
+</div>
+{/eq}

@@ -1,0 +1,86 @@
+{extend name="base/base"/}
+{block name="title"}{/block}
+{block name="user_css"}
+{css href="__static__/css/usercenter.css" /}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" >
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <!--用户中心  菜单-->
+                {include file="ucenter/_nav" /}
+                <!--用户中心 main-->
+                <div class="m-user-frame-colMain ">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">我的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+                            <li class="w-crumbs-item w-crumbs-active">幸运记录</li>
+                        </ul>
+                        <div module="user/win/MyWin" class="m-win m-win-myself" >
+                            <div class="m-user-comm-wraper" id="pro-view-12">
+                                <!--没有纪录-->
+                                <div class="m-user-comm-empty" >
+                                    <b class="ico ico-face-sad"></b>
+                                    <div class="i-desc">您还没有此记录哦~</div>
+                                    <div class="i-opt">
+                                        <a href="/" class="w-button w-button-main w-button-xl">马上试试运气</a>
+                                    </div></div>
+                                <div pro="cont" class="m-user-comm-cont">
+                                    <div class="m-win-hd">
+                                        <div class="col info">
+                                            商品信息
+                                        </div>
+                                        <div class="col status">
+                                            商品状态
+                                        </div>
+                                        <div class="col opt">
+                                            操作
+                                        </div>
+                                    </div>
+                                    <div class="m-win-bd" pro="list">
+                                        <!--中奖结果-->
+                                        <div class="w-goods" >
+                                            <div class="col info">
+                                                <div class="w-goods-pic">
+                                                    <a title="三只松鼠 手剥巴旦木 手剥薄壳杏仁 235g" target="_blank" href="#">
+                                                        <img src="../../img/goods/2.png" alt="三只松鼠 手剥巴旦木 手剥薄壳杏仁 235g" /></a>
+                                                </div>
+                                                <div class="w-goods-content">
+                                                    <p class="w-goods-title">
+                                                        <a title="三只松鼠 手剥巴旦木 手剥薄壳杏仁 235g" target="_blank" href="#">三只松鼠 手剥巴旦木 手剥薄壳杏仁 235g</a></p>
+                                                    <p class="w-goods-price">期号：303222179</p>
+                                                    <p class="w-goods-price">总需：35人次</p>
+                                                    <p class="w-goods-info">幸运号码：<strong class="txt-impt">10000016</strong>，总共参与了<strong class="txt-dark">28</strong>人次</p>
+                                                    <p class="buyTime">夺宝时间：2016-03-22 13:20:35.466</p>
+                                                    <p class="calcTime">揭晓时间：2016-03-22 13:34:00.000</p>
+                                                </div>
+                                            </div>
+                                            <div class="col status">
+                                                <span class="txt-suc">已派发商品</span>
+                                            </div>
+                                            <div class="col opt">
+                                                <p><a href="#" target="_blank">查看详情</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-pager" >
+                                    <button class="w-button w-button-aside w-button-disabled" type="button" disabled="disabled"><span>上一页</span></button>
+                                    <button class="w-button w-button-main" type="button" id="pro-view-16"><span>1</span></button>
+                                    <button class="w-button w-button-aside w-button-disabled" type="button" disabled="disabled"><span>下一页</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="user_js"}
+{/block}

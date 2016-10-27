@@ -1,0 +1,176 @@
+{extend name="base/base"/}
+{block name="user_css"}
+{css href="__static__/css/index.css" /}
+{css href="__static__/css/goods_list.css" /}
+{/block}
+{block name='title'}
+{eq name="Think.get.category|default=0" value="0"}
+全部商品
+{else/}
+{volist name='category_list' id='each_category' }{eq name="each_category.id" value="$Think.get.category|default=0"}{$each_category.name|htmlspecialchars}{/eq}{/volist}
+{/eq}
+{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-list">
+        <div class="g-wrap g-body-hd f-clear">
+            <div class="w-dir">
+                <a href="/">首页</a> &gt; <a href="{:U('Lists/index')}">全部商品</a>
+                {volist name='category_list' id='each_category' }{eq name="each_category.id" value="$Think.get.category|default=0"}&gt;&nbsp;<span class="txt-red">{$each_category.name|htmlspecialchars}</span>{/eq}{/volist}
+            </div>
+
+            <div class="m-list-mod m-list-allType">
+                <div class="m-list-mod-hd">
+                    <h3><a href="{:U('Lists/index')}">所有商品</a> <span class="extra">（共 <b class="txt-red count">{$count_all}</b> 件相关商品）</span></h3>
+                </div>
+                <div class="m-list-mod-bd">
+                    <ul class="m-list-allType-list">
+                        {volist name='category_list' id='each_category' }
+                        {eq name="each_category.id" value="$Think.get.category|default=0"}
+                        <li class="selected">
+                            {else/}
+                        <li>
+                            {/eq}
+                            <a href="{:dwz_filter('lists/index',['category'=>$each_category['id']])}">
+                                <span class="icon"><i class="ico ico-type ico-type-{$each_category.imgid} first"></i><i class="ico ico-type ico-type-{$each_category.imgid} second"></i></span>
+                                <b class="name">{$each_category.name|htmlspecialchars}</b>
+                            </a>
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="g-wrap g-body-bd f-clear">
+
+            <div class="m-list-mod m-list-goodsList m-search-goodsList">
+                <!--搜索参数,仅在非搜索页面出现-->
+                <div class="m-list-mod-hd">
+                    <h6>排序：</h6>
+                    <ul class="m-list-sortList">
+                        <li class="{php}echo I('get.sort',0,'intval')==0?'selected':'';{/php}">
+                            <a href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>0,'page'=>I('get.page',1,'intval')])}">人气商品</a>
+                        </li>
+                        <li class="{php}echo I('get.sort',0,'intval')==1?'selected':'';{/php}">
+                            <a href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>1,'page'=>I('get.page',1,'intval')])}">剩余人次</a>
+                        </li>
+                        <li class="{php}echo I('get.sort',0,'intval')==2?'selected':'';{/php}">
+                            <a href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>2,'page'=>I('get.page',1,'intval')])}">最新商品</a>
+                        </li>
+                        <li class="{php}echo I('get.sort',0,'intval')==3?'selected':'';{/php}">
+                            <a href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>3,'page'=>I('get.page',1,'intval')])}"><i title="升序" class="ico ico-arrow-sort ico-arrow-sort-gray-up"></i>总需人次</a>
+                        </li>
+                        <li class="{php}echo I('get.sort',0,'intval')==4?'selected':'';{/php}">
+                            <a href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>4,'page'=>I('get.page',1,'intval')])}"><i title="降序" class="ico ico-arrow-sort ico-arrow-sort-gray-down"></i>总需人次</a>
+                        </li>
+                    </ul>
+                    <button id="buyAll" class="w-button w-button-main">全部参与</button>
+                </div>
+                <div class="m-list-mod-bd">
+                    <!--全部商品列表-->
+                    <ul class="w-quickBuyList f-clear" id="goodsList">
+                        <!--循环 ,一行4个 ,每行最后一个 row-last-->
+                        {for start="0" end="$count_page" step="4" name="goods_i" }
+                        {for start="$goods_i" end="$goods_i+4" name="goods_j" }
+                        {present name="goods_list[$goods_j]"}
+                        <li class="w-quickBuyList-item {$goods_j%4==3 ? ' row-last' : ' '}" data-gid="{$goods_list[$goods_j]['gid']}" data-nper="{$goods_list[$goods_j]['id']}">
+                            <!--十元专区图标-->
+                            <!--<i class="ico ico-label ico-label-ten"></i>-->
+                            <div class="w-goods w-goods-l w-goods-ing">
+                                <div class="w-goods-pic">
+                                    <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$goods_list[$goods_j]['gid']])}" title="{$goods_list[$goods_j]['name']|htmlspecialchars}" target="_blank">
+                                        <img width="200" height="200" alt="{$goods_list[$goods_j]['name']|htmlspecialchars}" src="__image_path__{$goods_list[$goods_j]['img_path']}" class="">
+                                    </a>
+                                </div>
+                                <p class="w-goods-title f-txtabb">
+                                    <a title="{$goods_list[$goods_j]['name']|htmlspecialchars}" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$goods_list[$goods_j]['gid']])}" target="_blank">{$goods_list[$goods_j]['name']|htmlspecialchars}</a></p>
+                                <p class="w-goods-price">总需：{$goods_list[$goods_j]['sum_times']} 人次</p>
+                                <div class="w-progressBar" title="{$goods_list[$goods_j]['percent']}%">
+                                    <p class="w-progressBar-wrap">
+                                        <span class="w-progressBar-bar" style="width:{$goods_list[$goods_j]['percent']}%;"></span>
+                                    </p>
+                                    <ul class="w-progressBar-txt f-clear">
+                                        <li class="w-progressBar-txt-l"><p><b>{$goods_list[$goods_j]['participant_num']}</b></p>
+                                            <p>已参与人次</p></li>
+                                        <li class="w-progressBar-txt-r"><p><b>{$goods_list[$goods_j]['remain']}</b></p>
+                                            <p>剩余人次</p></li>
+                                    </ul>
+                                </div>
+                                <p class="w-goods-progressHint">
+                                    <b class="txt-blue">{$goods_list[$goods_j]['participant_num']}</b>人次已参与，赶快去参加吧！剩余<b class="txt-red">{$goods_list[$goods_j]['remain']}</b>人次
+                                </p>
+                                <div class="w-goods-opr">
+
+                                    我要参与：
+                                    <div class="w-goods-opr-number">
+                                        <div class="w-number  reduce_num w-number-inline">
+                                            <a class="w-number-btn w-number-btn-minus" href="javascript:;">－</a>
+                                            <input data-last="{$goods_list[$goods_j]['remain']}"
+                                                   data-unit="{$goods_list[$goods_j]['unit_price']}"
+                                                   data-min="{$goods_list[$goods_j]['min_times']}"
+                                                   data-max="1000"
+                                                   class="w-number-input participation_num"
+                                                   type="text"
+                                                   value="{$goods_list[$goods_j]['init_times']}">
+                                            <a class="w-number-btn add_num w-number-btn-plus" href="javascript:;">＋</a></div>
+                                    </div>
+                                    人次
+
+                                    <p class="w-goods-opr-buy">
+                                        <a class="w-button w-button-main w-button-l w-goods-btn-quickBuy" href="javascript:void(0)" style="width:90px;">立即夺宝</a>
+                                        <a class="w-button w-button-l w-goods-btn-addToCart" href="javascript:void(0)" style="width:90px;">加入清单</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        {else/}
+                        <li class="w-quickBuyList-item w-quickBuyList-item-alt  {$goods_j%4==3 ? ' row-last' : ' '}">
+                            <img width="294" height="470" src="__static__/img/alt_blank_m.jpg">
+                        </li>
+                        {/present}
+                        {/for}
+                        {/for}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="g-wrap g-body-ft f-clear">
+            <div class="m-list-pager">
+                <div class="w-pager" id="pro-view-10">
+                    {gt name="page_current" value="1"}
+                    <a class="w-button w-button-aside" href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>I('get.sort',0,'intval'),'page'=>$page_current-1])}" target="_self"><span>上一页</span></a>
+                    {else}
+                    <a class="w-button w-button-aside w-button-disabled" href="javascript:;" disabled="disabled"><span>上一页</span></a>
+                    {/gt}
+                    {for start="1" end="$page_count+1" name="page"}
+        {php}
+        if($page<=3 | $page>=$page_count-2 | ($page<=$page_current+3 && $page>=$page_current-3)){
+        {/php}
+                    <a class="w-button {$page==$page_current?'w-button-main':'w-button-aside'}" href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>I('get.sort',0,'intval'),'page'=>$page])}" target="_self"><span>{$page}</span></a>		
+		{php}
+        }else if($page==4 || $page==$page_current+4){
+        {/php}
+        <a href="javascript:;" class="w-button w-button-aside">...</a>
+        {php}
+        }
+        {/php}
+                    {/for}
+                    {lt name="page_current" value="$page_count"}
+                    <a class="w-button w-button-aside" href="{:dwz_filter('lists/index',['category'=>I('get.category',0,'intval'),'sort'=>I('get.sort',0,'intval'),'page'=>$page_current+1])}" target="_self"><span>下一页</span></a>
+                    {else/}
+                    <a class="w-button w-button-aside w-button-disabled" href="javascript:;" disabled="disabled"><span>下一页</span></a>
+                    {/lt}
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="add_to_cart_url" value="{:U('Pay/add_to_cart')}"><!--添加到购物车-->
+<input type="hidden" id="add_to_cart_all" value="{:U('Pay/add_to_cart_all')}"><!--添加全部到购物车-->
+{/block}
+
+{block name="user_js"}
+{js href='__static__/js/index.js' /}
+{js href="__yyg__/js/index/index.js" /}
+{js href="__yyg__/js/lists/lists.js" /}
+{/block}

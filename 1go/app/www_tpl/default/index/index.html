@@ -1,0 +1,482 @@
+{extend name="base/base"/}
+{block name="user_css"}
+<!--QQ登录验证-->
+<meta property="qc:admins" content="277334636011673016763757" />
+{css href="__static__/css/index.css" /}
+{/block}
+{block name="title"}香肠一元购，一元任性买 ！{/block}
+{block name='content'}
+<div class="g-body">
+    <div id="pro-view-7">
+        <div class="m-index">
+            <div class="g-wrap g-body-hd f-clear">
+                <div class="g-main">
+                    <div class="g-main-l">
+                        <div class="m-index-news">
+                           <ul class="m-index-nl">
+                               <li>
+                                   <span></span>
+                                   <h4>香肠一元购上线试运营</h4>
+                                   <p>香肠一元购上线试运营香肠一元购上线试运营...</p>
+                               </li>
+                               <li>
+                                   <span></span>
+                                   <h4>香肠一元购上线试运营</h4>
+                                   <p>香肠一元购上线试运营香肠一元购上线试运营...</p>
+                               </li>
+                               <li>
+                                   <span></span>
+                                   <h4>香肠一元购上线试运营</h4>
+                                   <p>香肠一元购上线试运营香肠一元购上线试运营...</p>
+                               </li>
+                           </ul>
+                        </div>
+                    </div>
+                    <div class="g-main-m">
+                        <div class="w-slide m-index-promot" id="pro-view-8">
+                            <div class="w-slide-wrap">
+                                <ul class="w-slide-wrap-list" pro="list" style="width: 4380px; left: -1460px;">
+                                    <!--循环-->
+                                    {volist name="home_promo_list" id="each_home_promo"}
+                                    <li class="w-slide-wrap-list-item">
+                                        {switch name="each_home_promo.type"}
+                                        {case value="1"}
+                                        <a href="{:dwz_filter('goods/jump_to_goods_buying',array('gid'=>$each_home_promo['content']))}" title="{$each_home_promo.title|htmlspecialchars}" target="_blank"><img width="730" height="350" src="__image_path__{$each_home_promo.img_path}" onerror="no_img($(this));"></a>
+                                        {/case}
+                                        {case value="2"}
+                                        <a href="{$each_home_promo.content}" title="{$each_home_promo.title|htmlspecialchars}" target="_blank">
+                                            <img width="730" height="350" src="__image_path__{$each_home_promo.img_path}"></a>
+                                        {/case}
+                                        {case value="3"}
+                                        <a href="{:dwz_filter('lists/search',['keyword'=>$each_home_promo['content']])}" title="{$each_home_promo.title|htmlspecialchars}" target="_blank"><img width="730" height="350" src="__image_path__{$each_home_promo.img_path}"></a>
+                                        {/case}
+                                        {/switch}
+                                    </li>
+                                    {/volist}
+                                </ul>
+                            </div>
+                            <div class="w-slide-controller">
+                                <div class="w-slide-controller-btn" pro="controllerBtn">
+                                    <a class="prev" pro="prev" href="javascript:void(0)"><i
+                                            class="ico ico-arrow-large ico-arrow-large-l"></i><span class="f-txtHide">首焦上一帧</span></a>
+                                    <a class="next" pro="next" href="javascript:void(0)"><i
+                                            class="ico ico-arrow-large ico-arrow-large-r"></i><span class="f-txtHide">首焦下一帧</span></a>
+
+                                </div>
+                                <div class="w-slide-controller-nav" pro="controllerNav"></div>
+                            </div>
+                        </div>
+                        <div id="newestResult" class="w-slide m-index-newReveal">
+                            <h4>最新揭晓</h4>
+                            <div class="w-slide-wrap">
+                                <ul class="w-slide-wrap-list" pro="list" style="width: 4380px;">
+                                    {volist name="opening_list" id="each_opening"}
+                                    <li pro="item" class="w-slide-wrap-list-item">
+                                        <div class="w-goods-newReveal" data-status="{$each_opening.status}" data-gid="{$each_opening.goods_id}" data-nper="{$each_opening.nper_id}">
+                                            {eq name="each_opening.status" value="2"}
+                                            <i class="ico ico-label ico-label-revealing" title="正在揭晓"></i>
+                                            {else/}
+                                            <i class="ico ico-label ico-label-newReveal" title="最新揭晓"></i>
+                                            {/eq}
+                                            <p class="w-goods-title"><a
+                                                    href="{:dwz_filter('goods/detail',['id'=>$each_opening['goods_id'].'-'.$each_opening['nper_id']])}" title="{$each_opening.goods_name|htmlspecialchars}"
+                                                    target="_blank">{$each_opening.goods_name|htmlspecialchars}</a></p>
+                                            <div class="w-goods-pic">
+                                                <a href="{:dwz_filter('goods/detail',['id'=>$each_opening['goods_id'].'-'.$each_opening['nper_id']])}" target="_blank">
+                                                    <img width="120" height="120" src="__image_path__{$each_opening.goods_image}" onerror="no_img($(this));">
+                                                </a>
+                                            </div>
+                                            <p class="w-goods-price">总需：{$each_opening.sum_times}人次</p>
+                                            <p class="w-goods-period">期号：{$each_opening.nper_id|num_base_mask}</p>
+                                            <div class="opening-result">
+                                                {eq name="each_opening.status" value="2"}
+                                                <div class="w-goods-counting">
+                                                    {php}
+
+                                                        $tmp = floor($each_opening['open_time']);
+                                                        $tmp = $tmp < 0 ? 0 :$tmp;
+                                                    {/php}
+                                                    {if condition='(int)$tmp gt 0'}
+                                                    <div class="w-goods-countdown">揭晓倒计时:
+                                                        <div class="w-countdown" time="{$tmp|default=0}">
+                                                            <span class="w-countdown-nums"><b></b><b></b>:<b></b><b></b>:<b></b><b></b></span>
+
+                                                        </div>
+                                                    </div>
+                                                    {else /}
+                                                    <div class="w-goods-countdown">请稍候:
+                                                        <div class="w-countdown" time="{$tmp|default=0}">
+                                                            <!--<span class="w-countdown-nums"><b></b><b></b>:<b></b><b></b>:<b></b><b></b></span>-->
+                                                            <p class="w-countdown-ing txt-red" style="display:;">
+                                                                开奖中…</p>
+                                                        </div>
+                                                    </div>
+                                                    {/if}
+                                                </div>
+                                                {else/}
+                                                <div class="w-goods-record"><p class="w-goods-owner f-txtabb">获得者：<a href="{:dwz_filter('ta/index',['uid'=>$each_opening['luck_uid']])}" title="{$each_opening.luck_user|htmlspecialchars}(ID:{$each_opening.luck_uid})">
+                                                    <b>{$each_opening.luck_user|htmlspecialchars}</b></a></p><p>本期参与：{$each_opening.luck_o_num}人次</p><p>幸运号码：{$each_opening.luck_num|num_base_mask}</p></div>
+                                                {/eq}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {/volist}
+                                </ul>
+                            </div>
+                            <div class="w-slide-controller">
+                                <div class="w-slide-controller-btn" pro="controllerBtn">
+                                    <a class="prev" pro="prev" href="javascript:void(0)"><i
+                                            class="ico ico-arrow-large ico-arrow-large-l"></i><span class="f-txtHide">最新揭晓上一帧</span></a>
+                                    <a class="next" pro="next" href="javascript:void(0)"><i
+                                            class="ico ico-arrow-large ico-arrow-large-r"></i><span class="f-txtHide">最新揭晓下一帧</span></a>
+                                </div>
+                                <div class="w-slide-controller-nav" pro="controllerNav"><a class="dot curr"
+                                                                                           href="javascript:void(0)"></a><a
+                                        class="dot" href="javascript:void(0)"></a><a class="dot"
+                                                                                     href="javascript:void(0)"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="g-side">
+                    <div class="m-index-recommend">
+                        {notempty name="top_promo_one"}
+                        <h4>推荐商品</h4>
+                        <i class="ico ico-label ico-label-recommend" title="推荐夺宝"></i>
+                        <div class="w-goods w-goods-ing w-goods-recommend w-goods-quickBuy-warp"  data-nper="{$top_promo_one['id']}" data-last="{$top_promo_one['remain']}" data-unit="{$top_promo_one['unit_price']}" data-min="{$top_promo_one['min_times']}">
+                            <div class="w-goods-pic">
+                                <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$top_promo_one['gid']])}"
+                                   title="{$top_promo_one.name|htmlspecialchars}" target="_blank">
+                                    <img width="180" height="180" alt="" src="__image_path__{$top_promo_one.img_path}" onerror="no_img($(this));"
+                                         style="min-height: 40px; min-width: 40px;">
+                                </a>
+                            </div>
+                            <p class="w-goods-title f-txtabb"><a title="" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$top_promo_one['gid']])}" target="_blank">{$top_promo_one.name|htmlspecialchars}</a></p>
+                            <p class="w-goods-price">总需：{$top_promo_one.sum_times} 人次</p>
+                            <div class="w-progressBar" title="{$top_promo_one.percent}%">
+                                <p class="w-progressBar-wrap">
+                                    <span class="w-progressBar-bar" style="width:{$top_promo_one.percent}%;"></span>
+                                </p>
+                                <p class="w-progressBar-txt">已完成{$top_promo_one.percent}%，剩余<strong>{$top_promo_one.remain}</strong></p>
+                            </div>
+                            <div class="w-goods-opr">
+                                <a class="w-button w-button-main w-button-l w-goods-quickBuy" href="javascript:;" style="width:70px;">立即夺宝</a>
+                            </div>
+                        </div>
+                        {/notempty}
+                    </div>
+                    <div class="w-slide m-index-newGoods" id="pro-view-9">
+                        <i class="ico ico-label ico-label-newRecommend" title="新品推荐"><a
+                                style="display:block;width:100%;height:100%" href="javascript:;"></a></i>
+                        <div class="w-slide-wrap">
+                            <ul class="w-slide-wrap-list" pro="list" style="width: 1150px;">
+                                <!--循环-->
+                                {volist name="top_promo_new_list" id="each_promo_new"}
+                                <li pro="item" class="w-slide-wrap-list-item">
+                                    <table class="wrap">
+                                        <tbody>
+                                        <tr>
+                                            <td style="border-bottom:1px dotted #C9C9C9;padding-top:15px;height:130px;text-align:center;">
+                                                <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_promo_new['id']])}" target="_blank">
+                                                    <img width="120" height="120"
+                                                         onerror="no_img($(this));"
+                                                         src="__image_path__{$each_promo_new.img_path}"
+                                                         alt="{$each_promo_new.name|htmlspecialchars}"
+                                                         style="margin:auto">
+                                                </a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="height:63px;text-align:center">
+                                                <dl>
+                                                    <dt class="f-txtabb" style="width:100%"><a
+                                                            style="color:#3C3C3C;font-size:14px;" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_promo_new['id']])}"
+                                                            target="_blank" title="{$each_promo_new.name|htmlspecialchars}">{$each_promo_new.name|htmlspecialchars}</a></dt>
+                                                    <dd class="f-txtabb m-index-newGoods-desc" style="width:100%"
+                                                        title="{$each_promo_new.sub_title|htmlspecialchars}">
+                                                        {$each_promo_new.sub_title|htmlspecialchars}
+                                                    </dd>
+                                                </dl>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                        <div class="w-slide-controller">
+                            <div class="w-slide-controller-btn" pro="controllerBtn">
+                                <a class="prev" pro="prev" href="javascript:void(0)"><i
+                                        class="ico ico-arrow-small ico-arrow-small-l"></i><span class="f-txtHide">新品推荐上一帧</span></a>
+                                <a class="next" pro="next" href="javascript:void(0)"><i
+                                        class="ico ico-arrow-small ico-arrow-small-r"></i><span class="f-txtHide">新品推荐下一帧</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-wrap g-body-bd f-clear">
+                <div class="g-main">
+                    <div class="m-index-mod m-index-goods-hotest">
+                        <div class="w-hd">
+                            <h3 class="w-hd-title">最热商品</h3>
+                            <a class="w-hd-more" href="{:dwz_filter('lists/index',['sort'=>0])}">更多商品，点击查看&gt;&gt;</a>
+                        </div>
+                        <div class="m-index-mod-bd">
+                            <ul class="w-goodsList f-clear">
+                                <!--循环-->
+                                {volist name="hot_goods" id="each_goods"}
+                                <li class="w-goodsList-item" data-nper="{$each_goods['id']}" data-last="{$each_goods['remain']}" data-unit="{$each_goods['unit_price']}" data-min="{$each_goods['min_times']}">
+                                    <div class="w-goods w-goods-ing">
+                                        <div class="w-goods-pic">
+                                            <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}" title="{$each_goods.name|htmlspecialchars}"
+                                               target="_blank">
+                                                <img width="200" height="200" alt=""
+                                                     src="__image_path__{$each_goods.img_path}"
+                                                     onerror="no_img($(this));"
+                                                     style="min-height: 40px; min-width: 40px;">
+                                            </a>
+                                        </div>
+                                        <p class="w-goods-title f-txtabb"><a title="{$each_goods.sub_title|htmlspecialchars}" href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}"
+                                                                             target="_blank">{$each_goods.name|htmlspecialchars}</a></p>
+                                        <p class="w-goods-price">总需：{$each_goods.sum_times} 人次</p>
+                                        <div class="w-progressBar" title="{$each_goods.percent}%">
+                                            <p class="w-progressBar-wrap">
+                                                <span class="w-progressBar-bar" style="width:{$each_goods.percent}%;"></span>
+                                            </p>
+                                            <ul class="w-progressBar-txt f-clear">
+                                                <li class="w-progressBar-txt-l"><p><b>{$each_goods.participant_num}</b></p>
+                                                    <p>已参与人次</p></li>
+                                                <li class="w-progressBar-txt-r"><p><b>{$each_goods.remain}</b></p>
+                                                    <p>剩余人次</p></li>
+                                            </ul>
+                                        </div>
+                                        <p class="w-goods-progressHint">
+                                            <b class="txt-blue">{$each_goods.participant_num}</b>人次已参与，赶快去参加吧！剩余<b class="txt-red">{$each_goods.remain}</b>人次
+                                        </p>
+                                        <div class="w-goods-opr">
+
+                                            <a class="w-button w-button-main w-button-l w-goods-quickBuy"
+                                               href="javascript:void(0)" style="width:70px;" title="立即夺宝">立即夺宝</a>
+                                            <a class="w-button w-button-addToCart" href="javascript:void(0)"
+                                               title="添加到购物车"></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="g-side">
+                    <div class="m-index-mod m-index-recordRank ">
+                        <div class="m-index-mod-hd">
+                            <h3>一元传奇</h3>
+                        </div>
+                        <div class="m-index-mod-bd">
+                            <ul id="one_rmb" class="w-intervalScroll" style="margin-top: 0px;">
+                                {volist name='legendary_list' id='each_legendary' mod="2"}
+                                <li pro="item" class="w-intervalScroll-item {$mod==0?'odd':'even'}">
+                                    <div class="w-record-avatar">
+                                        <img width="40" height="40" src="__image_path__{$each_legendary.avatar}" onerror="no_img($(this));">
+                                    </div>
+                                    <div class="w-record-detail">
+                                        <p class="w-record-intro">
+                                            <a class="w-record-user f-txtabb" href="{:dwz_filter('ta/index',['uid'=>$each_legendary['luck_uid']])}" target="_blank"
+                                               title="{$each_legendary.luck_user}(ID:{$each_legendary.luck_uid})">{$each_legendary.nick_name|htmlspecialchars}</a>
+                                            <span class="w-record-date">{$each_legendary.luck_time|microtime_format='1','于m月d日'}</span>
+                                        </p>
+                                        <p class="w-record-title f-txtabb"><strong>{$each_legendary.num}人次</strong>夺得<a title="{$each_legendary.goods_name|htmlspecialchars}"
+                                                                                                                        href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_legendary['gid']])}"
+                                                                                                                        target="_blank">{$each_legendary.goods_name}</a>
+                                        </p>
+                                        <p class="w-record-price">总需：{$each_legendary.sum_times} 人次</p>
+                                    </div>
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                        <div class="m-index-mod-ft">看看谁的狗屎运最好！</div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-wrap g-body-ft f-clear">
+                <!--商品展示-->
+                <!--大分类循环-->
+                {volist name='category_list' id='each_category' }
+                <div class="m-index-mod m-index-goods-catlog">
+                    <div class="w-hd">
+                        <h3 class="w-hd-title">{$each_category.name}</h3>
+                        <a class="w-hd-more" href="{:dwz_filter('lists/index',['category'=>$each_category['id']])}">更多商品，点击查看&gt;&gt;</a>
+                    </div>
+                    <div class="m-index-mod-bd f-clear">
+                        <div class="m-index-promotGoods">
+                            <!--<div class="w-slide-wrap"> w-slide -->
+                            {notempty name="category_promo[$each_category['id']]"}
+                            <ul class="w-slide-wrap-list" pro="list">
+                                <li pro="item" class="w-slide-wrap-list-item">
+                                    {empty name="category_promo[$each_category['id']]['url']"}
+                                    <a href="{:dwz_filter('goods/jump_to_goods_buying',array('gid'=>$category_promo[$each_category['id']]['gid']))}" target="_blank">
+                                        {else/}
+                                        <a href="{$category_promo[$each_category['id']]['url']}" target="_blank">
+                                            {/empty}
+                                            <img width="239" height="400" src="__image_path__{$category_promo[$each_category['id']]['img_path']}" onerror="no_img($(this));">
+                                        </a>
+                                    </a>
+                                </li>
+                            </ul>
+                            {/notempty}
+                        </div>
+                        <ul class="w-goodsList">
+                            <!--产品循环 4个一组-->
+                            {volist name="goods_list[$each_category['id']]" id="each_goods"}
+                            <li class="w-goodsList-item" data-nper="{$each_goods['id']}" data-last="{$each_goods['remain']}" data-unit="{$each_goods['unit_price']}" data-min="{$each_goods['min_times']}">
+                                <div class="w-goods w-goods-ing">
+                                    <div class="w-goods-pic">
+                                        <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}" title="{$each_goods.name|htmlspecialchars}"
+                                           target="_blank">
+                                            <img width="200" height="200" alt=""
+                                                 src="__image_path__{$each_goods.img_path}"
+                                                 onerror="no_img($(this));"
+                                                 style="min-height: 40px; min-width: 40px;" >
+                                        </a>
+                                    </div>
+                                    <p class="w-goods-title f-txtabb"><a title="{$each_goods.sub_title|htmlspecialchars}" href="#"
+                                                                         target="_blank">{$each_goods.name|htmlspecialchars}</a></p>
+                                    <p class="w-goods-price">总需：{$each_goods.sum_times} 人次</p>
+                                    <div class="w-progressBar" title="{$each_goods.percent}%">
+                                        <p class="w-progressBar-wrap">
+                                            <span class="w-progressBar-bar" style="width:{$each_goods.percent}%;"></span>
+                                        </p>
+                                        <ul class="w-progressBar-txt f-clear">
+                                            <li class="w-progressBar-txt-l"><p><b>{$each_goods.participant_num}</b></p>
+                                                <p>已参与人次</p></li>
+                                            <li class="w-progressBar-txt-r"><p><b>{$each_goods.remain}</b></p>
+                                                <p>剩余人次</p></li>
+                                        </ul>
+                                    </div>
+                                    <p class="w-goods-progressHint">
+                                        <b class="txt-blue">{$each_goods.participant_num}</b>人次已参与，赶快去参加吧！剩余<b class="txt-red">{$each_goods.remain}</b>人次
+                                    </p>
+                                    <div class="w-goods-opr">
+
+                                        <a class="w-button w-button-main w-button-l w-goods-quickBuy"
+                                           href="javascript:void(0)" style="width:70px;" title="立即夺宝">立即夺宝</a>
+                                        <a class="w-button w-button-addToCart" href="javascript:void(0)"
+                                           title="添加到购物车"></a>
+                                    </div>
+                                </div>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                </div>
+                {/volist}
+                <a name="newArrivals"></a>
+                <div class="m-index-mod m-index-newArrivals">
+                    <div class="w-hd">
+                        <h3 class="w-hd-title">最新上架</h3>
+                        <a class="w-hd-more" href="{:dwz_filter('lists/index',['category'=>0,'sort'=>2])}">更多新品，点击查看&gt;&gt;</a>
+                    </div>
+                    <div class="m-index-mod-bd">
+                        <ul class="w-goodsList f-clear">
+                            <!--循环-->
+                            {volist name="new_goods" id="each_goods"}
+                            <li class="w-goodsList-item" data-nper="{$each_goods['id']}" data-last="{$each_goods['remain']}" data-unit="{$each_goods['unit_price']}" data-min="{$each_goods['min_times']}">
+                                <div class="w-goods w-goods-ing">
+                                    <div class="w-goods-pic">
+                                        <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$each_goods['gid']])}" title="{$each_goods.name|htmlspecialchars}"
+                                           target="_blank">
+                                            <img width="200" height="200" alt=""
+                                                 src="__image_path__{$each_goods.img_path}"
+                                                 onerror="no_img($(this));"
+                                                 style="min-height: 40px; min-width: 40px;">
+                                        </a>
+                                    </div>
+                                    <p class="w-goods-title f-txtabb"><a title="{$each_goods.sub_title|htmlspecialchars}" href="#"
+                                                                         target="_blank">{$each_goods.name|htmlspecialchars}</a></p>
+                                    <p class="w-goods-price">总需：{$each_goods.sum_times} 人次</p>
+                                    <div class="w-progressBar" title="{$each_goods.percent}%">
+                                        <p class="w-progressBar-wrap">
+                                            <span class="w-progressBar-bar" style="width:{$each_goods.percent}%;"></span>
+                                        </p>
+                                        <ul class="w-progressBar-txt f-clear">
+                                            <li class="w-progressBar-txt-l"><p><b>{$each_goods.participant_num}</b></p>
+                                                <p>已参与人次</p></li>
+                                            <li class="w-progressBar-txt-r"><p><b>{$each_goods.remain}</b></p>
+                                                <p>剩余人次</p></li>
+                                        </ul>
+                                    </div>
+                                    <p class="w-goods-progressHint">
+                                        <b class="txt-blue">{$each_goods.participant_num}</b>人次已参与，赶快去参加吧！剩余<b class="txt-red">{$each_goods.remain}</b>人次
+                                    </p>
+                                    <div class="w-goods-opr">
+
+                                        <a class="w-button w-button-main w-button-l w-goods-quickBuy"
+                                           href="javascript:void(0)" style="width:70px;" title="立即夺宝">立即夺宝</a>
+                                        <a class="w-button w-button-addToCart" href="javascript:void(0)"
+                                           title="添加到购物车"></a>
+                                    </div>
+                                </div>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                </div>
+                <div class="m-index-mod m-index-share">
+                    <div class="w-hd">
+                        <h3 class="w-hd-title">晒单分享</h3>
+                        <a class="w-hd-more" href="http://1.xiangchang.com/share.html">更多分享，点击查看&gt;&gt;</a>
+                    </div>
+                    <div class="m-index-mod-bd">
+                        <ul class="w-intervalScroll f-clear" data-minline="4" data-perline="2" id="pro-view-12"
+                            style="margin-top: 0px;">
+                            <!--循环 left right 一组-->
+                            {volist name="share_list" id="each_share" mod="2"}
+                            <li pro="item" class="w-intervalScroll-item {$mod==0?'left':'right'}">
+                                <a class="m-index-share-picLink" href="{:dwz_filter('share/detail',['id'=>$each_share['id']])}" target="_blank">
+                                    <img class="m-index-share-pic" width="110" src="__image_path__{$each_share.share_image|default='__noimg__'}" onerror="no_img($(this));">
+                                </a>
+                                <div class="m-index-share-wrap">
+                                    <i class="ico ico-quote ico-quote-former"></i>
+                                    <p class="txt"><a
+                                            href="{:dwz_filter('share/detail',['id'=>$each_share['id']])}"
+                                            target="_blank"><span title="{$each_share.title|htmlspecialchars}">【{$each_share.title|htmlspecialchars}】</span>{$each_share.content|htmlspecialchars}</a></p>
+                                    <p class="author">—— <a title="{$each_share.username}(ID:{$each_share.uid})"
+                                                            href="{:dwz_filter('ta/index',['uid'=>$each_share['uid']])}"
+                                                            target="_blank">{$each_share.username}</a> {$each_share.create_time|date='Y-m-d H:i:s',###}</p>
+                                    <i class="ico ico-quote ico-quote-after"></i>
+                                </div>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/template" id="opening_tpl">
+    <div class="w-goods-countdown">请稍候:
+        <div class="w-countdown" >
+            <p class="w-countdown-ing txt-red" style="display:;">
+                开奖中…</p>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="error_tpl">
+    <div class="w-goods-error" >
+        <p class="txt-gray w-goods-err">非常抱歉~<br>服务器开小差了，请稍后再试...</p>
+    </div>
+</script>
+<input type="hidden" id="nper_open_api" value="{:U('core/gdfc/open_by_nper')}" /><!--触发开奖-->
+<input type="hidden" id="refresh_results" value="{:U('index/refresh_results')}" /><!--刷新开奖结果-->
+<input type="hidden" id="add_to_cart_url" value="{:U('Pay/add_to_cart')}"><!--添加到购物车-->
+{/block}
+
+{block name="user_js"}
+{js href='__static__/js/index.js' /}
+{js href='__static__/js/count_down.js' /}
+{js href="__yyg__/js/index/index.js" /}
+{/block}

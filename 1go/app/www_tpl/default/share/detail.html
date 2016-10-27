@@ -1,0 +1,109 @@
+{extend name="base/base"/}
+{block name="user_css"}
+{css href="__static__/css/index.css" /}
+{css href="__static__/css/goods_list.css" /}
+{css href="__static__/css/share.css" /}
+{/block}
+{block name="title"}晒单详情{/block}
+{block name='content'}
+<div class="g-body">
+    <div class="m-user" m id="pro-view-0">
+        <div class="g-wrap">
+            <div class="m-user-frame-wraper">
+                <div class="m-user-frame-colMain m-user-frame-colMain-noLeft">
+                    <div class="m-user-frame-content" pro="userFrameWraper">
+                        <ul class="w-crumbs f-clear">
+                            <li class="w-crumbs-item">当前位置：</li>
+                            <li class="w-crumbs-item"><a href="#">Ta的夺宝</a><span class="w-crumbs-split">&gt;</span></li>
+                            <li class="w-crumbs-item">
+                                <a href="#">Ta的晒单</a>
+                                <span class="w-crumbs-split">&gt;</span>
+                            </li>
+                            <li class="w-crumbs-item w-crumbs-active">晒单详情</li>
+
+                        </ul>
+                        <div >
+                            <div class="m-user-comm-infoBox f-clear"  id="pro-view-9" >
+                                <img class="m-user-comm-infoBox-face" src="__image_path__{$share_info.avatar|default='__AVATAR__DEFAULT__'}" width="160" height="160">
+                                <div class="m-user-comm-infoBox-cont">
+                                    <ul>
+                                        <li class="item nickname">
+                                            <span class="txt">{$share_info.username}</span>
+                                        </li>
+                                        <li class="item"><span class="txt">ID：<strong>{$share_info.uid}</strong></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="m-user-shareDetail-panel">
+                                <div class="m-user-shareDetail-header">
+                                    <h1 class="title">{$share_info.title|htmlspecialchars}</h1>
+                                    <div class="time">晒单时间：{$share_info.share_time|date='Y-m-d H:i:s',###}</div>
+                                    <div class="share" id="dvShare">
+                                        <div class="w-shareTo" pro="shareToWarp">
+                                            <span class="w-shareTo-txt">分享到</span>
+                                            <ul class="w-shareTo-list">
+                                                <li><a  data-share="yixin" class="w-shareTo-ico w-shareTo-yixin" href="javascript:void(0)" title="分享至易信"></a></li>
+                                                <li><a  data-share="weibo" class="w-shareTo-ico w-shareTo-weibo" href="javascript:void(0)" title="分享至新浪微博"></a></li>
+                                                <li><a  data-share="qzone" class="w-shareTo-ico w-shareTo-qzone" href="javascript:void(0)" title="分享至QZone"></a></li>
+                                                <li><a  data-share="tqq" class="w-shareTo-ico w-shareTo-tqq" href="javascript:void(0)" title="分享至腾讯微博"></a></li>
+                                                <li><a  data-share="weixin" class="w-shareTo-ico w-shareTo-weixin" href="javascript:void(0)" title="分享至微信"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-user-shareDetail-winDetail">
+                                    <div class="owner">
+                                        <div class="avatar">
+                                            <a href="{:dwz_filter('ta/index',['uid'=>$share_info['uid']])}" title="{$share_info.username|htmlspecialchars}">
+                                                <img width="90" height="90"  src="__image_path__{$share_info.avatar|default='__AVATAR__DEFAULT__'}">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <div class="name">获得者：<a href="{:dwz_filter('ta/index',['uid'=>$share_info['uid']])}" title="{$share_info.username}">{$share_info.username|htmlspecialchars}</a></div>
+                                            <div class="total">总共参与：<strong class="txt-impt">{$share_info.order_num|default=''}</strong>人次</div>
+                                            <div class="code">幸运号码：<strong class="txt-impt">{$share_info.luck_num|num_base_mask|default=''}</strong></div>
+                                            <div class="time">揭晓时间：{$share_info.open_time|date='Y-m-d H:i:s',###}</div>
+                                        </div>
+                                    </div>
+                                    <div class="goods">
+                                        <div class="pic">
+                                            <a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$share_info['goods_id']])}" target="_blank"><img width="90" height="90" src="__image_path__{$share_info.goods_image}"></a>
+                                        </div>
+                                        <div class="info">
+                                            <div class="name"><a href="{:dwz_filter('goods/detail',['id'=>$share_info['goods_id'].'-'.$share_info['nper_id']])}" target="_blank" style="color:#808080;">{$share_info.goods_name|htmlspecialchars}</a></div>
+                                            <div class="period">期号：{$share_info.nper_id|num_base_mask} </div>
+                                            <div class="total">总需：{$share_info.sum_times}人次</div>
+                                            <div class="more"><a href="{:dwz_filter('goods/jump_to_goods_buying',['gid'=>$share_info['goods_id']])}" target="_blank">最新一期正在进行中…</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-user-shareDetail-cont">
+                                    <i class="ico ico-quote ico-quote-former"></i>
+                                    <i class="ico ico-quote ico-quote-after"></i>
+                                    <div class="text">{$share_info.content|htmlspecialchars}
+                                    </div>
+                                </div>
+                                <div class="m-user-shareDetail-pics">
+                                    {volist name="image_list" id="each_image"}
+                                    <div class="item"><img src="__image_path__{$each_image.img_path}"></div>
+                                    {/volist}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="m-user-frame-clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="share_get" value="{:U('Share/pull_list')}">
+<input type="hidden" id="user_link" value="#" >
+<input type="hidden" id="goods_link" value="{:U('Goods/detail')}" >
+<input type="hidden" id="share_link" value="{:U('Share/detail')}" >
+{/block}
+{block name="user_js"}
+{js href='__static__/js/index.js' /}
+{/block}

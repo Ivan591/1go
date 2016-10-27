@@ -1,0 +1,4 @@
+<option value="">请选择</option>
+{volist name='list' id='vo'}
+<option value="{$vo.id|default=''}">{$vo.name|default=''}</option>
+{/volist}
